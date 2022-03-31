@@ -62,7 +62,7 @@ class tbl_usuariosSeeder extends Seeder
         DB::table('tbl_usuario')->insert([
             'nick_usu' => 'xaviermireia1',
             'nombre_usu' => 'Xavi',
-            'apellido_usu' => 'Galledo Garrido',
+            'apellido_usu' => 'Gómez Gallego',
             'fecha_nac_usu' => '2001-09-29',
             'correo_usu' => 'xavi@gmail.com',
             'contra_usu' => MD5('1234'),
