@@ -19,7 +19,7 @@ class tbl_usuariosSeeder extends Seeder
             'nick_usu' => 'xWhiite',
             'nombre_usu' => 'Raúl',
             'apellido_usu' => 'Santacruz Cela',
-            'edad_usu' => '20',
+            'fecha_nac_usu' => '2001-12-16',
             'correo_usu' => 'raul@gmail.com',
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
@@ -30,7 +30,7 @@ class tbl_usuariosSeeder extends Seeder
             'nick_usu' => 'Marc_Ortiz02',
             'nombre_usu' => 'Marc',
             'apellido_usu' => 'Ortiz González',
-            'edad_usu' => '19',
+            'fecha_nac_usu' => '2002-12-17',
             'correo_usu' => 'marc@gmail.com',
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
@@ -41,7 +41,7 @@ class tbl_usuariosSeeder extends Seeder
             'nick_usu' => 'Mike',
             'nombre_usu' => 'Miguel',
             'apellido_usu' => 'Gras Garrido',
-            'edad_usu' => '20',
+            'fecha_nac_usu' => '2001-11-05',
             'correo_usu' => 'miguel@gmail.com',
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
@@ -52,7 +52,7 @@ class tbl_usuariosSeeder extends Seeder
             'nick_usu' => 'Davidalvareez',
             'nombre_usu' => 'David',
             'apellido_usu' => 'Alvarez Rodriguez',
-            'edad_usu' => '21',
+            'fecha_nac_usu' => '2001-04-08',
             'correo_usu' => 'david@gmail.com',
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
@@ -63,7 +63,7 @@ class tbl_usuariosSeeder extends Seeder
             'nick_usu' => 'xaviermireia1',
             'nombre_usu' => 'Xavi',
             'apellido_usu' => 'Galledo Garrido',
-            'edad_usu' => '20',
+            'fecha_nac_usu' => '2001-09-29',
             'correo_usu' => 'xavi@gmail.com',
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
@@ -74,7 +74,7 @@ class tbl_usuariosSeeder extends Seeder
             'nick_usu' => 'Skrisirex',
             'nombre_usu' => 'Isaac',
             'apellido_usu' => 'Ortiz Moncusí',
-            'edad_usu' => '20',
+            'fecha_nac_usu' => '2001-05-11',
             'correo_usu' => 'isaac@gmail.com',
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
