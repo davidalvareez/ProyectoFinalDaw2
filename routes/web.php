@@ -18,9 +18,7 @@ use App\Http\Controllers\UsuarioController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('buscador', function (){
-    return view('buscador');
-});
+Route::get('buscador',[ApuntesController::class,'buscador']);
 //Provisional es para la vista login
 Route::get('login',[UsuarioController::class,'loginView']);
 Route::get('register',[UsuarioController::class,'registerView']);

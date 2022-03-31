@@ -20,6 +20,7 @@ class TblContenidos extends Migration
             $table->string('ruta_contenido');
             $table->string('idioma_contenido');
             $table->string('extension_contenido');
+            $table->dateTime('fecha_publicacion_contenido');
             $table->unsignedBigInteger('id_tema');
             $table->unsignedBigInteger('id_usu');
 
