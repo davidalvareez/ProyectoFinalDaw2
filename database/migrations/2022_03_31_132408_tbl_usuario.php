@@ -18,7 +18,7 @@ class TblUsuario extends Migration
             $table->string('nick_usu');
             $table->string('nombre_usu');
             $table->string('apellido_usu');
-            $table->string('edad_usu');
+            $table->date('fecha_nac_usu');
             $table->string('correo_usu');
             $table->string('contra_usu');
             $table->dateTime('deshabilitado')->nullable();
