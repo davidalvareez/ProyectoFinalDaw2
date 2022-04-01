@@ -19,11 +19,28 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('buscador',[ApuntesController::class,'buscador']);
-//Provisional es para la vista login
-Route::get('login',[UsuarioController::class,'loginView']);
-Route::get('register',[UsuarioController::class,'registerView']);
-//Procesos login + registro
+
+//Procesos Login // Registro // LogOut
 Route::post('login',[UsuarioController::class,'login']);
+
 Route::post('register',[UsuarioController::class,'register']);
-//Logout
+
+Route::get('login',[UsuarioController::class,'loginView']);
+
+Route::get('register',[UsuarioController::class,'registerView']);
+
 Route::get('logout',[UsuarioController::class,'logout']);
+
+//Mostrar
+
+
+//Crear
+
+
+//Actualizar
+
+
+//Eliminar
+
+
+//Mapas

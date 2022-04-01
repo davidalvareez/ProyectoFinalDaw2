@@ -6,5 +6,15 @@ use Illuminate\Http\Request;
 
 class CRUDAdmin extends Controller
 {
-    //
+    //Mostrar
+
+
+    //Crear
+
+
+    //Actualizar
+
+
+    //Eliminar
+
 }

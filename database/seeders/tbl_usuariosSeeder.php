@@ -106,7 +106,7 @@ class tbl_usuariosSeeder extends Seeder
             'nick_usu' => '_jordisn',
             'nombre_usu' => 'Jordi',
             'apellido_usu' => 'San Nicolas',
-            'fecha_nac_usu' => '2001-04-24',
+            'fecha_nac_usu' => '2001-11-25',
             'correo_usu' => 'jordiSanNicolas@gmail.com',
             'contra_usu' => MD5('1234'),
             'id_centro' => 2,
