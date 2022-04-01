@@ -31,6 +31,10 @@ Route::get('register',[UsuarioController::class,'registerView']);
 
 Route::get('logout',[UsuarioController::class,'logout']);
 
+
+//CRUD
+
+
 //Mostrar
 
 
