@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             tbl_rolSeeder::class,
             tbl_nivelesSeeder::class,
             tbl_usuariosSeeder::class,
+            tbl_avatarSeeder::class,
             tbl_contenidosSeeder::class,
         ]);
     }

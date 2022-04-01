@@ -40,14 +40,22 @@ class UsuarioController extends Controller
                 //Si no está baneado es decir es nulo para dentro
                 if ($user->deshabilitado == null) {
                     session()->put("user",$user);
-                    return redirect("buscador");
+                    if ($user->id_rol == 1) {
+                        return redirect("admin");
+                    }else{
+                        return redirect("buscador");
+                    }
                 }else{
                     //Si esta baneado validamos entre fecha/hora actual y el baneo y si el sistema es mayor o igual lo ponemos a nulo y lo devolvemos a la vista
                     $timeBanned = $user->deshabilitado;
                     if ($timeBanned <= $sysDate) {
                         DB::select('UPDATE tbl_usuario SET deshabilitado=null where id = ?',[$user->id]);
                         session()->put("user",$user);
-                        return redirect("buscador");
+                        if ($user->id_rol == 1) {
+                            return redirect("admin");
+                        }else{
+                            return redirect("buscador");
+                        }
                     }else{
                         return "Sigues baneado";
                     }

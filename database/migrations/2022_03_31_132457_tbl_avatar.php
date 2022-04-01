@@ -18,7 +18,7 @@ class TblAvatar extends Migration
             $table->id();
             $table->string('tipo_avatar');
             $table->string('img_avatar');
-            $table->unsignedBigInteger('id_usu');
+            $table->unsignedBigInteger('id_usu')->nullable();
 
             $table->foreign('id_usu')->references('id')->on('tbl_usuario');
 
