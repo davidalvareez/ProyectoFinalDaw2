@@ -14,9 +14,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            tbl_centroSeeder::class,
+            tbl_cursosSeeder::class,
+            tbl_asignaturasSeeder::class,
+            tbl_temasSeeder::class,
             tbl_rolSeeder::class,
             tbl_nivelesSeeder::class,
             tbl_usuariosSeeder::class,
+            tbl_contenidosSeeder::class,
         ]);
     }
 }

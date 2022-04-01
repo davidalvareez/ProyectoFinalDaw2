@@ -68,7 +68,6 @@ class tbl_usuariosSeeder extends Seeder
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
         ]);
-
         //ID = 6
         DB::table('tbl_usuario')->insert([
             'nick_usu' => 'Skrisirex',
@@ -79,5 +78,55 @@ class tbl_usuariosSeeder extends Seeder
             'contra_usu' => MD5('1234'),
             'id_rol' => '1'
         ]);
+        /*-------------------------- XAVI GOMEZ ----------------*/
+        //ID = 7
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'andrea.gb24',
+            'nombre_usu' => 'Andreea',
+            'apellido_usu' => 'Cerchia',
+            'fecha_nac_usu' => '2001-04-24',
+            'correo_usu' => 'andreagb24@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'id_centro' => 1,
+            'id_rol' => '3',
+        ]);
+        //ID = 8
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => '18anais',
+            'nombre_usu' => 'Anais',
+            'apellido_usu' => 'Redondo Dominguez',
+            'fecha_nac_usu' => '2001-05-18',
+            'correo_usu' => 'anaisredondo@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'id_centro' => 3,
+            'id_rol' => '3'
+        ]);
+        //ID = 9
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => '_jordisn',
+            'nombre_usu' => 'Jordi',
+            'apellido_usu' => 'San Nicolas',
+            'fecha_nac_usu' => '2001-04-24',
+            'correo_usu' => 'jordiSanNicolas@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'id_centro' => 2,
+            'id_rol' => '3'
+        ]);
+        //ID = 10
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'alba.subirats',
+            'nombre_usu' => 'Alba',
+            'apellido_usu' => 'Subirats',
+            'fecha_nac_usu' => '2002-11-29',
+            'correo_usu' => 'albasubirats@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'id_centro' => 4,
+            'id_rol' => '3'
+        ]);
+        /*-------------------------- MIGUEL GRAS ----------------*/
+        /*-------------------------- DAVID ALVAREZ ----------------*/
+        /*-------------------------- MARC ORTIZ ----------------*/
+        /*-------------------------- RAUL SANTACRUZ ----------------*/
+        /*-------------------------- ISAAC ORTIZ ----------------*/
     }
 }

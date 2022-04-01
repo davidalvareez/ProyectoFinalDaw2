@@ -34,7 +34,7 @@ class UsuarioController extends Controller
             //En caso contrario comprovamos lo siguiente
             }else{
                 $user = $user[0];
-                date_default_timezone_set("Europe/Madrid");
+                //date_default_timezone_set("Europe/Madrid");
                 $sysDate = date('Y-m-d H:i:s');
                 //Una vez dentro cogemos fecha actual del sistema
                 //Si no está baneado es decir es nulo para dentro

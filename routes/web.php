@@ -16,7 +16,7 @@ use App\Http\Controllers\UsuarioController;
 */
 //Enlaces a paginas
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 Route::get('buscador',[ApuntesController::class,'buscador']);
 //Provisional es para la vista login

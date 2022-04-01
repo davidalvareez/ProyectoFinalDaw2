@@ -17,7 +17,7 @@ class TblContenidos extends Migration
 
             $table->id();
             $table->string('nombre_contenido');
-            $table->string('ruta_contenido');
+            //$table->string('ruta_contenido');
             $table->string('idioma_contenido');
             $table->string('extension_contenido');
             $table->dateTime('fecha_publicacion_contenido');
