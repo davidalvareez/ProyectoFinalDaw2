@@ -32,6 +32,9 @@ Route::get('register',[UsuarioController::class,'registerView']);
 
 Route::get('logout',[UsuarioController::class,'logout']);
 
+//FILTROS
+//Pagina buscador, busqueda multiple_of
+Route::post('buscador/multiplyfilter',[ApuntesController::class,'multiplyFilter']);
 
 //CRUD
 Route::get('admin',[CRUDAdminController::class,'adminView']);
