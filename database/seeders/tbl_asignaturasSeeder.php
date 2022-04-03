@@ -94,6 +94,46 @@ class tbl_asignaturasSeeder extends Seeder
             'id_curso' => 4
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
+        //ID 16
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Fundamento de la pintura',
+            'id_curso' => 5
+        ]);
+        //ID 17
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Historia del Arte',
+            'id_curso' => 5
+        ]);
+        //ID 18
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Tecnicas, procedimientos y materiales del dibujo',
+            'id_curso' => 5
+        ]);
+        //ID 19
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Tecnicas, procedimientos y materiales escultoricos',
+            'id_curso' => 5
+        ]);
+        //ID 20
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Tecnicas, procedimientos y materiales pictoricos',
+            'id_curso' => 5
+        ]);
+        //ID 21
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Tecnologias de la imagen',
+            'id_curso' => 5
+        ]);
+        //ID 22
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Quimica fisica',
+            'id_curso' => 6
+        ]);
+        //ID 23
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Quimica organica',
+            'id_curso' => 6
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
         /*-------------------------- RAUL SANTACRUZ ----------------*/

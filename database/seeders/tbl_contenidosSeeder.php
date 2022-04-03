@@ -204,6 +204,232 @@ class tbl_contenidosSeeder extends Seeder
             'id_usu' => 10
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
+        //Tema 19
+        //ID 20
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 21
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 2',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 22
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 3',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 23
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 4',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 24
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 5',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 25
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 6',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 26
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 7',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 27
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 8',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 28
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 9',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 29
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 10',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 30
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 11',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 31
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Fundamentos de la pintura 12',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 19,
+            'id_usu' => 11
+        ]);
+        //ID 32
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Historia del arte 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 20,
+            'id_usu' => 11
+        ]);
+        //ID 33
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Historia del arte 2',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 21,
+            'id_usu' => 11
+        ]);
+        //ID 34
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnicas, procedimientos y materiales del dibujo 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 22,
+            'id_usu' => 11
+        ]);
+        //ID 35
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnicas, procedimientos y materiales escultoricos 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 23,
+            'id_usu' => 11
+        ]);
+        //ID 36
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnicas, procedimientos y materiales pictoricos 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 24,
+            'id_usu' => 11
+        ]);
+        //ID 37
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnologias de la imagen 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 25,
+            'id_usu' => 11
+        ]);
+        //ID 38
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnologias de la imagen 2',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 25,
+            'id_usu' => 11
+        ]);
+        //ID 39
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnologias de la imagen 3',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 25,
+            'id_usu' => 11
+        ]);
+        //ID 40
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnologias de la imagen 4',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 25,
+            'id_usu' => 11
+        ]);
+        //ID 41
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnologias de la imagen 5',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 25,
+            'id_usu' => 11
+        ]);
+        //ID 42
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Tecnologias de la imagen 6',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.jpeg',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 25,
+            'id_usu' => 11
+        ]);
+        //ID 43
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Quimica fisica 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 26,
+            'id_usu' => 12
+        ]);
+        //ID 44
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Quimica organica 1',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 27,
+            'id_usu' => 12
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
         /*-------------------------- RAUL SANTACRUZ ----------------*/

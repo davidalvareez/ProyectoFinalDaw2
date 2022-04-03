@@ -120,6 +120,59 @@ class tbl_temasSeeder extends Seeder
             'id_asignatura' => 15
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
+        //Asignatura 16
+        //ID 19
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Primero',
+            'id_asignatura' => 16
+        ]);
+        //Asignatura 17
+        //ID 20
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Primero',
+            'id_asignatura' => 17
+        ]);
+        //ID 21
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Segundo',
+            'id_asignatura' => 17
+        ]);
+        //Asignatura 18
+        //ID 22
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Segundo',
+            'id_asignatura' => 18
+        ]);
+        //Asignatura 19
+        //ID 23
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Segundo',
+            'id_asignatura' => 19
+        ]);
+        //Asignatura 20
+        //ID 24
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Segundo',
+            'id_asignatura' => 20
+        ]);
+        //Asignatura 21
+        //ID 25
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Primero',
+            'id_asignatura' => 21
+        ]);  
+        //Asignatura 22
+        //ID 26
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Segundo',
+            'id_asignatura' => 22
+        ]);   
+        //Asignatura 23
+        //ID 27
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Tercero',
+            'id_asignatura' => 23
+        ]);         
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
         /*-------------------------- RAUL SANTACRUZ ----------------*/

@@ -48,6 +48,22 @@ class tbl_cursosSeeder extends Seeder
             'id_centro' => 4,
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
+        //Centro 5
+        //ID 5
+        DB::table('tbl_cursos')->insert([
+            'nombre_curso' => 'Conservacion y Restauracion de Bienes Culturales',
+            'nombre_corto_curso' => 'CRBBCC',
+            'tipo_curso' => 'Universidad',
+            'id_centro' => 5,
+        ]);
+        //Centro 2
+        //ID 6
+        DB::table('tbl_cursos')->insert([
+            'nombre_curso' => 'Quimica',
+            'nombre_corto_curso' => NULL,
+            'tipo_curso' => 'Universidad',
+            'id_centro' => 2,
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
         /*-------------------------- RAUL SANTACRUZ ----------------*/
