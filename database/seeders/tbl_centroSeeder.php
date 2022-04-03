@@ -48,6 +48,14 @@ class tbl_centroSeeder extends Seeder
             'direccion_centro' => 'C/ d\'Aragó, 208, 210, 08011 Barcelona'
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
+        //ID 5
+        DB::table('tbl_centro')->insert([
+            'nombre_centro' => 'Universitat Politecnica de Valencia',
+            'pais_centro' => 'España',
+            'com_auto_centro' => 'Valencia',
+            'ciudad_centro' => 'Valencia',
+            'direccion_centro' => 'Camí de Vera, s/n, 46022 València, Valencia'
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
         /*-------------------------- RAUL SANTACRUZ ----------------*/

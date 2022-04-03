@@ -124,6 +124,28 @@ class tbl_usuariosSeeder extends Seeder
             'id_rol' => '3'
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
+        //ID = 11
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'lydia.sanchez',
+            'nombre_usu' => 'Lydia',
+            'apellido_usu' => 'Sanchez',
+            'fecha_nac_usu' => '2001-08-16',
+            'correo_usu' => 'lydiasanchez@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'id_centro' => 5,
+            'id_rol' => '3'
+        ]);
+        //ID = 12
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'lorena.dona',
+            'nombre_usu' => 'Lorena',
+            'apellido_usu' => 'Dona',
+            'fecha_nac_usu' => '2001-12-23',
+            'correo_usu' => 'lorenadona@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'id_centro' => 2,
+            'id_rol' => '3'
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
         /*-------------------------- RAUL SANTACRUZ ----------------*/
