@@ -56,9 +56,17 @@ class tbl_centroSeeder extends Seeder
             'ciudad_centro' => 'Valencia',
             'direccion_centro' => 'Camí de Vera, s/n, 46022 València, Valencia'
         ]);
+        /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //ID 6
+        DB::table('tbl_centro')->insert([
+            'nombre_centro' => 'Universitat Pompeu Fabra',
+            'pais_centro' => 'España',
+            'com_auto_centro' => 'Barcelona',
+            'ciudad_centro' => 'Barcelona',
+            'direccion_centro' => 'Plaça de la Mercè, 10-12, 08002 Barcelona'
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
-        /*-------------------------- RAUL SANTACRUZ ----------------*/
         /*-------------------------- ISAAC ORTIZ ----------------*/
     }
 }

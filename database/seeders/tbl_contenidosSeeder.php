@@ -430,9 +430,38 @@ class tbl_contenidosSeeder extends Seeder
             'id_tema' => 27,
             'id_usu' => 12
         ]);
+        /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //ID 45
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Farmacología',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 28,
+            'id_usu' => 13
+        ]);
+
+        //ID 46
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Inmunología',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 29,
+            'id_usu' => 13
+        ]);
+
+        //ID 48
+        DB::table('tbl_contenidos')->insert([
+            'nombre_contenido' => 'Microbiología',
+            'idioma_contenido' => 'Español',
+            'extension_contenido' => '.pdf',
+            'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
+            'id_tema' => 30,
+            'id_usu' => 13
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
-        /*-------------------------- RAUL SANTACRUZ ----------------*/
         /*-------------------------- ISAAC ORTIZ ----------------*/
     }
 }
