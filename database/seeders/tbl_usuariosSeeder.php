@@ -146,9 +146,20 @@ class tbl_usuariosSeeder extends Seeder
             'id_centro' => 2,
             'id_rol' => '3'
         ]);
+        /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //ID = 13
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'albaespan',
+            'nombre_usu' => 'Alba',
+            'apellido_usu' => 'España',
+            'fecha_nac_usu' => '2001-09-16',
+            'correo_usu' => 'albaespana@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'id_centro' => 6,
+            'id_rol' => '3'
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
-        /*-------------------------- RAUL SANTACRUZ ----------------*/
         /*-------------------------- ISAAC ORTIZ ----------------*/
     }
 }

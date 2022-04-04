@@ -107,7 +107,7 @@ class tbl_temasSeeder extends Seeder
             'nombre_tema' => 'UF3',
             'id_asignatura' => 13
         ]);
-        //Asignatura 14 
+        //Asignatura 14
         //ID 17
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Conceptos',
@@ -160,22 +160,39 @@ class tbl_temasSeeder extends Seeder
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Primero',
             'id_asignatura' => 21
-        ]);  
+        ]);
         //Asignatura 22
         //ID 26
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Segundo',
             'id_asignatura' => 22
-        ]);   
+        ]);
         //Asignatura 23
         //ID 27
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Tercero',
             'id_asignatura' => 23
-        ]);         
+        ]);
+        /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //ID 28
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Farmacología',
+            'id_asignatura' => 24
+        ]);
+
+        //ID 29
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Inmunología',
+            'id_asignatura' => 25
+        ]);
+
+        //ID 30
+        DB::table('tbl_temas')->insert([
+            'nombre_tema' => 'Microbiología',
+            'id_asignatura' => 26
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
-        /*-------------------------- RAUL SANTACRUZ ----------------*/
         /*-------------------------- ISAAC ORTIZ ----------------*/
     }
 }

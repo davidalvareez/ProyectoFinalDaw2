@@ -134,9 +134,26 @@ class tbl_asignaturasSeeder extends Seeder
             'nombre_asignatura' => 'Quimica organica',
             'id_curso' => 6
         ]);
+        /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //ID 24
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Farmacología',
+            'id_curso' => 7
+        ]);
+
+        //ID 25
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Inmunología',
+            'id_curso' => 7
+        ]);
+
+        //ID 26
+        DB::table('tbl_asignaturas')->insert([
+            'nombre_asignatura' => 'Microbiología',
+            'id_curso' => 7
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
-        /*-------------------------- RAUL SANTACRUZ ----------------*/
         /*-------------------------- ISAAC ORTIZ ----------------*/
     }
 }

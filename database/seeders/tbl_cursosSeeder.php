@@ -64,9 +64,16 @@ class tbl_cursosSeeder extends Seeder
             'tipo_curso' => 'Universidad',
             'id_centro' => 2,
         ]);
+        /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //ID 7
+        DB::table('tbl_cursos')->insert([
+            'nombre_curso' => 'Medicina',
+            'nombre_corto_curso' => NULL,
+            'tipo_curso' => 'Universidad',
+            'id_centro' => 6,
+        ]);
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
-        /*-------------------------- RAUL SANTACRUZ ----------------*/
         /*-------------------------- ISAAC ORTIZ ----------------*/
     }
 }
