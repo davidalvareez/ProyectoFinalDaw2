@@ -11,6 +11,27 @@
 <body>
     <div>
         <h1>Busqueda avanzada</h1>
+        <form method="POST" id="formBusquedaAvanzada" onsubmit="return false;">
+            <select name="centros" onchange="busquedaAvanzada()">
+                <option value="">--</option>
+                @foreach($listaCentros as $centros)
+                <option value="{{$centros->nombre_centro}}">{{$centros->nombre_centro}}</option>
+                @endforeach
+            </select>
+            <select name="cursos" onchange="busquedaAvanzada()">
+                <option value="">--</option>
+                @foreach($listaCursos as $cursos)
+                <option value="{{$cursos->nombre_curso}}">{{$cursos->nombre_curso}}</option>
+                @endforeach
+            </select>
+            <select name="asignaturas" onchange="busquedaAvanzada()">
+                <option value="">--</option>
+                @foreach($listaAsignaturas as $asignaturas)
+                <option value="{{$asignaturas->nombre_asignatura}}">{{$asignaturas->nombre_asignatura}}</option>
+                @endforeach
+            </select>
+            <input type="text" name="nombre_tema" placeholder="Introduce nombre del tema..."  onkeyup="busquedaAvanzada()">
+        </form>
     </div>
     <div>
         <h1>Busqueda normal</h1>
@@ -34,8 +55,8 @@
                 @endforeach
         </table>
     </div>
+    <!--APUNTES MÁS POPULARES-->
     <div>
-        <!--APUNTES MÁS POPULARES-->
         <h1>Más populares</h1>
         <table>
             @foreach($popular as $popularnotes)

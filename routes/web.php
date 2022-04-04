@@ -36,6 +36,8 @@ Route::get('logout',[UsuarioController::class,'logout']);
 //Pagina buscador, busqueda multiple_of
 Route::post('buscador/multiplyfilter',[ApuntesController::class,'multiplyFilter']);
 
+Route::post('buscador/busquedaAvanzada',[ApuntesController::class,'busquedaAvanzada']);
+
 //CRUD
 Route::get('admin',[CRUDAdminController::class,'adminView']);
 
