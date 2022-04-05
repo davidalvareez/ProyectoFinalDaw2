@@ -38,6 +38,10 @@ Route::post('buscador/multiplyfilter',[ApuntesController::class,'multiplyFilter'
 
 Route::post('buscador/busquedaAvanzada',[ApuntesController::class,'busquedaAvanzada']);
 
+Route::post('buscador/busquedaAvanzada/centro',[ApuntesController::class,'busquedaAvanzadaCentro']);
+
+Route::post('buscador/busquedaAvanzada/curso',[ApuntesController::class,'busquedaAvanzadaCurso']);
+
 //CRUD
 Route::get('admin',[CRUDAdminController::class,'adminView']);
 

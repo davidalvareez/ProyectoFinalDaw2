@@ -63,24 +63,38 @@ class ApuntesController extends Controller
         INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
         WHERE NOT users.id= {$user->id} ";
         if($datos["centros"] != null){
-            $query += "AND centro.nombre_centro = {$datos["centros"]} ";
+            $query .= "AND centro.nombre_centro LIKE \"%".$datos["centros"]."%\" ";
             //$query = $query + $Centro;
-            return response()->json($query);
         }
         if($datos["cursos"] != null){
-            $Curso = "AND curso.nombre_curso LIKE '%'{$datos["cursos"]}'%' ";
-            $query = $query + $Curso;
+            $query .= "AND curso.nombre_curso LIKE \"%".$datos["cursos"]."%\" ";
         }
         if($datos["asignaturas"]!= null){
-            $Asignatura = "AND asignaturas.nombre_asignatura LIKE '%'{$datos["asignaturas"]}'%' ";
-            $query = $query + $Asignatura;
+            $query .= "AND asignaturas.nombre_asignatura LIKE \"%".$datos["asignaturas"]."%\" ";
         }
         if ($datos["nombre_tema"]!= null){
-            $tema = "AND temas.nombre_tema LIKE '%'{$datos["nombre_tema"]}'%' ";
-            $query = $query + $tema;
+            $query .= "AND temas.nombre_tema LIKE \"%".$datos["nombre_tema"]."%\" ";
         }
-        //$query+="ORDER BY content.fecha_publicacion_contenido";
-        //$filtro = DB::select($query);
-        return response()->json($query);
+        $query.="ORDER BY content.fecha_publicacion_contenido DESC";
+        $filtro = DB::select($query);
+        return response()->json($filtro);
+    }
+    public function busquedaAvanzadaCentro(Request $request){
+        $datos = $request->except("_token");
+        $selectCurso = DB::select("SELECT curso.id,curso.nombre_curso FROM tbl_centro centro
+        INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
+        WHERE centro.nombre_centro LIKE ?",['%'.$datos['nombre_centro'].'%']);
+        $selectAsignatura = DB::select("SELECT asignatura.id, asignatura.nombre_asignatura FROM tbl_centro centro
+        INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
+        INNER JOIN tbl_asignaturas asignatura ON asignatura.id_curso = curso.id
+        WHERE centro.nombre_centro LIKE ?",['%'.$datos['nombre_centro'].'%']);
+        return response()->json(array('cursos' => $selectCurso,'asignaturas' =>$selectAsignatura));
+    }
+    public function busquedaAvanzadaCurso(Request $request){
+        $datos = $request->except("_token");
+        $select = DB::select("SELECT curso.id as id_curso,curso.nombre_curso, asignatura.id as id_asignatura, asignatura.nombre_asignatura FROM tbl_cursos curso
+        INNER JOIN tbl_asignaturas asignatura ON asignatura.id_curso = curso.id
+        WHERE curso.nombre_curso LIKE ?",['%'.$datos['nombre_curso'].'%']);
+        return response()->json($select);
     }
 }
