@@ -21,17 +21,16 @@ function llamadaAjax() {
 }
 //Filtro multiple
 function multiplyFilter() {
-    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
-    /* 
-        Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-        var token = document.getElementById('token').getAttribute("content");
-    
-    
-        Usar el objeto FormData para guardar los parámetros que se enviarán:
-        var formData = new FormData();
-        formData.append('_token', token);
-        formData.append('clave', valor);
-        */
+    let form = document.getElementById('formBusquedaAvanzada');
+    //Centro
+    form[0][0].selected = true;
+    //Curso
+    form[1][0].selected = true;
+    //Asignatura
+    form[0].selected = true;
+    //Tema
+    form[3].value = "";
+
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
@@ -47,7 +46,7 @@ function multiplyFilter() {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
+                //console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -82,6 +81,8 @@ function multiplyFilter() {
 }
 //Busqueda Avanzada
 function busquedaAvanzada() {
+    document.getElementById("multiplysearch").value = "";
+    let form = document.getElementById("formBusquedaAvanzada");
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /*
         Obtener elemento/s que se pasarán como parámetros: token, method, inputs...
@@ -91,7 +92,7 @@ function busquedaAvanzada() {
         formData.append('_token', token);
         formData.append('clave', valor);
     */
-    var formData = new FormData(document.getElementById("formBusquedaAvanzada"));
+    var formData = new FormData(form);
     formData.append('_token', token);
     formData.append('_method', 'POST');
     var ajax = llamadaAjax();
@@ -105,7 +106,7 @@ function busquedaAvanzada() {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
+                //console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -137,4 +138,53 @@ function busquedaAvanzada() {
         send(string)->Sends the request to the server (used for POST)
         */
     ajax.send(formData)
+}
+//Cambio option de centro
+function selectCurso_Asignatura() {
+    let form = document.getElementById("formBusquedaAvanzada");
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    formData.append('nombre_centro', form[0].value);
+    let ajax = llamadaAjax();
+    ajax.open("POST", "buscador/busquedaAvanzada/centro", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            let respuesta = JSON.parse(this.responseText);
+            let selectCursoFilter = `<option value="">--</option>`;
+            let selectAsignaturaFilter = `<option value="">--</option>`
+            for (let i = 0; i < respuesta.cursos.length; i++) {
+                selectCursoFilter += `<option value="${respuesta.cursos[i].nombre_curso}">${respuesta.cursos[i].nombre_curso}`;
+            }
+            form[1].innerHTML = selectCursoFilter;
+            for (let i = 0; i < respuesta.asignaturas.length; i++) {
+                selectAsignaturaFilter += `<option value="${respuesta.asignaturas[i].nombre_asignatura}">${respuesta.asignaturas[i].nombre_asignatura}`;
+            }
+            form[2].innerHTML = selectAsignaturaFilter;
+        }
+    }
+    ajax.send(formData);
+}
+//Cambio option de curso
+function selectAsignatura() {
+    let form = document.getElementById("formBusquedaAvanzada");
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    formData.append('nombre_curso', form[1].value);
+    let ajax = llamadaAjax();
+    ajax.open("POST", "buscador/busquedaAvanzada/curso", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            let respuesta = JSON.parse(this.responseText);
+            let selectAsignaturaFilter = `<option value="">--</option>`
+            for (let i = 0; i < respuesta.length; i++) {
+                selectAsignaturaFilter += `<option value="${respuesta[i].nombre_asignatura}">${respuesta[i].nombre_asignatura}`;
+            }
+            form[2].innerHTML = selectAsignaturaFilter;
+        }
+    }
+    ajax.send(formData);
 }

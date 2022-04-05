@@ -75,7 +75,7 @@ function showUsers() {
                      <td>${respuesta[i].nombre_centro}</td>
                      <td>${respuesta[i].nombre_rol}</td>
                      <td>${respuesta[i].nombre_nivel}</td>
-                     <td>${respuesta[i].img_avatar}</td>
+                     <td><img src="storage/${respuesta[i].img_avatar}"></td>
                      <td>
                      <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
                      </td>

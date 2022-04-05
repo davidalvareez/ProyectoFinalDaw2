@@ -12,13 +12,13 @@
     <div>
         <h1>Busqueda avanzada</h1>
         <form method="POST" id="formBusquedaAvanzada" onsubmit="return false;">
-            <select name="centros" onchange="busquedaAvanzada()">
+            <select name="centros" onchange="busquedaAvanzada();selectCurso_Asignatura();">
                 <option value="">--</option>
                 @foreach($listaCentros as $centros)
                 <option value="{{$centros->nombre_centro}}">{{$centros->nombre_centro}}</option>
                 @endforeach
             </select>
-            <select name="cursos" onchange="busquedaAvanzada()">
+            <select name="cursos" onchange="busquedaAvanzada();selectAsignatura();">
                 <option value="">--</option>
                 @foreach($listaCursos as $cursos)
                 <option value="{{$cursos->nombre_curso}}">{{$cursos->nombre_curso}}</option>
@@ -47,7 +47,7 @@
                 @foreach($recent as $recentnotes)
                 <tr>
                     <td>{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</td>
-                    <td>{{$recentnotes->img_avatar}}</td>
+                    <td><img src="{{asset('storage').'/'.$recentnotes->img_avatar}}"></td>
                     <td>{{$recentnotes->nick_usu}}</td>
                     <td>{{$recentnotes->idioma_contenido}}</td>
                     <td>{{$recentnotes->fecha_publicacion_contenido}}</td>
@@ -62,7 +62,7 @@
             @foreach($popular as $popularnotes)
             <tr>
                 <td>{{$popularnotes->nombre_contenido}}{{$popularnotes->extension_contenido}}</td>
-                <td>{{$popularnotes->img_avatar}}</td>
+                <td><img src="{{asset('storage').'/'.$popularnotes->img_avatar}}"></td>
                 <td>{{$popularnotes->nick_usu}}</td>
                 <td>{{$popularnotes->idioma_contenido}}</td>
                 <td>{{$popularnotes->fecha_publicacion_contenido}}</td>
