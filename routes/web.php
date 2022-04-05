@@ -19,6 +19,7 @@ use App\Http\Controllers\CRUDAdminController;
 Route::get('/', function () {
     return view('index');
 });
+
 Route::get('buscador',[ApuntesController::class,'buscador']);
 
 //Procesos Login // Registro // LogOut
@@ -32,7 +33,15 @@ Route::get('register',[UsuarioController::class,'registerView']);
 
 Route::get('logout',[UsuarioController::class,'logout']);
 
+//Pagina de perfil
+Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
+
+//Pagina de apuntes
+Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
+
+Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
 //FILTROS
+
 //Pagina buscador, busqueda multiple_of
 Route::post('buscador/multiplyfilter',[ApuntesController::class,'multiplyFilter']);
 

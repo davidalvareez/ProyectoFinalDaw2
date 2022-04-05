@@ -66,6 +66,7 @@
                 <td>{{$popularnotes->nick_usu}}</td>
                 <td>{{$popularnotes->idioma_contenido}}</td>
                 <td>{{$popularnotes->fecha_publicacion_contenido}}</td>
+                <td><button onclick="window.location.href='{{url('apuntes/'.$popularnotes->id)}}'">Ver apunte</button></td>
             </tr>
             @endforeach
         </table>

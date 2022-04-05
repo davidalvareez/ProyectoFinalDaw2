@@ -36,6 +36,7 @@ class ApuntesController extends Controller
             return redirect("/");
         }
     }
+
     public function multiplyFilter(Request $request){
         $datos=$request->except("_token");
         $user=session()->get('user');
@@ -51,6 +52,7 @@ class ApuntesController extends Controller
                     ORDER BY content.fecha_publicacion_contenido DESC;",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$user->id]);
         return response()->json($filter);
     }
+
     public function busquedaAvanzada(Request $request){
         $datos = $request->except("_token");
         $user=session()->get('user');
@@ -79,6 +81,7 @@ class ApuntesController extends Controller
         $filtro = DB::select($query);
         return response()->json($filtro);
     }
+
     public function busquedaAvanzadaCentro(Request $request){
         $datos = $request->except("_token");
         $selectCurso = DB::select("SELECT curso.id,curso.nombre_curso FROM tbl_centro centro
@@ -90,11 +93,41 @@ class ApuntesController extends Controller
         WHERE centro.nombre_centro LIKE ?",['%'.$datos['nombre_centro'].'%']);
         return response()->json(array('cursos' => $selectCurso,'asignaturas' =>$selectAsignatura));
     }
+
     public function busquedaAvanzadaCurso(Request $request){
         $datos = $request->except("_token");
         $select = DB::select("SELECT curso.id as id_curso,curso.nombre_curso, asignatura.id as id_asignatura, asignatura.nombre_asignatura FROM tbl_cursos curso
         INNER JOIN tbl_asignaturas asignatura ON asignatura.id_curso = curso.id
         WHERE curso.nombre_curso LIKE ?",['%'.$datos['nombre_curso'].'%']);
         return response()->json($select);
+    }
+
+    public function misApuntes(){
+        if (session()->get('user')) {
+            $user = session()->get('user');
+            $select = DB::select("SELECT contenidos.* FROM tbl_contenidos contenidos
+            INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
+            WHERE user.id = ?",[$user->id]);
+            return view('misApuntes',compact('select'));
+        }else{
+            return redirect('/');
+        }
+    }
+    public function apuntes($id){
+        if (session()->get('user')) {
+            $apunte = DB::select("SELECT * FROM tbl_usuario usu 
+            INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+            INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+            INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+            INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+            INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+            LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
+            WHERE apuntes.id =  ?",[$id]);
+            $path = asset('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+            //return $path;
+            return view('vistaApunte',compact('apunte','path'));
+        }else{
+            return redirect('/');
+        }
     }
 }
