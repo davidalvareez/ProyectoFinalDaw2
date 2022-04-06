@@ -40,7 +40,7 @@ class ApuntesController extends Controller
     public function multiplyFilter(Request $request){
         $datos=$request->except("_token");
         $user=session()->get('user');
-        $filter=DB::select("SELECT content.*,users.nick_usu,avatar.img_avatar,centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+        $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
         FROM tbl_contenidos content
                     INNER JOIN tbl_usuario users ON content.id_usu = users.id
                     LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
@@ -48,8 +48,7 @@ class ApuntesController extends Controller
                     INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
                     INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
                     INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-                    WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR temas.nombre_tema LIKE ?) AND NOT users.id= ?
-                    ORDER BY content.fecha_publicacion_contenido DESC;",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$user->id]);
+                    WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR content.id = ?) AND NOT users.id= ?;",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$datos["filter"],$user->id]);
         return response()->json($filter);
     }
 

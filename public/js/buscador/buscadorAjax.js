@@ -52,6 +52,7 @@ function multiplyFilter() {
                 recarga += `<div class="">
                 <table class="">
                 <tr>
+                <th scope="col">#</th>
                 <th scope="col">Avatar</th>
                 <th scope="col">Nickname</th>
                 <th scope="col">Archivo</th>
@@ -60,6 +61,7 @@ function multiplyFilter() {
                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
+                     <td>${respuesta[i].id_content}</td>
                      <td>${respuesta[i].img_avatar}</td>
                      <td>${respuesta[i].nick_usu}</td>
                      <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
@@ -112,6 +114,7 @@ function busquedaAvanzada() {
                 recarga += `<div class="">
                     <table class="">
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Avatar</th>
                         <th scope="col">Nickname</th>
                         <th scope="col">Archivo</th>
@@ -120,6 +123,7 @@ function busquedaAvanzada() {
                     </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
+                         <td>${respuesta[i].id_content}</td>
                          <td>${respuesta[i].img_avatar}</td>
                          <td>${respuesta[i].nick_usu}</td>
                          <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
