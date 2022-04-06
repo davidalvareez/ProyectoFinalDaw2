@@ -70,6 +70,7 @@ Route::post('admin/denuncias',[CRUDAdminController::class,'showDenuncias']);
 
 Route::post('admin/historial',[CRUDAdminController::class,'showHistorial']);
 
+
 //Mostrar
 
 
