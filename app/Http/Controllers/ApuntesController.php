@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApuntesController extends Controller
 {
@@ -115,7 +116,7 @@ class ApuntesController extends Controller
     }
     public function apuntes($id){
         if (session()->get('user')) {
-            $apunte = DB::select("SELECT * FROM tbl_usuario usu 
+            $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema,avatar.img_avatar FROM tbl_usuario usu 
             INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
             INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
             INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
@@ -129,5 +130,19 @@ class ApuntesController extends Controller
         }else{
             return redirect('/');
         }
+    }
+    public function download(Request $request){
+        $datos = $request->except('_token');
+        $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema,avatar.img_avatar FROM tbl_usuario usu 
+            INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+            INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+            INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+            INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+            INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+            LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
+            WHERE apuntes.id =  ?",[$datos["id"]]);
+        $path = asset('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+        $name = $apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+        return Storage::download($path);
     }
 }

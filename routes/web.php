@@ -40,6 +40,8 @@ Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
 
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
+
+Route::post('download',[ApuntesController::class,'download']);
 //FILTROS
 
 //Pagina buscador, busqueda multiple_of
