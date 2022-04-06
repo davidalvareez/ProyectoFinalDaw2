@@ -28,6 +28,7 @@ class RegisterValidation extends FormRequest
             'apellido_usu'=>'required|string|max:255|',
             'nick_usu'=>'required|string|max:255|unique:tbl_usuario',
             'fecha_nac_usu'=>'required|date',
+            'centro' => 'required',
             'correo_usu'=>'required|string|max:255|unique:tbl_usuario',
             'contra_usu'=>'required|min:4|max:255',
             'contra_usu_verify' => 'required|min:4|max:255|same:contra_usu',

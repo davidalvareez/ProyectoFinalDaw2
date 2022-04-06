@@ -15,7 +15,10 @@ class UsuarioController extends Controller
         return view('login');
     }
     public function registerView(){
-        return view('register');
+        $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
+        $centros = DB::select("SELECT * FROM tbl_centro");
+        //return $avatares;
+        return view('register',compact('avatares','centros'));
     }
     //Funciones de hacer login y registro
     public function login(LoginValidation $request){
@@ -67,12 +70,19 @@ class UsuarioController extends Controller
     }
     public function register(RegisterValidation $request){
         $datos=$request->except("_token");
+        //return $datos;
         //Contraseña convertida a md5
         $password = md5($datos["contra_usu"]);
+        if ($request->hasFile('img_avatar_usu')) {
+            $file = $request->file('img_avatar_usu')->store('uploads/avatar','public');
+        }else{
+            $file = $datos["img_avatar_sistema"];
+        }
         //Sentencia de creacion de usuario
         try {
-            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"id_rol"=>3]);
+            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"id_rol"=>3,"id_centro"=>$datos['centro']]);
             //insert("INSERT INTO tbl_usuario (nick_usu,nombre_usu,apellido_usu,fecha_nac_usu,correo_usu,contra_usu,id_rol) VALUES (?,?,?,?,?,?,?)",[$datos["nick_usu"],$datos["nombre_usu"],$datos["apellido_usu"],$datos["fecha_nac_usu"],$datos["correo_usu"],$password,3]);
+            DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
             $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
             $newuser=$newuser[0];
             session()->put("user",$newuser);
