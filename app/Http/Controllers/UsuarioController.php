@@ -96,4 +96,16 @@ class UsuarioController extends Controller
         session()->flush();
         return redirect('/');
     }
+    //Vista Perfil
+    public function perfil($nick_usu){
+       $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro FROM tbl_usuario user
+                                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+                                 INNER JOIN tbl_centro centro ON user.id_centro = centro.id 
+                                 WHERE nick_usu = ?",[$nick_usu]);
+
+       $apuntesUser = DB::select("SELECT contenidos.* FROM tbl_contenidos contenidos
+                                  INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
+                                  WHERE user.nick_usu = ?",[$nick_usu]);
+        return view('perfil',compact('perfilUser','apuntesUser'));
+    }
 }

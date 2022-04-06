@@ -50,7 +50,7 @@ function showUsers() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <table class="">
+                <table class="table table-striped table-dark">
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nickname</th>
@@ -127,7 +127,7 @@ function showCentros() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                    <table class="">
+                    <table class="table table-striped table-dark">
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
@@ -195,7 +195,7 @@ function showCursos(idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                        <table class="">
+                        <table class="table table-striped table-dark">
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
@@ -263,7 +263,7 @@ function showAsignaturas(idCurso) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                            <table class="">
+                            <table class="table table-striped table-dark">
                             <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
@@ -327,7 +327,7 @@ function showTemas(idAsignatura) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                                <table class="">
+                                <table class="table table-striped table-dark">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre tema</th>
@@ -386,45 +386,28 @@ function showApuntes() {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += '<div class="">';
-                recarga += '<table class="">';
-                recarga += '<tr>';
-                recarga += '<th scope="col">#</th>';
-                recarga += '<th scope="col">Nickname</th>';
-                recarga += '<th scope="col">Nombre y Apellido</th>';
-                recarga += '<th scope="col">Fecha nacimiento</th>';
-                recarga += '<th scope="col">Correo</th>';
-                recarga += '<th scope="col">Estado</th>';
-                recarga += '<th scope="col">Centro de estudio</th>';
-                recarga += '<th scope="col">Rol</th>';
-                recarga += '<th scope="col">Nivel</th>';
-                recarga += '<th scope="col">Imagen Avatar</th>';
-                recarga += '<th scope="col" colspan="2">Acciones</th>';
-                recarga += '</tr>';
+                recarga += `<div class="">
+                                <table class="table table-striped table-dark">
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Documento</th>
+                                <th scope="col">Fecha Publicacion</th>
+                                <th scope="col">Creador</th>
+                                <th scope="col">Acciones</th>
+                                </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += '<tr>';
-                    recarga += '<td scope="row">' + respuesta[i].id + '</td>';
-                    recarga += '<td>' + respuesta[i].nick_usu + '</td>';
-                    recarga += '<td>' + respuesta[i].nombre_usu + ' ' + respuesta[i].apellido_usu + '</td>';
-                    recarga += '<td>' + respuesta[i].fecha_nac_usu + '</td>';
-                    recarga += '<td>' + respuesta[i].correo_usu + '</td>';
-                    recarga += '<td>' + respuesta[i].deshabilitado + '</td>';
-                    recarga += '<td>' + respuesta[i].nombre_centro + '</td>';
-                    recarga += '<td>' + respuesta[i].nombre_rol + '</td>';
-                    recarga += '<td>' + respuesta[i].nombre_nivel + '</td>';
-                    recarga += '<td>' + respuesta[i].img_avatar + '</td>';
-                    recarga += '<td>';
-                    // editar
-                    recarga += '<button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>';
-                    recarga += '</td>';
-                    recarga += '<td>';
-                    // eliminar
-                    recarga += '<button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar(' + respuesta[i].id + ');return false;">Eliminar</button>';
-                    recarga += '</td>';
-                    recarga += '</tr>';
+                    recarga += `<tr>
+                                     <td scope="row">${respuesta[i].id}</td>
+                                     <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
+                                     <td>${respuesta[i].fecha_publicacion_contenido}</td>
+                                     <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
+                                     <td>
+                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar('${respuesta[i].id}');return false;">Eliminar</button>
+                                     </td>
+                                     </tr>`
                 }
-                recarga += '</table>';
-                recarga += '</div>';
+                recarga += `</table>
+                                </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -465,7 +448,7 @@ function showDenuncias() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                                <table class="">
+                                <table class="table table-striped table-dark">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tipo</th>
@@ -532,7 +515,7 @@ function showHistorial() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                                <table class="">
+                                <table class="table table-striped table-dark">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre Apuntes</th>

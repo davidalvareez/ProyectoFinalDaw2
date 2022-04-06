@@ -57,8 +57,7 @@ class CRUDAdminController extends Controller
     }
 
     public function showApuntes(){
-        $apuntes = DB::select("SELECT * FROM tbl_contenidos LEFT JOIN tbl_multimedia
-        ON tbl_contenidos.id = tbl_multimedia.id");
+        $apuntes = DB::select("SELECT apuntes.*,usu.nombre_usu,usu.apellido_usu FROM tbl_contenidos apuntes INNER JOIN tbl_usuario usu ON usu.id = apuntes.id_usu");
         return response()->json($apuntes);
     }
 
