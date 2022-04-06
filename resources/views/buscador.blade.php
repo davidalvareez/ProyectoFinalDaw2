@@ -46,6 +46,7 @@
         <table>
                 @foreach($recent as $recentnotes)
                 <tr>
+                    <td>#{{$recentnotes->id}}</td>
                     <td>{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</td>
                     <td><img src="{{asset('storage').'/'.$recentnotes->img_avatar}}"></td>
                     <td>{{$recentnotes->nick_usu}}</td>
@@ -61,6 +62,7 @@
         <table>
             @foreach($popular as $popularnotes)
             <tr>
+                <td>#{{$popularnotes->id}}</td>
                 <td>{{$popularnotes->nombre_contenido}}{{$popularnotes->extension_contenido}}</td>
                 <td><img src="{{asset('storage').'/'.$popularnotes->img_avatar}}"></td>
                 <td>{{$popularnotes->nick_usu}}</td>
