@@ -22,5 +22,12 @@
             <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{$path}}" frameborder="0"></iframe>
         @endif
     </div>
+    <div class="">
+        <form action="{{url('download')}}" {{-- onsubmit="return false;" --}} method="POST"> 
+            @csrf
+            <input type="hidden" name="id" value="{{$apunte[0]->id}}">
+            <input type="submit" value="Descargar">
+        </form>
+    </div>
 </body>
 </html>
