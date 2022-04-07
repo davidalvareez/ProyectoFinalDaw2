@@ -14,12 +14,14 @@ class UsuarioController extends Controller
     public function loginView(){
         return view('login');
     }
+
     public function registerView(){
         $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
         $centros = DB::select("SELECT * FROM tbl_centro");
         //return $avatares;
         return view('register',compact('avatares','centros'));
     }
+
     //Funciones de hacer login y registro
     public function login(LoginValidation $request){
         $datos=$request->except("_token");
@@ -45,6 +47,8 @@ class UsuarioController extends Controller
                     session()->put("user",$user);
                     if ($user->id_rol == 1) {
                         return redirect("admin");
+                    }elseif($user->id_rol == 2){
+                        return redirect("moderador");
                     }else{
                         return redirect("buscador");
                     }
@@ -56,6 +60,8 @@ class UsuarioController extends Controller
                         session()->put("user",$user);
                         if ($user->id_rol == 1) {
                             return redirect("admin");
+                        }elseif($user->id_rol == 2){
+                            return redirect("moderador");
                         }else{
                             return redirect("buscador");
                         }
@@ -68,6 +74,7 @@ class UsuarioController extends Controller
             return $e->getMessage();
         }
     }
+
     public function register(RegisterValidation $request){
         $datos=$request->except("_token");
         //return $datos;
@@ -96,6 +103,7 @@ class UsuarioController extends Controller
         session()->flush();
         return redirect('/');
     }
+
     //Vista Perfil
     public function perfil($nick_usu){
        $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro FROM tbl_usuario user
@@ -107,5 +115,20 @@ class UsuarioController extends Controller
                                   INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
                                   WHERE user.nick_usu = ?",[$nick_usu]);
         return view('perfil',compact('perfilUser','apuntesUser'));
+    }
+
+    //Moderador
+    public function moderadorView(){
+        $moderador = DB::select("SELECT * FROM (SELECT tbl_denuncias.*,CONCAT_WS(' ', tbl_usuario.nombre_usu,tbl_usuario.apellido_usu) as 'demandante' FROM tbl_denuncias
+        LEFT JOIN tbl_usuario ON tbl_usuario.id = tbl_denuncias.id_demandante
+        LEFT JOIN tbl_contenidos ON tbl_contenidos.id = tbl_denuncias.id_contenido
+        LEFT JOIN tbl_comentarios ON tbl_comentarios.id = tbl_denuncias.id_comentario) denuncia1
+        INNER JOIN (
+            SELECT tbl_denuncias.id as 'id_denuncia',CONCAT_WS(' ', tbl_usuario.nombre_usu,tbl_usuario.apellido_usu) as 'acusado' FROM tbl_denuncias 
+               LEFT JOIN tbl_usuario ON tbl_usuario.id = tbl_denuncias.id_acusado
+            LEFT JOIN tbl_contenidos ON tbl_contenidos.id = tbl_denuncias.id_contenido
+            LEFT JOIN tbl_comentarios ON tbl_comentarios.id = tbl_denuncias.id_comentario
+        )denuncia2 on denuncia2.id_denuncia=denuncia1.id");
+        return view('moderadorView', compact('moderador'));
     }
 }
