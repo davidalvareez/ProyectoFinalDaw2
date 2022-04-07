@@ -1,0 +1,280 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../media/aboutus/fonts/poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../media/aboutus/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+.glass, .about-us main .carta, .about-us main .carta-explicacion {
+  backdrop-filter: blur(10px) saturate(105%);
+  -webkit-backdrop-filter: blur(13px) saturate(180%);
+  background-color: #a3a8b062;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.flex, .about-us main .region, .about-us main .region2 .content-region .explicacion {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+
+:root {
+  --first-color: #19c673;
+  --second-color: #05a357;
+  --third-color: #f6f0ea;
+  --fourth-color: #7319c6;
+  --fifth-color: #c67319;
+  --sixth-color: #19c3c6;
+  --seventh-color: #19c61d;
+  --eightth-color: #c6196c;
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #eee;
+  --letter-grey: #797c7e;
+  --font1: Poppins;
+}
+
+* {
+  font-family: var(--font1);
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: auto;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-image: url("../../media/aboutus/img-aboutus/fondoaboutus.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  font-family: var(--font1);
+  font-size: calc(48px + 1vw);
+  font-weight: bold;
+}
+
+h2 {
+  font-family: var(--font1);
+  font-size: calc(18px + 1vw);
+  font-weight: 600;
+}
+
+h3 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.5vw);
+  font-weight: bold;
+}
+
+h4 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.1vw);
+  font-weight: bold;
+}
+
+.about-us main .region {
+  width: 100%;
+}
+
+.about-us main .carta {
+  width: 100%;
+  padding: 35px 0px 20px 0px;
+}
+
+.about-us main .carta-explicacion {
+  width: 100%;
+  padding: 10px;
+}
+
+.about-us main .img-carta {
+  margin: 0px 0px 30px 0px;
+}
+
+.about-us main .icono-carta {
+  width: 90px;
+  height: 90px;
+}
+
+.about-us main .region1 {
+  margin: 80px 0px 0px 0px;
+}
+
+.about-us main .region1 .content-region {
+  width: 100%;
+}
+
+.about-us main .region1 .content-region .presentacion .content-presentacion .alineacion {
+  margin: 26px 0px 0px 0px;
+  padding: 10vh 11vh;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 136px 112px;
+  -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+  grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
+}
+
+.about-us main .region2 {
+  margin: 80px 0px 0px 0px;
+}
+
+.about-us main .region2 .content-region {
+  width: 100%;
+}
+
+.about-us main .region2 .content-region .explicacion {
+  width: 100%;
+}
+
+.about-us main .region2 .content-region .explicacion .content-explicacion .preguntas {
+  margin: 26px 0px 0px 0px;
+  padding: 8vh 11vh;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 0px 68px;
+  -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+  grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
+}
+
+.about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta1 {
+  padding: 23px 23px 23px 23px;
+}
+
+.about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta2 {
+  padding: 23px 23px 23px 23px;
+}
+
+.about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta3 {
+  padding: 23px 23px 23px 23px;
+}
+/*# sourceMappingURL=aboutus.css.map */
