@@ -12,23 +12,31 @@ class ApuntesController extends Controller
             $user=session()->get('user');
             //Para búsqueda avanzada mostrar todos los datos
             //Mostrar los más recientes
-            $recent=DB::select("SELECT content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar FROM tbl_contenidos content
+            $recent=DB::select("SELECT content.id as id_content, content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
             INNER JOIN tbl_usuario user ON content.id_usu = user.id
             LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
             LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
             LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
             WHERE NOT user.id = ?
             GROUP BY content.id
             ORDER BY content.fecha_publicacion_contenido DESC LIMIT 15",[$user->id]);
             //Mostrar los más populares
-            $popular=DB::select("SELECT content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar FROM tbl_contenidos content
+            $popular=DB::select("SELECT content.id as id_content,content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
             INNER JOIN tbl_usuario user ON content.id_usu = user.id
             LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
             LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
             LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
             WHERE NOT user.id = ?
             GROUP BY content.id
-            ORDER BY valoracion DESC LIMIT 15",[$user->id]);
+            ORDER BY valoracion DESC LIMIT 15;",[$user->id]);
             //Lista centros
             $listaCentros = DB::select("SELECT * FROM tbl_centro");
             //Lista de cursos
