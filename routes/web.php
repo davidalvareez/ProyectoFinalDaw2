@@ -19,7 +19,10 @@ use App\Http\Controllers\CRUDAdminController;
 Route::get('/', function () {
     return view('index');
 });
-
+//About us
+Route::get('aboutus', function () {
+    return view('aboutus');
+});
 Route::get('buscador',[ApuntesController::class,'buscador']);
 
 //Procesos Login // Registro // LogOut
