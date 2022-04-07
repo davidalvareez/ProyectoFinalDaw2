@@ -58,15 +58,20 @@ function multiplyFilter() {
                 <th scope="col">Archivo</th>
                 <th scope="col">Idioma</th>
                 <th scope="col">Fecha publicacion</th>
+                <th scope="col">Descargas</th>
+                <th scope="col">Valoracion</th>
                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
                      <td>${respuesta[i].id_content}</td>
-                     <td>${respuesta[i].img_avatar}</td>
+                     <td><img src="storage/${respuesta[i].img_avatar}"></td>
                      <td>${respuesta[i].nick_usu}</td>
                      <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
                      <td>${respuesta[i].idioma_contenido}</td>
                      <td>${respuesta[i].fecha_publicacion_contenido}</td>
+                     <td>${respuesta[i].descargas}</td>
+                     <td>${respuesta[i].valoracion}</td>
+                     <td><button onclick="window.location.href='apuntes/${respuesta[i].id_content}'">Ver apunte</button></td>
                      </tr>`
                 }
                 recarga += `</table>
@@ -120,15 +125,20 @@ function busquedaAvanzada() {
                         <th scope="col">Archivo</th>
                         <th scope="col">Idioma</th>
                         <th scope="col">Fecha publicacion</th>
+                        <th scope="col">Descargas</th>
+                        <th scope="col">Valoracion</th>
                     </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
                          <td>${respuesta[i].id_content}</td>
-                         <td>${respuesta[i].img_avatar}</td>
+                         <td><img src="storage/${respuesta[i].img_avatar}"></td>
                          <td>${respuesta[i].nick_usu}</td>
                          <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
                          <td>${respuesta[i].idioma_contenido}</td>
                          <td>${respuesta[i].fecha_publicacion_contenido}</td>
+                         <td>${respuesta[i].descargas}</td>
+                         <td>${respuesta[i].valoracion}</td>
+                         <td><button onclick="window.location.href='apuntes/${respuesta[i].id_content}'">Ver apunte</button></td>
                     </tr>`
                 }
                 recarga += `</table>
