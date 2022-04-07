@@ -16,37 +16,37 @@ class tbl_avatarSeeder extends Seeder
         //ID = 1
         DB::table('tbl_avatar')->insert([
             'tipo_avatar' => 'Sistema',
-            'img_avatar' => 'uploads/avatar/imagenDefault.png',
+            'img_avatar' => 'uploads/avatar/avatar1.jpg',
         ]);
 
         //ID = 2
         DB::table('tbl_avatar')->insert([
             'tipo_avatar' => 'Sistema',
-            'img_avatar' => 'uploads/avatar/imagenDefault.png',
+            'img_avatar' => 'uploads/avatar/avatar2.jpg',
         ]);
 
         //ID = 3
         DB::table('tbl_avatar')->insert([
             'tipo_avatar' => 'Sistema',
-            'img_avatar' => 'uploads/avatar/imagenDefault.png',
+            'img_avatar' => 'uploads/avatar/avatar3.jpg',
         ]);
 
         //ID = 4
         DB::table('tbl_avatar')->insert([
             'tipo_avatar' => 'Sistema',
-            'img_avatar' => 'uploads/avatar/imagenDefault.png',
+            'img_avatar' => 'uploads/avatar/avatar4.jpg',
         ]);
 
         //ID = 5
         DB::table('tbl_avatar')->insert([
             'tipo_avatar' => 'Sistema',
-            'img_avatar' => 'uploads/avatar/imagenDefault.png',
+            'img_avatar' => 'uploads/avatar/avatar5.jpg',
         ]);
 
         //ID = 6
         DB::table('tbl_avatar')->insert([
             'tipo_avatar' => 'Sistema',
-            'img_avatar' => 'uploads/avatar/imagenDefault.png',
+            'img_avatar' => 'uploads/avatar/avatar6.jpg',
         ]);
 
         //ID = 7
