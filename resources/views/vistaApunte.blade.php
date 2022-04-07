@@ -20,6 +20,8 @@
             <iframe width="400" height="400" src="{{$path}}" type="application/pdf"></iframe>
         @elseif($apunte[0]->extension_contenido == ".doc" || $apunte[0]->extension_contenido == ".docx")
             <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{$path}}" frameborder="0"></iframe>
+        @elseif($apunte[0]->extension_contenido == '.jpeg' || $apunte[0]->extension_contenido == '.jpg' || $apunte[0]->extension_contenido == '.png')
+            <img src="{{$path}}">
         @endif
     </div>
     <div class="">

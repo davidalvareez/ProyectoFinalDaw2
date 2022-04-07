@@ -52,6 +52,8 @@
                     <td>{{$recentnotes->nick_usu}}</td>
                     <td>{{$recentnotes->idioma_contenido}}</td>
                     <td>{{$recentnotes->fecha_publicacion_contenido}}</td>
+                    <td>Descargas: {{$recentnotes->descargas}}</td>
+                    <td><button onclick="window.location.href='{{url('apuntes/'.$recentnotes->id)}}'">Ver apunte</button></td>
                 </tr>
                 @endforeach
         </table>
@@ -68,6 +70,7 @@
                 <td>{{$popularnotes->nick_usu}}</td>
                 <td>{{$popularnotes->idioma_contenido}}</td>
                 <td>{{$popularnotes->fecha_publicacion_contenido}}</td>
+                <td>Descargas: {{$popularnotes->descargas}}</td>
                 <td><button onclick="window.location.href='{{url('apuntes/'.$popularnotes->id)}}'">Ver apunte</button></td>
             </tr>
             @endforeach
