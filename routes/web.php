@@ -74,7 +74,7 @@ Route::post('admin/historial',[CRUDAdminController::class,'showHistorial']);
 
 
 //Mostrar
-
+Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
 //Crear
 
