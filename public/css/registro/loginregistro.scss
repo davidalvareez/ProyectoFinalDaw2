@@ -206,7 +206,7 @@
 
 .inputbtn {
     box-sizing: border-box;
-    padding: 10px 30px 10px 10px;
+    padding: 2px 30px 10px 10px;
     width: 100%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -268,14 +268,14 @@
 }
 
 .menudos {
-    width: 45%;
+    width: 45.8%;
     float: left;
     padding: 10px;
 }
 
 .menuuno {
     width: 94%;
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 .errortext {
@@ -339,7 +339,7 @@
 }
 
 .grid {
-    padding: 5vh 6vh;
+    padding: 5vh 15vh;
     display: -ms-grid;
     display: grid;
     grid-gap: 15px 6px;
@@ -516,7 +516,12 @@ $mobil: 600px;
 
 ///////////////////////////////////////////////////
 /////configuración de la página
-///////////////////777
+//////////////////////////////////////////////////
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 * {
     font-family: var(--font1);
     font-weight: 300;
@@ -580,7 +585,7 @@ h4 {
     background-image: url("../../media/fotos_loginregister/fondo.png");
     background-size: cover;
     background-repeat: no-repeat;
-    //overflow-y: hidden;
+    overflow-y: hidden;
     main {
         //@extend .flex;
         .region {
@@ -592,7 +597,7 @@ h4 {
             }
         }
         .region1 {
-            margin: 5% 5% 5% 5%;
+            margin: 5% 0% 5% 10%;
             @extend .flex;
             .content-region {
                 .glassland {
