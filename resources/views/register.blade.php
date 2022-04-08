@@ -27,28 +27,28 @@
                                     <p class="pizq">Nombre</p>
                                     <input class="inputbtn" type="text" name="nombre_usu" id="nombre_usu" placeholder="Nombre">
                                     @error('nombre_usu')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="menudos">
                                     <p class="pizq">Apellido</p>
                                     <input class="inputbtn" type="text" name="apellido_usu" id="apellido_usu" placeholder="Apellido">
                                     @error('apellido_usu')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="menudos">
                                     <p class="pizq">Nickname</p>
                                     <input class="inputbtn" type="text" name="nick_usu" id="nick_usu" placeholder="Nickname">
                                     @error('nick_usu')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="menudos">
                                     <p class="pizq">Fecha de nacimiento</p>
                                     <input class="inputbtn" type="date" name="fecha_nac_usu" id="fecha_nac_usu">
                                     @error('fecha_nac_usu')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="menudos">
@@ -60,28 +60,28 @@
                                         @endforeach
                                     </select>
                                     @error('centro')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="menudos">
                                     <p class="pizq">Email</p>
                                     <input class="inputbtn" type="email" name="correo_usu" id="correo_usu" placeholder="Email">
                                     @error('correo_usu')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="menudos">
                                     <p class="pizq">Contraseña</p>
                                     <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="Contraseña">
                                     @error('contra_usu')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="menudos">
                                     <p class="pizq">Repetir contraseña</p>
                                     <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
                                     @error('contra_usu_verify')
-                                    <p>{{$message}}</p>
+                                    <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div id="myModal" class="modal">
@@ -94,20 +94,20 @@
                                         <br>
                                         <div class="grid">
                                             @foreach($avatares as $avatar)
-                                            <div class="modal-3">
-                                                <button onclick="avatarSelected('{{$avatar->img_avatar}}');return false;"><img src={{asset('storage').'/'.$avatar->img_avatar}} width="100px" height="100px"></button>
+                                            <div>
+                                                <button class="elegiravatar" onclick="avatarSelected('{{$avatar->img_avatar}}'); chBackcolor(this);return false;"><img src={{asset('storage').'/'.$avatar->img_avatar}} width="100px" height="100px"></button>
                                             </div>
                                             @endforeach
                                         </div>
                                         <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
                                         <input type="file" name="img_avatar_usu" id="img_avatar_usu">
                                         <br><br>
-                                        <button onclick="closeModal();return false;" class="aceptarbtn" value="Aceptar">Aceptar</button>
+                                        <button onclick="closeModal2();return false;" class="aceptarbtn" value="Aceptar">Aceptar</button>
                                     </div>
                                 </div>
                                 <div class="menuuno">
                                     <p class="pizq">Avatar</p>
-                                    <input class="inputbtn-selec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
+                                    <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
                                     <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema" value="">
                                 </div>
                                 <!-- <div class="alienarright">

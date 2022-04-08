@@ -278,6 +278,14 @@
     padding: 10px;
 }
 
+.errortext {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 12px;
+    float: left;
+    padding-bottom: 5px;
+}
+
 //MODAL ------------------------------------------------------------------
 .modal {
     display: none;
@@ -351,6 +359,17 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.elegiravatar {
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.608);
+    }
+}
+
+.elegiravatar:active {
+    border: 1px solid #000;
 }
 
 //MODAL ------------------------------------------------------------------
