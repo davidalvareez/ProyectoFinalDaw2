@@ -65,7 +65,7 @@
                                             <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">{{$recentnotes->nombre_centro}}</span></p>
                                         </div>
                                         <div class="id-content">
-                                            <small class="name-content_text"><span class="">{{$recentnotes->id_content}}</span></small>
+                                            <small class="name-content_text"><span class="">#{{$recentnotes->id_content}}</span></small>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                                             <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
                                                         </div>
                                                         <div class="down info-stats">
-                                                            <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">32</span></p>
+                                                            <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">{{$recentnotes->descargas}}</span></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@
                                             <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">{{$popularnotes->nombre_centro}}</span></p>
                                         </div>
                                         <div class="id-content">
-                                            <small class="name-content_text"><span class="">{{$popularnotes->id_content}}</span></small>
+                                            <small class="name-content_text"><span class="">#{{$popularnotes->id_content}}</span></small>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                                                             <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
                                                         </div>
                                                         <div class="down info-stats">
-                                                            <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">32</span></p>
+                                                            <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">{{$popularnotes->descargas}}</span></p>
                                                         </div>
                                                     </div>
                                                 </div>

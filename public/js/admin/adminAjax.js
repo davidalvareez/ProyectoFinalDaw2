@@ -62,7 +62,8 @@ function showUsers() {
                 <th scope="col">Rol</th>
                 <th scope="col">Nivel</th>
                 <th scope="col">Imagen Avatar</th>
-                <th scope="col" colspan="2">Acciones</th>
+                <th scope="col">Modificar</th>
+                <th scope="col">Eliminar</th>
                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
@@ -75,12 +76,12 @@ function showUsers() {
                      <td>${respuesta[i].nombre_centro}</td>
                      <td>${respuesta[i].nombre_rol}</td>
                      <td>${respuesta[i].nombre_nivel}</td>
-                     <td><img src="storage/${respuesta[i].img_avatar}"></td>
+                     <td><img class="imgavatar" src="storage/${respuesta[i].img_avatar}"></td>
                      <td>
-                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
+                     <button class="boton_modificar" type="submit" value="Edit" onclick="modalbox();return false;">Modificar</button>
                      </td>
                      <td>
-                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar('${respuesta[i].id}');return false;">Eliminar</button>
+                     <button class= "boton_eliminar" type="submit" value="Delete" onclick="eliminar('${respuesta[i].id}');return false;">Eliminar</button>
                      </td>
                      </tr>`
                 }
