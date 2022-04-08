@@ -237,7 +237,7 @@
 .inputbtn {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 10px 30px 10px 10px;
+  padding: 2px 30px 10px 10px;
   width: 100%;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -305,14 +305,14 @@
 }
 
 .menudos {
-  width: 45%;
+  width: 45.8%;
   float: left;
   padding: 10px;
 }
 
 .menuuno {
   width: 94%;
-  padding: 10px;
+  padding: 10px 10px 10px 10px;
 }
 
 .errortext {
@@ -376,7 +376,7 @@
 }
 
 .grid {
-  padding: 5vh 6vh;
+  padding: 5vh 15vh;
   display: -ms-grid;
   display: grid;
   grid-gap: 15px 6px;
@@ -533,6 +533,11 @@ section {
   --font1: Poppins;
 }
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 * {
   font-family: var(--font1);
   font-weight: 300;
@@ -576,10 +581,11 @@ h4 {
   background-image: url("../../media/fotos_loginregister/fondo.png");
   background-size: cover;
   background-repeat: no-repeat;
+  overflow-y: hidden;
 }
 
 .login-page main .region1 {
-  margin: 5% 5% 5% 5%;
+  margin: 5% 0% 5% 10%;
 }
 
 .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland {
