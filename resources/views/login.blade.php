@@ -27,11 +27,18 @@
                                 @csrf
                                 <div>
                                     <p class="pizq">Email o Nickname</p>
-                                    <input class="inputbtn" type="email" name="correo_nick" id="correo_nick" placeholder="&#xf007">
+                                    <input class="inputbtn" type="text" name="correo_nick" id="correo_nick" placeholder="&#xf007">
+                                    @error('correo_nick')
+                                    <p class="errortext">{{$message}}</p>
+                                    @enderror
                                 </div>
+                                <br>
                                 <div>
                                     <p class="pizq">Contraseña</p>
                                     <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="&#xf023">
+                                    @error('contra_usu')
+                                    <p class="errortext">{{$message}}</p>
+                                    @enderror
                                 </div>
                                 <!-- <div class="alienarright">
                                     <a href="">
