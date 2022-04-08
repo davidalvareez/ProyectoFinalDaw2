@@ -30,8 +30,8 @@
                     <div class="content-glassland">
                         <div class="crearcuenta-content-glassland">
                             <img src="media/3Dicons-dinamicos/icons/png/thumb-up\thumb-up-dynamic-gradient.png" width="80px" height="80px"> 
-                            <h2>¡Create una cuenta para poder disfrutar de todas las características que NoteHub te proporciona!</h2>
-                            <h4>Comparte archivos, comenta, opina y puntúa los demás apuntes para poder convertirte en VIP para gozar de muchas mas funcionalidades extra.</h4>
+                            <h2>¡Crea una cuenta para poder disfrutar de todas las características que NoteHub te proporciona!</h2>
+                            <h4>Comparte archivos, comenta, opina y puntúa los demás apuntes para poder convertirte en VIP para disfrutar de muchas más funcionalidades extra.</h4>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/copy/copy-dynamic-gradient.png" width="90px" height="90px">
                             </div>
-                            <button class="crearcuenta-btn-absglass">Crear cuenta</button>
+                            <button class="crearcuenta-btn-absglass" onclick="window.location.href='{{url('register')}}'">Crear cuenta</button>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                         <div class="iniciarsesion-content-glassland">
                             <img src="media/3Dicons-dinamicos/icons/png/explorer/explorer-dynamic-gradient.png" width="80px" height="80px"> 
                             <h2>¡Consulta apuntes de la Universidad, Formación Profesional o Bachillerato!</h2>
-                            <h4>Filtra por aquello que estés buscando, matematicas, física, química, historia, tecnología, medicina, lenguas, arte, programación... tienes un sinfín de cursos y asignaturas.</h4>
+                            <h4>Filtra por aquello que estés buscando, matemáticas, física, química, historia, tecnología, medicina, lenguas, arte, programación... tienes un sinfín de cursos y asignaturas.</h4>
                         </div>
                     </div>
                 </div>
@@ -64,10 +64,9 @@
                         <div class="iniciarsesion-content-absglass">
                             <h2>¡Inicia sesión para consultar apuntes de los usuarios!</h2>
                             <div class="iconoanimacion">
-                                
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/computer/computer-dynamic-gradient.png" width="90px" height="90px">
                             </div>
-                            <button class="iniciarsesion-btn-absglass">Iniciar sesión</button>
+                            <button class="iniciarsesion-btn-absglass" onclick="window.location.href='{{url('login')}}'">Iniciar sesión</button>
                         </div>
                     </div>
                 </div>
@@ -81,7 +80,6 @@
                             <img src="media/3Dicons-dinamicos/icons/png/notebook/notebook-dynamic-gradient.png" width="90px" height="90px">
                             <h2>¡Sube tus apuntes para ayudar a otros estudiantes que se encuentran en la misma situación!</h2>
                             <h4>Podrás compartir tus apuntes con toda la comunidad de estudiantes de España.</h4>
-
                         </div>
                     </div>
                 </div>
@@ -92,7 +90,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/folder-new/new-folder-dynamic-gradient.png" width="90px" height="90px">
                             </div>
-                            <button class="subirapuntes-btn-absglass">Subir archivos</button>
+                            <button class="subirapuntes-btn-absglass" onclick="window.location.href='{{url('misApuntes')}}'">Subir archivos</button>
                         </div>
                     </div>
                 </div>

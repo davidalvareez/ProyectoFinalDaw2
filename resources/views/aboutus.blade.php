@@ -1,3 +1,4 @@
+@include('template.header')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +82,7 @@
                                     <div class="content-carta">
                                         <h3>¿QUIENES SOMOS?</h3>
                                         <h4>Somos 6 estudiantes de Desarrollo de Aplicaciones Web. El equipo está compuesto por 2 departamentos. Departamento de Frontend, formado por David Álvarez, Isaac Ortiz y Marc Ortiz.
-                                        y departamento de Backend, formado por Xavi Gómez, Miguel Gras y Raúl Santacruz. Unidos hemos creado NoteHub.
+                                        Y departamento de Backend, formado por Xavi Gómez, Miguel Gras y Raúl Santacruz. Unidos hemos creado NoteHub.
                                     </div>
                                 </div>
                                 <div class="carta-explicacion carta2" data-aos="fade-up">
@@ -113,3 +114,4 @@
     AOS.init();
 </script>
 </html>
+@include('template.footer')
