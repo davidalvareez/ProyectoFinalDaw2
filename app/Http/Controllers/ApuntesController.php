@@ -45,7 +45,7 @@ class ApuntesController extends Controller
             $listaAsignaturas = DB::select("SELECT * FROM tbl_asignaturas");
             return view('buscador',compact('user','recent','popular','listaCentros','listaCursos','listaAsignaturas'));
         }else{
-            return redirect("/");
+            return redirect("login");
         }
     }
 
@@ -127,7 +127,7 @@ class ApuntesController extends Controller
             WHERE user.id = ?",[$user->id]);
             return view('misApuntes',compact('select'));
         }else{
-            return redirect('/');
+            return redirect('login');
         }
     }
     public function apuntes($id){
@@ -144,7 +144,7 @@ class ApuntesController extends Controller
             //return $path;
             return view('vistaApunte',compact('apunte','path'));
         }else{
-            return redirect('/');
+            return redirect('login');
         }
     }
     public function download(Request $request){
@@ -176,7 +176,7 @@ class ApuntesController extends Controller
                 $e->getMessage();
             }
         }else{
-            return redirect('/');
+            return redirect('login');
         }
     }
 }
