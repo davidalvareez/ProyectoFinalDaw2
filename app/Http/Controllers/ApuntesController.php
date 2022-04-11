@@ -119,17 +119,42 @@ class ApuntesController extends Controller
         return response()->json($select);
     }
 
+    //Pagina mis apuntes
     public function misApuntes(){
         if (session()->get('user')) {
             $user = session()->get('user');
             $select = DB::select("SELECT contenidos.* FROM tbl_contenidos contenidos
             INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
             WHERE user.id = ?",[$user->id]);
-            return view('misApuntes',compact('select'));
+            $selectCurso = DB::select("SELECT curso.id,curso.nombre_curso FROM tbl_centro centro
+            INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
+            WHERE centro.id = ?",[$user->id_centro]);
+            $selectAsignatura = DB::select("SELECT asignatura.id, asignatura.nombre_asignatura FROM tbl_centro centro
+            INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
+            INNER JOIN tbl_asignaturas asignatura ON asignatura.id_curso = curso.id
+            WHERE centro.id = ?",[$user->id_centro]);
+            $selectTema = DB::select("SELECT tema.id, tema.nombre_tema FROM tbl_centro centro
+            INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
+            INNER JOIN tbl_asignaturas asignatura ON asignatura.id_curso = curso.id
+            INNER JOIN tbl_temas tema ON tema.id_asignatura = asignatura.id
+            WHERE centro.id = ?",[$user->id_centro]);
+            return view('misApuntes',compact('select','selectCurso','selectAsignatura','selectTema'));
         }else{
             return redirect('login');
         }
     }
+    public function misApuntes_curso(Request $request){
+        $datos = $request->except("_token");
+        /*$selectCurso = DB::select("SELECT curso.id,curso.nombre_curso FROM tbl_centro centro
+        INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
+        WHERE centro.nombre_centro LIKE ?",['%'.$datos['nombre_centro'].'%']);
+        $selectAsignatura = DB::select("SELECT asignatura.id, asignatura.nombre_asignatura FROM tbl_centro centro
+        INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
+        INNER JOIN tbl_asignaturas asignatura ON asignatura.id_curso = curso.id
+        WHERE centro.nombre_centro LIKE ?",['%'.$datos['nombre_centro'].'%']);
+        return response()->json(array('asignaturas' => $selectCurso,'temas' =>$selectAsignatura));*/
+    }
+    //Pagina apunte
     public function apuntes($id){
         if (session()->get('user')) {
             $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema,avatar.img_avatar FROM tbl_usuario usu 
