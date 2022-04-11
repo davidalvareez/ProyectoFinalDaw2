@@ -3,128 +3,128 @@
     src: url("../../media/aboutus/fonts/poppins/Poppins-Black.ttf") format("truetype");
     font-weight: 900;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
     font-weight: 900;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-Bold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
     font-weight: 700;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
     font-weight: 800;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
     font-weight: 800;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
     font-weight: 200;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
     font-weight: 200;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-Italic.ttf") format("truetype");
     font-weight: 400;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-Light.ttf") format("truetype");
     font-weight: 300;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
     font-weight: 300;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-Medium.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
     font-weight: 500;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
     font-weight: 600;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
     font-weight: 600;
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../media/aboutus/fonts/poppins/Poppins-Thin.ttf") format("truetype");
     font-weight: 100;
     font-style: normal;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url("../media/aboutus/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
     font-weight: 100;
     font-style: italic;
-  }
+}
 
-.glass{
+.glass {
     backdrop-filter: blur(10px) saturate(105%);
     -webkit-backdrop-filter: blur(13px) saturate(180%);
     background-color: #a3a8b062;
@@ -132,12 +132,13 @@
     border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.flex{
+.flex {
     display: flex;
     align-items: center;
     align-content: center;
     text-align: center;
 }
+
 $padding: 15px;
 $first-color:#19c673; //color principal
 $second-color:#05a357; //color para resaltes pequeños
@@ -170,6 +171,7 @@ $mobil: 600px;
     --letter-grey: #797c7e;
     --font1: Poppins;
 }
+
 ///////////////////////////////////////////////////
 /////configuración de la página
 ///////////////////
@@ -187,10 +189,11 @@ body {
     width: 100%;
     min-height: 100vh;
     position: relative;
-    background-image: url("../media/img/fondo.jpg");
+    background-image: url("../../media/aboutus/img-aboutus/fondoaboutus.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 ///////////////////
 h1 {
     font-family: var(--font1);
@@ -216,36 +219,36 @@ h4 {
     font-weight: bold;
 }
 
-.about-us{
-    main{
-        .region{
+.about-us {
+    main {
+        .region {
             @extend .flex;
-            width:100%;
+            width: 100%;
         }
-        .carta{
+        .carta {
             @extend .glass;
             width: 100%;
             padding: 35px 0px 20px 0px;
         }
-        .carta-explicacion{
+        .carta-explicacion {
             @extend .glass;
             width: 100%;
             padding: 10px;
         }
-        .img-carta{
+        .img-carta {
             margin: 0px 0px 30px 0px;
         }
-        .icono-carta{
+        .icono-carta {
             width: 90px;
             height: 90px;
         }
-        .region1{
+        .region1 {
             margin: 80px 0px 0px 0px;
-            .content-region{
+            .content-region {
                 width: 100%;
-                .presentacion{
-                    .content-presentacion{
-                        .alineacion{
+                .presentacion {
+                    .content-presentacion {
+                        .alineacion {
                             margin: 26px 0px 0px 0px;
                             padding: 10vh 11vh;
                             display: -ms-grid;
@@ -258,15 +261,15 @@ h4 {
                 }
             }
         }
-        .region2{
+        .region2 {
             margin: 80px 0px 0px 0px;
-            .content-region{
-                width:100%;
-                .explicacion{
+            .content-region {
+                width: 100%;
+                .explicacion {
                     @extend .flex;
-                    width:100%;
-                    .content-explicacion{
-                        .preguntas{
+                    width: 100%;
+                    .content-explicacion {
+                        .preguntas {
                             margin: 26px 0px 0px 0px;
                             padding: 8vh 11vh;
                             display: -ms-grid;
@@ -274,13 +277,13 @@ h4 {
                             grid-gap: 0px 68px;
                             -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
                             grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
-                            .carta1{
+                            .carta1 {
                                 padding: 23px 23px 23px 23px;
                             }
-                            .carta2{
+                            .carta2 {
                                 padding: 23px 23px 23px 23px;
                             }
-                            .carta3{
+                            .carta3 {
                                 padding: 23px 23px 23px 23px;
                             }
                         }
@@ -288,5 +291,5 @@ h4 {
                 }
             }
         }
-    } 
+    }
 }

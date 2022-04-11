@@ -16,6 +16,7 @@ use App\Http\Controllers\CRUDAdminController;
 |
 */
 //Enlaces a paginas
+//Indice
 Route::get('/', function () {
     return view('index');
 });
@@ -40,8 +41,10 @@ Route::get('logout',[UsuarioController::class,'logout']);
 Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
 
 //Pagina de apuntes
+//Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
-
+Route::post('misApuntes/curso',[ApuntesController::class,'misApuntes_curso']);
+//Apunte
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
 
 Route::post('download',[ApuntesController::class,'download']);
@@ -56,7 +59,8 @@ Route::post('buscador/busquedaAvanzada/centro',[ApuntesController::class,'busque
 
 Route::post('buscador/busquedaAvanzada/curso',[ApuntesController::class,'busquedaAvanzadaCurso']);
 
-//CRUD
+//CRUD ADMIN
+//Mostrar
 Route::get('admin',[CRUDAdminController::class,'adminView']);
 
 Route::post('admin/users',[CRUDAdminController::class,'showUsers']);
