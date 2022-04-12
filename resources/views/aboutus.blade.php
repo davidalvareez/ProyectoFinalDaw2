@@ -25,7 +25,7 @@
                                     <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifdavid.gif') !!}" alt="" srcset="">
                                     <h3>David Álvarez Rodríguez</h3>
                                     <h4>Departamento de Frontend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/fire/fire-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/flash/flash-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/fire/fire-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset('media/3Dicons-dinamicos/icons/png/flash/flash-dynamic-gradient.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
                             <div class="carta carta2" data-aos="zoom-in-up">
@@ -33,7 +33,7 @@
                                     <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifmarc.gif') !!}" alt="" srcset="">
                                     <h3>Marc Ortiz García</h3>
                                     <h4>Departamento de Frontend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/rocket/rocket-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/painting-brush/paint-brush-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/rocket/rocket-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/painting-brush/paint-brush-dynamic-gradient.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
                             <div class="carta carta3" data-aos="zoom-in-up">
@@ -41,14 +41,14 @@
                                     <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifisaac.gif') !!}" alt="" srcset="">
                                     <h3>Isaac Ortiz Moncusí </h3>
                                     <h4>Departamento de Frontend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/crown/crown-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/magic-trick/magic-trick-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/crown/crown-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/magic-trick/magic-trick-dynamic-gradient.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
                             <div class="carta carta4" data-aos="zoom-in-up">
                                 <div class="content-carta">
                                     <h3>Raúl Santacruz Cela</h3> 
                                     <h4>Departamento de Backend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/key/key-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/medal/medal-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/key/key-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/medal/medal-dynamic-gradient.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
                             <div class="carta carta5" data-aos="zoom-in-up">
@@ -56,7 +56,7 @@
                                     <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifmiguel.gif') !!}" alt="" srcset="">
                                     <h3>Miguel Gras Garrido</h3>
                                     <h4>Departamento de Backend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/bulb/bulb-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/shield/sheild-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/bulb/bulb-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/shield/sheild-dynamic-gradient.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
                             <div class="carta carta6" data-aos="zoom-in-up">
@@ -64,7 +64,7 @@
                                     <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifxavi.gif') !!}" alt="" srcset="">
                                     <h3>Xavi Gómez Gallego</h3>  
                                     <h4>Departamento de Backend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/calculator/calculator-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/aboutus/3Dicons-dinamicos-aboutus/icons/png/gym/gym-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/calculator/calculator-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/gym/gym-dynamic-gradient.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
                         </div>

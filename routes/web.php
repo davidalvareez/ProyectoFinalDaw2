@@ -44,6 +44,8 @@ Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
 Route::post('misApuntes/curso',[ApuntesController::class,'misApuntes_curso']);
+Route::post('misApuntes/asignatura',[ApuntesController::class,'misApuntes_asignatura']);
+Route::post('misApuntes/subirapunte',[ApuntesController::class,'misApuntes_subirapunte']);
 //Apunte
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
 

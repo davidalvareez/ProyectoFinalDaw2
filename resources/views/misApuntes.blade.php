@@ -16,14 +16,14 @@
         <button class="btn btn-dark" onclick="openformSubirApuntes(); return false;" type="submit">Subir apunte</button>
     </div>
     <div id="divFormSubirApuntes" style="display: none;" class="">
-        <form action="" id="formSubirApuntes" enctype="multipart/form-data">
+        <form onsubmit="subirApuntes(); return false;" id="formSubirApuntes" enctype="multipart/form-data">
             <select name="curso" onchange="selectAsignatura();">
                 <option value="">--</option>
                 @foreach($selectCurso as $curso)
                     <option value="{{$curso->nombre_curso}}">{{$curso->nombre_curso}}</option>
                 @endforeach
             </select>
-            <select name="asignatura">
+            <select name="asignatura" onchange="selectTema();">
                 <option value="">--</option>
                 @foreach($selectAsignatura as $asignatura)
                     <option value="{{$asignatura->nombre_asignatura}}">{{$asignatura->nombre_asignatura}}</option>
@@ -33,7 +33,7 @@
             <input type="radio" name="newTema" id="radioYes" value="si">
             <input type="radio" name="newTema" id="radioNo" value="no">
             <div id="selectTema" style="display: none;">
-                <select name="tema">
+                <select name="select_tema">
                     <option value="">--</option>
                     @foreach($selectTema as $tema)
                         <option value="{{$tema->nombre_tema}}">{{$tema->nombre_tema}}</option>
@@ -41,9 +41,10 @@
                 </select>
             </div>
             <div id="textNewTema" style="display: none;">
-                <input type="text" name="nombre_tema" id="">
+                <input type="text" name="text_tema" id="text_tema">
             </div>
             <input type="file" name="apuntes" id="">
+            <input type="hidden" id="id_centro" name="id_centro" value="{{$user->id_centro}}">
             <input type="submit" value="Subir apunte">
         </form>
     </div>
