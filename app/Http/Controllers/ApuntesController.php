@@ -166,7 +166,53 @@ class ApuntesController extends Controller
         return response()->json($selectTema);
     }
     public function misApuntes_subirapunte(Request $request){
-        return $request;
+        $user = session()->get('user');
+        $datos = $request->except("_token");
+        $centro = DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+        //Si no ha especificado el tema le hacemos saltar error
+        if ($datos["text_tema"] == null && $datos["select_tema"] == null) {
+            return response()->json(array('resultado'=> 'nullTema'));
+        }else{
+            //En caso que usase el input text le creamos carpeta y se almacenará el tema en la base de datos
+            if ($datos["text_tema"] != null) {
+                $tema = $datos["text_tema"];
+                $path = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
+                if(!file_exists($path)){
+                    //En caso que el tema no exista en la ruta le haremos insert en la base de datos del tema y cogemos el id de asignatura y creamos la carpeta
+                    //Falta por hacer query, ya se hará pruebas proximamente primero el select con joins y despues el insert
+                    Storage::makeDirectory('uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
+                }
+            }else{
+                //En caso que el tema ya exista cogemos datos del select
+                $tema = $datos["select_tema"];
+            }
+            if ($request->hasFile('apuntes')) {
+                //En caso que tenga fichero comprobamos si ya existe el apunte
+                $path = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema.'/'.$request->file('apuntes'));
+                if (file_exists($path)) {
+                    return response()->json(array('resultado'=> 'existApunte'));
+                }else{
+                    //Cogemos ruta de la carpeta
+                    $path_folder = 'public/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema;
+                    $file = $request->file('apuntes');
+                    //Cogemos el nombre original del fichero
+                    $fileName = $file->getClientOriginalName();
+                    //Cogemos la extension del contenido y el nombre para la base de datos
+                    $arrayFileName = explode('.',$fileName);
+                    //Nombre del archivo
+                    $nameFile = $arrayFileName[0];
+                    //Extension del archivo
+                    $extensionFile = $arrayFileName[1];
+                    try {
+                        //Lo almacenamos con el nombre original y le hacemos insert
+                        $file->storeAs($path_folder,$fileName);
+                        return response()->json(array('resultado'=> 'OK'));
+                    } catch (\Exception $e) {
+                        return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
+                    }
+                }
+            }
+        }
     }
     //Pagina apunte
     public function apuntes($id){
