@@ -94,5 +94,18 @@ function selectTema() {
 }
 
 function subirApuntes() {
-
+    let form = document.getElementById("formSubirApuntes");
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData(form);
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    let ajax = llamadaAjax();
+    ajax.open("POST", "misApuntes/subirapunte", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            let respuesta = JSON.parse(this.responseText);
+            console.log(respuesta);
+        }
+    }
+    ajax.send(formData);
 }
