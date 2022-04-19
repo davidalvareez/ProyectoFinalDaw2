@@ -18,7 +18,7 @@
                 <div class="absglassportada">
                     <div class="content-absglass">
                         <div class="introduccion-content-absglass">
-                            <h2>¿xdEres nuevo/a? ¡Desliza para abajo e infórmate sobre lo que NoteHub te proporciona!</h2>
+                            <h2>¿Eres nuevo/a? ¡Desliza para abajo e infórmate sobre lo que NoteHub te proporciona!</h2>
                         </div>
                     </div>
                 </div>
