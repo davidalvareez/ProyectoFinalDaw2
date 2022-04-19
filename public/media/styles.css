@@ -1,0 +1,386 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("./media/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@-webkit-keyframes movi {
+  0% {
+    left: 1.5vw;
+  }
+  50% {
+    left: 0vw;
+  }
+  100% {
+    left: 1.5vw;
+  }
+}
+
+@keyframes movi {
+  0% {
+    left: 1.5vw;
+  }
+  50% {
+    left: 0vw;
+  }
+  100% {
+    left: 1.5vw;
+  }
+}
+
+.cgradient-1 {
+  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
+  background-size: 600% 600%;
+  -webkit-animation: aniGrad 8s ease infinite;
+  animation: aniGrad 8s ease infinite;
+}
+
+@-webkit-keyframes aniGrad {
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}
+
+@keyframes aniGrad {
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}
+
+.animationbounce {
+  -webkit-animation: movi 2s ease infinite;
+  animation: movi 2s ease infinite;
+  position: absolute;
+}
+
+.glass2, .landing-page main .region .glassland, .landing-page main .region .absglass, .landing-page main .region-portada .absglassportada {
+  backdrop-filter: blur(10px) saturate(105%);
+  -webkit-backdrop-filter: blur(13px) saturate(180%);
+  background-color: #a3a8b062;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.glassbtn, .landing-page main .region1 .content-region .absglass1 .content-absglass .crearcuenta-content-absglass .crearcuenta-btn-absglass, .landing-page main .region2 .content-region .glassland .content-glassland .iniciarsesion-content-glassland .iniciarsesion-btn-glassland, .landing-page main .region2 .content-region .absglass2 .content-absglass .iniciarsesion-content-absglass .iniciarsesion-btn-absglass, .landing-page main .region3 .content-region .glassland .content-glassland .subirapuntes-content-glassland .subirapuntes-btn-glassland, .landing-page main .region3 .content-region .absglass3 .content-absglass .subirapuntes-content-absglass .subirapuntes-btn-absglass {
+  margin: 10px 0px 0px 0px;
+  padding: 24px 32px;
+  font-size: 20px;
+  border: 0;
+  text-decoration: none;
+  border-radius: 15px;
+  cursor: pointer;
+  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
+  background-size: 600% 600%;
+  -webkit-animation: aniGrad 8s ease infinite;
+  animation: aniGrad 8s ease infinite;
+}
+
+.flex, .iconoanimacion, .landing-page main .region .glassland .content-glassland, .landing-page main .region .absglass, .landing-page main .region-portada .absglassportada, .landing-page main .region-portada .content-region {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+
+.iconoanimacion {
+  position: relative;
+  width: 100px;
+  margin: auto;
+  height: 100px;
+}
+
+:root {
+  --first-color: #19c673;
+  --second-color: #05a357;
+  --third-color: #f6f0ea;
+  --fourth-color: #7319c6;
+  --fifth-color: #c67319;
+  --sixth-color: #19c3c6;
+  --seventh-color: #19c61d;
+  --eightth-color: #c6196c;
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #eee;
+  --letter-grey: #797c7e;
+  --font1: Poppins;
+}
+
+* {
+  font-family: var(--font1);
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: auto;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+h1 {
+  font-family: var(--font1);
+  font-size: calc(48px + 1vw);
+  font-weight: bold;
+}
+
+h2 {
+  font-family: var(--font1);
+  font-size: calc(18px + 1vw);
+  font-weight: 600;
+}
+
+h3 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.5vw);
+  font-weight: bold;
+}
+
+h4 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.1vw);
+  font-weight: bold;
+}
+
+.landing-page {
+  background-image: url("./media/fotos/fondo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.landing-page main {
+  padding: calc(15px + 5vh);
+  padding-bottom: 150px;
+}
+
+.landing-page main .region {
+  width: 90%;
+}
+
+.landing-page main .region .absglass {
+  height: 40vh;
+  position: absolute;
+}
+
+.landing-page main .region-portada {
+  width: 100%;
+  margin: 0px 0px 300px 0px;
+}
+
+.landing-page main .region-portada .absglassportada {
+  width: 47%;
+  left: 493px;
+  top: 483px;
+  position: absolute;
+  height: 10%;
+}
+
+.landing-page main .region-portada .content-region {
+  width: 100%;
+}
+
+.landing-page main .region-portada .content-region .content-video {
+  width: 100%;
+}
+
+.landing-page main .region-portada .content-region .content-video .imagen-difuminada {
+  -webkit-box-shadow: 8px 8px 8px 8px red inset;
+          box-shadow: 8px 8px 8px 8px red inset;
+}
+
+.landing-page main .region1 {
+  margin: 5% 0% 0% 5%;
+}
+
+.landing-page main .region1 .content-region .glassland .content-glassland .crearcuenta-content-glassland {
+  width: 60%;
+  padding: 15px 15px 45px 88px;
+}
+
+.landing-page main .region1 .content-region .absglass1 {
+  width: 20%;
+  right: 216px;
+  top: 950px;
+  padding: 25px 15px 15px 15px;
+}
+
+.landing-page main .region2 {
+  margin: 15% 0% 0% 5%;
+}
+
+.landing-page main .region2 .content-region .glassland .content-glassland .iniciarsesion-content-glassland {
+  width: 46%;
+  padding: 10px 0px 40px 620px;
+}
+
+.landing-page main .region2 .content-region .glassland .content-glassland .iniciarsesion-content-glassland .iniciarsesion-btn-glassland {
+  margin: 20px;
+}
+
+.landing-page main .region2 .content-region .absglass2 {
+  width: 20%;
+  left: 230px;
+  top: 1539px;
+  padding: 25px 15px 15px 15px;
+}
+
+.landing-page main .region3 {
+  margin: 10% 0% 0% 5%;
+}
+
+.landing-page main .region3 .content-region .glassland .content-glassland .subirapuntes-content-glassland {
+  width: 61%;
+  padding: 22px 0px 40px 79px;
+}
+
+.landing-page main .region3 .content-region .glassland .content-glassland .subirapuntes-content-glassland .subirapuntes-btn-glassland {
+  margin: 20px;
+}
+
+.landing-page main .region3 .content-region .absglass3 {
+  width: 20%;
+  right: 216px;
+  top: 2057px;
+  padding: 25px 15px 15px 15px;
+}
+/*# sourceMappingURL=styles.css.map */

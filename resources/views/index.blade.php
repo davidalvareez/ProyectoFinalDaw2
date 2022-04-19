@@ -96,7 +96,32 @@
                 </div>
             </div>
         </div>
+        <div class="region region4" >
+            <div class="content-region">
+                <div class="glassland">
+                    <div class="content-glassland">
+                        <div class="sabermas-content-glassland">
+                            <img src="media/3Dicons-dinamicos/icons/png/plus/plus-dynamic-gradient.png" width="80px" height="80px"> 
+                            <h2>¿Quieres saber más sobre nosotros?</h2>
+                            <h4>¿Quienes somos? ¿Que departamentos tenemos? ¿Por qué hemos creado esta web? ¿Cual es nuestro objetivo?.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="absglass absglass4">
+                    <div class="content-absglass">
+                        <div class="sabermas-content-absglass">
+                            <h2>¡Descúbrelo todo aquí!</h2>
+                            <div class="iconoanimacion">
+                                <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/zoom/zoom-dynamic-gradient.png" width="90px" height="90px">
+                            </div>
+                            <button class="sabermas-btn-absglass" onclick="window.location.href='{{url('register')}}'">Mas información</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>
+
 @include('template.footer')
