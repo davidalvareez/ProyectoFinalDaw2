@@ -165,6 +165,50 @@ class ApuntesController extends Controller
         WHERE centro.id = ? AND asignatura.nombre_asignatura = ?",[$datos['id_centro'],$datos['nombre_asignatura']]);
         return response()->json($selectTema);
     }
+    public function misApuntes_apuntes(){
+        $user = session()->get('user');
+        $select = DB::select("SELECT contenidos.* FROM tbl_contenidos contenidos
+        INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
+        WHERE user.id = ?",[$user->id]);
+        return response()->json($select);
+    }
+    public function misApuntes_eliminarapunte($id){
+        try {
+            DB::beginTransaction();
+            $existComment = DB::SELECT("SELECT * FROM tbl_comentarios WHERE id_contenido = ?",[$id]);
+            if (count($existComment) != 0) {
+                DB::delete("DELETE FROM tbl_comentarios WHERE id_contenido = ?",[$id]);
+            }
+            $exitDenuncia =DB::select("SELECT * FROM tbl_denuncias WHERE id_contenido = ?",[$id]);
+            if (count($exitDenuncia) != 0) {
+                DB::delete("DELETE FROM tbl_denuncias WHERE id_contenido = ?",[$id]);
+            }
+            $existMultimedia = DB::select("SELECT * FROM tbl_multimedia WHERE id = ?",[$id]);
+            if (count($existMultimedia) != 0) {
+                DB::delete("DELETE FROM tbl_multimedia WHERE id = ?",[$id]);
+            }
+            $existHistorial = DB::select("SELECT * FROM tbl_historial WHERE id_contenido = ?",[$id]);
+            if (count($existHistorial) != 0) {
+                DB::delete("DELETE FROM tbl_historial WHERE id_contenido = ?",[$id]);
+            }
+            $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema,avatar.img_avatar FROM tbl_usuario usu 
+            INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+            INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+            INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+            INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+            INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+            LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
+            WHERE apuntes.id =  ?",[$id]);
+            $path = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+            Storage::delete($path);    
+            DB::delete("DELETE FROM tbl_contenidos WHERE id = ?",[$id]);
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
     public function misApuntes_subirapunte(Request $request){
         $user = session()->get('user');
         $datos = $request->except("_token");
@@ -179,7 +223,19 @@ class ApuntesController extends Controller
                 $path = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
                 if(!file_exists($path)){
                     //En caso que el tema no exista en la ruta le haremos insert en la base de datos del tema y cogemos el id de asignatura y creamos la carpeta
-                    //Falta por hacer query, ya se hará pruebas proximamente primero el select con joins y despues el insert
+                    $existTema = DB::select("SELECT * FROM tbl_temas temas
+                                             INNER JOIN tbl_asignaturas asignatura ON asignatura.id=temas.id_asignatura
+                                             INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
+                                             INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                                             WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ? AND temas.nombre_tema = ?",[$datos['id_centro'],$datos['curso'],$datos['asignatura'],$tema]);
+                    //Si no existe tema creamos el insert y cogemos el id de la asignatura
+                    if (count($existTema)==0) {
+                        $id_asignatura = DB::select("SELECT asignatura.id FROM tbl_asignaturas asignatura
+                        INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
+                        INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                        WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ?",[$datos['id_centro'],$datos['curso'],$datos['asignatura']]);
+                        $id_new_tema  = DB::table("tbl_temas")->insertGetId(["nombre_tema"=>$tema,"id_asignatura"=>$id_asignatura[0]->id]);
+                    }
                     Storage::makeDirectory('uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
                 }
             }else{
@@ -205,8 +261,25 @@ class ApuntesController extends Controller
                     $extensionFile = $arrayFileName[1];
                     try {
                         //Lo almacenamos con el nombre original y le hacemos insert
-                        $file->storeAs($path_folder,$fileName);
-                        return response()->json(array('resultado'=> 'OK'));
+                        if (isset($id_new_tema)) {
+                            $id_tema = $id_new_tema;
+                        }else{
+                            $id_tema_select = DB::select("SELECT temas.id FROM tbl_temas temas
+                                             INNER JOIN tbl_asignaturas asignatura ON asignatura.id=temas.id_asignatura
+                                             INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
+                                             INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                                             WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ? AND temas.nombre_tema = ?",[$datos['id_centro'],$datos['curso'],$datos['asignatura'],$tema]);
+                            $id_tema = $id_tema_select[0]->id;
+                        }
+                        $nombre_contenido = DB::select("SELECT * FROM tbl_contenidos where nombre_contenido = ?",[$nameFile]);
+                        if (count($nombre_contenido) == 0) {
+                            DB::insert("INSERT INTO tbl_contenidos (nombre_contenido,idioma_contenido,extension_contenido,fecha_publicacion_contenido,id_tema,id_usu) VALUES (?,?,?,?,?,?)",
+                            [$nameFile,"Español",".".$extensionFile,date('Y-m-d H:i:s'),$id_tema,$user->id]);
+                                $file->storeAs($path_folder,$fileName);
+                                return response()->json(array('resultado'=> 'OK'));
+                        }else{
+                            return response()->json(array('resultado'=> 'existApunte'));
+                        }
                     } catch (\Exception $e) {
                         return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
                     }

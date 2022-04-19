@@ -93,6 +93,36 @@ function selectTema() {
     ajax.send(formData);
 }
 
+function apuntesAjax() {
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    let ajax = llamadaAjax();
+    ajax.open("POST", "misApuntes/apuntes", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            let respuesta = JSON.parse(this.responseText);
+            let recarga = "";
+            recarga = `<tr>
+                <th scope="col">Documento</th>
+                <th scope="col">Fecha Publicacion</th>
+            </tr>`;
+            for (let i = 0; i < respuesta.length; i++) {
+                recarga += `<tr>
+                <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
+                <td>${respuesta[i].fecha_publicacion_contenido}</td>
+                <td>
+                    <button class="btn btn-light" type="submit" id="" onclick="eliminarApunte(${respuesta[i].id})">Eliminar</button>
+                </td>
+            </tr>`;
+            }
+            content.innerHTML = recarga;
+        }
+    }
+    ajax.send(formData);
+}
+
 function subirApuntes() {
     let form = document.getElementById("formSubirApuntes");
     let token = document.getElementById('token').getAttribute("content");
@@ -104,7 +134,34 @@ function subirApuntes() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
-            console.log(respuesta);
+            if (respuesta.resultado == "OK") {
+                alertify.success('Apunte subido correctamente');
+                form.reset();
+                apuntesAjax();
+            } else if (respuesta.resultado == "existApunte") {
+                alertify.warning('El apunte ya existe cambie el nombre');
+            } else if (respuesta.resultado == "nullTema") {
+                alertify.error('Especifique tema');
+            }
+        }
+    }
+    ajax.send(formData);
+}
+
+function eliminarApunte(id) {
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'DELETE');
+    let ajax = llamadaAjax();
+    ajax.open("POST", "misApuntes/eliminarapunte/" + id, true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            let respuesta = JSON.parse(this.responseText);
+            if (respuesta.resultado == "OK") {
+                alertify.success('Apunte eliminado correctamente');
+                apuntesAjax();
+            }
         }
     }
     ajax.send(formData);
