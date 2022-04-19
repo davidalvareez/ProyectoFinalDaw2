@@ -63,9 +63,9 @@
             <tr>
                 <td>{{$apuntes->nombre_contenido}}{{$apuntes->extension_contenido}}</td>
                 <td>{{$apuntes->fecha_publicacion_contenido}}</td>
-                <td><form action="" method="">
-                    <button class="btn btn-light" type="submit" id="">Eliminar</button>
-                </form></td>
+                <td>
+                    <button class="btn btn-light" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>
+                </td>
             </tr>
             @endforeach
         </table>    
