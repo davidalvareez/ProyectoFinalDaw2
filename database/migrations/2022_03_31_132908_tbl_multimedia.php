@@ -15,7 +15,7 @@ class TblMultimedia extends Migration
     {
         Schema::create('tbl_multimedia', function (Blueprint $table) {
 
-            $table->id();
+            $table->unsignedBigInteger('id');
             $table->string('duracion_contenido');
 
             $table->foreign('id')->references('id')->on('tbl_contenidos');
