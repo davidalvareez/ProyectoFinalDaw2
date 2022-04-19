@@ -46,6 +46,7 @@
                             </div>
                             <div class="carta carta4" data-aos="zoom-in-up">
                                 <div class="content-carta">
+                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifraul.gif') !!}" alt="" srcset="">
                                     <h3>Raúl Santacruz Cela</h3> 
                                     <h4>Departamento de Backend</h4>
                                     <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/key/key-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/medal/medal-dynamic-gradient.png') !!}" alt="" srcset="">

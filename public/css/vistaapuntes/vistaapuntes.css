@@ -1,0 +1,253 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../media/aboutus/fonts/poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("../media/aboutus/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+.glass {
+  backdrop-filter: blur(10px) saturate(105%);
+  -webkit-backdrop-filter: blur(13px) saturate(180%);
+  background-color: #a3a8b062;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.flex, .vista-apuntes main .region .content-region .apuntes, .vista-apuntes main .region .content-region .acciones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+
+:root {
+  --first-color: #19c673;
+  --second-color: #05a357;
+  --third-color: #f6f0ea;
+  --fourth-color: #7319c6;
+  --fifth-color: #c67319;
+  --sixth-color: #19c3c6;
+  --seventh-color: #19c61d;
+  --eightth-color: #c6196c;
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #eee;
+  --letter-grey: #797c7e;
+  --font1: Poppins;
+}
+
+* {
+  font-family: var(--font1);
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: auto;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-image: url("../../media/aboutus/img-aboutus/fondoaboutus.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  font-family: var(--font1);
+  font-size: calc(48px + 1vw);
+  font-weight: bold;
+}
+
+h2 {
+  font-family: var(--font1);
+  font-size: calc(18px + 1vw);
+  font-weight: 600;
+}
+
+h3 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.5vw);
+  font-weight: bold;
+}
+
+h4 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.1vw);
+  font-weight: bold;
+}
+
+.vista-apuntes main .region {
+  margin: 2% 0% 0% 0%;
+  width: 100%;
+}
+
+.vista-apuntes main .region .content-region {
+  width: 100%;
+}
+
+.vista-apuntes main .region .content-region .apuntes {
+  width: 100%;
+}
+
+.vista-apuntes main .region .content-region .apuntes .content-apuntes {
+  width: 100%;
+}
+
+.vista-apuntes main .region .content-region .apuntes .content-apuntes iframe {
+  width: 1280px;
+  height: 600px;
+  border-radius: 10px;
+}
+
+.vista-apuntes main .region .content-region .acciones .content-acciones {
+  width: 100%;
+  margin: 26px 0px 0px 0px;
+  padding: 10vh 11vh;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 136px 112px;
+  -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+  grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
+}
+
+.vista-apuntes main .region .content-region .acciones .content-acciones .btn-acciones {
+  margin: 10px 0px 0px 0px;
+  padding: 24px 32px;
+  font-size: 20px;
+  border: 0;
+  text-decoration: none;
+  border-radius: 15px;
+  cursor: pointer;
+  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
+  background-size: 600% 600%;
+  -webkit-animation: aniGrad 8s ease infinite;
+  animation: aniGrad 8s ease infinite;
+}
+/*# sourceMappingURL=vistaapuntes.css.map */
