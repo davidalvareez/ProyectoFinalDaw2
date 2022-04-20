@@ -229,10 +229,10 @@ h4 {
 .vista-apuntes main .region .content-region .acciones .content-acciones {
   width: 100%;
   margin: 26px 0px 0px 0px;
-  padding: 10vh 11vh;
+  padding: 10vh 48vh;
   display: -ms-grid;
   display: grid;
-  grid-gap: 136px 112px;
+  grid-gap: 0px 0px;
   -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
   grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
 }

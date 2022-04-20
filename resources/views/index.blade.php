@@ -18,7 +18,7 @@
                 <div class="absglassportada">
                     <div class="content-absglass">
                         <div class="introduccion-content-absglass">
-                            <h2>¿Eres nuevo/a? ¡Desliza para abajo e infórmate sobre lo que NoteHub te proporciona!</h2>
+                            <h2>¡Desliza para abajo e infórmate sobre lo que NoteHub te proporciona!</h2>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                         <div class="sabermas-content-glassland">
                             <img src="media/3Dicons-dinamicos/icons/png/plus/plus-dynamic-gradient.png" width="80px" height="80px"> 
                             <h2>¿Quieres saber más sobre nosotros?</h2>
-                            <h4>¿Quienes somos? ¿Que departamentos tenemos? ¿Por qué hemos creado esta web? ¿Cual es nuestro objetivo?.</h4>
+                            <h4>¿Quienes somos? ¿Que departamentos tenemos? ¿Por qué hemos creado esta web? ¿Cual es nuestro objetivo?</h4>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/zoom/zoom-dynamic-gradient.png" width="90px" height="90px">
                             </div>
-                            <button class="sabermas-btn-absglass" onclick="window.location.href='{{url('register')}}'">Mas información</button>
+                            <button class="sabermas-btn-absglass" onclick="window.location.href='{{url('aboutus')}}'">Mas información</button>
                         </div>
                     </div>
                 </div>
