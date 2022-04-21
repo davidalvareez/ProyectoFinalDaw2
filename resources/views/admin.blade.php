@@ -24,6 +24,7 @@
                     <button class="boton-menu cgradient-1" onclick="showApuntes();return false">Apuntes</button>
                     <button class="boton-menu cgradient-1" onclick="showDenuncias();return false">Denuncias</button>
                     <button class="boton-menu cgradient-1" onclick="showHistorial();return false">Historial</button>
+                    <div id="message" style="color:green"></div>
                 </div>
             </div>
         </div>

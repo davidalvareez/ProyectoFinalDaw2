@@ -83,6 +83,20 @@ Route::post('admin/denuncias',[CRUDAdminController::class,'showDenuncias']);
 
 Route::post('admin/historial',[CRUDAdminController::class,'showHistorial']);
 
+//Eliminar
+Route::delete('admin/users/{id}',[CRUDAdminController::class,'eliminarUser']);
+
+Route::delete('admin/apuntes/{id}',[CRUDAdminController::class,'eliminarApunte']);
+
+Route::delete('admin/denuncias/{id}',[CRUDAdminController::class,'eliminarDenuncia']);
+
+Route::delete('admin/historial/{id}',[CRUDAdminController::class,'eliminarHistorial']);
+
+Route::delete('admin/cursos/{id}',[CRUDAdminController::class,'eliminarCurso']);
+
+Route::delete('admin/asignaturas/{id}',[CRUDAdminController::class,'eliminarAsignatura']);
+
+Route::delete('admin/temas/{id}',[CRUDAdminController::class,'eliminarTema']);
 
 //Mostrar
 Route::get('moderador',[UsuarioController::class,'moderadorView']);
@@ -91,7 +105,7 @@ Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
 
 //Actualizar
-
+Route::put('/admin/users',[NoteController::class,'actualizarUser']);
 
 //Eliminar
 
