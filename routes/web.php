@@ -46,6 +46,8 @@ Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
 Route::post('misApuntes/curso',[ApuntesController::class,'misApuntes_curso']);
 Route::post('misApuntes/asignatura',[ApuntesController::class,'misApuntes_asignatura']);
 Route::post('misApuntes/subirapunte',[ApuntesController::class,'misApuntes_subirapunte']);
+Route::post('misApuntes/apuntes',[ApuntesController::class,'misApuntes_apuntes']);
+Route::delete('misApuntes/eliminarapunte/{id}',[ApuntesController::class,'misApuntes_eliminarapunte']);
 //Apunte
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
 
