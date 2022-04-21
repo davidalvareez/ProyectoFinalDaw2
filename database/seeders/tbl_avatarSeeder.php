@@ -84,5 +84,54 @@ class tbl_avatarSeeder extends Seeder
             'id_usu' => '4'
         ]);
 
+        //ID = 11
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/patricioCulo.jpg',
+            'id_usu' => '7'
+        ]);
+
+        //ID = 12
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/messi.png',
+            'id_usu' => '8'
+        ]);
+
+        //ID = 13
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/KimFunny.jfif',
+            'id_usu' => '9'
+        ]);
+
+        //ID = 14
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/NarutoCulo.png',
+            'id_usu' => '10'
+        ]);
+
+        //ID = 15
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/narutoFunny.jfif',
+            'id_usu' => '11'
+        ]);
+
+        //ID = 16
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/patricio2.jpg',
+            'id_usu' => '12'
+        ]);
+
+        //ID = 17
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/music.webp',
+            'id_usu' => '13'
+        ]);
+
     }
 }
