@@ -31,6 +31,9 @@
                     <button class="btn-abrirPop">
                         Busqueda avanzada
                     </button>
+                    {{-- <form action='{{url('logout')}}' method='get'>
+                        <button class="btn btn-secondary">Logout</button>
+                    </form> --}}
                 </div>
             </div>
         </div>

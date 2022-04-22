@@ -99,6 +99,8 @@ function showUsers() {
 }
 //Mostrar centros
 function showCentros() {
+    var message = document.getElementById('message');
+    message.innerHTML = '';
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
         Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
@@ -143,7 +145,7 @@ function showCentros() {
                          <td>${respuesta[i].com_auto_centro}, ${respuesta[i].ciudad_centro}</td>
                          <td>${respuesta[i].direccion_centro}</td>
                          <td>
-                         <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
+                         <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
                          </td>
                          <td>
                          <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarCentro(${respuesta[i].id});return false;">Eliminar</button>
@@ -167,6 +169,7 @@ function showCentros() {
 }
 //Mostrar cursos
 function showCursos(idCentro) {
+
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
         Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
@@ -235,6 +238,7 @@ function showCursos(idCentro) {
 }
 //Mostrar asignaturas
 function showAsignaturas(idCurso) {
+
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
         Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
@@ -299,6 +303,7 @@ function showAsignaturas(idCurso) {
 }
 //Mostrar temas
 function showTemas(idAsignatura) {
+
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
         Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
@@ -360,6 +365,7 @@ function showTemas(idAsignatura) {
 }
 //Mostrar apuntes
 function showApuntes() {
+
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
             Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
@@ -421,6 +427,7 @@ function showApuntes() {
 }
 //Mostrar denuncias
 function showDenuncias() {
+
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
             Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
@@ -913,13 +920,46 @@ function eliminarApuntes(apunte_id) {
 }
 
 //ModalBox
-function modalboxUser(id, nombre, apellido) {
+function modalboxCentro(id, nombre, pais, com_auto, ciudad, direccion) {
+    var modal = document.getElementById("myModal");
     modal.style.display = "block";
-    document.getElementById('tituloNota').innerHTML = "Nota #" + id;
-    document.getElementById('tituloUpdate').value = titulo;
-    document.getElementById('descripcionUpdate').value = descripcion;
+    document.getElementById('nombreCentro').innerHTML = nombre;
+    document.getElementById('nombreUpdate').value = nombre;
+    document.getElementById('paisUpdate').value = pais;
+    document.getElementById('com_autoUpdate').value = com_auto;
+    document.getElementById('ciudadUpdate').value = ciudad;
+    document.getElementById('direccionUpdate').value = direccion;
     document.getElementById('idUpdate').value = id;
 }
 
+function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
 //Actualizar
-/* ActualizarUsers */
+/* ActualizarCentro */
+function actualizarCentros() {
+    var message = document.getElementById('message');
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+    var token = document.getElementById('token').getAttribute("content");
+    var formData = new FormData(document.getElementById('formUpdate'));
+    formData.append('_token', token);
+    formData.append('_method', "PUT");
+    /* Inicializar un objeto AJAX */
+    var ajax = llamadaAjax();
+
+    ajax.open("POST", "admin/centro", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            if (respuesta.resultado == "OK") {
+                message.innerHTML = '<p>Centro modificado correctamente.</p>';
+                showCentros();
+            } else {
+                message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+            }
+            /* console.log(respuesta); */
+        }
+    }
+    ajax.send(formData)
+}

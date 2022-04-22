@@ -11,6 +11,9 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body class="about-us">
+    <form action='{{url('login')}}' method='get'>
+        <button class="btn btn-secondary">Login</button>
+    </form>
     <header></header>
     <main>
         <audio src="media/aboutus/music/liga.mp3" loop="10" autoplay="true"></audio>

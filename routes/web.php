@@ -105,9 +105,6 @@ Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
 
 //Actualizar
-Route::put('/admin/users',[NoteController::class,'actualizarUser']);
-
-//Eliminar
-
+Route::put('admin/centro',[CRUDAdminController::class,'actualizarCentro']);
 
 //Mapas

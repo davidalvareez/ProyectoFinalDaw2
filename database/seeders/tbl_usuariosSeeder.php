@@ -76,7 +76,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-05-11',
             'correo_usu' => 'isaac@gmail.com',
             'contra_usu' => MD5('1234'),
-            'id_rol' => '1'
+            'id_rol' => '2'
         ]);
         /*-------------------------- XAVI GOMEZ ----------------*/
         //ID = 7
