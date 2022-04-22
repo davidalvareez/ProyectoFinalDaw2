@@ -82,8 +82,7 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
-                                                        <!-- <img src="" alt="" class="avatar img"> -->
-                                                        <i class="fa-duotone fa-user-astronaut"></i>
+                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" alt="" class="avatar img">
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
@@ -185,8 +184,7 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
-                                                        <!-- <img src="" alt="" class="avatar img"> -->
-                                                        <i class="fa-duotone fa-user-astronaut"></i>
+                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" alt="" class="avatar img">
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
@@ -250,7 +248,8 @@
             <h3>Búsqueda avanzada <span class="numeroEj"></span></h3>
             <div class="contenedor-popup">
                 <form class="form-search" method="POST" id="formBusquedaAvanzada" onsubmit="return false;">
-                    <div class="form-group select">
+                <label>Centro</label>
+                <div class="form-group select">
                         <select name="centros" onchange="busquedaAvanzada();selectCurso_Asignatura();">
                             <option value="">--</option>
                             @foreach($listaCentros as $centros)
@@ -258,8 +257,8 @@
                             @endforeach
                         </select>
                     </div>
+                    <label>Curso</label>
                     <div class="form-group select">
-
                         <select name="cursos" onchange="busquedaAvanzada();selectAsignatura();">
                             <option value="">--</option>
                             @foreach($listaCursos as $cursos)
@@ -267,8 +266,8 @@
                             @endforeach
                         </select>
                     </div>
+                    <label>Asignatura</label>
                     <div class="form-group select">
-
                         <select name="asignaturas" onchange="busquedaAvanzada()">
                             <option value="">--</option>
                             @foreach($listaAsignaturas as $asignaturas)
@@ -276,6 +275,7 @@
                             @endforeach
                         </select>
                     </div>
+                    <label>Tema</label>
                     <div class="form-group input-text">
                         <input type="text" name="nombre_tema" placeholder="Introduce nombre del tema..." onkeyup="busquedaAvanzada()">
                     </div>
