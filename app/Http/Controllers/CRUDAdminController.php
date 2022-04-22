@@ -86,7 +86,15 @@ class CRUDAdminController extends Controller
 
 
 //Actualizar
-
+public function actualizarCentro(Request $request){  
+    /* return response()->json($request); */
+    try {
+        DB::update("UPDATE tbl_centro set nombre_centro= ?, pais_centro= ?, com_auto_centro= ?, ciudad_centro= ?, direccion_centro= ? where id=?",[$request["nombre"],$request["pais"],$request["com_auto"],$request["ciudad"],$request["direccion"],$request["id"]]);
+        return response()->json(array('resultado'=> 'OK'));
+    } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
 
 //Eliminar
     /* EliminarUsers */

@@ -19,6 +19,9 @@
     <div class="">
         <button class="btn btn-dark" onclick="openformSubirApuntes(); return false;" type="submit">Subir apunte</button>
     </div>
+    {{-- <form action='{{url('logout')}}' method='get'>
+        <button class="btn btn-secondary">Logout</button>
+    </form> --}}
     <div id="divFormSubirApuntes" style="display: none;" class="">
         <form onsubmit="subirApuntes(); return false;" id="formSubirApuntes" enctype="multipart/form-data">
             <select name="curso" onchange="selectAsignatura();">
