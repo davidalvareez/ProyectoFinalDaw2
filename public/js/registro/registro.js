@@ -1,3 +1,8 @@
+window.onload = function() {
+    document.getElementById("img_avatar_usu2").style.display = "none";
+}
+
+
 function modalbox() {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
@@ -11,13 +16,15 @@ function closeModal() {
 function closeModal2() {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
-
     let avatar = document.getElementById("img_avatar_sistema").value;
     let image = document.getElementById("img_avatar_usu").files;
     if (avatar == "" && image.length == 0) {
         return false;
     } else {
+        console.log(image);
         document.getElementById("clickselec").value = "AVATAR SELECCIONADO ✔";
+        let image2 = document.getElementById("img_avatar_usu2").files = image;
+        console.log(image2);
         return true;
     }
 }
@@ -39,6 +46,7 @@ function chBackcolor(avatar) {
 function hasAvatarOrImage() {
     let avatar = document.getElementById("img_avatar_sistema").value;
     let image = document.getElementById("img_avatar_usu").files;
+
     if (avatar == "" && image.length == 0) {
         alert("Selecciona avatar o imagen");
         return false;

@@ -77,13 +77,15 @@ class UsuarioController extends Controller
 
     public function register(RegisterValidation $request){
         $datos=$request->except("_token");
-        //return $datos;
         //Contraseña convertida a md5
+        /* return $datos; */
         $password = md5($datos["contra_usu"]);
-        if ($request->hasFile('img_avatar_usu')) {
-            $file = $request->file('img_avatar_usu')->store('uploads/avatar','public');
+        if ($request->hasFile('img_avatar_usu2')) {
+            $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
+            /* return $file; */
         }else{
             $file = $datos["img_avatar_sistema"];
+            /* return $datos; */
         }
         //Sentencia de creacion de usuario
         try {
