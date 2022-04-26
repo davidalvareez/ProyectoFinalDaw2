@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{!! asset ('css/vistaapuntes/vistaapuntes.css') !!}">
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{!! asset('js/vistaapuntes/vistaapuntes.js') !!}"></script>
     <title>Apunte</title>
@@ -47,8 +48,7 @@
         <div>
             <div>
                 <!--formulario para comentar-->
-                <form action="{{url("apuntes/comentar")}}" method="post">
-                @csrf
+                <form id="formAddComment" onsubmit="addcomment(); return false;" method="post">
                     <div class="nota-resta">
                         <label class="rating-label">
                             <input
@@ -69,7 +69,7 @@
                     </div>
                 </form>
             </div>
-            <div>
+            <div id="comentarios">
                 <!--COMENTARIOS-->
                 @foreach($comentarios as $comentario)
                     <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="">
