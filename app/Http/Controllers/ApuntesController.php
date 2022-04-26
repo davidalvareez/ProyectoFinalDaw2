@@ -348,17 +348,18 @@ class ApuntesController extends Controller
             $comentsameuser = DB::select("SELECT * FROM tbl_contenidos contenido 
             WHERE contenido.id=? AND contenido.id_usu = ?",[$datos["id_contenido"],$user->id]);
             if (count($comentsameuser) > 0) {
-                //return response()->json(array("respuesta"=>"SAME"));
-                return "No puedes comentarte a ti mismo";
+                return response()->json(array("resultado"=>"SAME"));
             }else{
                 $comentagain = DB::select("SELECT * FROM tbl_comentarios WHERE id_contenido = ? AND id_usu = ?",[$datos["id_contenido"],$user->id]);
                 if (count($comentagain) > 0) {
-                    //return response()->json(array("respuesta"=>"Comentado"));
-                    return "Ya has comentado aquí";
+                    return response()->json(array("resultado"=>"Comentado"));
                 }else{
                     DB::insert("INSERT INTO tbl_comentarios (desc_comentario,val_comentario,id_contenido,id_usu) VALUES (?,?,?,?)",[$datos["desc_comentario"],$datos["val_comentario"],$datos["id_contenido"],$user->id]);
-                    //return response()->json(array("respuesta"=>"OK"));
-                    return redirect('apuntes/'.$datos['id_contenido']);
+                    $comentarios = DB::select("SELECT * FROM tbl_comentarios comment
+                                               INNER JOIN tbl_usuario user ON comment.id_usu = user.id
+                                               LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+                                               WHERE comment.id_contenido = ?",[$datos["id_contenido"]]);
+                    return response()->json(array("resultado"=>"OK","comentarios"=>$comentarios));
                 }
             }
         }else{
