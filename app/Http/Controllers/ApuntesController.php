@@ -300,7 +300,11 @@ class ApuntesController extends Controller
             WHERE apuntes.id =  ?",[$id]);
             $path = asset('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
             //return $path;
-            return view('vistaApunte',compact('apunte','path'));
+            $comentarios = DB::select("SELECT * FROM tbl_comentarios comment
+            INNER JOIN tbl_usuario user ON comment.id_usu = user.id
+            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+            WHERE comment.id_contenido = ?",[$apunte[0]->id]);
+            return view('vistaApunte',compact('apunte','path','comentarios'));
         }else{
             return redirect('login');
         }
@@ -332,6 +336,30 @@ class ApuntesController extends Controller
                 }
             } catch (\Exception $e) {
                 $e->getMessage();
+            }
+        }else{
+            return redirect('login');
+        }
+    }
+    public function comentar(Request $request){
+        $datos = $request->except("_token");
+        if (session()->get('user')) {
+            $user = session()->get('user');
+            $comentsameuser = DB::select("SELECT * FROM tbl_contenidos contenido 
+            WHERE contenido.id=? AND contenido.id_usu = ?",[$datos["id_contenido"],$user->id]);
+            if (count($comentsameuser) > 0) {
+                //return response()->json(array("respuesta"=>"SAME"));
+                return "No puedes comentarte a ti mismo";
+            }else{
+                $comentagain = DB::select("SELECT * FROM tbl_comentarios WHERE id_contenido = ? AND id_usu = ?",[$datos["id_contenido"],$user->id]);
+                if (count($comentagain) > 0) {
+                    //return response()->json(array("respuesta"=>"Comentado"));
+                    return "Ya has comentado aquí";
+                }else{
+                    DB::insert("INSERT INTO tbl_comentarios (desc_comentario,val_comentario,id_contenido,id_usu) VALUES (?,?,?,?)",[$datos["desc_comentario"],$datos["val_comentario"],$datos["id_contenido"],$user->id]);
+                    //return response()->json(array("respuesta"=>"OK"));
+                    return redirect('apuntes/'.$datos['id_contenido']);
+                }
             }
         }else{
             return redirect('login');

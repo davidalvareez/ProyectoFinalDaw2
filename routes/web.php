@@ -50,7 +50,7 @@ Route::post('misApuntes/apuntes',[ApuntesController::class,'misApuntes_apuntes']
 Route::delete('misApuntes/eliminarapunte/{id}',[ApuntesController::class,'misApuntes_eliminarapunte']);
 //Apunte
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
-
+Route::post('apuntes/comentar',[ApuntesController::class,'comentar']);
 Route::post('download',[ApuntesController::class,'download']);
 //FILTROS
 

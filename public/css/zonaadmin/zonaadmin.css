@@ -1,369 +1,315 @@
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-Black.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
-    font-weight: 900;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-Bold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
-    font-weight: 700;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
-    font-weight: 800;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
-    font-weight: 800;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
-    font-weight: 200;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
-    font-weight: 200;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-Italic.ttf") format("truetype");
-    font-weight: 400;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
-    font-weight: 300;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-Medium.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
-    font-weight: 500;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
-    font-weight: 600;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
-    font-weight: 600;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-Thin.ttf") format("truetype");
-    font-weight: 100;
-    font-style: normal;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins';
-    src: url("../../media/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
-    font-weight: 100;
-    font-style: italic;
+  font-family: 'Poppins';
+  src: url("../../media/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
 }
 
 .glass {
-    backdrop-filter: blur(10px) saturate(105%);
-    -webkit-backdrop-filter: blur(13px) saturate(180%);
-    background-color: #a3a8b062;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+  backdrop-filter: blur(10px) saturate(105%);
+  -webkit-backdrop-filter: blur(13px) saturate(180%);
+  background-color: #a3a8b062;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 .flex {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
 }
 
 .imgavatar {
-    width: 100px;
-    height: 100px;
-}
-
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: black;
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 500px;
-}
-
-.aceptarbtn {
-    padding: 10px 10px 10px 10px;
-    width: 50%;
-    border: 0;
-    text-decoration: none;
-    border-radius: 6px;
-    background-color: #12993ccc;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.aceptarbtn:hover {
-    background-color: #0e7a30cc;
+  width: 100px;
+  height: 100px;
 }
 
 .boton_modificar {
-    width: 100%;
-    height: 45px;
-    border-radius: 7px;
-    border-color: cadetblue;
-    background-color: #454d55;
-    font-size: 18px;
-    font-weight: 500;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    position: relative;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    outline: none;
+  width: 100%;
+  height: 45px;
+  border-radius: 7px;
+  border-color: cadetblue;
+  background-color: #454d55;
+  font-size: 18px;
+  font-weight: 500;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  outline: none;
 }
 
 .boton_modificar:hover {
-    background: cadetblue;
-    color: #fff !important;
+  background: cadetblue;
+  color: #fff !important;
 }
 
 .boton_eliminar {
-    width: 100%;
-    height: 45px;
-    border-radius: 7px;
-    border-color: red;
-    background-color: #454d55;
-    font-size: 18px;
-    font-weight: 500;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    position: relative;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    outline: none;
+  width: 100%;
+  height: 45px;
+  border-radius: 7px;
+  border-color: red;
+  background-color: #454d55;
+  font-size: 18px;
+  font-weight: 500;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  outline: none;
 }
 
 .boton_eliminar:hover {
-    background: red;
-    color: #fff !important;
+  background: red;
+  color: #fff !important;
 }
 
 :root {
-    --first-color: #19c673;
-    --second-color: #05a357;
-    --third-color: #f6f0ea;
-    --fourth-color: #7319c6;
-    --fifth-color: #c67319;
-    --sixth-color: #19c3c6;
-    --seventh-color: #19c61d;
-    --eightth-color: #c6196c;
-    --white: #ffffff;
-    --black: #000000;
-    --grey: #eee;
-    --letter-grey: #797c7e;
-    --font1: Poppins;
+  --first-color: #19c673;
+  --second-color: #05a357;
+  --third-color: #f6f0ea;
+  --fourth-color: #7319c6;
+  --fifth-color: #c67319;
+  --sixth-color: #19c3c6;
+  --seventh-color: #19c61d;
+  --eightth-color: #c6196c;
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #eee;
+  --letter-grey: #797c7e;
+  --font1: Poppins;
 }
 
 * {
-    font-family: var(--font1);
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: auto;
+  font-family: var(--font1);
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: auto;
 }
 
 body {
-    height: 100%;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-    background-image: url("../../media/aboutus/img-aboutus/fondoaboutus.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-image: url("../../media/aboutus/img-aboutus/fondoaboutus.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 h1 {
-    font-family: var(--font1);
-    font-size: calc(48px + 1vw);
-    font-weight: bold;
+  font-family: var(--font1);
+  font-size: calc(48px + 1vw);
+  font-weight: bold;
 }
 
 h2 {
-    font-family: var(--font1);
-    font-size: calc(18px + 1vw);
-    font-weight: 600;
+  font-family: var(--font1);
+  font-size: calc(18px + 1vw);
+  font-weight: 600;
 }
 
 h3 {
-    font-family: var(--font1);
-    font-size: calc(18px + 0.5vw);
-    font-weight: bold;
+  font-family: var(--font1);
+  font-size: calc(18px + 0.5vw);
+  font-weight: bold;
 }
 
 h4 {
-    font-family: var(--font1);
-    font-size: calc(18px + 0.1vw);
-    font-weight: bold;
+  font-family: var(--font1);
+  font-size: calc(18px + 0.1vw);
+  font-weight: bold;
 }
 
 @-webkit-keyframes aniGrad {
-    0% {
-        background-position: 0% 52%;
-    }
-    50% {
-        background-position: 100% 49%;
-    }
-    100% {
-        background-position: 0% 52%;
-    }
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
 }
 
 @keyframes aniGrad {
-    0% {
-        background-position: 0% 52%;
-    }
-    50% {
-        background-position: 100% 49%;
-    }
-    100% {
-        background-position: 0% 52%;
-    }
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
 }
 
 .zonaadmin main .region {
-    width: 100%;
+  width: 100%;
 }
 
 .zonaadmin main .region1 {
-    margin: 50px 0px 0px 0px;
+  margin: 50px 0px 0px 0px;
 }
 
 .zonaadmin main .region1 .menu {
-    margin: 0px 0px 44px 0px;
+  margin: 0px 0px 44px 0px;
 }
 
 .zonaadmin main .region1 .menu .content-menu .boton-menu {
-    width: 25%;
-    height: 45px;
-    border-radius: 7px;
-    border-color: cadetblue;
-    background-color: white;
-    font-size: 18px;
-    font-weight: 500;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    position: relative;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    outline: none;
+  width: 25%;
+  height: 45px;
+  border-radius: 7px;
+  border-color: cadetblue;
+  background-color: white;
+  font-size: 18px;
+  font-weight: 500;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  outline: none;
 }
 
 .zonaadmin main .region1 .menu .content-menu .cgradient-1 {
-    background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-    background-size: 600% 600%;
-    -webkit-animation: aniGrad 8s ease infinite;
-    animation: aniGrad 8s ease infinite;
+  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
+  background-size: 600% 600%;
+  -webkit-animation: aniGrad 8s ease infinite;
+  animation: aniGrad 8s ease infinite;
 }
 
 .zonaadmin main .region2 .tablas .content-tablas .content {
-    padding: 50px;
+  padding: 50px;
 }
-
-
 /*# sourceMappingURL=zonaadmin.css.map */
