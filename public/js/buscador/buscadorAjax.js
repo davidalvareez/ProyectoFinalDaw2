@@ -46,7 +46,6 @@ function multiplyFilter() {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                //console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="title">
