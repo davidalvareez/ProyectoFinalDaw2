@@ -50,20 +50,50 @@ class ApuntesController extends Controller
     }
 
     public function multiplyFilter(Request $request){
-        $datos=$request->except("_token");
+        $datos=$request->except("_token","_method");
         $user=session()->get('user');
-        $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
-        FROM tbl_contenidos content
-                    INNER JOIN tbl_usuario users ON content.id_usu = users.id
-                    LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
-                    LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-                    LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-                    INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                    INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                    INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                    INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-                    WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR content.id = ?) AND NOT users.id= ?
-                    GROUP BY content.id",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$datos["filter"],$user->id]);
+        if ($datos["filter"] == "") {
+            $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                FROM tbl_contenidos content
+                            INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+                            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                            GROUP BY content.id");
+        }else{
+            $id = $datos["filter"][0];
+            if (is_numeric($id)) {
+                $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                FROM tbl_contenidos content
+                            INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+                            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                            WHERE content.id = ? AND (users.id = ? OR NOT users.id = ?)
+                            GROUP BY content.id",[$datos["filter"],$user->id,$user->id]);
+            }else{
+                $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                FROM tbl_contenidos content
+                            INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+                            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                            WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR content.id = ?) AND (users.id = ? OR NOT users.id = ?)
+                            GROUP BY content.id",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$datos["filter"],$user->id,$user->id]);
+            }
+        }
         return response()->json($filter);
     }
 
@@ -80,7 +110,7 @@ class ApuntesController extends Controller
         INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
         INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
         INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-        WHERE NOT users.id= {$user->id} ";
+        WHERE (NOT users.id= {$user->id} OR users.id = {$user->id}) ";
         if($datos["centros"] != null){
             $query .= "AND centro.nombre_centro LIKE \"%".$datos["centros"]."%\" ";
             //$query = $query + $Centro;
