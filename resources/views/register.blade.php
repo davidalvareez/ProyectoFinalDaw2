@@ -44,9 +44,11 @@
                             <img src="{!! asset ('media/3Dicons-dinamicos/icons/png/boy\boy-dynamic-gradient.png') !!}" width="80px" height="80px">
                             <h2>¡Regístrate y accede a todas las ventajas de NoteHub!</h2>
                             <br>
-                            <form action="{{url('register')}}" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
+                            
+                            <form action="{{url('register')}}" id="idRegister" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
+                               
                                 @csrf
-
+                                
                                 <div class="menudos">
                                     <p class="pizq">Nombre</p>
                                     <div>
@@ -137,6 +139,7 @@
                                     <div>
                                         <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
                                         <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema" value="">
+                                        <input type="file" name="img_avatar_usu2" id="img_avatar_usu2" value="">
                                     </div>
                                 </div>
                                 <!-- <div class="alienarright">
