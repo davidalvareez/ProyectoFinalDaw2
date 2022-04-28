@@ -28,5 +28,15 @@ class tbl_rolSeeder extends Seeder
         DB::table('tbl_rol')->insert([
             'nombre_rol' => 'Cliente'
         ]);
+
+        //ID= 4
+        DB::table('tbl_rol')->insert([
+            'nombre_rol' => 'Profesor'
+        ]);
+
+        //ID= 5
+        DB::table('tbl_rol')->insert([
+            'nombre_rol' => 'Empresa'
+        ]);
     }
 }

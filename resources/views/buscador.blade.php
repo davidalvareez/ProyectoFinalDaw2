@@ -39,8 +39,12 @@
         </div>
     </header>
     <main>
+
     <!--RESULTADO DE BUSQUEDA TANTO AVANZADA COMO NORMAL-->
-    <div id="contentFilter"></div>
+    <div id="contentFilter">
+
+    </div>
+
     <!--APUNTES MÁS RECIENTES-->
     <div class="title">
         <h2>Los mas nuevos</h2>
@@ -139,11 +143,9 @@
             </div>
         </div>
     </div>
-                
-        
-    
-    <!--APUNTES MÁS POPULARES-->
 
+
+    <!--APUNTES MÁS POPULARES-->
     <div class="title">
         <h2>Mas populares</h2>
     </div>
