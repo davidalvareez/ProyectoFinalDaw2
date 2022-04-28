@@ -1,3 +1,4 @@
+@include('template.header')
 <!DOCTYPE html>
 <html lang="en">
 

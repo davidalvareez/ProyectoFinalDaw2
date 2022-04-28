@@ -46,39 +46,123 @@ function multiplyFilter() {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                //console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += `<div class="">
-                <table class="">
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Avatar</th>
-                <th scope="col">Nickname</th>
-                <th scope="col">Archivo</th>
-                <th scope="col">Idioma</th>
-                <th scope="col">Fecha publicacion</th>
-                <th scope="col">Descargas</th>
-                <th scope="col">Valoracion</th>
-                </tr>`;
+                recarga += `<div class="title">
+                <h2>Apuntes Filtrados</h2>
+            </div>
+            <div class="region-news">
+                <div class="content-news">
+                    <div class="resultados">
+                        <div class="owl-carousel owl-carousel-3">`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                     <td>${respuesta[i].id_content}</td>
-                     <td><img src="storage/${respuesta[i].img_avatar}"></td>
-                     <td>${respuesta[i].nick_usu}</td>
-                     <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
-                     <td>${respuesta[i].idioma_contenido}</td>
-                     <td>${respuesta[i].fecha_publicacion_contenido}</td>
-                     <td>${respuesta[i].descargas}</td>
-                     <td>${respuesta[i].valoracion}</td>
-                     <td><button onclick="window.location.href='apuntes/${respuesta[i].id_content}'">Ver apunte</button></td>
-                     </tr>`
+                    recarga += `<div class="card resultado card-resultado">
+                                <div class="container">
+                                    <div class="front-card">
+                                        <div class="container-front">
+                                            <div class="foto img img-apuntes">
+                                                <div class="container-foto container-img">
+                                                    <img class="img foto prev-apunt" src="media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
+                                                </div>
+                                            </div>
+                                            <div class="header-apuntes">
+                                                <div class="name-content">
+                                                    <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h3>
+                                                </div>
+                                                <div class="centro info-centro">
+                                                    <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">${respuesta[i].nombre_centro}</span></p>
+                                                </div>
+                                                <div class="id-content">
+                                                    <small class="name-content_text"><span class="">#${respuesta[i].id_content}</span></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="reverse-card" style="background-image: url(media/ejemploApuntes.jpg)">
+        
+                                        <div class="container-reverse">
+        
+                                            <div class="top">
+                                                <div class="user-info left-top">
+                                                    <div class="container-info">
+                                                        <div class="avatar-user user-img">
+                                                            <div class="filter">
+                                                                <img src="storage/${respuesta[i].img_avatar}" alt="" class="avatar img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="container-text">
+                                                            <div class="username">
+                                                                <p><span>${respuesta[i].nick_usu}</span></p>
+                                                            </div>
+                                                            <div class="column-2">
+                                                                <div class="stars">
+                                                                    <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
+                                                                </div>
+                                                                <div class="down info-stats">
+                                                                    <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">${respuesta[i].descargas}</span></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="date-info left-right">
+                                                        <div class="date">
+                                                            <p><span class="icon-date"><i class="fa-duotone fa-calendar-days"></i></span> <span class="date-text">${respuesta[i].fecha_publicacion_contenido}</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bottom">
+                                                <div class="content-info">
+                                                    <div class="name-content">
+                                                        <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h4>
+                                                    </div>
+                                                    <div class="school-content">
+                                                        <p class="school-content_text"><span class="">${respuesta[i].nombre_centro}</span></p>
+                                                    </div>
+                                                    <div class="class-content">
+                                                        <p class="class-content_text"><span class="">${respuesta[i].nombre_asignatura}</span></p>
+                                                    </div>
+                                                    <div class="unit-content">
+                                                        <p class="unit-content_text"><span class="">${respuesta[i].nombre_tema}</span></p>
+                                                    </div>
+                                                </div>
+                                                <div class="buttons-actions">
+                                                    <div class="download-button">
+                                                        <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
+                                                    </div>
+                                                    <div class="go-button">
+                                                        <button><a href="apuntes/${respuesta[i].id_content}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
                 }
-                recarga += `</table>
-                </div>`;
+                recarga += `</div>
+                    </div>
+                </div>
+            </div>`;
                 content.innerHTML = recarga;
-                /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
-                /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                $('.owl-carousel-3').owlCarousel({
+                        loop: false,
+                        margin: 10,
+                        nav: false,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 3
+                            },
+                            1000: {
+                                items: 4
+                            }
+                        }
+                    })
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
             }
         }
         /*
@@ -116,36 +200,123 @@ function busquedaAvanzada() {
                 //console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += `<div class="">
-                    <table class="">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Avatar</th>
-                        <th scope="col">Nickname</th>
-                        <th scope="col">Archivo</th>
-                        <th scope="col">Idioma</th>
-                        <th scope="col">Fecha publicacion</th>
-                        <th scope="col">Descargas</th>
-                        <th scope="col">Valoracion</th>
-                    </tr>`;
+                recarga += `<div class="title">
+                                <h2>Apuntes filtrados</h2>
+                            </div>
+                            <div class="region-news">
+                                <div class="content-news">
+                                    <div class="resultados">
+                                        <div class="owl-carousel owl-carousel-3">`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                         <td>${respuesta[i].id_content}</td>
-                         <td><img src="storage/${respuesta[i].img_avatar}"></td>
-                         <td>${respuesta[i].nick_usu}</td>
-                         <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
-                         <td>${respuesta[i].idioma_contenido}</td>
-                         <td>${respuesta[i].fecha_publicacion_contenido}</td>
-                         <td>${respuesta[i].descargas}</td>
-                         <td>${respuesta[i].valoracion}</td>
-                         <td><button onclick="window.location.href='apuntes/${respuesta[i].id_content}'">Ver apunte</button></td>
-                    </tr>`
+                    recarga += `<div class="card resultado card-resultado">
+                                                    <div class="container">
+                                                        <div class="front-card">
+                                                            <div class="container-front">
+                                                                <div class="foto img img-apuntes">
+                                                                    <div class="container-foto container-img">
+                                                                        <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
+                                                                        <img class="img foto prev-apunt" src="media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="header-apuntes">
+                                                                    <div class="name-content">
+                                                                        <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h3>
+                                                                    </div>
+                                                                    <div class="centro info-centro">
+                                                                        <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">${respuesta[i].nombre_centro}</span></p>
+                                                                    </div>
+                                                                    <div class="id-content">
+                                                                        <small class="name-content_text"><span class="">#${respuesta[i].id_content}</span></small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="reverse-card" style="background-image: url(media/ejemploApuntes.jpg)">
+                                                            <div class="container-reverse">
+                                                                <div class="top">
+                                                                    <div class="user-info left-top">
+                                                                        <div class="container-info">
+                                                                            <div class="avatar-user user-img">
+                                                                                <div class="filter">
+                                                                                    <img src="storage/${respuesta[i].img_avatar}" alt="" class="avatar img">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="container-text">
+                                                                                <div class="username">
+                                                                                    <p><span>${respuesta[i].nick_usu}</span></p>
+                                                                                </div>
+                                                                                <div class="column-2">
+                                                                                    <div class="stars">
+                                                                                        <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
+                                                                                    </div>
+                                                                                    <div class="down info-stats">
+                                                                                        <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">${respuesta[i].descargas}</span></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="date-info left-right">
+                                                                            <div class="date">
+                                                                                <p><span class="icon-date"><i class="fa-duotone fa-calendar-days"></i></span> <span class="date-text">${respuesta[i].fecha_publicacion_contenido}</span></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="bottom">
+                                                                    <div class="content-info">
+                                                                        <div class="name-content">
+                                                                            <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h4>
+                                                                        </div>
+                                                                        <div class="school-content">
+                                                                            <p class="school-content_text"><span class="">${respuesta[i].nombre_centro}</span></p>
+                                                                        </div>
+                                                                        <div class="class-content">
+                                                                            <p class="class-content_text"><span class="">${respuesta[i].nombre_asignatura}</span></p>
+                                                                        </div>
+                                                                        <div class="unit-content">
+                                                                            <p class="unit-content_text"><span class="">${respuesta[i].nombre_tema}</span></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="buttons-actions">
+                                                                        <div class="download-button">
+                                                                            <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
+                                                                        </div>
+                                                                        <div class="go-button">
+                                                                            <button><a href="apuntes/${respuesta[i].id_content}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `;
                 }
-                recarga += `</table>
-                    </div>`;
+                recarga += `
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
                 content.innerHTML = recarga;
-                /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
-                /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                $('.owl-carousel-3').owlCarousel({
+                        loop: false,
+                        margin: 10,
+                        nav: false,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 3
+                            },
+                            1000: {
+                                items: 4
+                            }
+                        }
+                    })
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
             }
         }
         /*

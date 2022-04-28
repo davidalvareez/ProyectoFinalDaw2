@@ -3,7 +3,7 @@ $(document).ready(function() {
         loop: false,
         margin: 10,
         items: 4,
-        nav: true,
+        nav: false,
 
         responsive: {
             0: {
@@ -20,7 +20,7 @@ $(document).ready(function() {
     $('.owl-carousel-2').owlCarousel({
         loop: false,
         margin: 10,
-        nav: true,
+        nav: false,
         responsive: {
             0: {
                 items: 1
@@ -33,8 +33,6 @@ $(document).ready(function() {
             }
         }
     })
-
-
 
     $(document).ready(function() {
         $(".btn-cerrarPop").click(function() {

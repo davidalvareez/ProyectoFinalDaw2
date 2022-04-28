@@ -16,9 +16,9 @@
                     <div class="searchbar">
 
                         <form action="">
-                            <div class="row input-box"><input type="text" onkeyup="multiplyFilter();return false;" name="BusquedaMultiple" id="multiplysearch"></div>
+                            <div class="row input-box"><input type="text" name="BusquedaMultiple" id="multiplysearch"></div>
                             <div class="row s-cover" id="">
-                                <button type="submit"><div class="s-circle"></div><span></span></button>
+                                <button type="submit" onclick="multiplyFilter();return false;"><div class="s-circle"></div><span></span></button>
                             </div>
                         </form>
 
@@ -31,13 +31,20 @@
                     <button class="btn-abrirPop">
                         Busqueda avanzada
                     </button>
+                    {{-- <form action='{{url('logout')}}' method='get'>
+                        <button class="btn btn-secondary">Logout</button>
+                    </form> --}}
                 </div>
             </div>
         </div>
     </header>
     <main>
+
     <!--RESULTADO DE BUSQUEDA TANTO AVANZADA COMO NORMAL-->
-    <div id="contentFilter"></div>
+    <div id="contentFilter">
+
+    </div>
+
     <!--APUNTES MÁS RECIENTES-->
     <div class="title">
         <h2>Los mas nuevos</h2>
@@ -79,8 +86,7 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
-                                                        <!-- <img src="" alt="" class="avatar img"> -->
-                                                        <i class="fa-duotone fa-user-astronaut"></i>
+                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" alt="" class="avatar img">
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
@@ -137,11 +143,9 @@
             </div>
         </div>
     </div>
-                
-        
-    
-    <!--APUNTES MÁS POPULARES-->
 
+
+    <!--APUNTES MÁS POPULARES-->
     <div class="title">
         <h2>Mas populares</h2>
     </div>
@@ -182,8 +186,7 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
-                                                        <!-- <img src="" alt="" class="avatar img"> -->
-                                                        <i class="fa-duotone fa-user-astronaut"></i>
+                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" alt="" class="avatar img">
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
@@ -241,13 +244,15 @@
         </div>
     </div>
 </main>
+<footer>@include('template.footer')</footer>
     <div class="overlay" id="overlay">
         <div class="popup" id="popup">
             <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop"><i class="fas fa-times"></i></a>
             <h3>Búsqueda avanzada <span class="numeroEj"></span></h3>
             <div class="contenedor-popup">
                 <form class="form-search" method="POST" id="formBusquedaAvanzada" onsubmit="return false;">
-                    <div class="form-group select">
+                <label>Centro</label>
+                <div class="form-group select">
                         <select name="centros" onchange="busquedaAvanzada();selectCurso_Asignatura();">
                             <option value="">--</option>
                             @foreach($listaCentros as $centros)
@@ -255,8 +260,8 @@
                             @endforeach
                         </select>
                     </div>
+                    <label>Curso</label>
                     <div class="form-group select">
-
                         <select name="cursos" onchange="busquedaAvanzada();selectAsignatura();">
                             <option value="">--</option>
                             @foreach($listaCursos as $cursos)
@@ -264,8 +269,8 @@
                             @endforeach
                         </select>
                     </div>
+                    <label>Asignatura</label>
                     <div class="form-group select">
-
                         <select name="asignaturas" onchange="busquedaAvanzada()">
                             <option value="">--</option>
                             @foreach($listaAsignaturas as $asignaturas)
@@ -273,10 +278,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <label>Tema</label>
                     <div class="form-group input-text">
                         <input type="text" name="nombre_tema" placeholder="Introduce nombre del tema..." onkeyup="busquedaAvanzada()">
                     </div>
-
                 </form>
             </div>
         </div>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CRUDAdminController extends Controller
 {
-    //Mostrar
+//Mostrar
     public function adminView(){
         if (session()->has('user')) {
             $userAdmin = session()->get('user');
@@ -82,12 +82,126 @@ class CRUDAdminController extends Controller
         return response()->json($historial);
     }
 
-    //Crear
+//Crear
 
 
-    //Actualizar
+//Actualizar
+public function actualizarCentro(Request $request){  
+    /* return response()->json($request); */
+    try {
+        DB::update("UPDATE tbl_centro set nombre_centro= ?, pais_centro= ?, com_auto_centro= ?, ciudad_centro= ?, direccion_centro= ? where id=?",[$request["nombre"],$request["pais"],$request["com_auto"],$request["ciudad"],$request["direccion"],$request["id"]]);
+        return response()->json(array('resultado'=> 'OK'));
+    } catch (\Throwable $th) {
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
 
-
-    //Eliminar
-
+//Eliminar
+    /* EliminarUsers */
+    public function eliminarUser($id){
+        try{
+            DB::beginTransaction();
+            DB::select("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
+            DB::select("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$id]);
+            DB::select("DELETE FROM tbl_historial WHERE id_usu= ?",[$id]);
+            DB::select("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
+            DB::select("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
+            DB::select("DELETE FROM tbl_usuario WHERE id= ?",[$id]);
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
+    /* EliminarDenuncia */
+    public function eliminarDenuncia($id){
+        try{
+            DB::beginTransaction();
+            DB::select("DELETE FROM tbl_denuncias WHERE id= ?",[$id]);              
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
+    /* EliminarHistorial */
+    public function eliminarHistorial($id){
+        try{
+            DB::beginTransaction();
+            DB::select("DELETE FROM tbl_historial WHERE id= ?",[$id]);              
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
+    /* EliminarCurso */
+    public function eliminarCurso($id){
+        try{
+            DB::beginTransaction();
+            $id_asignatura=DB::select("SELECT id FROM tbl_asignaturas WHERE id_curso= ?",[$id]); 
+            foreach ($id_asignatura as $asignatura) { 
+                $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id]);
+                foreach ($id_tema as $tema) {
+                    DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
+                    DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]);
+                }
+                DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id]); 
+                } 
+            DB::select("DELETE FROM tbl_cursos WHERE id= ?",[$id]);
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
+    /* EliminarAsignatura */
+    public function eliminarAsignatura($id){
+        try{
+            DB::beginTransaction();
+            $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$id]);
+            foreach ($id_tema as $tema) {
+                DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
+                DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]); 
+            } 
+            DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$id]);                
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
+    /* EliminarTema */
+    public function eliminarTema($id){
+        try{
+            DB::beginTransaction(); 
+            DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$id]); 
+            DB::select("DELETE FROM tbl_temas WHERE id= ?",[$id]);   
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
+    /* EliminarApunte */
+    public function eliminarApunte($id){
+        try{
+            DB::beginTransaction();
+            DB::select("DELETE FROM tbl_denuncias WHERE id_contenido= ?",[$id]);
+            DB::select("DELETE FROM tbl_comentarios WHERE id_contenido= ?",[$id]);
+            DB::select("DELETE FROM tbl_historial WHERE id_contenido= ?",[$id]);
+            DB::select("DELETE FROM tbl_contenidos WHERE id= ?",[$id]);                
+            DB::commit();
+            return response()->json(array('resultado'=>'OK'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(array('resultado'=>$e->getMessage()));
+        }
+    }
 }

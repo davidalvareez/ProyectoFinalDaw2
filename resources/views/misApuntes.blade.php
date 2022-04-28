@@ -1,3 +1,4 @@
+@include('template.header')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +9,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <!----------------------------------- AlertifyJS ------------------------------------------------------->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <script src="{!! asset('js/misApuntes/misApuntesAjax.js') !!}"></script>
     <title>Mis apuntes</title>
 </head>
@@ -19,6 +16,9 @@
     <div class="">
         <button class="btn btn-dark" onclick="openformSubirApuntes(); return false;" type="submit">Subir apunte</button>
     </div>
+    {{-- <form action='{{url('logout')}}' method='get'>
+        <button class="btn btn-secondary">Logout</button>
+    </form> --}}
     <div id="divFormSubirApuntes" style="display: none;" class="">
         <form onsubmit="subirApuntes(); return false;" id="formSubirApuntes" enctype="multipart/form-data">
             <select name="curso" onchange="selectAsignatura();">
@@ -72,3 +72,4 @@
     </div>
 </body>
 </html>
+@include ('template.footer')

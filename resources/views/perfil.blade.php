@@ -1,3 +1,4 @@
+@include('template.header')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +15,13 @@
     
     <div class="">
         <img src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}" alt="Avatar Del usuario">
+        {{-- <form action='{{url('logout')}}' method='get'>
+            <button class="btn btn-secondary">Logout</button>
+        </form> --}}
         <div class="">
             <h3>{{$perfilUser[0]->nick_usu}}</h3>
         </div>
+        
     </div>
     <div class="">
         <table class="table table-striped table-dark">
@@ -54,3 +59,4 @@
     </div>
 </body>
 </html>
+@include ('template.footer')

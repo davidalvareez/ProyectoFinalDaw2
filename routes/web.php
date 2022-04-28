@@ -43,14 +43,20 @@ Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
 //Pagina de apuntes
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
+
 Route::post('misApuntes/curso',[ApuntesController::class,'misApuntes_curso']);
+
 Route::post('misApuntes/asignatura',[ApuntesController::class,'misApuntes_asignatura']);
+
 Route::post('misApuntes/subirapunte',[ApuntesController::class,'misApuntes_subirapunte']);
+
 Route::post('misApuntes/apuntes',[ApuntesController::class,'misApuntes_apuntes']);
+
 Route::delete('misApuntes/eliminarapunte/{id}',[ApuntesController::class,'misApuntes_eliminarapunte']);
+
 //Apunte
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
-
+Route::post('apuntes/comentar',[ApuntesController::class,'comentar']);
 Route::post('download',[ApuntesController::class,'download']);
 //FILTROS
 
@@ -83,6 +89,20 @@ Route::post('admin/denuncias',[CRUDAdminController::class,'showDenuncias']);
 
 Route::post('admin/historial',[CRUDAdminController::class,'showHistorial']);
 
+//Eliminar
+Route::delete('admin/users/{id}',[CRUDAdminController::class,'eliminarUser']);
+
+Route::delete('admin/apuntes/{id}',[CRUDAdminController::class,'eliminarApunte']);
+
+Route::delete('admin/denuncias/{id}',[CRUDAdminController::class,'eliminarDenuncia']);
+
+Route::delete('admin/historial/{id}',[CRUDAdminController::class,'eliminarHistorial']);
+
+Route::delete('admin/cursos/{id}',[CRUDAdminController::class,'eliminarCurso']);
+
+Route::delete('admin/asignaturas/{id}',[CRUDAdminController::class,'eliminarAsignatura']);
+
+Route::delete('admin/temas/{id}',[CRUDAdminController::class,'eliminarTema']);
 
 //Mostrar
 Route::get('moderador',[UsuarioController::class,'moderadorView']);
@@ -91,9 +111,6 @@ Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
 
 //Actualizar
-
-
-//Eliminar
-
+Route::put('admin/centro',[CRUDAdminController::class,'actualizarCentro']);
 
 //Mapas

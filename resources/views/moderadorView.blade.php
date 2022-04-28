@@ -1,3 +1,4 @@
+@include('template.header')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,9 @@
     <div class="">
         <h3>Vista Moderador</h3>
     </div>
+    {{-- <form action='{{url('logout')}}' method='get'>
+        <button class="btn btn-secondary">Logout</button>
+    </form> --}}
     <div class="">
         <table class="table table-striped table-dark">
             <tr>
@@ -37,3 +41,4 @@
     </div>
 </body>
 </html>
+@include ('template.footer')
