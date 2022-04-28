@@ -13,7 +13,7 @@ class TblEmpresa extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_curriculum', function (Blueprint $table) {
+        Schema::create('tbl_empresa', function (Blueprint $table) {
 
             $table->id();
             $table->string('nombre_emp');
@@ -39,6 +39,6 @@ class TblEmpresa extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_curriculum');
+        Schema::dropIfExists('tbl_empresa');
     }
 }
