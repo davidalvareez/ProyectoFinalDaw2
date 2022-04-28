@@ -26,7 +26,7 @@
                             <form action="{{url('login')}}" method="post">
                                 @csrf
                                 <div>
-                                    <p class="pizq">Email o Nickname</p>
+                                    <h4 class="pizq">Email o Nickname</h4>
                                     <input class="inputbtn" type="text" name="correo_nick" id="correo_nick" placeholder="&#xf007">
                                     @error('correo_nick')
                                     <p class="errortext">{{$message}}</p>
@@ -34,7 +34,7 @@
                                 </div>
                                 <br>
                                 <div>
-                                    <p class="pizq">Contraseña</p>
+                                    <h4 class="pizq">Contraseña</h4>
                                     <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="&#xf023">
                                     @error('contra_usu')
                                     <p class="errortext">{{$message}}</p>
