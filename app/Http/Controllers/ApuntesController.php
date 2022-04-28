@@ -11,6 +11,7 @@ class ApuntesController extends Controller
         if (session()->get("user")) {
             $user=session()->get('user');
             //Para búsqueda avanzada mostrar todos los datos
+
             //Mostrar los más recientes
             $recent=DB::select("SELECT content.id as id_content, content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
             INNER JOIN tbl_usuario user ON content.id_usu = user.id
@@ -24,6 +25,7 @@ class ApuntesController extends Controller
             WHERE NOT user.id = ?
             GROUP BY content.id
             ORDER BY content.fecha_publicacion_contenido DESC LIMIT 15",[$user->id]);
+
             //Mostrar los más populares
             $popular=DB::select("SELECT content.id as id_content,content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
             INNER JOIN tbl_usuario user ON content.id_usu = user.id
@@ -37,10 +39,13 @@ class ApuntesController extends Controller
             WHERE NOT user.id = ?
             GROUP BY content.id
             ORDER BY valoracion DESC LIMIT 15;",[$user->id]);
+
             //Lista centros
             $listaCentros = DB::select("SELECT * FROM tbl_centro");
+
             //Lista de cursos
             $listaCursos = DB::select("SELECT * FROM tbl_cursos");
+
             //Lista de asignaturas
             $listaAsignaturas = DB::select("SELECT * FROM tbl_asignaturas");
             return view('buscador',compact('user','recent','popular','listaCentros','listaCursos','listaAsignaturas'));
