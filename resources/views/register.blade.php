@@ -132,8 +132,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div>
+                                <br>
+                                <br>
+                                <div class="one-column">
                                     <div class="menudos">
                                         <h4 class="pizq">Contraseña</h4>
                                         <div>
@@ -192,7 +193,7 @@
             </div>
             <div class="content-region">
                 <div class="imagenrelleno">
-                    <img src="{!! asset ('media/fotos_loginregister/imagen2.png') !!}" alt="imgregistro" class="imgredondeada2">
+                    <img src="{!! asset ('media/loginregister/imagen2.2.png') !!}" alt="imgregistro" class="imgredondeada2">
                 </div>
             </div>
         </div>

@@ -184,7 +184,7 @@
   position: relative;
 }
 
-.glass2, .login-page main .region .glassland, .registro-page main .region .glassland {
+.glass2, .validarcorreo-page main .region .glassland {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -192,7 +192,7 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.glassbtn, .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .login-btn-absglass, .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland .login-btn-absglass {
+.glassbtn, .validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .validarcorreo-btn-absglass {
   padding: 10px 10px 10px 10px;
   width: 100%;
   float: left;
@@ -210,11 +210,11 @@
   text-transform: uppercase;
 }
 
-.glassbtn:hover, .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .login-btn-absglass:hover, .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland .login-btn-absglass:hover {
+.glassbtn:hover, .validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .validarcorreo-btn-absglass:hover {
   background-color: #0e7a30cc;
 }
 
-.flex, .iconoanimacion, .login-page main .region .glassland .content-glassland, .login-page main .region1, .login-page main .region1 .content-region .glassland .content-glassland, .registro-page main .region .glassland .content-glassland, .registro-page main .region1, .registro-page main .region1 .content-region .glassland .content-glassland {
+.flex, .iconoanimacion, .validarcorreo-page main .region .glassland .content-glassland, .validarcorreo-page main .region1, .validarcorreo-page main .region1 .content-region .glassland .content-glassland {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -236,7 +236,7 @@
 .inputbtn {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 2px 30px 10px 10px;
+  padding: 6px 30px 6px 10px;
   width: 100%;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -328,93 +328,6 @@
   padding-bottom: 10px;
 }
 
-.modal {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.aceptarbtn {
-  padding: 10px 10px 10px 10px;
-  width: 50%;
-  border: 0;
-  text-decoration: none;
-  border-radius: 6px;
-  background-color: #12993ccc;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(30px);
-          backdrop-filter: blur(30px);
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.aceptarbtn:hover {
-  background-color: #0e7a30cc;
-}
-
-.grid {
-  padding: 5vh 15vh;
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 15px 7px;
-  -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
-  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.elegiravatar {
-  cursor: pointer;
-}
-
-.elegiravatar:hover {
-  background-color: rgba(0, 0, 0, 0.608);
-}
-
-.elegiravatar:active {
-  border: 1px solid #000;
-}
-
 :root {
   --first-color: #19c673;
   --second-color: #05a357;
@@ -475,58 +388,39 @@ h4 {
   font-weight: bold;
 }
 
-.login-page {
+.validarcorreo-page {
   background-image: url("../../media/loginregister/fondo3.png");
   background-size: cover;
   background-repeat: no-repeat;
   overflow-y: hidden;
 }
 
-.login-page main .region1 {
-  margin: 5% 0% 5% 10%;
+.validarcorreo-page main .region1 {
+  margin: 5% 0% 5% 17%;
 }
 
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland {
+.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland {
   width: 80%;
   padding: 2% 0% 2% 10%;
 }
 
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::-webkit-input-placeholder {
+.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn::-webkit-input-placeholder {
   font-family: "Font Awesome\ 6 pro";
 }
 
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn:-ms-input-placeholder {
+.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn:-ms-input-placeholder {
   font-family: "Font Awesome\ 6 pro";
 }
 
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::-ms-input-placeholder {
+.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn::-ms-input-placeholder {
   font-family: "Font Awesome\ 6 pro";
 }
 
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::placeholder {
+.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn::placeholder {
   font-family: "Font Awesome\ 6 pro";
 }
 
-.login-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
+.validarcorreo-page main .region1 .content-region .imagenrelleno {
+  padding-left: 10%;
 }
-
-.registro-page {
-  background-image: url("../../media/loginregister/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.registro-page main .region1 {
-  margin: 5% 5% 5% 5%;
-}
-
-.registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
-}
-
-.registro-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
-}
-/*# sourceMappingURL=loginregistro.css.map */
+/*# sourceMappingURL=validarcorreo.css.map */
