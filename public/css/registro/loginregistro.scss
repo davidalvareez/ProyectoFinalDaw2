@@ -275,6 +275,7 @@
 
 .menuuno {
     width: 94%;
+    float: left;
     padding: 10px 10px 10px 10px;
 }
 
@@ -284,6 +285,11 @@
     font-size: 12px;
     float: left;
     padding-bottom: 5px;
+}
+
+.one-column {
+    width: 100%;
+    padding-bottom: 10px;
 }
 
 //MODAL ------------------------------------------------------------------
@@ -342,7 +348,7 @@
     padding: 5vh 15vh;
     display: -ms-grid;
     display: grid;
-    grid-gap: 15px 6px;
+    grid-gap: 15px 7px;
     -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
     grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
 }

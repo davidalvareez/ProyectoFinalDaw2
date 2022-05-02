@@ -50,104 +50,112 @@
                                
                                 @csrf
                                 
-                                <div class="menudos">
-                                    <h4 class="pizq">Nombre</h4>
-                                    <div>
-                                        <input class="inputbtn" type="text" name="nombre_usu" id="nombre_usu" placeholder="Nombre">
+                                <div class="one-column">
+                                    <div class="menudos">
+                                        <h4 class="pizq">Nombre</h4>
+                                        <div>
+                                            <input class="inputbtn" type="text" name="nombre_usu" id="nombre_usu" placeholder="Nombre">
+                                        </div>
+                                        <div>
+                                            @error('nombre_usu')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
-                                    <div>
-                                        @error('nombre_usu')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
+
+                                    <div class="menudos">
+                                        <h4 class="pizq">Apellido</h4>
+                                        <div>
+                                            <input class="inputbtn" type="text" name="apellido_usu" id="apellido_usu" placeholder="Apellido">
+                                        </div>
+                                        <div>
+                                            @error('apellido_usu')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="menudos">
-                                    <h4 class="pizq">Apellido</h4>
-                                    <div>
-                                        <input class="inputbtn" type="text" name="apellido_usu" id="apellido_usu" placeholder="Apellido">
+                                <div class="one-column">
+                                    <div class="menudos">
+                                        <h4 class="pizq">Nickname</h4>
+                                        <div>
+                                            <input class="inputbtn" type="text" name="nick_usu" id="nick_usu" placeholder="Nickname">
+                                        </div>
+                                        <div>
+                                            @error('nick_usu')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
-                                    <div>
-                                        @error('apellido_usu')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
+
+                                    <div class="menudos">
+                                        <h4 class="pizq">Fecha de nacimiento</h4>
+                                        <div>
+                                            <input class="inputbtn" type="date" name="fecha_nac_usu" id="fecha_nac_usu">
+                                        </div>
+                                        <div>
+                                            @error('fecha_nac_usu')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="menudos">
-                                    <h4 class="pizq">Nickname</h4>
-                                    <div>
-                                        <input class="inputbtn" type="text" name="nick_usu" id="nick_usu" placeholder="Nickname">
+                                <div class="one-column">
+                                    <div class="menudos">
+                                        <h4 class="pizq">Centro</h4>
+                                        <div>
+                                            <select class="inputbtn" name="centro" id="centro">
+                                                <option value="">--</option>
+                                                @foreach($centros as $centro)
+                                                    <option value="{{$centro->id}}">{{$centro->nombre_centro}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div>
+                                            @error('centro')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
-                                    <div>
-                                        @error('nick_usu')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
+
+                                    <div class="menudos">
+                                        <h4 class="pizq">Email</h4>
+                                        <div>
+                                            <input class="inputbtn" type="email" name="correo_usu" id="correo_usu" placeholder="Email">
+                                        </div>
+                                        <div>
+                                            @error('correo_usu')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="menudos">
-                                    <h4 class="pizq">Fecha de nacimiento</h4>
-                                    <div>
-                                        <input class="inputbtn" type="date" name="fecha_nac_usu" id="fecha_nac_usu">
+                                <div>
+                                    <div class="menudos">
+                                        <h4 class="pizq">Contraseña</h4>
+                                        <div>
+                                            <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="Contraseña">
+                                        </div>
+                                        <div>
+                                            @error('contra_usu')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
-                                    <div>
-                                        @error('fecha_nac_usu')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="menudos">
-                                    <h4 class="pizq">Centro</h4>
-                                    <div>
-                                        <select class="inputbtn" name="centro" id="centro">
-                                            <option value="">--</option>
-                                            @foreach($centros as $centro)
-                                                <option value="{{$centro->id}}">{{$centro->nombre_centro}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div>
-                                        @error('centro')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="menudos">
-                                    <h4 class="pizq">Email</h4>
-                                    <div>
-                                        <input class="inputbtn" type="email" name="correo_usu" id="correo_usu" placeholder="Email">
-                                    </div>
-                                    <div>
-                                        @error('correo_usu')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="menudos">
-                                    <h4 class="pizq">Contraseña</h4>
-                                    <div>
-                                        <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="Contraseña">
-                                    </div>
-                                    <div>
-                                        @error('contra_usu')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                
-                                <div class="menudos">
-                                    <h4 class="pizq">Repetir contraseña</h4>
-                                    <div>
-                                        <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
-                                    </div>
-                                    <div>
-                                        @error('contra_usu_verify')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
+                                    
+                                    <div class="menudos">
+                                        <h4 class="pizq">Repetir contraseña</h4>
+                                        <div>
+                                            <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
+                                        </div>
+                                        <div>
+                                            @error('contra_usu_verify')
+                                            <p class="errortext">{{$message}}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -169,7 +177,7 @@
                                 </div>
                                 <div class="">
                                     <div class="alienarleft">
-                                        <h4>Ya estás registrado?</h4>
+                                        <p>Ya estás registrado?</p>
                                     </div>
                                     <div class="alienarleft">
                                         <a href="{{url('login')}}">
@@ -189,31 +197,6 @@
             </div>
         </div>
     </main>
-    {{-- <footer class="footer-distributed">
-
-        <div class="footer-right">
-
-            <a href="https://www.facebook.com/notehub.oficial"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://twitter.com/notehub_oficial"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.instagram.com/notehub.oficial"><i class="fa-brands fa-instagram"></i></a>
-
-        </div>
-
-        <div class="footer-left">
-
-            <p class="footer-links">
-
-                <a class="link-1">2022</a>
-
-                <a href="https://goo.gl/maps/TVrDESsEywPBnykd6">Hospitalet de Llobregat</a>
-
-                <a href="mailto:notehubdaw2@gmail.com">notehubdaw2@gmail.com</a>
-            </p>
-
-            <p>NoteHub &copy; 2022</p>
-        </div>
-
-    </footer> --}}
 </body>
 </html>
 @include ('template.footer')
