@@ -37,7 +37,7 @@ class tbl_centroSeeder extends Seeder
             'pais_centro' => 'España',
             'com_auto_centro' => 'Cataluña',
             'ciudad_centro' => 'Barcelona',
-            'direccion_centro' => 'Av. de Josep Tarradellas i Joan, 171, 177, 08901 L\'Hospitalet de Llobregat, Barcelona'
+            'direccion_centro' => 'Av. de Josep Tarradellas i Joan, 171, 177, 08901 Hospitalet de Llobregat, Barcelona'
         ]);
         //ID 4
         DB::table('tbl_centro')->insert([
@@ -45,7 +45,7 @@ class tbl_centroSeeder extends Seeder
             'pais_centro' => 'España',
             'com_auto_centro' => 'Cataluña',
             'ciudad_centro' => 'Barcelona',
-            'direccion_centro' => 'C/ d\'Aragó, 208, 210, 08011 Barcelona'
+            'direccion_centro' => 'C/ Aragó, 208, 210, 08011 Barcelona'
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
         //ID 5

@@ -39,24 +39,6 @@
     
                     </div>
                     <div id="myModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" onclick="closeModal();">&times;</span>
-                            <form id="formUpdate" method="post" onsubmit="actualizarCentros();closeModal();return false;">
-                                <h2 id="nombreCentro"></h2>
-                                <b><span>Nombre centro:</span>
-                                <input type="text" name="nombre" id="nombreUpdate"><br>
-                                <b><span>Pais centro:</span>
-                                <input type="text" name="pais" id="paisUpdate"><br>
-                                <b><span>Comunidad autonoma:</span>
-                                <input type="text" name="com_auto" id="com_autoUpdate"><br>
-                                <b><span>Ciudad:</span>
-                                <input type="text" name="ciudad" id="ciudadUpdate"><br>
-                                <b><span>Dirección:</span>
-                                <input type="text" name="direccion" id="direccionUpdate"><br>
-                                <input type="hidden" name="id" id="idUpdate">
-                                <input type="submit" value="Editar">
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -86,13 +86,47 @@ class CRUDAdminController extends Controller
 
 
 //Actualizar
-public function actualizarCentro(Request $request){  
-    /* return response()->json($request); */
-    try {
-        DB::update("UPDATE tbl_centro set nombre_centro= ?, pais_centro= ?, com_auto_centro= ?, ciudad_centro= ?, direccion_centro= ? where id=?",[$request["nombre"],$request["pais"],$request["com_auto"],$request["ciudad"],$request["direccion"],$request["id"]]);
-        return response()->json(array('resultado'=> 'OK'));
-    } catch (\Throwable $th) {
-            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+    /* ActualizarCentro */
+    public function actualizarCentro(Request $request){  
+        /* return response()->json($request); */
+        try {
+            DB::update("UPDATE tbl_centro set nombre_centro= ?, pais_centro= ?, com_auto_centro= ?, ciudad_centro= ?, direccion_centro= ? where id=?",[$request["nombre"],$request["pais"],$request["com_auto"],$request["ciudad"],$request["direccion"],$request["id"]]);
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+    /* ActualizarCurso */
+    public function actualizarCurso(Request $request){  
+        /* return response()->json($request); */
+        try {  
+            DB::update("UPDATE tbl_cursos set nombre_curso= ?, nombre_corto_curso= ?, tipo_curso= ? where id=?",[$request["nombre_curso"],$request["nombre_corto_curso"],$request["tipo_curso"],$request["id"]]);
+            /* return $update; */
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+    /* ActualizarAsignatura */
+    public function actualizarAsignatura(Request $request){  
+        /* return response()->json($request); */
+        try {  
+            DB::update("UPDATE tbl_asignaturas set nombre_asignatura= ? where id=?",[$request["nombre_asignatura"],$request["id"]]);
+            /* return $update; */
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+    /* ActualizarTema */
+    public function actualizarTema(Request $request){  
+        /* return response()->json($request); */
+        try {  
+            DB::update("UPDATE tbl_temas set nombre_tema= ? where id=?",[$request["nombre_tema"],$request["id"]]);
+            /* return $update; */
+            return response()->json(array('resultado'=> 'OK'));
+        } catch (\Throwable $th) {
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
         }
     }
 
