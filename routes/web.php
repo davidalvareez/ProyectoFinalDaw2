@@ -16,6 +16,12 @@ use App\Http\Controllers\CRUDAdminController;
 |
 */
 //Enlaces a paginas
+
+//VALIDAR CORREO HECHO POR MARC PARA PRUEBAS
+Route::get('validarcorreo', function () {
+    return view('validarcorreo');
+});
+
 //Indice
 Route::get('/', function () {
     return view('index');

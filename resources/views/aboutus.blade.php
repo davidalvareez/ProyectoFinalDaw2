@@ -41,7 +41,7 @@
                             </div>
                             <div class="carta carta3" data-aos="zoom-in-up">
                                 <div class="content-carta">
-                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifisaac.gif') !!}" alt="" srcset="">
+                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifmiguel.gif') !!}" alt="" srcset="">
                                     <h3>Isaac Ortiz Moncusí </h3>
                                     <h4>Departamento de Frontend</h4>
                                     <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/crown/crown-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/magic-trick/magic-trick-dynamic-gradient.png') !!}" alt="" srcset="">
