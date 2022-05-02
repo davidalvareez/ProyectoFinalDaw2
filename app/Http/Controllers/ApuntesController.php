@@ -10,37 +10,49 @@ class ApuntesController extends Controller
     public function buscador(){
         if (session()->get("user")) {
             $user=session()->get('user');
-            //Para búsqueda avanzada mostrar todos los datos
+            $sqlrecent="SELECT content.id as id_content, content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
+            INNER JOIN tbl_usuario user ON content.id_usu = user.id
+            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro ";
+
+            $sqlpopular = "SELECT content.id as id_content,content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
+            INNER JOIN tbl_usuario user ON content.id_usu = user.id
+            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro ";
+            //Si tiene fichero configuración se filtrara de una manera o de otra, o si en su configuración es nulo
+            if (file_exists(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json'))) {
+                //Si existe directamente cogemos el fichero y miramos si el campo esta nulo
+                $configuration = json_decode(file_get_contents(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json')), true);
+                if ($configuration["curso"] != null or $configuration["curso"] != "") {
+                    $sqlrecent .= "WHERE curso.nombre_curso = '{$configuration["curso"]}' ";
+                    $sqlpopular .= "WHERE curso.nombre_curso = '{$configuration["curso"]}' ";
+                }
+            }
+            $sqlrecent .= "GROUP BY content.id ORDER BY content.fecha_publicacion_contenido DESC LIMIT 15";
+            $sqlpopular .= "GROUP BY content.id ORDER BY valoracion DESC LIMIT 15";
+            
             //Mostrar los más recientes
-            $recent=DB::select("SELECT content.id as id_content, content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
-            INNER JOIN tbl_usuario user ON content.id_usu = user.id
-            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-            WHERE NOT user.id = ?
-            GROUP BY content.id
-            ORDER BY content.fecha_publicacion_contenido DESC LIMIT 15",[$user->id]);
+            $recent=DB::select($sqlrecent);
+
             //Mostrar los más populares
-            $popular=DB::select("SELECT content.id as id_content,content.*,user.nick_usu,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
-            INNER JOIN tbl_usuario user ON content.id_usu = user.id
-            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-            WHERE NOT user.id = ?
-            GROUP BY content.id
-            ORDER BY valoracion DESC LIMIT 15;",[$user->id]);
+            $popular=DB::select($sqlpopular);
+
             //Lista centros
             $listaCentros = DB::select("SELECT * FROM tbl_centro");
+
             //Lista de cursos
             $listaCursos = DB::select("SELECT * FROM tbl_cursos");
+
             //Lista de asignaturas
             $listaAsignaturas = DB::select("SELECT * FROM tbl_asignaturas");
             return view('buscador',compact('user','recent','popular','listaCentros','listaCursos','listaAsignaturas'));
@@ -50,20 +62,50 @@ class ApuntesController extends Controller
     }
 
     public function multiplyFilter(Request $request){
-        $datos=$request->except("_token");
+        $datos=$request->except("_token","_method");
         $user=session()->get('user');
-        $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
-        FROM tbl_contenidos content
-                    INNER JOIN tbl_usuario users ON content.id_usu = users.id
-                    LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
-                    LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-                    LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-                    INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                    INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                    INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                    INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-                    WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR content.id = ?) AND NOT users.id= ?
-                    GROUP BY content.id",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$datos["filter"],$user->id]);
+        if ($datos["filter"] == "") {
+            $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                FROM tbl_contenidos content
+                            INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+                            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                            GROUP BY content.id");
+        }else{
+            $id = $datos["filter"][0];
+            if (is_numeric($id)) {
+                $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                FROM tbl_contenidos content
+                            INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+                            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                            WHERE content.id = ? AND (users.id = ? OR NOT users.id = ?)
+                            GROUP BY content.id",[$datos["filter"],$user->id,$user->id]);
+            }else{
+                $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,sum(coment.val_comentario) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                FROM tbl_contenidos content
+                            INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+                            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                            WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR content.id = ?) AND (users.id = ? OR NOT users.id = ?)
+                            GROUP BY content.id",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$datos["filter"],$user->id,$user->id]);
+            }
+        }
         return response()->json($filter);
     }
 
@@ -80,7 +122,7 @@ class ApuntesController extends Controller
         INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
         INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
         INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-        WHERE NOT users.id= {$user->id} ";
+        WHERE (NOT users.id= {$user->id} OR users.id = {$user->id}) ";
         if($datos["centros"] != null){
             $query .= "AND centro.nombre_centro LIKE \"%".$datos["centros"]."%\" ";
             //$query = $query + $Centro;
@@ -348,17 +390,18 @@ class ApuntesController extends Controller
             $comentsameuser = DB::select("SELECT * FROM tbl_contenidos contenido 
             WHERE contenido.id=? AND contenido.id_usu = ?",[$datos["id_contenido"],$user->id]);
             if (count($comentsameuser) > 0) {
-                //return response()->json(array("respuesta"=>"SAME"));
-                return "No puedes comentarte a ti mismo";
+                return response()->json(array("resultado"=>"SAME"));
             }else{
                 $comentagain = DB::select("SELECT * FROM tbl_comentarios WHERE id_contenido = ? AND id_usu = ?",[$datos["id_contenido"],$user->id]);
                 if (count($comentagain) > 0) {
-                    //return response()->json(array("respuesta"=>"Comentado"));
-                    return "Ya has comentado aquí";
+                    return response()->json(array("resultado"=>"Comentado"));
                 }else{
                     DB::insert("INSERT INTO tbl_comentarios (desc_comentario,val_comentario,id_contenido,id_usu) VALUES (?,?,?,?)",[$datos["desc_comentario"],$datos["val_comentario"],$datos["id_contenido"],$user->id]);
-                    //return response()->json(array("respuesta"=>"OK"));
-                    return redirect('apuntes/'.$datos['id_contenido']);
+                    $comentarios = DB::select("SELECT * FROM tbl_comentarios comment
+                                               INNER JOIN tbl_usuario user ON comment.id_usu = user.id
+                                               LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+                                               WHERE comment.id_contenido = ?",[$datos["id_contenido"]]);
+                    return response()->json(array("resultado"=>"OK","comentarios"=>$comentarios));
                 }
             }
         }else{

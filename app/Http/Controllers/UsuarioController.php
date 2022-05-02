@@ -95,6 +95,17 @@ class UsuarioController extends Controller
             $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
             $newuser=$newuser[0];
             session()->put("user",$newuser);
+            //Crear JSON archivo de configuración
+            $json = [
+                "id" => $newuser->id,
+                "curso" => null,
+                "idioma" => null,
+                "darkmode" => false
+            ];
+            $json = json_encode($json);
+            //Almacenar JSON
+            Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
+            //request()->file($json)->store('uploads/configuration','public');
             return redirect("buscador");
         } catch (\Exception $e) {
             return $e->getMessage();

@@ -16,9 +16,9 @@
                     <div class="searchbar">
 
                         <form action="">
-                            <div class="row input-box"><input type="text" onkeyup="multiplyFilter();return false;" name="BusquedaMultiple" id="multiplysearch"></div>
+                            <div class="row input-box"><input type="text" name="BusquedaMultiple" id="multiplysearch"></div>
                             <div class="row s-cover" id="">
-                                <button type="submit"><div class="s-circle"></div><span></span></button>
+                                <button type="submit" onclick="multiplyFilter();return false;"><div class="s-circle"></div><span></span></button>
                             </div>
                         </form>
 
@@ -39,8 +39,12 @@
         </div>
     </header>
     <main>
+
     <!--RESULTADO DE BUSQUEDA TANTO AVANZADA COMO NORMAL-->
-    <div id="contentFilter"></div>
+    <div id="contentFilter">
+
+    </div>
+
     <!--APUNTES MÁS RECIENTES-->
     <div class="title">
         <h2>Los mas nuevos</h2>
@@ -139,11 +143,9 @@
             </div>
         </div>
     </div>
-                
-        
-    
-    <!--APUNTES MÁS POPULARES-->
 
+
+    <!--APUNTES MÁS POPULARES-->
     <div class="title">
         <h2>Mas populares</h2>
     </div>
@@ -242,6 +244,7 @@
         </div>
     </div>
 </main>
+<footer>@include('template.footer')</footer>
     <div class="overlay" id="overlay">
         <div class="popup" id="popup">
             <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop"><i class="fas fa-times"></i></a>
@@ -279,7 +282,6 @@
                     <div class="form-group input-text">
                         <input type="text" name="nombre_tema" placeholder="Introduce nombre del tema..." onkeyup="busquedaAvanzada()">
                     </div>
-
                 </form>
             </div>
         </div>

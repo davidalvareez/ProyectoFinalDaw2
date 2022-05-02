@@ -1,3 +1,4 @@
+@include('template.header')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,3 +41,4 @@
     </div>
 </body>
 </html>
+@include ('template.footer')
