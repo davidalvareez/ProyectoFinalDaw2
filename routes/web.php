@@ -113,4 +113,10 @@ Route::get('moderador',[UsuarioController::class,'moderadorView']);
 //Actualizar
 Route::put('admin/centro',[CRUDAdminController::class,'actualizarCentro']);
 
+Route::put('admin/curso',[CRUDAdminController::class,'actualizarCurso']);
+
+Route::put('admin/asignatura',[CRUDAdminController::class,'actualizarAsignatura']);
+
+Route::put('admin/tema',[CRUDAdminController::class,'actualizarTema']);
+
 //Mapas
