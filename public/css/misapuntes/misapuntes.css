@@ -184,7 +184,7 @@
   position: relative;
 }
 
-.glass2, .validarcorreo-page main .region .glassland {
+.glass2, .misapuntes-page main .region .glassland {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -192,7 +192,7 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.glassbtn, .validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .validarcorreo-btn-absglass {
+.glassbtn {
   padding: 10px 10px 10px 10px;
   width: 100%;
   float: left;
@@ -210,11 +210,11 @@
   text-transform: uppercase;
 }
 
-.glassbtn:hover, .validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .validarcorreo-btn-absglass:hover {
+.glassbtn:hover {
   background-color: #0e7a30cc;
 }
 
-.flex, .iconoanimacion, .validarcorreo-page main .region .glassland .content-glassland, .validarcorreo-page main .region1, .validarcorreo-page main .region1 .content-region .glassland .content-glassland {
+.flex, .iconoanimacion, .misapuntes-page main .region .glassland .content-glassland, .misapuntes-page main .region1, .misapuntes-page main .region2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -236,8 +236,8 @@
 .inputbtn {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 6px 30px 6px 10px;
-  width: 100%;
+  padding: 10px 30px 10px 10px;
+  width: 90%;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -248,7 +248,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px 30px 10px 10px;
-  width: 100%;
+  width: 90%;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -257,75 +257,55 @@
 }
 
 .inputbtn-selec:hover {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px 30px 10px 10px;
-  width: 100%;
   border: 1px solid #2d2d2d;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-  margin-bottom: 20px;
   cursor: pointer;
-  background-color: #dddddd;
+  background-color: #f0f0f0;
 }
 
-.imginputbtn {
-  position: absolute;
-  right: 10px;
-  top: 12px;
-}
-
-.pizq {
-  float: left;
-}
-
-.pder {
-  float: right;
-}
-
-.alienarleft {
-  float: left;
-  padding: 40px 10px 5px 7px;
-}
-
-.alienarright {
-  float: right;
-  padding: 0px 0px 30px 0px;
-}
-
-.imgredondeada {
-  border-radius: 12px;
-}
-
-.imgredondeada2 {
-  float: right;
-  margin-left: 198px;
-  padding-right: 80px;
-}
-
-.menudos {
-  width: 45.8%;
-  float: left;
-  padding: 10px;
-}
-
-.menuuno {
-  width: 94%;
-  float: left;
-  padding: 10px 10px 10px 10px;
-}
-
-.errortext {
-  font-style: italic;
-  font-weight: bold;
-  font-size: 12px;
-  float: left;
-  padding-bottom: 5px;
-}
-
-.one-column {
+.menu {
   width: 100%;
-  padding-bottom: 10px;
+  padding: 20px 0px 90px 0px;
+  text-align: center;
+}
+
+@-webkit-keyframes aniGrad {
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}
+
+@keyframes aniGrad {
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}
+
+.btn-glass {
+  margin: 20px 0px 0px 0px;
+  padding: 10px 75px;
+  font-size: 15px;
+  border: 0;
+  text-decoration: none;
+  border-radius: 15px;
+  cursor: pointer;
+  background: linear-gradient(83deg, #ff8f0b, #00cf9a);
+  background-size: 600% 600%;
+  -webkit-animation: aniGrad 8s ease infinite;
+  animation: aniGrad 8s ease infinite;
 }
 
 :root {
@@ -388,39 +368,31 @@ h4 {
   font-weight: bold;
 }
 
-.validarcorreo-page {
-  background-image: url("../../media/validarcorreo/fondo3.png");
+.misapuntes-page {
+  background-image: url("../../media/misapuntes/fondo2.png");
   background-size: cover;
   background-repeat: no-repeat;
   overflow-y: hidden;
 }
 
-.validarcorreo-page main .region1 {
-  margin: 5% 0% 5% 17%;
+.misapuntes-page main .region1 {
+  margin-bottom: 60px;
 }
 
-.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
+.misapuntes-page main .region1 .content-region .glassland .content-glassland .misapuntes-content-glassland {
+  width: 99.9vw;
+  padding: 2%;
 }
 
-.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn::-webkit-input-placeholder {
-  font-family: "Font Awesome\ 6 pro";
+.misapuntes-page main .region2 {
+  margin-bottom: 60px;
 }
 
-.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn:-ms-input-placeholder {
-  font-family: "Font Awesome\ 6 pro";
+.misapuntes-page main .region2 .content-region .glassland .content-glassland {
+  width: 100%;
 }
 
-.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn::-ms-input-placeholder {
-  font-family: "Font Awesome\ 6 pro";
+.misapuntes-page main .region2 .content-region .glassland .content-glassland .misapuntes-content-glassland {
+  width: 99.9vw;
 }
-
-.validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .inputbtn::placeholder {
-  font-family: "Font Awesome\ 6 pro";
-}
-
-.validarcorreo-page main .region1 .content-region .imagenrelleno {
-  padding-left: 10%;
-}
-/*# sourceMappingURL=validarcorreo.css.map */
+/*# sourceMappingURL=misapuntes.css.map */

@@ -106,12 +106,24 @@
                                     <div class="menudos">
                                         <h4 class="pizq">Centro</h4>
                                         <div>
-                                            <select class="inputbtn" name="centro" id="centro">
-                                                <option value="">--</option>
+                                            <input class="inputbtn" autocomplete="off" list="browsers" name="centro" id="centro" placeholder="Seleccionar centro" >
+                                            <datalist id="browsers">
                                                 @foreach($centros as $centro)
-                                                    <option value="{{$centro->id}}">{{$centro->nombre_centro}}</option>
+                                                    <option value="{{$centro->nombre_centro}}">{{$centro->nombre_centro}}</option>
                                                 @endforeach
-                                            </select>
+                                            </datalist>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <div>
+                                                    <p style="float: left">No encuntras tu centro?</p>
+                                                </div>
+                                                <div>
+                                                    <a style="float: left" href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=[INSERTE NOMBRE DEL CENTRO] no está en el selector de centros.">
+                                                        <p>Envíanos una petición</p>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div>
                                             @error('centro')

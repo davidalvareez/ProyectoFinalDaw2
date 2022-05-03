@@ -169,6 +169,7 @@ class ApuntesController extends Controller
             $select = DB::select("SELECT contenidos.* FROM tbl_contenidos contenidos
             INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
             WHERE user.id = ?",[$user->id]);
+            $selectCentro = DB::select("SELECT id,nombre_centro FROM tbl_centro"); // AÑADIDO DE PRUEBA POR MARC
             $selectCurso = DB::select("SELECT curso.id,curso.nombre_curso FROM tbl_centro centro
             INNER JOIN tbl_cursos curso ON curso.id_centro = centro.id
             WHERE centro.id = ?",[$user->id_centro]);
@@ -181,7 +182,7 @@ class ApuntesController extends Controller
             INNER JOIN tbl_asignaturas asignatura ON asignatura.id_curso = curso.id
             INNER JOIN tbl_temas tema ON tema.id_asignatura = asignatura.id
             WHERE centro.id = ?",[$user->id_centro]);
-            return view('misApuntes',compact('user','select','selectCurso','selectAsignatura','selectTema'));
+            return view('misApuntes',compact('user','select','selectCentro','selectCurso','selectAsignatura','selectTema'));
         }else{
             return redirect('login');
         }
