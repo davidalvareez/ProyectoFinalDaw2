@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Imagick;
 class ApuntesController extends Controller
 {
     //Pagina buscador
@@ -319,6 +320,14 @@ class ApuntesController extends Controller
                             DB::insert("INSERT INTO tbl_contenidos (nombre_contenido,idioma_contenido,extension_contenido,fecha_publicacion_contenido,id_tema,id_usu) VALUES (?,?,?,?,?,?)",
                             [$nameFile,"Español",".".$extensionFile,date('Y-m-d H:i:s'),$id_tema,$user->id]);
                                 $file->storeAs($path_folder,$fileName);
+                                if ($extensionFile == "pdf") {
+                                    $imagickpath = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
+                                    $im = new Imagick ($imagickpath.'/'.$fileName."[0]");
+                                    $im->setImageFormat("png");
+                                    $im->writeImage($imagickpath.'/'.$nameFile.".png"); // fails with no error message
+                                    //instead
+                                    //file_put_contents ($path_folder."/test_0.jpg", $im); // works, or:
+                                }
                                 return response()->json(array('resultado'=> 'OK'));
                         }else{
                             return response()->json(array('resultado'=> 'existApunte'));
