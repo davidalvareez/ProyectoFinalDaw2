@@ -33,9 +33,6 @@ function llamadaAjax() {
     return xmlhttp;
 }
 
-function openformSubirApuntes() {
-    document.getElementById("divFormSubirApuntes").style.display = "block";
-}
 
 function selectAsignatura() {
     let form = document.getElementById("formSubirApuntes");

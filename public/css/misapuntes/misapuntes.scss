@@ -206,8 +206,8 @@
 
 .inputbtn {
     box-sizing: border-box;
-    padding: 6px 30px 6px 10px;
-    width: 100%;
+    padding: 10px 30px 10px 10px;
+    width: 90%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     margin-bottom: 20px;
@@ -216,80 +216,61 @@
 .inputbtn-selec {
     box-sizing: border-box;
     padding: 10px 30px 10px 10px;
-    width: 100%;
+    width: 90%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     margin-bottom: 20px;
     cursor: pointer;
     &:hover {
-        box-sizing: border-box;
-        padding: 10px 30px 10px 10px;
-        width: 100%;
         border: 1px solid rgb(45, 45, 45);
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-        margin-bottom: 20px;
         cursor: pointer;
-        background-color: rgb(221, 221, 221);
+        background-color: rgb(240, 240, 240);
     }
 }
 
-.imginputbtn {
-    position: absolute;
-    right: 10px;
-    top: 12px;
-}
-
-.pizq {
-    float: left;
-}
-
-.pder {
-    float: right;
-}
-
-.alienarleft {
-    float: left;
-    padding: 40px 10px 5px 7px;
-}
-
-.alienarright {
-    float: right;
-    padding: 0px 0px 30px 0px;
-}
-
-.imgredondeada {
-    border-radius: 12px;
-}
-
-.imgredondeada2 {
-    float: right;
-    margin-left: 198px;
-    padding-right: 80px;
-}
-
-.menudos {
-    width: 45.8%;
-    float: left;
-    padding: 10px;
-}
-
-.menuuno {
-    width: 94%;
-    float: left;
-    padding: 10px 10px 10px 10px;
-}
-
-.errortext {
-    font-style: italic;
-    font-weight: bold;
-    font-size: 12px;
-    float: left;
-    padding-bottom: 5px;
-}
-
-.one-column {
+.menu {
     width: 100%;
-    padding-bottom: 10px;
+    padding: 20px 0px 90px 0px;
+    text-align: center;
+}
+
+@-webkit-keyframes aniGrad {
+    0% {
+        background-position: 0% 52%;
+    }
+    50% {
+        background-position: 100% 49%;
+    }
+    100% {
+        background-position: 0% 52%;
+    }
+}
+
+@keyframes aniGrad {
+    0% {
+        background-position: 0% 52%;
+    }
+    50% {
+        background-position: 100% 49%;
+    }
+    100% {
+        background-position: 0% 52%;
+    }
+}
+
+.btn-glass {
+    margin: 20px 0px 0px 0px;
+    padding: 10px 75px;
+    font-size: 15px;
+    border: 0;
+    text-decoration: none;
+    border-radius: 15px;
+    cursor: pointer;
+    background: linear-gradient(83deg, #ff8f0b, #00cf9a);
+    background-size: 600% 600%;
+    -webkit-animation: aniGrad 8s ease infinite;
+    animation: aniGrad 8s ease infinite;
 }
 
 $padding: 15px;
@@ -392,8 +373,8 @@ h4 {
 //     }
 // }
 //////////////
-.validarcorreo-page {
-    background-image: url("../../media/validarcorreo/fondo3.png");
+.misapuntes-page {
+    background-image: url("../../media/misapuntes/fondo2.png");
     background-size: cover;
     background-repeat: no-repeat;
     overflow-y: hidden;
@@ -408,29 +389,32 @@ h4 {
             }
         }
         .region1 {
-            margin: 5% 0% 5% 17%;
+            margin-bottom: 60px;
             @extend .flex;
             .content-region {
                 .glassland {
                     .content-glassland {
-                        @extend .flex;
-                        .validarcorreo-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
-                            .inputbtn {
-                                &::placeholder {
-                                    font-family: "Font Awesome\ 6 pro";
-                                }
-                            }
-                            .validarcorreo-btn-absglass {
-                                @extend .glassbtn;
-                            }
+                        //@extend .flex;
+                        .misapuntes-content-glassland {
+                            width: 99.9vw;
+                            padding: 2%;
                         }
                     }
                 }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 10%;
+            }
+        }
+        .region2 {
+            margin-bottom: 60px;
+            @extend .flex;
+            .content-region {
+                .glassland {
+                    .content-glassland {
+                        //@extend .flex;
+                        width: 100%;
+                        .misapuntes-content-glassland {
+                            width: 99.9vw;
+                        }
+                    }
                 }
             }
         }
