@@ -176,9 +176,9 @@ class UsuarioController extends Controller
         try {
             DB::beginTransaction();
             if($request['contra_usu'] == NULL){
-                DB::update("UPDATE tbl_usuario SET nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?  WHERE id = ?",[$request["nombre_usu"],$request["apellido_usu"],$request["correo_usu"],$idCentro[0]->id,$user->id]);
+                DB::update("UPDATE tbl_usuario SET nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, id_centro = ?  WHERE id = ?",[$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],$idCentro[0]->id,$user->id]);
             }else{
-                DB::update("UPDATE tbl_usuario SET nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, contra_usu = ?, id_centro=?  WHERE id = ?",[$request["nombre_usu"],$request["apellido_usu"],$request["correo_usu"],md5($request["contra_usu"]),$idCentro[0]->id,$user->id]);
+                DB::update("UPDATE tbl_usuario SET nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, contra_usu = ?, id_centro=?  WHERE id = ?",[$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],md5($request["contra_usu"]),$idCentro[0]->id,$user->id]);
             }
             $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
             INNER JOIN tbl_centro centro ON centro.id = user.id_centro
@@ -187,6 +187,7 @@ class UsuarioController extends Controller
             return response()->json(array('resultado'=> "OK",'user'=>$dataUser));
         } catch (\Exception $e) {
             DB::rollBack();
+            return response()->json(array('resultado'=>"NOK: ".$e->getMessage()));
         }
     }
 }
