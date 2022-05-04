@@ -119,14 +119,26 @@ class UsuarioController extends Controller
 
     //Vista Perfil
     public function perfil($nick_usu){
-       $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro FROM tbl_usuario user
-                                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-                                 INNER JOIN tbl_centro centro ON user.id_centro = centro.id 
-                                 WHERE nick_usu = ?",[$nick_usu]);
+       $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
+       LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+       INNER JOIN tbl_centro centro ON user.id_centro = centro.id
+       LEFT JOIN tbl_contenidos content ON content.id_usu = user.id
+       LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+       LEFT JOIN tbl_historial hist ON hist.id_usu = user.id
+       WHERE nick_usu = ?",[$nick_usu]);
 
-       $apuntesUser = DB::select("SELECT contenidos.* FROM tbl_contenidos contenidos
-                                  INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
-                                  WHERE user.nick_usu = ?",[$nick_usu]);
+       $apuntesUser = DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+       FROM tbl_contenidos content
+       INNER JOIN tbl_usuario users ON content.id_usu = users.id
+       LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+       LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+       LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+       INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+       INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+       INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+       INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+       WHERE users.nick_usu = ?
+       GROUP BY id_content",[$nick_usu]);
         return view('perfil',compact('perfilUser','apuntesUser'));
     }
 
@@ -143,5 +155,39 @@ class UsuarioController extends Controller
             LEFT JOIN tbl_comentarios ON tbl_comentarios.id = tbl_denuncias.id_comentario
         )denuncia2 on denuncia2.id_denuncia=denuncia1.id");
         return view('moderadorView', compact('moderador'));
+    }
+
+    //Actualizar Perfil
+    public function ActualizarPerfil(Request $request){
+        if (session()->get('user')) {
+            $user = session()->get('user');
+            $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
+            INNER JOIN tbl_centro centro ON centro.id = user.id_centro
+            WHERE user.id = ?",[$user->id]);
+            $centros = DB::select("SELECT * FROM tbl_centro");
+            return response()->json(array("user"=>$dataUser,"centros"=>$centros));
+        }
+    }
+
+    public function ActualizarPerfilPut(Request $request){
+        $user = session()->get('user');
+        $NombreCentro = $request['nombre_centro'];
+        $idCentro = DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$NombreCentro]);
+        try {
+            DB::beginTransaction();
+            if($request['contra_usu'] == NULL){
+                DB::update("UPDATE tbl_usuario SET nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, id_centro = ?  WHERE id = ?",[$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],$idCentro[0]->id,$user->id]);
+            }else{
+                DB::update("UPDATE tbl_usuario SET nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, contra_usu = ?, id_centro=?  WHERE id = ?",[$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],md5($request["contra_usu"]),$idCentro[0]->id,$user->id]);
+            }
+            $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
+            INNER JOIN tbl_centro centro ON centro.id = user.id_centro
+            WHERE user.id = ?",[$user->id]);
+            DB::commit();
+            return response()->json(array('resultado'=> "OK",'user'=>$dataUser));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(array('resultado'=>"NOK: ".$e->getMessage()));
+        }
     }
 }

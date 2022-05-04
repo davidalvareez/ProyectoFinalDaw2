@@ -47,7 +47,7 @@
 
     <!--APUNTES MÁS RECIENTES-->
     <div class="title">
-        <h2>Los mas nuevos</h2>
+        <h2>Los más nuevos</h2>
     </div>
     <div class="region-news">
         <div class="content-news">
@@ -147,7 +147,7 @@
 
     <!--APUNTES MÁS POPULARES-->
     <div class="title">
-        <h2>Mas populares</h2>
+        <h2>Los más populares</h2>
     </div>
     <div class="region-relationated">
         <div class="content-relationated">

@@ -33,16 +33,50 @@ function llamadaAjax() {
     return xmlhttp;
 }
 
+function selectCurso() {
+    let form = document.getElementById("formSubirApuntes");
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    formData.append('nombre_centro', form[0].value);
+    let ajax = llamadaAjax();
+    ajax.open("POST", "misApuntes/centro", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            let respuesta = JSON.parse(this.responseText);
+            //Select de curso
+            let selectCursoFilter = `<option value="">--</option>`
+            for (let i = 0; i < respuesta.cursos.length; i++) {
+                selectCursoFilter += `<option value="${respuesta.cursos[i].nombre_curso}">${respuesta.cursos[i].nombre_curso}`;
+            }
+            form[1].innerHTML = selectCursoFilter;
+            //Select de asignatura
+            let selectAsignaturaFilter = `<option value="">--</option>`
+            for (let i = 0; i < respuesta.asignaturas.length; i++) {
+                selectAsignaturaFilter += `<option value="${respuesta.asignaturas[i].nombre_asignatura}">${respuesta.asignaturas[i].nombre_asignatura}`;
+            }
+            form[2].innerHTML = selectAsignaturaFilter;
+
+            //Select de tema
+            let selectTemaFilter = `<option value="">--</option>`
+            for (let i = 0; i < respuesta.temas.length; i++) {
+                selectTemaFilter += `<option value="${respuesta.temas[i].nombre_tema}">${respuesta.temas[i].nombre_tema}`;
+            }
+            form[5].innerHTML = selectTemaFilter;
+        }
+    }
+    ajax.send(formData);
+}
 
 function selectAsignatura() {
     let form = document.getElementById("formSubirApuntes");
     let token = document.getElementById('token').getAttribute("content");
-    let id_centro = document.getElementById('id_centro').value;
     let formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
-    formData.append('nombre_curso', form[0].value);
-    formData.append('id_centro', id_centro);
+    formData.append('nombre_curso', form[1].value);
+    formData.append('nombre_centro', form[0].value);
     let ajax = llamadaAjax();
     ajax.open("POST", "misApuntes/curso", true);
     ajax.onreadystatechange = function() {
@@ -53,14 +87,14 @@ function selectAsignatura() {
             for (let i = 0; i < respuesta.asignaturas.length; i++) {
                 selectAsignaturaFilter += `<option value="${respuesta.asignaturas[i].nombre_asignatura}">${respuesta.asignaturas[i].nombre_asignatura}`;
             }
-            form[1].innerHTML = selectAsignaturaFilter;
+            form[2].innerHTML = selectAsignaturaFilter;
 
             //Select de tema
             let selectTemaFilter = `<option value="">--</option>`
             for (let i = 0; i < respuesta.temas.length; i++) {
                 selectTemaFilter += `<option value="${respuesta.temas[i].nombre_tema}">${respuesta.temas[i].nombre_tema}`;
             }
-            form[4].innerHTML = selectTemaFilter;
+            form[5].innerHTML = selectTemaFilter;
         }
     }
     ajax.send(formData);
@@ -69,12 +103,12 @@ function selectAsignatura() {
 function selectTema() {
     let form = document.getElementById("formSubirApuntes");
     let token = document.getElementById('token').getAttribute("content");
-    let id_centro = document.getElementById('id_centro').value;
     let formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
-    formData.append('nombre_asignatura', form[1].value);
-    formData.append('id_centro', id_centro);
+    formData.append('nombre_asignatura', form[2].value);
+    formData.append('nombre_curso', form[1].value);
+    formData.append('nombre_centro', form[0].value);
     let ajax = llamadaAjax();
     ajax.open("POST", "misApuntes/asignatura", true);
     ajax.onreadystatechange = function() {
@@ -84,7 +118,7 @@ function selectTema() {
             for (let i = 0; i < respuesta.length; i++) {
                 selectTemaFilter += `<option value="${respuesta[i].nombre_tema}">${respuesta[i].nombre_tema}`;
             }
-            form[4].innerHTML = selectTemaFilter;
+            form[5].innerHTML = selectTemaFilter;
         }
     }
     ajax.send(formData);
