@@ -270,6 +270,18 @@
   text-align: center;
 }
 
+.title-text {
+  padding-left: 90px;
+}
+
+.table th,
+.table td,
+.table tr {
+  border-top: none !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
 @-webkit-keyframes aniGrad {
   0% {
     background-position: 0% 52%;
@@ -372,19 +384,20 @@ h4 {
   background-image: url("../../media/misapuntes/fondo2.png");
   background-size: cover;
   background-repeat: no-repeat;
-  overflow-y: hidden;
 }
 
 .misapuntes-page main .region1 {
+  padding-left: 90px;
   margin-bottom: 60px;
 }
 
 .misapuntes-page main .region1 .content-region .glassland .content-glassland .misapuntes-content-glassland {
-  width: 99.9vw;
+  width: 90vw;
   padding: 2%;
 }
 
 .misapuntes-page main .region2 {
+  padding-left: 90px;
   margin-bottom: 60px;
 }
 
@@ -393,6 +406,6 @@ h4 {
 }
 
 .misapuntes-page main .region2 .content-region .glassland .content-glassland .misapuntes-content-glassland {
-  width: 99.9vw;
+  width: 90vw;
 }
 /*# sourceMappingURL=misapuntes.css.map */

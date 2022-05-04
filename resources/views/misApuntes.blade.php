@@ -23,7 +23,9 @@
         {{-- <form action='{{url('logout')}}' method='get'>
             <button class="btn btn-secondary">Logout</button>
         </form> --}}
-        <h3>Subir nuevo apunte</h3>
+        <div class="title-text">
+            <h3>Subir nuevo apunte</h3>
+        </div>
         <div class="region region1">
             <div class="content-region">
                 <div class="glassland">
@@ -72,7 +74,7 @@
                                         <input class="inputbtn" type="text" name="text_tema" id="text_tema">
                                     </div>
                                     <div  style="float: left">
-                                        <input type="file" name="apuntes" id="">
+                                        <input class="inputbtn" type="file" name="apuntes" id="">
                                     </div>
                                     <input type="hidden" id="id_centro" name="id_centro" value="{{$user->id_centro}}">
                                     <div>
@@ -87,7 +89,9 @@
         </div>
         
         <div class="">
-            <h3>Mis Apuntes</h3>
+            <div class="title-text">
+                <h3>Mis Apuntes</h3>
+            </div>
             <div class="region region2">
                 <div class="content-region">
                     <div class="glassland">
@@ -95,15 +99,16 @@
                             <div class="misapuntes-content-glassland">
                                 <table class="table" id="content">
                                     <tr>
-                                        <th scope="col">Documento</th>
-                                        <th scope="col">Fecha Publicacion</th>
+                                        <th style="text-align: center"><b>Documento</b></th>
+                                        <th style="text-align: center"><b>Fecha Publicacion</b></th>
+                                        <th></th>
                                     </tr>
                                     @foreach($select as $apuntes)
                                     <tr>
                                         <td>{{$apuntes->nombre_contenido}}{{$apuntes->extension_contenido}}</td>
                                         <td>{{$apuntes->fecha_publicacion_contenido}}</td>
                                         <td>
-                                            <button class="btn btn-light" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>
+                                            <button class="btn btn-danger" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>
                                         </td>
                                     </tr>
                                     @endforeach
