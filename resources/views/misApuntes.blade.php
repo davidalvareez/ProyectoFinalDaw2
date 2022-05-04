@@ -32,7 +32,7 @@
                             <div id="divFormSubirApuntes" class="">
                                 <form onsubmit="subirApuntes(); return false;" id="formSubirApuntes" enctype="multipart/form-data">
                                     <div style="float: left">
-                                        <select class="inputbtn-selec" name="centro" onchange="selectCentro();">
+                                        <select class="inputbtn-selec" name="centro" onchange="selectCurso();">
                                             <option value="" selected disabled>Seleccionar centro</option>
                                             @foreach($selectCentro as $centro)
                                                 <option value="{{$centro->nombre_centro}}">{{$centro->nombre_centro}}</option>
@@ -74,7 +74,6 @@
                                     <div  style="float: left">
                                         <input type="file" name="apuntes" id="">
                                     </div>
-                                    <input type="hidden" id="id_centro" name="id_centro" value="{{$user->id_centro}}">
                                     <div>
                                         <input type="submit" value="Subir apunte" class="btn-glass">
                                     </div>

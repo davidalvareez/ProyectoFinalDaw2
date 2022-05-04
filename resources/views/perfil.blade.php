@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!----------------------------------- AlertifyJS ------------------------------------------------------->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <script src="{!! asset('js/perfil/miPerfilAjax.js') !!}"></script>
     <script src="{!! asset('js/buscador/js.js') !!}"></script>
     <link rel="stylesheet" href="{!!asset('css/miPerfil/styles.css')!!}">
-    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <title>Mi Perfil</title>
 </head>
 <body class="mi-perfil">
@@ -29,11 +33,13 @@
                 <div class="region-menu">
                     <div class="content-menu">
                         <h2>INFORMACIÓN PERSONAL</h2>
-                        <div class="menu-info-persona" id="menu-info-persona">
-                            <div class="div-info">{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</div>
-                            <div class="div-info">{{$perfilUser[0]->fecha_nac_usu}}</div>
-                            <div class="div-info">{{$perfilUser[0]->correo_usu}}</div>
-                            <div class="div-info">{{$perfilUser[0]->nombre_centro}}</div>
+                        <div class="menu-info-persona">
+                            <div id="menu-info-persona">
+                                <div class="div-info">{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</div>
+                                <div class="div-info">{{$perfilUser[0]->fecha_nac_usu}}</div>
+                                <div class="div-info">{{$perfilUser[0]->correo_usu}}</div>
+                                <div class="div-info">{{$perfilUser[0]->nombre_centro}}</div>
+                            </div>
                             @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                                 <button class="btn-glass" onclick="modalDatosUser();">Editar información</button>
                             @endif
@@ -171,7 +177,7 @@
         <!--- Aqui Empieza El Modal Actualizar--->
         <div class="modal hidden" id="modalActualizar">
             <div class="modalBox" id="modalBox">
-
+                
             </div>
         </div>
         <!--- Aqui Termina El Modal Actualizar--->

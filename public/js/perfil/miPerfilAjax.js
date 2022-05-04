@@ -56,7 +56,7 @@ function modalDatosUser() {
                 recarga += `
                     <div class="item etiqueta">
                         <div class="boton-item">
-                            <form onsubmit="actualizarUser();return false;" class="form-mod-perfil" id="editar">
+                            <form method="post" onsubmit="actualizarUser(); return false;" class="form-mod-perfil" id="editarPerfil">
                                 <label>Nombre</label>
                                 <input type="text" class="nombre-etiqueta-crear" name="nombre_usu" value="${respuesta.user[i].nombre_usu}" placeholder="Nombre...">
                                 <label>Apellidos</label>
@@ -70,9 +70,7 @@ function modalDatosUser() {
                                 <label>Centro</label>
                                 <input list="centros" autocomplete="off" name="nombre_centro" value="${respuesta.user[i].nombre_centro}" />
                                 <datalist id="centros">`;
-
                 for (z in respuesta.centros) {
-                    console.log(respuesta.centros[z])
                     recarga += `<option value="${respuesta.centros[z].nombre_centro}">`
                 }
                 recarga += `</datalist>
@@ -95,13 +93,30 @@ function modalDatosUser() {
 function actualizarUser() {
     let contenedor = document.getElementById("menu-info-persona");
     let token = document.getElementById('token').getAttribute("content");
-    let formData = new FormData(document.getElementById("editar"));
+    let formData = new FormData(document.getElementById("editarPerfil"));
     formData.append('_token', token);
     formData.append('_method', 'PUT');
+    let ajax = llamadaAjax();
     ajax.open("POST", "actualizarPUT", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
+            if (respuesta.resultado == "OK") {
+                let recarga = "";
+                for (let i = 0; i < respuesta.user.length; i++) {
+                    recarga += `
+                    <div class="div-info">${respuesta.user[i].nombre_usu} ${respuesta.user[0].apellido_usu}</div>
+                    <div class="div-info">${respuesta.user[i].fecha_nac_usu}</div>
+                    <div class="div-info">${respuesta.user[i].correo_usu}</div>
+                    <div class="div-info">${respuesta.user[i].nombre_centro}</div>`;
+                }
+                alertify.success("Información cambiada correctamente");
+                contenedor.innerHTML = recarga;
+                cerrarModal();
+            } else {
+                console.log(respuesta.resultado)
+                alertify.error("Ha ocurrido un error");
+            }
         }
     }
     ajax.send(formData)
