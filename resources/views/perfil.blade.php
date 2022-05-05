@@ -26,7 +26,7 @@
                     <div class="content-header">
                         <button class="btn-glass" onclick="window.location.href='{{url('buscador')}}'">Inicio</button>
                         <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Mis apuntes</button>
-                        <button class="btn-glass">Configacion</button>
+                        <button class="btn-glass" onclick="openModalConfig();getConfigUser();">Configuración</button>
                         <button class="btn-glass" onclick="window.location.href='{{url('logout')}}'">Cerrar sesion</button>
                     </div>
                 </div>
@@ -49,10 +49,10 @@
                 <div class="region-avatar">
                     <div class="content-avatar">
                         <div class="region-foto">
-                            <div class="content-foto">
-                                <img class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
-                                <a class="add-button" href="{{url('')}}"><span class="fa-solid fa-pencil"></span></a>
-                                <h1 class="user-nickname">{{$perfilUser[0]->nick_usu}}</h1>
+                            <div class="content-foto" >
+                                <img id ="imgAvatar" class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
+                                    <a class="add-button" onclick="modalbox();return false;"><span class="fa-solid fa-pencil"></span></a>
+                                <h1 class="user-nickname" id="NickName">{{$perfilUser[0]->nick_usu}}</h1>
                             </div>
                         </div>
                         <div class="region-datos">
@@ -176,11 +176,44 @@
         </div>
         <!--- Aqui Empieza El Modal Actualizar--->
         <div class="modal hidden" id="modalActualizar">
-            <div class="modalBox" id="modalBox">
-                
+            <div class="modal-content" id="modalBox">
+
             </div>
         </div>
         <!--- Aqui Termina El Modal Actualizar--->
+        <!--- Aqui Empieza El Modal Configuración--->
+        <div class="modal2" id="modalConfiguracion">
+            <div class="modal-content" id="modalBoxConfiguracion">
+
+            </div>
+        </div>
+        <!--- Aqui Empieza El Modal Configuración--->
+        <!--- Aqui Empieza El Modal Actualizar Avatar--->
+        <div id="myModal" class="modal2">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal();">&times;</span>
+                <br><br>
+                <form id="editarAvatar" onsubmit="actualizarAvatarUsu();return false;" enctype="multipart/form-data">
+                    <h1>Escoge tu avatar</h1>
+                    <br>
+                    <p style="float: left; padding-left:75px">Selecciona un avatar predefinido:</p>
+                    <br>
+                    <div class="grid">
+                        @foreach($avatares as $avatar)
+                        <div>
+                            <button class="elegiravatar" onclick="avatarSelected('{{$avatar->img_avatar}}'); chBackcolor(this);return false;"><img src={{asset('storage').'/'.$avatar->img_avatar}} width="100px" height="100px"></button>
+                        </div>
+                        @endforeach
+                    </div>
+                    <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
+                    <input type="file" name="img_avatar_usu2" id="img_avatar_usu">
+                    <br><br>
+                    <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema">
+                    <button  type="submit" class="aceptarbtn" value="Aceptar">Aceptar</button>
+                </form>
+            </div>
+        </div>
+        <!--- Aqui Termina El Modal Actualizar Avatar--->
     </main>
 </body>
 </html>
