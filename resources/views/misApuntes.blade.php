@@ -23,7 +23,9 @@
         {{-- <form action='{{url('logout')}}' method='get'>
             <button class="btn btn-secondary">Logout</button>
         </form> --}}
-        <h3>Subir nuevo apunte</h3>
+        <div class="title-text">
+            <h3>Subir nuevo apunte</h3>
+        </div>
         <div class="region region1">
             <div class="content-region">
                 <div class="glassland">
@@ -31,51 +33,66 @@
                         <div class="misapuntes-content-glassland">
                             <div id="divFormSubirApuntes" class="">
                                 <form onsubmit="subirApuntes(); return false;" id="formSubirApuntes" enctype="multipart/form-data">
-                                    <div style="float: left">
-                                        <select class="inputbtn-selec" name="centro" onchange="selectCurso();">
-                                            <option value="" selected disabled>Seleccionar centro</option>
-                                            @foreach($selectCentro as $centro)
-                                                <option value="{{$centro->nombre_centro}}">{{$centro->nombre_centro}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div style="float: left">
-                                        <select class="inputbtn-selec" name="curso" onchange="selectAsignatura();">
-                                            <option value="" selected disabled>Seleccionar curso</option>
-                                            @foreach($selectCurso as $curso)
-                                                <option value="{{$curso->nombre_curso}}">{{$curso->nombre_curso}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div style="float: left">
-                                        <select class="inputbtn-selec" name="asignatura" onchange="selectTema();">
-                                            <option value="" selected disabled>Seleccionar asignatura</option>
-                                            @foreach($selectAsignatura as $asignatura)
-                                                <option value="{{$asignatura->nombre_asignatura}}">{{$asignatura->nombre_asignatura}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div style="float: left">
-                                        <label for="">¿Nuevo tema?</label>
-                                        <input type="radio" name="newTema" id="radioYes" value="si">Si
-                                        <input type="radio" name="newTema" id="radioNo" value="no">No
-                                    </div>
-                                    <div id="selectTema" style="display: none; float: left;">
-                                        <select name="select_tema" class="inputbtn-selec">
-                                            <option value="" selected disabled>Seleccionar tema</option>
-                                            @foreach($selectTema as $tema)
-                                                <option value="{{$tema->nombre_tema}}">{{$tema->nombre_tema}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div id="textNewTema" style="display: none; float: left;">
-                                        <input class="inputbtn" type="text" name="text_tema" id="text_tema">
-                                    </div>
-                                    <div  style="float: left">
-                                        <input type="file" name="apuntes" id="">
+                                    <div style="float: left; width:100%">
+                                        <div class="padding-subirapuntes">
+                                            <label for="">Seleccionar centro</label>
+                                            <br>
+                                            <input class="inputbtn" name="centro" autocomplete="off" list="centros" placeholder="SELECCIONAR CENTRO" onchange="selectCurso();">
+                                            <datalist id="centros">
+                                                @foreach($selectCentro as $centro)
+                                                    <option value="{{$centro->nombre_centro}}">{{$centro->nombre_centro}}</option>
+                                                @endforeach
+                                            </datalist>
+                                        </div>
+                                        <div class="padding-subirapuntes">
+                                            <label for="">Seleccionar curso</label>
+                                            <br>
+                                            <select disabled class="inputbtn-selec" name="curso" autocomplete="off" list="cursos" placeholder="Seleccionar curso" onchange="selectAsignatura();">
+                                                <option value="" selected>--</option>
+                                                {{-- @foreach($selectCurso as $curso)
+                                                    <option value="{{$curso->nombre_curso}}">{{$curso->nombre_curso}}</option>
+                                                @endforeach --}}
+                                            </select>
+                                        </div>
+                                        <div class="padding-subirapuntes">
+                                            <label for="">Seleccionar asignatura</label>
+                                            <br>
+                                            <select disabled class="inputbtn-selec" name="asignatura" autocomplete="off" list="asignaturas" placeholder="Seleccionar asignatura" onchange="selectTema();">
+                                                <option value="" selected>--</option>
+                                                {{-- @foreach($selectAsignatura as $asignatura)
+                                                    <option value="{{$asignatura->nombre_asignatura}}">{{$asignatura->nombre_asignatura}}</option>
+                                                @endforeach --}}
+                                            </select>
+                                        </div>
+                                        <div class="padding-subirapuntes">
+                                            <label for="">¿Nuevo tema? </label>
+                                            <input type="radio" name="newTema" id="radioYes" value="si">Si
+                                            <input type="radio" name="newTema" id="radioNo" value="no" checked>No
+                                            <br>
+                                            <div>
+                                                <div id="selectTema" style="display: ; float: left;">
+                                                    <select disabled name="select_tema" class="inputbtn-selec" autocomplete="off" list="temas" placeholder="Seleccionar tema">
+                                                        <option value="" selected>--</option>
+                                                        {{-- @foreach($selectTema as $tema)
+                                                            <option value="{{$tema->nombre_tema}}">{{$tema->nombre_tema}}</option>
+                                                        @endforeach --}}
+                                                    </select>
+                                                </div>
+                                                <div id="textNewTema" style="display: none; float: left;">
+                                                    <input class="inputbtn" type="text" name="text_tema" id="text_tema" placeholder="Escribe el tema">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="padding-subirapuntes">
+                                            <label for="">Seleccionar archivo</label>
+                                            <br>
+                                            <input class="inputbtn-file" type="file" name="apuntes" id="">
+                                        </div>
                                     </div>
                                     <div>
-                                        <input type="submit" value="Subir apunte" class="btn-glass">
+                                        <div class="padding-subirapuntes-submit">
+                                            <input type="submit" value="Subir apunte" class="btn-glass">
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -86,7 +103,9 @@
         </div>
         
         <div class="">
-            <h3>Mis Apuntes</h3>
+            <div class="title-text">
+                <h3>Mis Apuntes</h3>
+            </div>
             <div class="region region2">
                 <div class="content-region">
                     <div class="glassland">
@@ -94,15 +113,16 @@
                             <div class="misapuntes-content-glassland">
                                 <table class="table" id="content">
                                     <tr>
-                                        <th scope="col">Documento</th>
-                                        <th scope="col">Fecha Publicacion</th>
+                                        <th style="text-align: center"><b>Documento</b></th>
+                                        <th style="text-align: center"><b>Fecha Publicacion</b></th>
+                                        <th></th>
                                     </tr>
                                     @foreach($select as $apuntes)
                                     <tr>
                                         <td>{{$apuntes->nombre_contenido}}{{$apuntes->extension_contenido}}</td>
                                         <td>{{$apuntes->fecha_publicacion_contenido}}</td>
                                         <td>
-                                            <button class="btn btn-light" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>
+                                            <button class="btn btn-danger" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>
                                         </td>
                                     </tr>
                                     @endforeach
