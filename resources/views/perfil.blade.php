@@ -35,10 +35,10 @@
                         <h2>INFORMACIÓN PERSONAL</h2>
                         <div class="menu-info-persona">
                             <div id="menu-info-persona">
-                                <div class="div-info">{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</div>
-                                <div class="div-info">{{$perfilUser[0]->fecha_nac_usu}}</div>
-                                <div class="div-info">{{$perfilUser[0]->correo_usu}}</div>
-                                <div class="div-info">{{$perfilUser[0]->nombre_centro}}</div>
+                                <div class="div-info"><h4>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h3></div>
+                                <div class="div-info"><h4>{{$perfilUser[0]->fecha_nac_usu}}</h4></div>
+                                <div class="div-info"><h4>{{$perfilUser[0]->correo_usu}}</h4></div>
+                                <div class="div-info"><h4>{{$perfilUser[0]->nombre_centro}}</h4></div>
                             </div>
                             @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                                 <button class="btn-glass" onclick="modalDatosUser();">Editar información</button>
@@ -52,15 +52,15 @@
                             <div class="content-foto">
                                 <img class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
                                 <a class="add-button" href="{{url('')}}"><span class="fa-solid fa-pencil"></span></a>
-                                <h1 class="user-nickname">{{$perfilUser[0]->nick_usu}}</h1>
+                                <h1 class="user-nickname"><h3>{{$perfilUser[0]->nick_usu}}</h3>
                             </div>
                         </div>
                         <div class="region-datos">
                             <div class="valoracion">
-                                <p>{{$perfilUser[0]->valoracion}}*</p>
+                                <h4>{{$perfilUser[0]->valoracion}}*</h4>
                             </div>
                             <div class="descargas">
-                                <p>{{$perfilUser[0]->descargas}} descargas</p>
+                                <h4>{{$perfilUser[0]->descargas}} descargas</h4>
                             </div>
                         </div>
                     </div>

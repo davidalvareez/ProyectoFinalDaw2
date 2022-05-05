@@ -548,7 +548,7 @@ main {
                     display: grid;
                     grid-gap: 0px 0px;
                     -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
-                    grid-template-columns: repeat(auto-fit, minmax(199px, 1fr));
+                    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
                 }
             }
         }
