@@ -46,24 +46,27 @@ function selectCurso() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
             //Select de curso
-            let selectCursoFilter = `<option value="">--</option>`
+            form[1].disabled = false;
+            let selectCursoFilter = `<option value="" disabled selected>SELECCIONAR CURSO</option>`
             for (let i = 0; i < respuesta.cursos.length; i++) {
                 selectCursoFilter += `<option value="${respuesta.cursos[i].nombre_curso}">${respuesta.cursos[i].nombre_curso}`;
             }
             form[1].innerHTML = selectCursoFilter;
             //Select de asignatura
-            let selectAsignaturaFilter = `<option value="">--</option>`
-            for (let i = 0; i < respuesta.asignaturas.length; i++) {
-                selectAsignaturaFilter += `<option value="${respuesta.asignaturas[i].nombre_asignatura}">${respuesta.asignaturas[i].nombre_asignatura}`;
-            }
-            form[2].innerHTML = selectAsignaturaFilter;
+
+            // let selectAsignaturaFilter = `<option value="">--</option>`
+            // for (let i = 0; i < respuesta.asignaturas.length; i++) {
+            //     selectAsignaturaFilter += `<option value="${respuesta.asignaturas[i].nombre_asignatura}">${respuesta.asignaturas[i].nombre_asignatura}`;
+            // }
+            // form[2].innerHTML = selectAsignaturaFilter;
 
             //Select de tema
-            let selectTemaFilter = `<option value="">--</option>`
-            for (let i = 0; i < respuesta.temas.length; i++) {
-                selectTemaFilter += `<option value="${respuesta.temas[i].nombre_tema}">${respuesta.temas[i].nombre_tema}`;
-            }
-            form[5].innerHTML = selectTemaFilter;
+
+            // let selectTemaFilter = `<option value="">--</option>`
+            // for (let i = 0; i < respuesta.temas.length; i++) {
+            //     selectTemaFilter += `<option value="${respuesta.temas[i].nombre_tema}">${respuesta.temas[i].nombre_tema}`;
+            // }
+            // form[5].innerHTML = selectTemaFilter;
         }
     }
     ajax.send(formData);
@@ -83,18 +86,20 @@ function selectAsignatura() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
             //Select de asignatura
-            let selectAsignaturaFilter = `<option value="">--</option>`
+            form[2].disabled = false;
+            let selectAsignaturaFilter = `<option value="" disabled selected>SELECCIONAR ASIGNATURA</option>`
             for (let i = 0; i < respuesta.asignaturas.length; i++) {
                 selectAsignaturaFilter += `<option value="${respuesta.asignaturas[i].nombre_asignatura}">${respuesta.asignaturas[i].nombre_asignatura}`;
             }
             form[2].innerHTML = selectAsignaturaFilter;
 
             //Select de tema
-            let selectTemaFilter = `<option value="">--</option>`
-            for (let i = 0; i < respuesta.temas.length; i++) {
-                selectTemaFilter += `<option value="${respuesta.temas[i].nombre_tema}">${respuesta.temas[i].nombre_tema}`;
-            }
-            form[5].innerHTML = selectTemaFilter;
+
+            // let selectTemaFilter = `<option value="">--</option>`
+            // for (let i = 0; i < respuesta.temas.length; i++) {
+            //     selectTemaFilter += `<option value="${respuesta.temas[i].nombre_tema}">${respuesta.temas[i].nombre_tema}`;
+            // }
+            // form[5].innerHTML = selectTemaFilter;
         }
     }
     ajax.send(formData);
@@ -114,7 +119,8 @@ function selectTema() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
-            let selectTemaFilter = `<option value="">--</option>`
+            form[5].disabled = false;
+            let selectTemaFilter = `<option value="" disabled selected>SELECCIONAR TEMA</option>`
             for (let i = 0; i < respuesta.length; i++) {
                 selectTemaFilter += `<option value="${respuesta[i].nombre_tema}">${respuesta[i].nombre_tema}`;
             }

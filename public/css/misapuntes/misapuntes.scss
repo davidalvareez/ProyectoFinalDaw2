@@ -205,18 +205,30 @@
 }
 
 .inputbtn {
+    width: 290px;
     box-sizing: border-box;
-    padding: 10px 30px 10px 10px;
-    width: 90%;
+    padding: 10px 30px 11px 10px;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     margin-bottom: 20px;
 }
 
+.inputbtn-file {
+    width: 290px;
+    color: black;
+    background-color: rgb(250, 250, 250);
+    margin-bottom: 20px;
+    margin-top: 2px;
+    padding: 6px 30px 10px 10px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    border: 1px solid rgb(216, 215, 215);
+    box-sizing: border-box;
+}
+
 .inputbtn-selec {
+    width: 290px;
     box-sizing: border-box;
     padding: 10px 30px 10px 10px;
-    width: 90%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     margin-bottom: 20px;
@@ -229,10 +241,31 @@
     }
 }
 
+.padding-subirapuntes {
+    float: left;
+    margin: 20px;
+}
+
+.padding-subirapuntes-submit {
+    text-align: center;
+}
+
 .menu {
     width: 100%;
     padding: 20px 0px 90px 0px;
     text-align: center;
+}
+
+.title-text {
+    padding-left: 90px;
+}
+
+.table th,
+.table td,
+.table tr {
+    border-top: none !important;
+    text-align: center;
+    vertical-align: middle;
 }
 
 @-webkit-keyframes aniGrad {
@@ -377,9 +410,7 @@ h4 {
     background-image: url("../../media/misapuntes/fondo2.png");
     background-size: cover;
     background-repeat: no-repeat;
-    overflow-y: hidden;
     main {
-        //@extend .flex;
         .region {
             .glassland {
                 @extend .glass2;
@@ -389,6 +420,7 @@ h4 {
             }
         }
         .region1 {
+            padding-left: 90px;
             margin-bottom: 60px;
             @extend .flex;
             .content-region {
@@ -396,7 +428,7 @@ h4 {
                     .content-glassland {
                         //@extend .flex;
                         .misapuntes-content-glassland {
-                            width: 99.9vw;
+                            width: 90vw;
                             padding: 2%;
                         }
                     }
@@ -404,6 +436,7 @@ h4 {
             }
         }
         .region2 {
+            padding-left: 90px;
             margin-bottom: 60px;
             @extend .flex;
             .content-region {
@@ -412,7 +445,7 @@ h4 {
                         //@extend .flex;
                         width: 100%;
                         .misapuntes-content-glassland {
-                            width: 99.9vw;
+                            width: 90vw;
                         }
                     }
                 }

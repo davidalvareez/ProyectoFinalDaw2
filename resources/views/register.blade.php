@@ -114,21 +114,16 @@
                                             </datalist>
                                         </div>
                                         <div>
-                                            <div>
-                                                <div>
-                                                    <p style="float: left">No encuntras tu centro?</p>
-                                                </div>
-                                                <div>
-                                                    <a style="float: left" href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=[INSERTE NOMBRE DEL CENTRO] no está en el selector de centros.">
-                                                        <p>Envíanos una petición</p>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>
                                             @error('centro')
                                             <p class="errortext">{{$message}}</p>
                                             @enderror
+                                        </div>
+                                        <div>
+                                            <div style="float: left">
+                                                <a href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=(INSERTE NOMBRE DEL CENTRO) no se encuentra en el selector de centros.">
+                                                    <p>No encuntras tu centro?</p>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -144,8 +139,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-                                <br>
                                 <div class="one-column">
                                     <div class="menudos">
                                         <h4 class="pizq">Contraseña</h4>

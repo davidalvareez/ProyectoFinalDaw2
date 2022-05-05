@@ -801,7 +801,111 @@ main .content-region .region-mis-apuntes .content-mis-apuntes {
   height: 100%;
 }
 
+<<<<<<< HEAD
 main .content-region .region-mis-apuntes .content-mis-apuntes h2 {
   padding: 0 0 0 25px;
+=======
+.modal2 {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.aceptarbtn {
+  padding: 10px 10px 10px 10px;
+  width: 50%;
+  border: 0;
+  text-decoration: none;
+  border-radius: 6px;
+  background-color: #12993ccc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.aceptarbtn:hover {
+  background-color: #0e7a30cc;
+}
+
+.grid {
+  padding: 5vh 15vh;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 15px 7px;
+  -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.elegiravatar {
+  cursor: pointer;
+}
+
+.elegiravatar:hover {
+  background-color: rgba(0, 0, 0, 0.608);
+}
+
+.elegiravatar:active {
+  border: 1px solid #000;
+}
+
+:root {
+  --first-color: #19c673;
+  --second-color: #05a357;
+  --third-color: #f6f0ea;
+  --fourth-color: #7319c6;
+  --fifth-color: #c67319;
+  --sixth-color: #19c3c6;
+  --seventh-color: #19c61d;
+  --eightth-color: #c6196c;
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #eee;
+  --letter-grey: #797c7e;
+  --font1: Poppins;
+>>>>>>> main
 }
 /*# sourceMappingURL=styles.css.map */
