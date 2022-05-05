@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <!----------------------------------- AlertifyJS ------------------------------------------------------->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
@@ -50,8 +47,11 @@
                     <div class="content-avatar">
                         <div class="region-foto">
                             <div class="content-foto">
-                                <img class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
-                                <a class="add-button" href="{{url('')}}"><span class="fa-solid fa-pencil"></span></a>
+                                <div class="content-img">
+                                    <img class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
+                                    <a class="add-button" href="{{url('')}}"><span class="fa-solid fa-pencil"></span></a>
+                                </div>
+                               
                                 <h1 class="user-nickname"><h3>{{$perfilUser[0]->nick_usu}}</h3>
                             </div>
                         </div>
