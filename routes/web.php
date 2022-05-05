@@ -52,6 +52,8 @@ Route::put('perfil/actualizarPUT',[UsuarioController::class,'ActualizarPerfilPut
 
 Route::post('perfil/getConfigUser',[UsuarioController::class,'getConfigUser']);
 
+Route::post('perfil/changeConfigUser',[UsuarioController::class,'changeConfigUser']);
+
 Route::put('perfil/actualizarAvatar',[UsuarioController::class,'actualizarAvatar']);
 
 //Pagina de apuntes
