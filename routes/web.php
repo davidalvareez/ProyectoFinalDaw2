@@ -49,6 +49,11 @@ Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
 Route::post('perfil/actualizar',[UsuarioController::class,'ActualizarPerfil']);
 
 Route::put('perfil/actualizarPUT',[UsuarioController::class,'ActualizarPerfilPut']);
+
+Route::post('perfil/getConfigUser',[UsuarioController::class,'getConfigUser']);
+
+Route::put('perfil/actualizarAvatar',[UsuarioController::class,'actualizarAvatar']);
+
 //Pagina de apuntes
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
