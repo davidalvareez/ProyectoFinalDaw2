@@ -235,4 +235,12 @@ class UsuarioController extends Controller
             return response()->json(array("configuration" => $configuration,"cursos"=>$cursos));
         }
     }
+    public function changeConfigUser(Request $request){
+        $user = session()->get('user');
+        $json = json_decode(file_get_contents(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json')), true);
+        $json["curso"] = $request["nombre_curso"];
+        $modifyJson = json_encode($json);
+        Storage::disk('config-user')->put("user-".$user->id.".json", $modifyJson);
+        return response()->json(array("resultado" => "OK"));
+    }
 }

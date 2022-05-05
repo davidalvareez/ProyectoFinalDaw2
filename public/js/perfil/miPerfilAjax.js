@@ -182,13 +182,12 @@ function actualizarAvatarUsu() {
                 for (let i = 0; i < respuesta.user.length; i++) {
                     recarga += `../storage/${respuesta.user[i].img_avatar}`;
                 }
-                alertify.success("Información cambiada correctamente");
+                alertify.success("Avatar cambiado correctamente");
                 contenedor.src = recarga;
                 closeModal();
             } else {
                 console.log(respuesta.resultado)
                 alertify.error("Ha ocurrido un error");
-                alert(respuesta.resultado);
                 closeModal2();
             }
         }
@@ -201,8 +200,13 @@ function openModalConfig() {
     modalConfiguracion.style.display = "block";
 }
 
+function closeModalConfig() {
+    let modalConfiguracion = document.getElementById("modalConfiguracion");
+    modalConfiguracion.style.display = "none";
+}
+
 function getConfigUser() {
-    let modalConfiguracionRecarga = document.getElementById("modalBoxConfiguracion");
+    let modalConfiguracionRecarga = document.getElementById("modalBoxConfiguracion")
     let token = document.getElementById('token').getAttribute("content");
     let formData = new FormData();
     formData.append('_token', token);
@@ -212,17 +216,22 @@ function getConfigUser() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta);
             let recarga = "";
             recarga += `
-            <span class="close" onclick="closeModal();">&times;</span>
+            <span class="close" onclick="closeModalConfig();">&times;</span>
             <div class="">
                 <div class="">
                     <div class="">
                     <div class="">
                         <div class="">
-                            <form method="post" onsubmit="changeConfigUser(); return false;" class="" id="changeConfig">
-                            <input list="cursos" autocomplete="off" name="nombre_curso" value="${respuesta.configuration}" />
-                            <datalist id="centros">`;
+                            <form method="post" onsubmit="changeConfigUser(); return false;" class="" id="changeConfig">`
+            if (respuesta.configuration == null) {
+                recarga += `<input list="cursos" autocomplete="off" name="nombre_curso"/>`
+            } else {
+                recarga += `<input list="cursos" autocomplete="off" name="nombre_curso" value="${respuesta.configuration}" />`
+            }
+            recarga += `<datalist id="cursos">`;
             for (z in respuesta.cursos) {
                 recarga += `<option value="${respuesta.cursos[z].nombre_curso}">`
             }
@@ -236,4 +245,24 @@ function getConfigUser() {
             modalConfiguracionRecarga.innerHTML = recarga;
         }
     }
+    ajax.send(formData);
+}
+
+function changeConfigUser() {
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData(document.getElementById('changeConfig'));
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    let ajax = llamadaAjax();
+    ajax.open("POST", "changeConfigUser", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            let respuesta = JSON.parse(this.responseText);
+            if (respuesta.resultado == "OK") {
+                alertify.success("Configuracion cambiada correctamente");
+                closeModalConfig();
+            }
+        }
+    }
+    ajax.send(formData);
 }
