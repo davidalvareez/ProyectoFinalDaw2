@@ -234,21 +234,35 @@
 }
 
 .inputbtn {
+  width: 290px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 10px 30px 10px 10px;
-  width: 90%;
+  padding: 10px 30px 11px 10px;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
   margin-bottom: 20px;
 }
 
+.inputbtn-file {
+  width: 290px;
+  color: black;
+  background-color: #fafafa;
+  margin-bottom: 20px;
+  margin-top: 2px;
+  padding: 6px 30px 10px 10px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border: 1px solid #d8d7d7;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .inputbtn-selec {
+  width: 290px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px 30px 10px 10px;
-  width: 90%;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -262,6 +276,15 @@
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
   cursor: pointer;
   background-color: #f0f0f0;
+}
+
+.padding-subirapuntes {
+  float: left;
+  margin: 20px;
+}
+
+.padding-subirapuntes-submit {
+  text-align: center;
 }
 
 .menu {
