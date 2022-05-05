@@ -56,14 +56,23 @@ function multiplyFilter() {
                     <div class="resultados">
                         <div class="owl-carousel owl-carousel-3">`;
                 for (let i = 0; i < respuesta.length; i++) {
+                    let nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
+                    let nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
+                    let nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
+                    let nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
+                    let nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
                     recarga += `<div class="card resultado card-resultado">
                                 <div class="container">
                                     <div class="front-card">
                                         <div class="container-front">
                                             <div class="foto img img-apuntes">
-                                                <div class="container-foto container-img">
-                                                    <img class="img foto prev-apunt" src="media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
-                                                </div>
+                                                <div class="container-foto container-img">`
+                    if (respuesta[i].extension_contenido == ".pdf") {
+                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                    } else {
+                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}" alt="Apuntes">`
+                    }
+                    recarga += `</div>
                                             </div>
                                             <div class="header-apuntes">
                                                 <div class="name-content">
@@ -77,11 +86,13 @@ function multiplyFilter() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="reverse-card" style="background-image: url(media/ejemploApuntes.jpg)">
-        
-                                        <div class="container-reverse">
-        
+                                    </div>`
+                    if (respuesta[i].extension_contenido == ".pdf") {
+                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
+                    } else {
+                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                    }
+                    recarga += `<div class="container-reverse">
                                             <div class="top">
                                                 <div class="user-info left-top">
                                                     <div class="container-info">
@@ -208,15 +219,24 @@ function busquedaAvanzada() {
                                     <div class="resultados">
                                         <div class="owl-carousel owl-carousel-3">`;
                 for (let i = 0; i < respuesta.length; i++) {
+                    let nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
+                    let nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
+                    let nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
+                    let nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
+                    let nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
                     recarga += `<div class="card resultado card-resultado">
                                                     <div class="container">
                                                         <div class="front-card">
                                                             <div class="container-front">
                                                                 <div class="foto img img-apuntes">
-                                                                    <div class="container-foto container-img">
-                                                                        <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
-                                                                        <img class="img foto prev-apunt" src="media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
-                                                                    </div>
+                                                                    <div class="container-foto container-img">`
+                    if (respuesta[i].extension_contenido == ".pdf") {
+                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                    } else {
+                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}" alt="Apuntes">`
+                    }
+
+                    recarga += `</div>
                                                                 </div>
                                                                 <div class="header-apuntes">
                                                                     <div class="name-content">
@@ -230,10 +250,13 @@ function busquedaAvanzada() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-
-                                                        <div class="reverse-card" style="background-image: url(media/ejemploApuntes.jpg)">
-                                                            <div class="container-reverse">
+                                                        </div>`
+                    if (respuesta[i].extension_contenido == ".pdf") {
+                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
+                    } else {
+                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                    }
+                    recarga += `<div class="container-reverse">
                                                                 <div class="top">
                                                                     <div class="user-info left-top">
                                                                         <div class="container-info">
