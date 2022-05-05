@@ -82,8 +82,7 @@
                 <div class="region-mis-apuntes">
                     <div class="content-mis-apuntes">
                         <h2>MIS APUNTES</h2>
-                    </div>
-                    <!--- Aqui Empieza Las Cartas--->
+                                            <!--- Aqui Empieza Las Cartas--->
                     <div class="owl-carousel owl-carousel-4">
                         @foreach($apuntesUser as $recentnotes)
                         <div class="card resultado card-resultado">
@@ -171,6 +170,8 @@
                         @endforeach
                     </div>
                     <!--- Aqui Terminan Las Cartas--->
+                    </div>
+
                 </div>
             </div>
         </div>
