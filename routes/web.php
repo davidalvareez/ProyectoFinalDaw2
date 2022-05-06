@@ -137,4 +137,6 @@ Route::put('admin/asignatura',[CRUDAdminController::class,'actualizarAsignatura'
 
 Route::put('admin/tema',[CRUDAdminController::class,'actualizarTema']);
 
+Route::put('admin/user',[CRUDAdminController::class,'actualizarUsuario']);
+
 //Mapas

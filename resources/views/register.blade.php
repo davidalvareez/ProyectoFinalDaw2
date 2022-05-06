@@ -62,6 +62,12 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @error('nombre_usu')
+                                        <script>
+                                            alertify.error("Falta nombre");
+                                        </script>
+                                    @enderror
+                                </div>
 
                                     <div class="menudos">
                                         <h4 class="pizq">Apellido</h4>
@@ -74,6 +80,11 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @error('apellido_usu')
+                                        <script>
+                                            alertify.error("Falta apellido");
+                                        </script>
+                                    @enderror
                                 </div>
 
                                 <div class="one-column">
@@ -88,6 +99,15 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @error('nick_usu')
+                                        <script>
+                                            let nick_usu = document.getElementById("nick_usu").value;
+                                            if (nick_usu == ""){
+                                                alertify.error("Falta nickname");
+                                            }
+                                        </script>
+                                    @enderror
+                                </div>
 
                                     <div class="menudos">
                                         <h4 class="pizq">Fecha de nacimiento</h4>
@@ -100,6 +120,11 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @error('fecha_nac_usu')
+                                        <script>
+                                            alertify.error("Falta fecha de nacimiento");
+                                        </script>
+                                    @enderror
                                 </div>
 
                                 <div class="one-column">
@@ -126,6 +151,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @error('centro')
+                                        <script>
+                                            alertify.error("Falta especificar centro");
+                                        </script>
+                                    @enderror
+                                </div>
 
                                     <div class="menudos">
                                         <h4 class="pizq">Email</h4>
@@ -138,6 +169,14 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @error('correo_usu')
+                                        <script>
+                                            let correo_usu = document.getElementById("correo_usu").value;
+                                            if (nick_usu == ""){
+                                                alertify.error("Falta email");
+                                            }
+                                        </script>
+                                    @enderror
                                 </div>
                                 <div class="one-column">
                                     <div class="menudos">
@@ -151,18 +190,23 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    
-                                    <div class="menudos">
-                                        <h4 class="pizq">Repetir contraseña</h4>
-                                        <div>
-                                            <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
-                                        </div>
-                                        <div>
-                                            @error('contra_usu_verify')
-                                            <p class="errortext">{{$message}}</p>
-                                            @enderror
-                                        </div>
+                                    @error('contra_usu')
+                                        <script>
+                                            alertify.error("Falta introducir la contraseña");
+                                        </script>
+                                    @enderror
+                                </div>
+                                
+                                <div class="menudos">
+                                    <p class="pizq">Repetir contraseña</p>
+                                    <div>
+                                        <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
                                     </div>
+                                    @error('contra_usu_verify')
+                                        <script>
+                                            alertify.error("Falta validar la contraseña");
+                                        </script>
+                                    @enderror
                                 </div>
                                 
                                 <div class="menuuno">

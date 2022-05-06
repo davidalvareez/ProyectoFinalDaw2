@@ -23,6 +23,7 @@ function closeModal2() {
     } else {
         console.log(image);
         document.getElementById("clickselec").value = "AVATAR SELECCIONADO ✔";
+        alertify.success("AVATAR SELECCIONADO ✔");
         let image2 = document.getElementById("img_avatar_usu2").files = image;
         console.log(image2);
         return true;
@@ -45,10 +46,11 @@ function chBackcolor(avatar) {
 
 function hasAvatarOrImage() {
     let avatar = document.getElementById("img_avatar_sistema").value;
+    let nombre = document.getElementById("nick_usu").value;
+    console.log(nombre);
     let image = document.getElementById("img_avatar_usu").files;
-
     if (avatar == "" && image.length == 0) {
-        alert("Selecciona avatar o imagen");
+        alertify.error("Selecciona avatar o imagen");
         return false;
     } else {
         return true;
