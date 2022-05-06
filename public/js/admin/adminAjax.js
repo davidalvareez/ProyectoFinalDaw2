@@ -20,7 +20,8 @@ function llamadaAjax() {
     return xmlhttp;
 }
 
-//Mostrar usuarios
+//Mostrar
+/*Mostrar usuarios*/
 function showUsers() {
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
@@ -47,9 +48,12 @@ function showUsers() {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
+                /* console.log(respuesta);
+                return false; */
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
+                <button class="boton-menu cgradient-1" type="submit" value="Create" onclick="modalboxCrearUser();">Crear</button>
                     <table class="table table-striped table-dark">
                     <tr>
                     <th scope="col">#</th>
@@ -58,6 +62,7 @@ function showUsers() {
                     <th scope="col">Fecha nacimiento</th>
                     <th scope="col">Correo</th>
                     <th scope="col">Estado</th>
+                    <th scope="col">Fecha habilitado</th>
                     <th scope="col">Centro de estudio</th>
                     <th scope="col">Rol</th>
                     <th scope="col">Nivel</th>
@@ -73,15 +78,15 @@ function showUsers() {
                         <td>${respuesta[i].fecha_nac_usu}</td>
                         <td>${respuesta[i].correo_usu}</td>
                         <td>${respuesta[i].deshabilitado}</td>
+                        <td>${respuesta[i].tmpdeshabilitado}</td>
                         <td>${respuesta[i].nombre_centro}</td>
                         <td>${respuesta[i].nombre_rol}</td>
-                        <td>${respuesta[i].nombre_nivel}</td>
                         <td><img class="imgavatar" src="storage/${respuesta[i].img_avatar}"></td>
                         <td>
-                        <button class="boton_modificar" type="submit" value="Edit" onclick="modalbox(${respuesta[i].id},'${respuesta[i].nombre_usu}','${respuesta[i].apellido_usu}',${respuesta[i].fecha_nac_usu},'${respuesta[i].correo_usu}','${respuesta[i].deshabilitado}','${respuesta[i].nombre_centro}');return false;">Modificar</button>
+                        <button class="boton_modificar" type="submit" value="Edit" onclick="modalboxUser(${respuesta[i].id},'${respuesta[i].nombre_usu}','${respuesta[i].apellido_usu}','${respuesta[i].nick_usu}','${respuesta[i].fecha_nac_usu}','${respuesta[i].correo_usu}','${respuesta[i].deshabilitado}','${respuesta[i].tmpdeshabilitado}','${respuesta[i].nombre_rol}');return false;">Modificar</button>
                         </td>
                         <td>
-                        <button class= "boton_eliminar" type="submit" value="Delete" onclick="eliminarUser(${respuesta[i].id});return false;">Eliminar</button>
+                        <button class= "boton_eliminar" type="submit" value="Delete" onclick="swalUsers(${respuesta[i].id});return false;">Eliminar</button>
                         </td>
                         </tr>`
                 }
@@ -97,7 +102,7 @@ function showUsers() {
         */
     ajax.send(formData)
 }
-//Mostrar centros
+/*Mostrar centros*/
 function showCentros() {
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
@@ -146,13 +151,13 @@ function showCentros() {
                          <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
                          </td>
                          <td>
-                         <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarCentro(${respuesta[i].id});return false;">Eliminar</button>
-                         </td>
-                         <td>
                          <button class= "btn btn-danger" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
                          </td>
                          </tr>`
                 }
+                /* <td>
+                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCentros(${respuesta[i].id});return false;">Eliminar</button>
+                 </td> */
                 recarga += `</table>
                     </div>`;
                 content.innerHTML = recarga;
@@ -165,7 +170,7 @@ function showCentros() {
         */
     ajax.send(formData)
 }
-//Mostrar cursos
+/*Mostrar cursos*/
 function showCursos(idCentro) {
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
@@ -196,7 +201,8 @@ function showCursos(idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                        <table class="table table-striped table-dark">
+                <button class="boton-menu cgradient-1" type="submit" value="Edit" onclick="showCentros();">Voler a centros</button>
+                    <table class="table table-striped table-dark">
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
@@ -214,10 +220,10 @@ function showCursos(idCentro) {
                              <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCurso(${idCentro},${respuesta[i].id},'${respuesta[i].nombre_curso}','${respuesta[i].nombre_corto_curso}','${respuesta[i].tipo_curso}');return false;">Editar</button>
                              </td>
                              <td>
-                             <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarCursos(${respuesta[i].id});return false;">Eliminar</button>
+                             <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCursos(${respuesta[i].id},${idCentro});return false;">Eliminar</button>
                              </td>
                              <td>
-                             <button class= "btn btn-danger" type="submit" value="Delete" onclick="showAsignaturas(${respuesta[i].id});return false;">Ver asignaturas</button>
+                             <button class= "btn btn-danger" type="submit" value="Delete" onclick="showAsignaturas(${respuesta[i].id}, ${idCentro});return false;">Ver asignaturas</button>
                              </td>
                              </tr>`
                 }
@@ -233,8 +239,8 @@ function showCursos(idCentro) {
         */
     ajax.send(formData)
 }
-//Mostrar asignaturas
-function showAsignaturas(idCurso) {
+/*Mostrar asignaturas*/
+function showAsignaturas(idCurso, idCentro) {
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
         Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
@@ -264,6 +270,7 @@ function showAsignaturas(idCurso) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
+                <button class="boton-menu cgradient-1" type="submit" value="Edit" onclick="showCursos(${idCentro});">Voler a Cursos</button>
                             <table class="table table-striped table-dark">
                             <tr>
                             <th scope="col">#</th>
@@ -278,10 +285,10 @@ function showAsignaturas(idCurso) {
                                  <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxAsignatura(${idCurso},${respuesta[i].id},'${respuesta[i].nombre_asignatura}','${respuesta[i].id_curso}');return false;">Editar</button>
                                  </td>
                                  <td>
-                                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarAsignaturas(${respuesta[i].id});return false;">Eliminar</button>
+                                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalAsignaturas(${respuesta[i].id},${idCurso},${idCentro});return false;">Eliminar</button>
                                  </td>
                                  <td>
-                                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="showTemas(${respuesta[i].id});return false;">Ver temas</button>
+                                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="showTemas(${respuesta[i].id}, ${idCurso}, ${idCentro} );return false;">Ver temas</button>
                                  </td>
                                  </tr>`
                 }
@@ -297,8 +304,8 @@ function showAsignaturas(idCurso) {
         */
     ajax.send(formData)
 }
-//Mostrar temas
-function showTemas(idAsignatura) {
+/*Mostrar temas*/
+function showTemas(idAsignatura, idCurso, idCentro) {
     var message = document.getElementById('message');
     message.innerHTML = '';
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
@@ -330,6 +337,7 @@ function showTemas(idAsignatura) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
+                <button class="boton-menu cgradient-1" type="submit" value="Edit" onclick="showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
                                 <table class="table table-striped table-dark">
                                 <tr>
                                 <th scope="col">#</th>
@@ -344,7 +352,7 @@ function showTemas(idAsignatura) {
                                      <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
                                      </td>
                                      <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarTemas(${respuesta[i].id});return false;">Eliminar</button>
+                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
                                      </td>
                                      </tr>`
                 }
@@ -360,7 +368,7 @@ function showTemas(idAsignatura) {
         */
     ajax.send(formData)
 }
-//Mostrar apuntes
+/*Mostrar apuntes*/
 function showApuntes() {
     var message = document.getElementById('message');
     message.innerHTML = '';
@@ -407,7 +415,7 @@ function showApuntes() {
                                      <td>${respuesta[i].fecha_publicacion_contenido}</td>
                                      <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
                                      <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarApuntes(${respuesta[i].id});return false;">Eliminar</button>
+                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalApuntes(${respuesta[i].id});return false;">Eliminar</button>
                                      </td>
                                      </tr>`
                 }
@@ -423,7 +431,7 @@ function showApuntes() {
         */
     ajax.send(formData)
 }
-//Mostrar denuncias
+/*Mostrar denuncias*/
 function showDenuncias() {
     var message = document.getElementById('message');
     message.innerHTML = '';
@@ -492,7 +500,7 @@ function showDenuncias() {
         */
     ajax.send(formData)
 }
-//Mostrar historial
+/*Mostrar historial*/
 function showHistorial() {
     var message = document.getElementById('message');
     message.innerHTML = '';
@@ -559,7 +567,7 @@ function showHistorial() {
 
 //Eliminar
 /* EliminarUsers */
-function eliminarUser(user_id) {
+function eliminarUsers(user_id) {
     var message = document.getElementById('message');
 
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
@@ -592,13 +600,14 @@ function eliminarUser(user_id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Usario eliminado correctamente.</p>';
+                    //message.innerHTML = '<p>Usario eliminado correctamente.</p>';
                     showUsers();
 
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
                     console.log(respuesta)
                 }
             }
@@ -644,13 +653,14 @@ function eliminarDenuncias(denuncia_id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Denuncia eliminado correctamente.</p>';
+                    //message.innerHTML = '<p>Denuncia eliminado correctamente.</p>';
                     showDenuncias();
 
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
                     console.log(respuesta)
                 }
             }
@@ -696,13 +706,14 @@ function eliminarHistorial(historial_id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Historial eliminado correctamente.</p>';
+                    //message.innerHTML = '<p>Historial eliminado correctamente.</p>';
                     showHistorial();
 
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
                     console.log(respuesta)
                 }
             }
@@ -713,9 +724,10 @@ function eliminarHistorial(historial_id) {
     ajax.send(formData)
 }
 /* EliminaCursos */
-function eliminarCursos(curso_id) {
+function eliminarCursos(curso_id, idCentro) {
     var message = document.getElementById('message');
     /* console.log(curso_id);
+    console.log(idCentro);
     return false; */
 
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
@@ -750,12 +762,13 @@ function eliminarCursos(curso_id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Curso eliminado correctamente.</p>';
-                    showCursos();
+                    //message.innerHTML = '<p>Curso eliminado correctamente.</p>';
+                    showCursos(idCentro);
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
                     console.log(respuesta)
                 }
             }
@@ -766,7 +779,7 @@ function eliminarCursos(curso_id) {
     ajax.send(formData)
 }
 /* EliminarAsignaturas */
-function eliminarAsignaturas(asignatura_id) {
+function eliminarAsignaturas(asignatura_id, idCurso, idCentro) {
     var message = document.getElementById('message');
     /* console.log(asignatura_id);
     return false; */
@@ -801,12 +814,13 @@ function eliminarAsignaturas(asignatura_id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Asignatura eliminado correctamente.</p>';
-                    showAsignaturas();
+                    //message.innerHTML = '<p>Asignatura eliminado correctamente.</p>';
+                    showAsignaturas(idCurso, idCentro);
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
                     console.log(respuesta)
                 }
             }
@@ -817,7 +831,7 @@ function eliminarAsignaturas(asignatura_id) {
     ajax.send(formData)
 }
 /* EliminarTemas */
-function eliminarTemas(tema_id) {
+function eliminarTemas(tema_id, idAsignatura, idCurso, idCentro) {
     var message = document.getElementById('message');
     /* console.log(tema_id);
     return false; */
@@ -852,12 +866,13 @@ function eliminarTemas(tema_id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Tema eliminado correctamente.</p>';
-                    showTemas();
+                    //message.innerHTML = '<p>Tema eliminado correctamente.</p>';
+                    showTemas(idAsignatura, idCurso, idCentro);
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
                     console.log(respuesta)
                 }
             }
@@ -903,13 +918,14 @@ function eliminarApuntes(apunte_id) {
                 if (respuesta.resultado == "OK") {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = '<p>Apunte eliminado correctamente.</p>';
+                    //message.innerHTML = '<p>Apunte eliminado correctamente.</p>';
                     showApuntes();
 
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
                     console.log(respuesta)
                 }
             }
@@ -920,12 +936,129 @@ function eliminarApuntes(apunte_id) {
     ajax.send(formData)
 }
 
+//SweetAlerts
+/*Cerrar ModalBox*/
+/* function swalCentros(id) {
+    swal({
+            title: "Estas seguro de eliminar este centro?",
+            text: "Una vez eliminado, no podras recuperar este centro!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Eliminaste el centro correctamente!", {
+                    icon: "success",
+
+                });
+                eliminarCentro(id);
+            }
+        });
+} */
+
+function swalCursos(id, idCentro) {
+    swal({
+            title: "Estas seguro de eliminar este curso?",
+            text: "Una vez eliminado, no podras recuperar este curso!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Eliminaste el curso correctamente!", {
+                    icon: "success",
+
+                });
+                eliminarCursos(id, idCentro);
+            }
+        });
+}
+
+function swalAsignaturas(id, idCurso, idCentro) {
+    swal({
+            title: "Estas seguro de eliminar esta asignatura?",
+            text: "Una vez eliminado, no podras recuperar esta asignatura!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Eliminaste la asignatura correctamente!", {
+                    icon: "success",
+
+                });
+                eliminarAsignaturas(id, idCurso, idCentro);
+            }
+        });
+}
+
+function swalTemas(id, idAsignatura, idCurso, idCentro) {
+    swal({
+            title: "Estas seguro de eliminar este tema?",
+            text: "Una vez eliminado, no podras recuperar este tema!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Eliminaste el tema correctamente!", {
+                    icon: "success",
+
+                });
+                eliminarTemas(id, idAsignatura, idCurso, idCentro);
+            }
+        });
+}
+
+function swalApuntes(id) {
+    swal({
+            title: "Estas seguro de eliminar este archivo?",
+            text: "Una vez eliminado, no podras recuperar este archivo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Eliminaste el registro correctamente!", {
+                    icon: "success",
+
+                });
+                eliminarApuntes(id);
+            }
+        });
+}
+
+function swalUsers(id) {
+    swal({
+            title: "Estas seguro de eliminar este usuario?",
+            text: "Una vez eliminado, no podras recuperar este usuario!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Eliminaste el usuario correctamente!", {
+                    icon: "success",
+
+                });
+                eliminarUsers(id);
+            }
+        });
+}
+
 //ModalBox
+/* Cerrar ModalBox */
 function closeModal() {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
 }
-
+/*ModalBox Centro*/
 function modalboxCentro(id, nombre, pais, com_auto, ciudad, direccion) {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
@@ -950,7 +1083,7 @@ function modalboxCentro(id, nombre, pais, com_auto, ciudad, direccion) {
                 </div>`;
     modal.innerHTML = recarga;
 }
-
+/*ModalBox Curso*/
 function modalboxCurso(idCentro, id, nombre, nombre_corto_curso, tipo_curso) {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
@@ -971,7 +1104,7 @@ function modalboxCurso(idCentro, id, nombre, nombre_corto_curso, tipo_curso) {
                 </div>`;
     modal.innerHTML = recarga;
 }
-
+/*ModalBox Asignatura*/
 function modalboxAsignatura(idCurso, id, nombre_asignatura) {
     /*  console.log(idCurso);
         console.log(id);
@@ -991,7 +1124,7 @@ function modalboxAsignatura(idCurso, id, nombre_asignatura) {
                 </div>`;
     modal.innerHTML = recarga;
 }
-
+/*ModalBox Tema*/
 function modalboxTema(idAsignatura, id, nombre_tema) {
     /*  console.log(idAsignatura);
         console.log(id);
@@ -1005,6 +1138,54 @@ function modalboxTema(idAsignatura, id, nombre_tema) {
                         <h2 id="nombreTema">${nombre_tema}</h2>
                         <b><span>Nombre Tema:</span>
                         <input type="text" name="nombre_tema" id="nombre_tema" value="${nombre_tema}"><br>
+                        <input type="hidden" name="id" id="id" value="${id}">
+                        <input type="submit" value="Editar">
+                    </form>
+                </div>`;
+    modal.innerHTML = recarga;
+}
+/*ModalBox User*/
+function modalboxUser(id, nombre_usu, apellido_usu, nick_usu, fecha_nac_usu, correo_usu, deshabilitado, tmpdeshabilitado, nombre_rol) {
+    /* console.log(id);
+    console.log(nombre_usu);
+    console.log(apellido_usu);
+    console.log(nick_usu);
+    console.log(fecha_nac_usu);
+    console.log(correo_usu);
+    console.log(deshabilitado);
+    console.log(nombre_centro);
+    console.log(nombre_rol);
+    return false; */
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    var recarga = '';
+    recarga += `<div class="modal-content">
+                    <span class="close" onclick="closeModal();">&times;</span>
+                    <form id="formUpdateUser" method="post" onsubmit="actualizarUser();closeModal();return false;">
+                        <h2 id="nombreUser">${nombre_usu}</h2>
+                        <b><span>Nombre usuario:</span>
+                        <input type="text" name="nombre_usu" id="nombre_usu" value="${nombre_usu}"><br>
+                        <b><span>Apellido usuario:</span>
+                        <input type="text" name="apellido_usu" id="apellido_usu" value="${apellido_usu}"><br>
+                        <b><span>Nickname usuario:</span>
+                        <input type="text" name="nick_usu" id="nick_usu" value="${nick_usu}"><br>
+                        <b><span>Fecha nacimiento usuario:</span>
+                        <input type="date" name="fecha_nac_usu" id="fecha_nac_usu" value="${fecha_nac_usu}"><br>
+                        <b><span>Correo usuario:</span>
+                        <input type="text" name="correo_usu" id="correo_usu" value="${correo_usu}"><br>
+                        <b><span>Fecha deshabilitado:</span>
+                        <input type="date" name="deshabilitado" id="deshabilitado" value="${deshabilitado}"><br>
+                        <b><span>Hora deshabilitado:</span>
+                        <input type="time" name="tmpdeshabilitado" id="tmpdeshabilitado" value="${tmpdeshabilitado}"><br>
+                        <b><span>Rol usuario:</span>
+                        <select name="nombre_rol" id="nombre_rol">
+                            <option value="${nombre_rol}" selected>${nombre_rol}</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Moderador">Moderador</option>  
+                            <option value="Cliente">Cliente</option>
+                            <option value="Profesor">Profesor</option>  
+                            <option value="Empresa">Empresa</option>                              
+                        </select><br>
                         <input type="hidden" name="id" id="id" value="${id}">
                         <input type="submit" value="Editar">
                     </form>
@@ -1029,10 +1210,12 @@ function actualizarCentro() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             if (respuesta.resultado == "OK") {
-                message.innerHTML = '<p>Centro modificado correctamente.</p>';
+                //message.innerHTML = '<p>Centro modificado correctamente.</p>';
+                alertify.success("Centro modificado correctamente");
                 showCentros();
             } else {
-                message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                message.innerHTML = respuesta.resultado;
+                alertify.error("Ha habido un error");
             }
             /* console.log(respuesta); */
         }
@@ -1055,10 +1238,12 @@ function actualizarCurso(idCentro) {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             if (respuesta.resultado == "OK") {
-                message.innerHTML = '<p>Curso modificado correctamente.</p>';
+                //message.innerHTML = '<p>Curso modificado correctamente.</p>';
+                alertify.success("Curso modificado correctamente");
                 showCursos(idCentro);
             } else {
-                message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                message.innerHTML = respuesta.resultado;
+                alertify.error("Ha habido un error");
             }
             /* console.log(respuesta); */
         }
@@ -1081,10 +1266,12 @@ function actualizarAsignatura(idCurso) {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             if (respuesta.resultado == "OK") {
-                message.innerHTML = '<p>Asignatura modificada correctamente.</p>';
+                //message.innerHTML = '<p>Asignatura modificada correctamente.</p>';
+                alertify.success("Asignatura modificada correctamente");
                 showAsignaturas(idCurso);
             } else {
-                message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                message.innerHTML = respuesta.resultado;
+                alertify.error("Ha habido un error");
             }
             /* console.log(respuesta); */
         }
@@ -1107,13 +1294,88 @@ function actualizarTema(idAsignatura) {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             if (respuesta.resultado == "OK") {
-                message.innerHTML = '<p>Tema modificado correctamente.</p>';
+                //message.innerHTML = '<p>Tema modificado correctamente.</p>';
+                alertify.success("Tema modificado correctamente");
                 showTemas(idAsignatura);
             } else {
-                message.innerHTML = 'Ha habido un error:' + respuesta.resultado;
+                message.innerHTML = respuesta.resultado;
+                alertify.error("Ha habido un error");
             }
             /* console.log(respuesta); */
         }
     }
     ajax.send(formData)
+}
+/* ActualizarUser */
+function actualizarUser() {
+
+    var message = document.getElementById('message');
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+    var token = document.getElementById('token').getAttribute("content");
+    var formData = new FormData(document.getElementById('formUpdateUser'));
+    formData.append('_token', token);
+    formData.append('_method', "PUT");
+    /* Inicializar un objeto AJAX */
+    var ajax = llamadaAjax();
+
+    ajax.open("POST", "admin/user", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            /* console.log(respuesta);
+            return false; */
+            if (respuesta.resultado == "OK") {
+                //message.innerHTML = '<p>Usuario modificado correctamente.</p>';
+                alertify.success("Usuario modificado correctamente");
+                showUsers();
+            } else {
+                message.innerHTML = respuesta.resultado;
+                alertify.error("Ha habido un error");
+            }
+            /* console.log(respuesta); */
+        }
+    }
+    ajax.send(formData)
+}
+
+/*ModalBox Crear User*/
+function modalboxCrearUser() {
+    /* console.log(id);
+    console.log(nombre_usu);
+    console.log(apellido_usu);
+    console.log(nick_usu);
+    console.log(fecha_nac_usu);
+    console.log(correo_usu);
+    console.log(deshabilitado);
+    console.log(nombre_centro);
+    console.log(nombre_rol);
+    return false; */
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    var recarga = '';
+    recarga += `<div class="modal-content">
+                    <span class="close" onclick="closeModal();">&times;</span>
+                    <form id="formUpdateUser" method="post" onsubmit="actualizarUser();closeModal();return false;">
+                        <h2 id="nombreUser">Crear usuario</h2>
+                        <b><span>Nombre usuario:</span>
+                        <input type="text" name="nombre_usu" id="nombre_usu" value=""><br>
+                        <b><span>Apellido usuario:</span>
+                        <input type="text" name="apellido_usu" id="apellido_usu" value=""><br>
+                        <b><span>Nickname usuario:</span>
+                        <input type="text" name="nick_usu" id="nick_usu" value=""><br>
+                        <b><span>Fecha nacimiento usuario:</span>
+                        <input type="date" name="fecha_nac_usu" id="fecha_nac_usu" value=""><br>
+                        <b><span>Correo usuario:</span>
+                        <input type="text" name="correo_usu" id="correo_usu" value=""><br>
+                        <b><span>Rol usuario:</span>
+                        <select name="nombre_rol" id="nombre_rol">
+                            <option value="Administrador">Administrador</option>
+                            <option value="Moderador">Moderador</option>  
+                            <option value="Cliente">Cliente</option>                                
+                        </select><br>
+                        <input type="hidden" name="id" id="id" value="${id}">
+                        <input type="submit" value="Editar">
+                    </form>
+                </div>`;
+    modal.innerHTML = recarga;
 }
