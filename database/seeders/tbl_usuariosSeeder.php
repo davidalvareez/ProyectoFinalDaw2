@@ -22,6 +22,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-12-16',
             'correo_usu' => 'raul@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_rol' => '1'
         ]);
 
@@ -33,6 +34,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2002-12-17',
             'correo_usu' => 'marc@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_rol' => '1'
         ]);
 
@@ -44,6 +46,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-11-05',
             'correo_usu' => 'miguel@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_rol' => '1'
         ]);
 
@@ -55,6 +58,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-04-08',
             'correo_usu' => 'david@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_rol' => '1'
         ]);
 
@@ -66,6 +70,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-09-29',
             'correo_usu' => 'xavi@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_rol' => '1'
         ]);
         //ID = 6
@@ -76,6 +81,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-05-11',
             'correo_usu' => 'isaac@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_rol' => '2'
         ]);
         /*-------------------------- XAVI GOMEZ ----------------*/
@@ -87,6 +93,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-04-24',
             'correo_usu' => 'andreagb24@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_centro' => 1,
             'id_rol' => '3',
         ]);
@@ -98,6 +105,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-05-18',
             'correo_usu' => 'anaisredondo@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_centro' => 3,
             'id_rol' => '3'
         ]);
@@ -109,6 +117,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-11-25',
             'correo_usu' => 'jordiSanNicolas@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_centro' => 2,
             'id_rol' => '3'
         ]);
@@ -120,6 +129,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2002-11-29',
             'correo_usu' => 'albasubirats@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_centro' => 4,
             'id_rol' => '3'
         ]);
@@ -132,6 +142,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-08-16',
             'correo_usu' => 'lydiasanchez@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_centro' => 5,
             'id_rol' => '3'
         ]);
@@ -143,6 +154,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-12-23',
             'correo_usu' => 'lorenadona@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_centro' => 2,
             'id_rol' => '3'
         ]);
@@ -155,6 +167,7 @@ class tbl_usuariosSeeder extends Seeder
             'fecha_nac_usu' => '2001-09-16',
             'correo_usu' => 'albaespana@gmail.com',
             'contra_usu' => MD5('1234'),
+            'validado' => true,
             'id_centro' => 6,
             'id_rol' => '3'
         ]);

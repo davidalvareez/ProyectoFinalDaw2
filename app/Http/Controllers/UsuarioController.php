@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use Illuminate\Support\Facades\MAIL;
+use App\Mail\sendMail;
 
 class UsuarioController extends Controller
 {
@@ -89,7 +91,7 @@ class UsuarioController extends Controller
         }
         //Sentencia de creacion de usuario
         try {
-            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"id_rol"=>3,"id_centro"=>$datos['centro']]);
+            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>3,"id_centro"=>$datos['centro']]);
             DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
             $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
             $newuser=$newuser[0];
