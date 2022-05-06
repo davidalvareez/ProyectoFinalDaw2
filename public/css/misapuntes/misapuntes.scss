@@ -204,70 +204,6 @@
     @extend .flex;
 }
 
-.inputbtn {
-    width: 290px;
-    box-sizing: border-box;
-    padding: 10px 30px 11px 10px;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    margin-bottom: 20px;
-}
-
-.inputbtn-file {
-    width: 290px;
-    color: black;
-    background-color: rgb(250, 250, 250);
-    margin-bottom: 20px;
-    margin-top: 2px;
-    padding: 6px 30px 10px 10px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    border: 1px solid rgb(216, 215, 215);
-    box-sizing: border-box;
-}
-
-.inputbtn-selec {
-    width: 290px;
-    box-sizing: border-box;
-    padding: 10px 30px 10px 10px;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    margin-bottom: 20px;
-    cursor: pointer;
-    &:hover {
-        border: 1px solid rgb(45, 45, 45);
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-        cursor: pointer;
-        background-color: rgb(240, 240, 240);
-    }
-}
-
-.padding-subirapuntes {
-    float: left;
-    margin: 20px;
-}
-
-.padding-subirapuntes-submit {
-    text-align: center;
-}
-
-.menu {
-    width: 100%;
-    padding: 20px 0px 90px 0px;
-    text-align: center;
-}
-
-.title-text {
-    padding-left: 90px;
-}
-
-.table th,
-.table td,
-.table tr {
-    border-top: none !important;
-    text-align: center;
-    vertical-align: middle;
-}
-
 @-webkit-keyframes aniGrad {
     0% {
         background-position: 0% 52%;
@@ -361,6 +297,70 @@ body {
     width: 100%;
     // min-height: 100vh;
     position: relative;
+}
+
+.inputbtn {
+    width: 290px;
+    box-sizing: border-box;
+    padding: 10px 30px 11px 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    margin-bottom: 20px;
+}
+
+.inputbtn-file {
+    width: 290px;
+    color: black;
+    background-color: rgb(250, 250, 250);
+    margin-bottom: 20px;
+    margin-top: 2px;
+    padding: 6px 30px 10px 10px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    border: 1px solid rgb(216, 215, 215);
+    box-sizing: border-box;
+}
+
+.inputbtn-selec {
+    width: 290px;
+    box-sizing: border-box;
+    padding: 10px 30px 10px 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    margin-bottom: 20px;
+    cursor: pointer;
+    &:hover {
+        border: 1px solid rgb(45, 45, 45);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        cursor: pointer;
+        background-color: rgb(240, 240, 240);
+    }
+}
+
+.padding-subirapuntes {
+    float: left;
+    margin: 20px;
+}
+
+.padding-subirapuntes-submit {
+    text-align: center;
+}
+
+.menu {
+    width: 100%;
+    padding: 20px 0px 90px 0px;
+    text-align: center;
+}
+
+.title-text {
+    padding-left: 90px;
+}
+
+.table th,
+.table td,
+.table tr {
+    border-top: none !important;
+    text-align: center;
+    vertical-align: middle;
 }
 
 ///////////////////
