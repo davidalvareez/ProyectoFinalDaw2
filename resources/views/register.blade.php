@@ -188,9 +188,14 @@
                                 @enderror
                                 
                                 <div class="menudos">
-                                    <p class="pizq">Repetir contraseña</p>
+                                    <h4 class="pizq">Repetir contraseña</h4>
                                     <div>
                                         <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
+                                    </div>
+                                    <div>
+                                        @error('contra_usu_verify')
+                                        <p class="errortext">{{$message}}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 @error('contra_usu_verify')
