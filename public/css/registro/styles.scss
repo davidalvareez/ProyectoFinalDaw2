@@ -1,397 +1,412 @@
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-Black.ttf") format("truetype");
-	font-weight: 900;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
-	font-weight: 900;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-Bold.ttf") format("truetype");
-	font-weight: 700;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
-	font-weight: 700;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
-	font-weight: 800;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
-	font-weight: 800;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
+    font-weight: 800;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
-	font-weight: 200;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
-	font-weight: 200;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
+    font-weight: 200;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-Italic.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-Light.ttf") format("truetype");
-	font-weight: 300;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
-	font-weight: 300;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-Medium.ttf") format("truetype");
-	font-weight: 500;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
-	font-weight: 500;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-Black.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Black.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
-	font-weight: 600;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
-	font-weight: 600;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-style: italic;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-Thin.ttf") format("truetype");
-	font-weight: 100;
-	font-style: normal;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: 'Poppins';
-	src: url("../fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
-	font-weight: 100;
-	font-style: italic;
+    font-family: 'Poppins';
+    src: url("../fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
+    font-weight: 100;
+    font-style: italic;
 }
+
 @-webkit-keyframes aniGrad {
-	0% {
-		background-position: 0% 52%;
-	}
-	50% {
-		background-position: 100% 49%;
-	}
-	100% {
-		background-position: 0% 52%;
-	}
+    0% {
+        background-position: 0% 52%;
+    }
+    50% {
+        background-position: 100% 49%;
+    }
+    100% {
+        background-position: 0% 52%;
+    }
 }
+
 @keyframes aniGrad {
-	0% {
-		background-position: 0% 52%;
-	}
-	50% {
-		background-position: 100% 49%;
-	}
-	100% {
-		background-position: 0% 52%;
-	}
+    0% {
+        background-position: 0% 52%;
+    }
+    50% {
+        background-position: 100% 49%;
+    }
+    100% {
+        background-position: 0% 52%;
+    }
 }
 
 :root {
-	--first-color: #19c673;
-	--second-color: #05a357;
-	--third-color: #f6f0ea;
-	--fourth-color: #7319c6;
-	--fifth-color: #c67319;
-	--sixth-color: #19c3c6;
-	--seventh-color: #19c61d;
-	--eightth-color: #c6196c;
-	--white: #ffffff;
-	--black: #000000;
-	--grey: #eee;
-	--letter-grey: #797c7e;
-	--font1: Poppins;
+    --first-color: #19c673;
+    --second-color: #05a357;
+    --third-color: #f6f0ea;
+    --fourth-color: #7319c6;
+    --fifth-color: #c67319;
+    --sixth-color: #19c3c6;
+    --seventh-color: #19c61d;
+    --eightth-color: #c6196c;
+    --white: #ffffff;
+    --black: #000000;
+    --grey: #eee;
+    --letter-grey: #797c7e;
+    --font1: Poppins;
 }
+
 * {
-	font-family: var(--font1);
-	font-weight: 300;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	width: auto;
+    font-family: var(--font1);
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: auto;
 }
 
 // colour stuff
 $white: #ffffff;
 $lightBG: #dce1df;
 $salmon: #ff6666;
-
 $teal: #0096a0;
 $tealMid: #0ebac7;
 $tealContrast: #33ffff;
-$tealShade:	#007c85;
-
+$tealShade: #007c85;
 $darkGrey: #4f585e;
-
-body{
-  background-image: url("./img/fondoisaac.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+body {
+    background-image: url("./img/fondoisaac.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 .btn-glass {
-  padding: 10px 75px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #ff8f0b, #00cf9a);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-  position: relative;
-}
-.glass{
-  backdrop-filter: blur(10px) saturate(105%);
-  -webkit-backdrop-filter: blur(13px) saturate(180%);
-  background-color: #a3a8b062;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 10px 75px;
+    font-size: 20px;
+    border: 0;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+    cursor: pointer;
+    background: linear-gradient(83deg, #ff8f0b, #00cf9a);
+    background-size: 600% 600%;
+    -webkit-animation: aniGrad 8s ease infinite;
+    animation: aniGrad 8s ease infinite;
+    position: relative;
 }
 
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+.glass {
+    backdrop-filter: blur(10px) saturate(105%);
+    -webkit-backdrop-filter: blur(13px) saturate(180%);
+    background-color: #a3a8b062;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+
+/* The Modal (background) */
+
+.modal2 {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 50px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-.modal-content{
-  margin: auto;
-  padding: 5px;
-  border: 1px solid #888;
-  width: 60%;
-  height:85%;
-  @extend .glass;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
+.modal-content2 {
+    margin: auto;
+    padding: 5px;
+    border: 1px solid #888;
+    width: 60%;
+    height: 85%;
+    @extend .glass;
+}
 
 .no-touch a.btn:hover {
-  background: lighten($teal,2.5);
-  box-shadow: 0px 8px 2px 0 rgba(0, 0, 0, 0.075);
-  transform: translateY(-2px);
-  transition: all 0.25s 0s ease-out;
+    background: lighten($teal, 2.5);
+    box-shadow: 0px 8px 2px 0 rgba(0, 0, 0, 0.075);
+    transform: translateY(-2px);
+    transition: all 0.25s 0s ease-out;
 }
 
 .no-touch a.btn:active,
 a.btn:active {
-  background: darken($teal,2.5);
-  box-shadow: 0 1px 0px 0 rgba(255,255,255,0.25);
-  transform: translate3d(0,1px,0);
-  transition: all 0.025s 0s ease-out;
+    background: darken($teal, 2.5);
+    box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.25);
+    transform: translate3d(0, 1px, 0);
+    transition: all 0.025s 0s ease-out;
 }
 
 div.cards {
-  margin: 50px auto;
-  max-width: 960px;
-  text-align: center;
+    margin: 50px auto;
+    max-width: 960px;
+    text-align: center;
 }
 
 div.card {
-  background: $white;
-  display: inline-block;
-  margin: 20px;
-  max-width: 300px;
-  perspective: 1000;
-  position: relative;
-  text-align: left;
-  transition: all 0.3s 0s ease-in;
-  width: 300px;
-  z-index: 1;
-
-  img {
-    max-width: 300px;
-  }
-  
-  .cards{
-    .titulo{
-      color:white !important;
-    }
-  }
-  .card__image{
-    width: 100%;
-    height: 280px;
-  }
-  .card__image-holder {
-    background: rgba(0,0,0,0.1);
-    height: 0;
-    padding-bottom: 75%;
-  }
-
-  div.card-title {
     background: $white;
-    padding: 6px 15px 10px;
+    display: inline-block;
+    margin: 20px;
+    max-width: 300px;
+    perspective: 1000;
     position: relative;
-    z-index: 0;
-    
-    a.toggle-info {
-      border-radius: 32px;
-      height: 32px;
-      padding: 0;
-      position: absolute;
-      right: 15px;
-      top: 10px;
-      width: 32px;
-      
-      span {
+    text-align: left;
+    transition: all 0.3s 0s ease-in;
+    width: 300px;
+    z-index: 1;
+    img {
+        max-width: 300px;
+    }
+    .cards {
+        .titulo {
+            color: white !important;
+        }
+    }
+    .card__image {
+        width: 100%;
+        height: 226px;
+    }
+    .card__image-holder {
+        background: rgba(0, 0, 0, 0.1);
+        height: 0;
+        padding-bottom: 75%;
+    }
+    div.card-title {
         background: $white;
-        display: block;
-        height: 2px;
+        padding: 6px 15px 10px;
+        position: relative;
+        z-index: 0;
+        a.toggle-info {
+            border-radius: 32px;
+            height: 32px;
+            padding: 0;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            width: 32px;
+            span {
+                background: $white;
+                display: block;
+                height: 2px;
+                position: absolute;
+                top: 16px;
+                transition: all 0.15s 0s ease-out;
+                width: 12px;
+            }
+            span.left {
+                right: 14px;
+                transform: rotate(45deg);
+            }
+            span.right {
+                left: 14px;
+                transform: rotate(-45deg);
+            }
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin: 0;
+            padding: 0;
+            small {
+                display: block;
+                font-size: 18px;
+                font-weight: 600;
+                letter-spacing: -0.025em;
+            }
+        }
+    }
+    div.card-description {
+        padding: 0 15px 10px;
+        position: relative;
+        font-size: 14px;
+    }
+    div.card-actions {
+        box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.075);
+        padding: 10px 15px 20px;
+        text-align: center;
+    }
+    div.card-flap {
+        background: darken($white, 15);
         position: absolute;
-        top: 16px;
-        transition: all 0.15s 0s ease-out;
-        width: 12px;
-      }
-      
-      span.left {
-        right: 14px;
-        transform: rotate(45deg);
-      }
-      span.right {
-        left: 14px;
-        transform: rotate(-45deg);
-      }
+        width: 100%;
+        transform-origin: top;
+        transform: rotateX(-90deg);
     }
-    
-    h2 {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      margin: 0;
-      padding: 0;
-      
-      small {
-        display: block;
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: -0.025em;
-      }
+    div.flap1 {
+        transition: all 0.3s 0.3s ease-out;
+        z-index: -1;
     }
-  }
-
-  div.card-description {
-    padding: 0 15px 10px;
-    position: relative;
-    font-size: 14px;
-  }
-
-  div.card-actions {
-  	box-shadow: 0 2px 0px 0 rgba(0,0,0,0.075);
-    padding: 10px 15px 20px;
-    text-align: center;
-  }
-  
-  div.card-flap {
-    background: darken($white,15);
-    position: absolute;
-    width: 100%;
-    transform-origin: top;
-    transform: rotateX(-90deg);
-  }
-  div.flap1 {
-    transition: all 0.3s 0.3s ease-out;
-    z-index: -1;
-  }
-  div.flap2 {
-    transition: all 0.3s 0s ease-out;
-    z-index: -2;
-  }
-  
+    div.flap2 {
+        transition: all 0.3s 0s ease-out;
+        z-index: -2;
+    }
 }
 
 div.cards.showing {
-  div.card {
-    cursor: pointer;
-    opacity: 0.6;
-    transform: scale(0.88);
-  }
+    div.card {
+        cursor: pointer;
+        opacity: 0.6;
+        transform: scale(0.88);
+    }
 }
 
-.no-touch  div.cards.showing {
-  div.card:hover {
-    opacity: 0.94;
-    transform: scale(0.92);
-  }
+.no-touch div.cards.showing {
+    div.card:hover {
+        opacity: 0.94;
+        transform: scale(0.92);
+    }
 }
 
 div.card.show {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-
-  div.card-title {
-    a.toggle-info {
-      background: $salmon !important;
-      span {
-        top: 15px;
-      }
-      span.left {
-        right: 10px;
-      }
-      span.right {
-        left: 10px;
-      }
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    div.card-title {
+        a.toggle-info {
+            background: $salmon !important;
+            span {
+                top: 15px;
+            }
+            span.left {
+                right: 10px;
+            }
+            span.right {
+                left: 10px;
+            }
+        }
     }
-  }
-  div.card-flap {
-    background: $white;
-    transform: rotateX(0deg);
-  }
-  div.flap1 {
-    transition: all 0.3s 0s ease-out;
-  }
-  div.flap2 {
-    transition: all 0.3s 0.2s ease-out;
-  }
+    div.card-flap {
+        background: $white;
+        transform: rotateX(0deg);
+    }
+    div.flap1 {
+        transition: all 0.3s 0s ease-out;
+    }
+    div.flap2 {
+        transition: all 0.3s 0.2s ease-out;
+    }
 }
-
-

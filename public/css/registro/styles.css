@@ -194,7 +194,7 @@ body {
   position: relative;
 }
 
-.glass, .modal-content {
+.glass, .modal-content2 {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -203,14 +203,14 @@ body {
 }
 
 /* The Modal (background) */
-.modal {
+.modal2 {
   display: none;
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
   z-index: 1;
   /* Sit on top */
-  padding-top: 100px;
+  padding-top: 50px;
   /* Location of the box */
   left: 0;
   top: 0;
@@ -226,7 +226,7 @@ body {
   /* Black w/ opacity */
 }
 
-.modal-content {
+.modal-content2 {
   margin: auto;
   padding: 5px;
   border: 1px solid #888;
@@ -286,7 +286,7 @@ div.card .cards .titulo {
 
 div.card .card__image {
   width: 100%;
-  height: 280px;
+  height: 226px;
 }
 
 div.card .card__image-holder {

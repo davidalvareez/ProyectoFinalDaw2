@@ -2,7 +2,10 @@ window.onload = function() {
     document.getElementById("img_avatar_usu2").style.display = "none";
 
     var modal = document.getElementById("myModal2");
-    //modal.style.display = "block";
+    modal.style.display = "block";
+
+    var resgitroProf = document.getElementById("idRegister2");
+    resgitroProf.style.display = "none";
 }
 
 $(document).ready(function() {
@@ -51,6 +54,13 @@ $(document).ready(function() {
 });
 
 
+function modalProfe() {
+    var modal = document.getElementById("idRegister");
+    modal.style.display = "none";
+
+    var resgitroProf = document.getElementById("idRegister2");
+    resgitroProf.style.display = "block";
+}
 
 function modalbox() {
     var modal = document.getElementById("myModal");
@@ -59,6 +69,11 @@ function modalbox() {
 
 function closeModal() {
     var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
+
+function closeModalSeleccion() {
+    var modal = document.getElementById("myModal2");
     modal.style.display = "none";
 }
 
