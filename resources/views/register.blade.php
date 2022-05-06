@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="../public/js/registro/registro.js"></script>
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
+    <link rel="stylesheet" href="{!! asset ('css/registro/styles.css')!!}">
     <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
     <title>Register</title>
 </head>
@@ -21,6 +22,63 @@
                 <div class="glassland">
                     <div class="content-glassland">
                         <div class="registro-content-glassland">
+                            <div id="myModal2" class="modal">
+                                <div class="modal-content">
+  
+                                    <div class="cards">
+                                      <h1 class="titulo">SELECCIONA TU PERFIL</h1>
+                                      <div class="card">
+                                        <div class="card__image-holder">
+                                          <img class="card__image" src="./img/alumno.jpg"/>
+                                        </div>
+                                        <div class="card-title">
+                                          <a href="#" class="toggle-info btn">
+                                            <span class="left"></span>
+                                            <span class="right"></span>
+                                          </a>
+                                          <h2>
+                                              Alumno
+                                          </h2>
+                                        </div>
+                                        <div class="card-flap flap1">
+                                          <div class="card-description">
+                                              <h2>Visualiza, comparte, comenta y descarga apuntes de la comunidad de estudiantes de NoteHub. Además tendras acceso a profesores con los que podrás tener clases particulares</h2>
+                                          </div>
+                                          <div class="card-flap flap2">
+                                            <div class="card-actions">
+                                            <button class="btn-glass">Seleccionar</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="card">
+                                        <div class="card__image-holder">
+                                          <img class="card__image" src="./img/profesor.jpg"/>
+                                        </div>
+                                        <div class="card-title">
+                                          <a href="#" class="toggle-info btn">
+                                            <span class="left"></span>
+                                            <span class="right"></span>
+                                          </a>
+                                          <h2>
+                                              Profesor
+                                          </h2>
+                                        </div>
+                                        <div class="card-flap flap1">
+                                          <div class="card-description">
+                                              <h2>Imparte clases a la comunidad de estudiantes de NoteHub. Sube tus apuntes y date a conocer dentro de nuestra comunidad</h2>
+                                              <h2>Una vez completado el registro, nuestro equipo validará tu propuesta de ser un profesor y te habilitará la cuenta.</h2>
+                                          </div>
+                                          <div class="card-flap flap2">
+                                            <div class="card-actions">
+                                              <button class="btn-glass">Seleccionar</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
                             <div id="myModal" class="modal">
                                 <div class="modal-content">
                                     <span class="close" onclick="closeModal();">&times;</span>
