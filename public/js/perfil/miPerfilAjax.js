@@ -20,16 +20,16 @@ function llamadaAjax() {
 }
 window.onclick = function(event) {
     if (event.target == modalActualizar) {
-        modalActualizar.classList.add("hidden");
+        modalActualizar.style.display = 'none';
     }
 }
 
 function abrirModal() {
-    modalActualizar.classList.remove("hidden")
+    modalActualizar.style.display = 'block';
 }
 
 function cerrarModal() {
-    modalActualizar.classList.add("hidden")
+    modalActualizar.style.display = 'none';
 }
 
 function modalDatosUser() {

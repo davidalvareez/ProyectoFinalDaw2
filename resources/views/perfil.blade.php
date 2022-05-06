@@ -175,7 +175,7 @@
             </div>
         </div>
         <!--- Aqui Empieza El Modal Actualizar--->
-        <div class="modal hidden" id="modalActualizar">
+        <div class="modal2" id="modalActualizar">
             <div class="modal-content" id="modalBox">
 
             </div>
