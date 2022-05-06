@@ -46,11 +46,11 @@
                             <h2>¡Regístrate y accede a todas las ventajas de NoteHub!</h2>
                             <br>
                             
-                            <form action="{{url('register')}}" id="idRegister" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
+                            <form action="{{url('register')}}" class="formulario-grid" id="idRegister" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
                                
                                 @csrf
                                 
-                                <div class="one-column">
+                                
                                     <div class="menudos">
                                         <h4 class="pizq">Nombre</h4>
                                         <div>
@@ -74,9 +74,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                
 
-                                <div class="one-column">
+                                
                                     <div class="menudos">
                                         <h4 class="pizq">Nickname</h4>
                                         <div>
@@ -100,9 +100,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                
 
-                                <div class="one-column">
+                                
                                     <div class="menudos">
                                         <h4 class="pizq">Centro</h4>
                                         <div>
@@ -121,11 +121,12 @@
                                         <div>
                                             <div style="float: left">
                                                 <a href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=(INSERTE NOMBRE DEL CENTRO) no se encuentra en el selector de centros.">
-                                                    <p>No encuntras tu centro?</p>
+                                                    <p>No encuentras tu centro?</p>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
+                                    
 
                                     <div class="menudos">
                                         <h4 class="pizq">Email</h4>
@@ -138,8 +139,8 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="one-column">
+                                
+                                
                                     <div class="menudos">
                                         <h4 class="pizq">Contraseña</h4>
                                         <div>
@@ -163,7 +164,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                
                                 
                                 <div class="menuuno">
                                     <h4 class="pizq">Avatar</h4>
@@ -198,7 +199,7 @@
             </div>
             <div class="content-region">
                 <div class="imagenrelleno">
-                    <img src="{!! asset ('media/loginregister/imagen2.2.png') !!}" alt="imgregistro" class="imgredondeada2">
+                    <img src="{!! asset ('media/loginregister/imagen2.png') !!}" alt="imgregistro" class="imgredondeada2">
                 </div>
             </div>
         </div>
