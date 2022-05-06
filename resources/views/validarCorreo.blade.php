@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
+    <link rel="stylesheet" href="{!! asset ('css/validarcorreo/validarcorreo.css')!!}">
     <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
     <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
-    <title>Login page</title>
+    <title>Validar correo</title>
 </head>
 
-<body class="login-page">
+<body class="validarcorreo-page">
     <header>
     </header>
     <main>
@@ -20,24 +20,24 @@
             <div class="content-region">
                 <div class="glassland">
                     <div class="content-glassland">
-                        <div class="login-content-glassland">
-                            <img src="{!! asset ('media/3Dicons-dinamicos/icons/png/boy\boy-dynamic-gradient.png') !!}" width="80px" height="80px">
-                            <h2>¡Inicia sesión y disfruta de NoteHub!</h2>
+                        <div class="validarcorreo-content-glassland">
+                            <img src="{!! asset ('media/3Dicons-dinamicos/icons/png/mail\mail-dynamic-gradient.png') !!}" width="80px" height="80px">
+                            <h2>¡Verifica tu correo!</h2>
                             <br>
-                            <form action="{{url('login')}}" method="post">
+                            <form action="{{url('validarcorreo')}}" method="post">
                                 @csrf
                                 <div>
-                                    <h4 class="pizq">Email o Nickname</h4>
-                                    <input class="inputbtn" type="text" name="correo_nick" id="correo_nick" placeholder="&#xf007">
-                                    @error('correo_nick')
+                                    <h4 class="pizq">Email</h4>
+                                    <input class="inputbtn" type="text" name="correo" id="correo" placeholder="&#xf007">
+                                    @error('correo')
                                     <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <br>
                                 <div>
-                                    <h4 class="pizq">Contraseña</h4>
-                                    <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="&#xf023">
-                                    @error('contra_usu')
+                                    <h4 class="pizq">Código de verificación</h4>
+                                    <input class="inputbtn" type="password" name="codigo_usu" id="codigo_usu" placeholder="&#xf084">
+                                    @error('codigo_usu')
                                     <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
@@ -46,14 +46,14 @@
                                         <p>Contraseña olvidada?</p>
                                     </a>
                                 </div> -->
-                                <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
+                                <input class="validarcorreo-btn-absglass" type="submit" value="VALIDAR"></input>
                                 <div class="">
                                     <div class="alienarleft">
-                                        <p>No estás registrado?</p>
+                                        <p>Volver a la página de inicio?</p>
                                     </div>
                                     <div class="alienarleft">
-                                        <a href="{{url('register')}}">
-                                            <p>Crear cuenta</p>
+                                        <a href="{{url('/')}}">
+                                            <p>Click aquí</p>
                                         </a>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="content-region">
                 <div class="imagenrelleno">
-                    <img src="{!! asset ('media/loginregister/imagen1.png') !!}" alt="imglogin" class="imgredondeada">
+                    <img src="{!! asset ('media/validarcorreo/img2validar.png') !!}" alt="imglogin" class="imgvalidacion">
                 </div>
             </div>
         </div>

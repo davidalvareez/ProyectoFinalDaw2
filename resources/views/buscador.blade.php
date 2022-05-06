@@ -47,7 +47,7 @@
 
     <!--APUNTES MÁS RECIENTES-->
     <div class="title">
-        <h2>Los mas nuevos</h2>
+        <h2>Los más nuevos</h2>
     </div>
     <div class="region-news">
         <div class="content-news">
@@ -61,7 +61,11 @@
                                     <div class="foto img img-apuntes">
                                         <div class="container-foto container-img">
                                             <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
-                                            <img class="img foto prev-apunt" src="media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
+                                            @if ($recentnotes->extension_contenido == ".pdf")
+                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                            @else
+                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="header-apuntes">
@@ -77,8 +81,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="reverse-card" style="background-image: url(media/ejemploApuntes.jpg)">
-
+                            <?php
+                                $nombre_centro = str_replace(" ","%20",$recentnotes->nombre_centro);
+                                $nombre_curso = str_replace(" ","%20",$recentnotes->nombre_curso);
+                                $nombre_asignatura = str_replace(" ","%20",$recentnotes->nombre_asignatura);
+                                $nombre_tema = str_replace(" ","%20",$recentnotes->nombre_tema);
+                                $nombre_contenido = str_replace(" ","%20",$recentnotes->nombre_contenido);
+                            ?>
+                            @if ($recentnotes->extension_contenido == ".pdf")
+                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
+                            @else
+                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$recentnotes->extension_contenido}})">
+                            @endif
                                 <div class="container-reverse">
 
                                     <div class="top">
@@ -147,7 +161,7 @@
 
     <!--APUNTES MÁS POPULARES-->
     <div class="title">
-        <h2>Mas populares</h2>
+        <h2>Los más populares</h2>
     </div>
     <div class="region-relationated">
         <div class="content-relationated">
@@ -161,7 +175,11 @@
                                     <div class="foto img img-apuntes">
                                         <div class="container-foto container-img">
                                             <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
-                                            <img class="img foto prev-apunt" src="media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
+                                            @if ($popularnotes->extension_contenido == ".pdf")
+                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$popularnotes->nombre_centro.'/'.$popularnotes->nombre_curso.'/'.$popularnotes->nombre_asignatura.'/'.$popularnotes->nombre_tema.'/'.$popularnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                            @else
+                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$popularnotes->nombre_centro.'/'.$popularnotes->nombre_curso.'/'.$popularnotes->nombre_asignatura.'/'.$popularnotes->nombre_tema.'/'.$popularnotes->nombre_contenido.$popularnotes->extension_contenido}}" alt="Apuntes">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="header-apuntes">
@@ -177,8 +195,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="reverse-card" style="background-image: url(media/ejemploApuntes.jpg)">
-
+                            <?php
+                                $nombre_centro = str_replace(" ","%20",$popularnotes->nombre_centro);
+                                $nombre_curso = str_replace(" ","%20",$popularnotes->nombre_curso);
+                                $nombre_asignatura = str_replace(" ","%20",$popularnotes->nombre_asignatura);
+                                $nombre_tema = str_replace(" ","%20",$popularnotes->nombre_tema);
+                                $nombre_contenido = str_replace(" ","%20",$popularnotes->nombre_contenido);
+                            ?>
+                            @if ($popularnotes->extension_contenido == ".pdf")
+                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
+                            @else
+                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$popularnotes->extension_contenido}})">
+                            @endif
                                 <div class="container-reverse">
 
                                     <div class="top">

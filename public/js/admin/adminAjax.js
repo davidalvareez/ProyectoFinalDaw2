@@ -1283,7 +1283,7 @@ function actualizarTema(idAsignatura) {
     var message = document.getElementById('message');
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     var token = document.getElementById('token').getAttribute("content");
-    var formData = new FormData(document.getElementById('formUpdateAsignatura'));
+    var formData = new FormData(document.getElementById('formUpdateTema'));
     formData.append('_token', token);
     formData.append('_method', "PUT");
     /* Inicializar un objeto AJAX */

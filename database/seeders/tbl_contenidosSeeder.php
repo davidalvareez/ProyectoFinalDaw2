@@ -138,7 +138,7 @@ class tbl_contenidosSeeder extends Seeder
         DB::table('tbl_contenidos')->insert([
             'nombre_contenido' => 'Connectors Exercises Anais',
             'idioma_contenido' => 'Ingles',
-            'extension_contenido' => '.doc',
+            'extension_contenido' => '.pdf',
             'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),
             'id_tema' => 12,
             'id_usu' => 8
@@ -333,7 +333,7 @@ class tbl_contenidosSeeder extends Seeder
         ]);
         //ID 34
         DB::table('tbl_contenidos')->insert([
-            'nombre_contenido' => 'Tecnicas, procedimientos y materiales del dibujo 1',
+            'nombre_contenido' => 'ProcedDibuj',
             'idioma_contenido' => 'Español',
             'extension_contenido' => '.pdf',
             'fecha_publicacion_contenido' => date('Y-m-d H:i:s'),

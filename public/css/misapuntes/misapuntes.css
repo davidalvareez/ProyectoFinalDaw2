@@ -184,7 +184,7 @@
   position: relative;
 }
 
-.glass2, .login-page main .region .glassland, .registro-page main .region .glassland {
+.glass2, .misapuntes-page main .region .glassland {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -192,7 +192,7 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.glassbtn, .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .login-btn-absglass, .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland .login-btn-absglass {
+.glassbtn {
   padding: 10px 10px 10px 10px;
   width: 100%;
   float: left;
@@ -210,11 +210,11 @@
   text-transform: uppercase;
 }
 
-.glassbtn:hover, .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .login-btn-absglass:hover, .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland .login-btn-absglass:hover {
+.glassbtn:hover {
   background-color: #0e7a30cc;
 }
 
-.flex, .iconoanimacion, .login-page main .region .glassland .content-glassland, .login-page main .region1, .login-page main .region1 .content-region .glassland .content-glassland, .registro-page main .region .glassland .content-glassland, .registro-page main .region1, .registro-page main .region1 .content-region .glassland .content-glassland {
+.flex, .iconoanimacion, .misapuntes-page main .region .glassland .content-glassland, .misapuntes-page main .region1, .misapuntes-page main .region2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -234,21 +234,35 @@
 }
 
 .inputbtn {
+  width: 290px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 2px 30px 10px 10px;
-  width: 100%;
+  padding: 10px 30px 11px 10px;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.inputbtn-file {
+  width: 290px;
+  color: black;
+  background-color: #fafafa;
+  margin-bottom: 20px;
+  margin-top: 2px;
+  padding: 6px 30px 10px 10px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border: 1px solid #d8d7d7;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .inputbtn-selec {
+  width: 290px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px 30px 10px 10px;
-  width: 100%;
   border: 1px solid #ccc;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -257,162 +271,76 @@
 }
 
 .inputbtn-selec:hover {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px 30px 10px 10px;
-  width: 100%;
   border: 1px solid #2d2d2d;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-  margin-bottom: 20px;
   cursor: pointer;
-  background-color: #dddddd;
+  background-color: #f0f0f0;
 }
 
-.imginputbtn {
-  position: absolute;
-  right: 10px;
-  top: 12px;
-}
-
-.pizq {
+.padding-subirapuntes {
   float: left;
+  margin: 20px;
 }
 
-.pder {
-  float: right;
+.padding-subirapuntes-submit {
+  text-align: center;
 }
 
-.alienarleft {
-  float: left;
-  padding: 40px 10px 5px 7px;
-}
-
-.alienarright {
-  float: right;
-  padding: 0px 0px 30px 0px;
-}
-
-.imgredondeada {
-  border-radius: 12px;
-}
-
-.imgredondeada2 {
-  float: right;
-  margin-left: 198px;
-  padding-right: 80px;
-}
-
-.menudos {
-  width: 45.8%;
-  float: left;
-  padding: 10px;
-}
-
-.menuuno {
-  width: 94%;
-  float: left;
-  padding: 10px 10px 10px 10px;
-}
-
-.errortext {
-  font-style: italic;
-  font-weight: bold;
-  font-size: 12px;
-  float: left;
-  padding-bottom: 5px;
-}
-
-.one-column {
+.menu {
   width: 100%;
-  padding-bottom: 10px;
+  padding: 20px 0px 90px 0px;
+  text-align: center;
 }
 
-.modal {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+.title-text {
+  padding-left: 90px;
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+.table th,
+.table td,
+.table tr {
+  border-top: none !important;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.aceptarbtn {
-  padding: 10px 10px 10px 10px;
-  width: 50%;
+@-webkit-keyframes aniGrad {
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}
+
+@keyframes aniGrad {
+  0% {
+    background-position: 0% 52%;
+  }
+  50% {
+    background-position: 100% 49%;
+  }
+  100% {
+    background-position: 0% 52%;
+  }
+}
+
+.btn-glass {
+  margin: 20px 0px 0px 0px;
+  padding: 10px 75px;
+  font-size: 15px;
   border: 0;
   text-decoration: none;
-  border-radius: 6px;
-  background-color: #12993ccc;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(30px);
-          backdrop-filter: blur(30px);
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-  letter-spacing: 2px;
+  border-radius: 15px;
   cursor: pointer;
-  text-transform: uppercase;
-}
-
-.aceptarbtn:hover {
-  background-color: #0e7a30cc;
-}
-
-.grid {
-  padding: 5vh 15vh;
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 15px 7px;
-  -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
-  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.elegiravatar {
-  cursor: pointer;
-}
-
-.elegiravatar:hover {
-  background-color: rgba(0, 0, 0, 0.608);
-}
-
-.elegiravatar:active {
-  border: 1px solid #000;
+  background: linear-gradient(83deg, #ff8f0b, #00cf9a);
+  background-size: 600% 600%;
+  -webkit-animation: aniGrad 8s ease infinite;
+  animation: aniGrad 8s ease infinite;
 }
 
 :root {
@@ -475,58 +403,32 @@ h4 {
   font-weight: bold;
 }
 
-.login-page {
-  background-image: url("../../media/loginregister/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow-y: hidden;
-}
-
-.login-page main .region1 {
-  margin: 5% 0% 5% 10%;
-}
-
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
-}
-
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::-webkit-input-placeholder {
-  font-family: "Font Awesome\ 6 pro";
-}
-
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn:-ms-input-placeholder {
-  font-family: "Font Awesome\ 6 pro";
-}
-
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::-ms-input-placeholder {
-  font-family: "Font Awesome\ 6 pro";
-}
-
-.login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::placeholder {
-  font-family: "Font Awesome\ 6 pro";
-}
-
-.login-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
-}
-
-.registro-page {
-  background-image: url("../../media/loginregister/fondo3.png");
+.misapuntes-page {
+  background-image: url("../../media/misapuntes/fondo2.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.registro-page main .region1 {
-  margin: 5% 5% 5% 5%;
+.misapuntes-page main .region1 {
+  padding-left: 90px;
+  margin-bottom: 60px;
 }
 
-.registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
+.misapuntes-page main .region1 .content-region .glassland .content-glassland .misapuntes-content-glassland {
+  width: 90vw;
+  padding: 2%;
 }
 
-.registro-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
+.misapuntes-page main .region2 {
+  padding-left: 90px;
+  margin-bottom: 60px;
 }
-/*# sourceMappingURL=loginregistro.css.map */
+
+.misapuntes-page main .region2 .content-region .glassland .content-glassland {
+  width: 100%;
+}
+
+.misapuntes-page main .region2 .content-region .glassland .content-glassland .misapuntes-content-glassland {
+  width: 90vw;
+}
+/*# sourceMappingURL=misapuntes.css.map */

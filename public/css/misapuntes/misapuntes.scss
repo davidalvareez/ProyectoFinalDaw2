@@ -205,180 +205,107 @@
 }
 
 .inputbtn {
+    width: 290px;
     box-sizing: border-box;
-    padding: 2px 30px 10px 10px;
-    width: 100%;
+    padding: 10px 30px 11px 10px;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.inputbtn-file {
+    width: 290px;
+    color: black;
+    background-color: rgb(250, 250, 250);
+    margin-bottom: 20px;
+    margin-top: 2px;
+    padding: 6px 30px 10px 10px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    border: 1px solid rgb(216, 215, 215);
+    box-sizing: border-box;
 }
 
 .inputbtn-selec {
+    width: 290px;
     box-sizing: border-box;
     padding: 10px 30px 10px 10px;
-    width: 100%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     margin-bottom: 20px;
     cursor: pointer;
     &:hover {
-        box-sizing: border-box;
-        padding: 10px 30px 10px 10px;
-        width: 100%;
         border: 1px solid rgb(45, 45, 45);
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-        margin-bottom: 20px;
         cursor: pointer;
-        background-color: rgb(221, 221, 221);
+        background-color: rgb(240, 240, 240);
     }
 }
 
-.imginputbtn {
-    position: absolute;
-    right: 10px;
-    top: 12px;
-}
-
-.pizq {
+.padding-subirapuntes {
     float: left;
+    margin: 20px;
 }
 
-.pder {
-    float: right;
+.padding-subirapuntes-submit {
+    text-align: center;
 }
 
-.alienarleft {
-    float: left;
-    padding: 40px 10px 5px 7px;
-}
-
-.alienarright {
-    float: right;
-    padding: 0px 0px 30px 0px;
-}
-
-.imgredondeada {
-    border-radius: 12px;
-}
-
-.imgredondeada2 {
-    float: right;
-    margin-left: 198px;
-    padding-right: 80px;
-}
-
-.menudos {
-    width: 45.8%;
-    float: left;
-    padding: 10px;
-}
-
-.menuuno {
-    width: 94%;
-    float: left;
-    padding: 10px 10px 10px 10px;
-}
-
-.errortext {
-    font-style: italic;
-    font-weight: bold;
-    font-size: 12px;
-    float: left;
-    padding-bottom: 5px;
-}
-
-.one-column {
+.menu {
     width: 100%;
-    padding-bottom: 10px;
+    padding: 20px 0px 90px 0px;
+    text-align: center;
 }
 
-//MODAL ------------------------------------------------------------------
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
+.title-text {
+    padding-left: 90px;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+.table th,
+.table td,
+.table tr {
+    border-top: none !important;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.aceptarbtn {
-    padding: 10px 10px 10px 10px;
-    width: 50%;
+@-webkit-keyframes aniGrad {
+    0% {
+        background-position: 0% 52%;
+    }
+    50% {
+        background-position: 100% 49%;
+    }
+    100% {
+        background-position: 0% 52%;
+    }
+}
+
+@keyframes aniGrad {
+    0% {
+        background-position: 0% 52%;
+    }
+    50% {
+        background-position: 100% 49%;
+    }
+    100% {
+        background-position: 0% 52%;
+    }
+}
+
+.btn-glass {
+    margin: 20px 0px 0px 0px;
+    padding: 10px 75px;
+    font-size: 15px;
     border: 0;
     text-decoration: none;
-    border-radius: 6px;
-    background-color: #12993ccc;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(30px);
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
-    letter-spacing: 2px;
+    border-radius: 15px;
     cursor: pointer;
-    text-transform: uppercase;
+    background: linear-gradient(83deg, #ff8f0b, #00cf9a);
+    background-size: 600% 600%;
+    -webkit-animation: aniGrad 8s ease infinite;
+    animation: aniGrad 8s ease infinite;
 }
 
-.aceptarbtn:hover {
-    background-color: #0e7a30cc;
-}
-
-.grid {
-    padding: 5vh 15vh;
-    display: -ms-grid;
-    display: grid;
-    grid-gap: 15px 7px;
-    -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
-    grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
-}
-
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.elegiravatar {
-    cursor: pointer;
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.608);
-    }
-}
-
-.elegiravatar:active {
-    border: 1px solid #000;
-}
-
-//MODAL ------------------------------------------------------------------
 $padding: 15px;
 $first-color:#19c673; //color principal
 $second-color:#05a357; //color para resaltes pequeños
@@ -479,13 +406,11 @@ h4 {
 //     }
 // }
 //////////////
-.login-page {
-    background-image: url("../../media/loginregister/fondo3.png");
+.misapuntes-page {
+    background-image: url("../../media/misapuntes/fondo2.png");
     background-size: cover;
     background-repeat: no-repeat;
-    overflow-y: hidden;
     main {
-        //@extend .flex;
         .region {
             .glassland {
                 @extend .glass2;
@@ -495,69 +420,34 @@ h4 {
             }
         }
         .region1 {
-            margin: 5% 0% 5% 10%;
+            padding-left: 90px;
+            margin-bottom: 60px;
             @extend .flex;
             .content-region {
                 .glassland {
                     .content-glassland {
-                        @extend .flex;
-                        .login-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
-                            .inputbtn {
-                                &::placeholder {
-                                    font-family: "Font Awesome\ 6 pro";
-                                }
-                            }
-                            .login-btn-absglass {
-                                @extend .glassbtn;
-                            }
+                        //@extend .flex;
+                        .misapuntes-content-glassland {
+                            width: 90vw;
+                            padding: 2%;
                         }
                     }
                 }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 41%;
-                }
             }
         }
-    }
-}
-
-.registro-page {
-    background-image: url("../../media/loginregister/fondo3.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    //overflow-y: hidden;
-    main {
-        //@extend .flex;
-        .region {
-            .glassland {
-                @extend .glass2;
-                .content-glassland {
-                    @extend .flex;
-                }
-            }
-        }
-        .region1 {
-            margin: 5% 5% 5% 5%;
+        .region2 {
+            padding-left: 90px;
+            margin-bottom: 60px;
             @extend .flex;
             .content-region {
                 .glassland {
                     .content-glassland {
-                        @extend .flex;
-                        .registro-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
-                            .login-btn-absglass {
-                                @extend .glassbtn;
-                            }
+                        //@extend .flex;
+                        width: 100%;
+                        .misapuntes-content-glassland {
+                            width: 90vw;
                         }
                     }
-                }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 41%;
                 }
             }
         }

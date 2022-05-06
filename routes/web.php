@@ -16,6 +16,12 @@ use App\Http\Controllers\CRUDAdminController;
 |
 */
 //Enlaces a paginas
+
+//VALIDAR CORREO HECHO POR MARC PARA PRUEBAS
+Route::get('validarcorreo', function () {
+    return view('validarcorreo');
+});
+
 //Indice
 Route::get('/', function () {
     return view('index');
@@ -40,9 +46,21 @@ Route::get('logout',[UsuarioController::class,'logout']);
 //Pagina de perfil
 Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
 
+Route::post('perfil/actualizar',[UsuarioController::class,'ActualizarPerfil']);
+
+Route::put('perfil/actualizarPUT',[UsuarioController::class,'ActualizarPerfilPut']);
+
+Route::post('perfil/getConfigUser',[UsuarioController::class,'getConfigUser']);
+
+Route::post('perfil/changeConfigUser',[UsuarioController::class,'changeConfigUser']);
+
+Route::put('perfil/actualizarAvatar',[UsuarioController::class,'actualizarAvatar']);
+
 //Pagina de apuntes
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
+
+Route::post('misApuntes/centro',[ApuntesController::class,'misApuntes_centro']);
 
 Route::post('misApuntes/curso',[ApuntesController::class,'misApuntes_curso']);
 
