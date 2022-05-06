@@ -56,7 +56,7 @@ function modalDatosUser() {
                 recarga += `
                     <div class="item etiqueta">
                         <div class="boton-item">
-                            <form method="post" onsubmit="actualizarUser(); return false;" class="form-mod-perfil" id="editarPerfil">
+                            <form class="formmodal" method="post" onsubmit="actualizarUser(); return false;" class="form-mod-perfil" id="editarPerfil">
                                 <label>NickName</label>
                                 <input type="text" name="nick_usu" value="${respuesta.user[i].nick_usu}" placeholder="NickName...">
                                 <label>Nombre</label>

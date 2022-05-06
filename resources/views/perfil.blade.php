@@ -32,10 +32,10 @@
                         <h2>INFORMACIÓN PERSONAL</h2>
                         <div class="menu-info-persona">
                             <div id="menu-info-persona">
-                                <div class="div-info"><h4>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h3></div>
-                                <div class="div-info"><h4>{{$perfilUser[0]->fecha_nac_usu}}</h4></div>
-                                <div class="div-info"><h4>{{$perfilUser[0]->correo_usu}}</h4></div>
-                                <div class="div-info"><h4>{{$perfilUser[0]->nombre_centro}}</h4></div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h3></div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->fecha_nac_usu}}</h3></div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->correo_usu}}</h3></div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->nombre_centro}}</h3></div>
                             </div>
                             @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                                 <button class="btn-glass" onclick="modalDatosUser();">Editar información</button>
@@ -81,7 +81,7 @@
                 <div class="region-mis-apuntes">
                     <div class="content-mis-apuntes">
                         <h2>MIS APUNTES</h2>
-                                            <!--- Aqui Empieza Las Cartas--->
+                    <!--- Aqui Empieza Las Cartas--->
                     <div class="owl-carousel owl-carousel-4">
                         @foreach($apuntesUser as $recentnotes)
                         <div class="card resultado card-resultado">
@@ -177,7 +177,6 @@
         <!--- Aqui Empieza El Modal Actualizar--->
         <div class="modal2" id="modalActualizar">
             <div class="modal-content" id="modalBox">
-
             </div>
         </div>
         <!--- Aqui Termina El Modal Actualizar--->
