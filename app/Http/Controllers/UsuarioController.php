@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use Illuminate\Support\Facades\MAIL;
+use App\Mail\sendMail;
 
 class UsuarioController extends Controller
 {
@@ -39,24 +41,14 @@ class UsuarioController extends Controller
             //En caso contrario comprovamos lo siguiente
             }else{
                 $user = $user[0];
-                //date_default_timezone_set("Europe/Madrid");
-                $sysDate = date('Y-m-d H:i:s');
-                //Una vez dentro cogemos fecha actual del sistema
-                //Si no está baneado es decir es nulo para dentro
-                if ($user->deshabilitado == null) {
-                    session()->put("user",$user);
-                    if ($user->id_rol == 1) {
-                        return redirect("admin");
-                    }elseif($user->id_rol == 2){
-                        return redirect("moderador");
-                    }else{
-                        return redirect("buscador");
-                    }
+                if ($user->validado == false) {
+                    return "Pendiente de validar";
                 }else{
-                    //Si esta baneado validamos entre fecha/hora actual y el baneo y si el sistema es mayor o igual lo ponemos a nulo y lo devolvemos a la vista
-                    $timeBanned = $user->deshabilitado;
-                    if ($timeBanned <= $sysDate) {
-                        DB::select('UPDATE tbl_usuario SET deshabilitado=null where id = ?',[$user->id]);
+                    //date_default_timezone_set("Europe/Madrid");
+                    $sysDate = date('Y-m-d H:i:s');
+                    //Una vez dentro cogemos fecha actual del sistema
+                    //Si no está baneado es decir es nulo para dentro
+                    if ($user->deshabilitado == null) {
                         session()->put("user",$user);
                         if ($user->id_rol == 1) {
                             return redirect("admin");
@@ -65,8 +57,22 @@ class UsuarioController extends Controller
                         }else{
                             return redirect("buscador");
                         }
-                    }else{
-                        return "Sigues baneado";
+                    } else{
+                        //Si esta baneado validamos entre fecha/hora actual y el baneo y si el sistema es mayor o igual lo ponemos a nulo y lo devolvemos a la vista
+                        $timeBanned = $user->deshabilitado;
+                        if ($timeBanned <= $sysDate) {
+                            DB::select('UPDATE tbl_usuario SET deshabilitado=null where id = ?',[$user->id]);
+                            session()->put("user",$user);
+                            if ($user->id_rol == 1) {
+                                return redirect("admin");
+                            }elseif($user->id_rol == 2){
+                                return redirect("moderador");
+                            }else{
+                                return redirect("buscador");
+                            }
+                        }else{
+                            return "Sigues baneado";
+                        }
                     }
                 }
             }
@@ -89,12 +95,15 @@ class UsuarioController extends Controller
         }
         //Sentencia de creacion de usuario
         try {
+            //Cogemos el id del centro y hacemos el registro como usuario normal
             $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
-            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"id_rol"=>3,"id_centro"=>$id_centro[0]->id]);
+            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>3,"id_centro"=>$id_centro[0]->id]);
             DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
             $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
             $newuser=$newuser[0];
-            session()->put("user",$newuser);
+            //INSERTAMOS CODIGO DE VALIDACION
+            $code = rand(1000,9999);
+            DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$newuser->id]);
             //Crear JSON archivo de configuración
             $json = [
                 "id" => $newuser->id,
@@ -106,9 +115,44 @@ class UsuarioController extends Controller
             //Almacenar JSON
             Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
             //request()->file($json)->store('uploads/configuration','public');
-            return redirect("buscador");
+            $urlValidateUser = url("validarcorreo");
+            $sub = "Codigo de validacion de usuario";
+            $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
+            $datos = array('message'=>$msj);
+            $enviar = new sendMail($datos);
+            $enviar->sub = $sub;
+            Mail::to($newuser->correo_usu)->send($enviar);
+            return redirect("login");
         } catch (\Exception $e) {
             return $e->getMessage();
+        }
+    }
+    //Validar usuario
+    public function validarUsuario(Request $request){
+        $datos = $request->except("_token");
+        $user = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$datos["correo"]]);
+        $user = $user[0];
+        $existvalidar = DB::select("SELECT * FROM tbl_validacion WHERE id_usu = ?",[$user->id]);
+        if (count($existvalidar) == 0) {
+            return "Validacion no encontrado";
+        }else{
+            $validar = DB::select("SELECT * FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
+            if(count($validar) == 0){
+                return "Codigo incorrecto";
+            }else{
+
+                try {
+                    DB::beginTransaction();
+                    DB::delete("DELETE FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
+                    DB::update("UPDATE tbl_usuario SET validado = ? WHERE id = ?",[true,$user->id]);
+                    DB::commit();
+                    session()->put("user",$user);
+                    return redirect('buscador');
+                } catch (\Exception $e) {
+                    DB::rollBack();
+                    return $e;
+                }
+            }   
         }
     }
     //Logout
