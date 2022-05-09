@@ -74,9 +74,14 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-function closeModalSeleccion() {
+function closeModalSeleccion(user) {
     var modal = document.getElementById("myModal2");
     modal.style.display = "none";
+    if (user == 3) {
+        document.getElementById("tipo_usuario2").value = 3;
+    } else {
+        document.getElementById("tipo_usuario2").value = 4;
+    }
 }
 
 function closeModal2() {
