@@ -10,7 +10,7 @@
     <script src="{!! asset('js/vistaapuntes/vistaapuntes.js') !!}"></script>
     <title>Apunte</title>
 </head>
-<body class="vista-apuntes">
+<body class="vista-apuntes" oncontextmenu='return false'>
     <header></header>
     <main>
         <div class="menu">
@@ -22,7 +22,7 @@
                     <div class="content-apuntes">
                         {{-- <iframe src="https://docs.google.com/gview?url={{asset('storage').'/uploads/apuntes/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido.'&embedded=true'}}"></iframe> --}}
                         @if($apunte[0]->extension_contenido == ".pdf")
-                            <iframe src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
+                            <iframe id="framePDF" style="pointer-events:none;" src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
                         @elseif($apunte[0]->extension_contenido == '.jpeg' || $apunte[0]->extension_contenido == '.jpg' || $apunte[0]->extension_contenido == '.png')
                             <img src="{{$path}}">
                         @endif
@@ -72,7 +72,7 @@
                                                 </label>
                                             </div>
                                             <div class="crear-coment">
-                                                <textarea name="desc_comentario" cols="80" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
+                                                <textarea name="desc_comentario" cols="60" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
                                             </div>
                                             
                                             <input type="hidden" name="id_contenido" value={{$apunte[0]->id}}>
@@ -117,6 +117,10 @@
                                     <div>
                                         <p class="texto-coment">{{$comentario->desc_comentario}}</p>
                                     </div>
+                                    <!--TEXTO SI NO HAY COMENTARIOS-->
+                                    {{-- @if($comentario->any())
+                                        <p>Actualmente no hay comentarios :)</p>
+                                    @endif --}}
                                     @endforeach
                                 </div>
                             </div>

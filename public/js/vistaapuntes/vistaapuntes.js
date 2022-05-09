@@ -31,12 +31,18 @@ function addcomment() {
             if (respuesta.resultado == "OK") {
                 let recarga = "";
                 for (let i = 0; i < respuesta.comentarios.length; i++) {
-                    recarga += `<img src="../storage/${respuesta.comentarios[i].img_avatar}" alt="">
-                    <h1>${respuesta.comentarios[i].nick_usu}</h1>
+                    recarga += `<div>
+                        <div style="float: left">
+                            <h4 style="margin-left:20px;">${respuesta.comentarios[i].nick_usu}</h4>
+                        </div>
+                        <div style="float:left">
+                            <img src="../storage/${respuesta.comentarios[i].img_avatar}" alt="avatar" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
+                        </div>
+                    </div>
                     <div class="nota-resta">
                         <label class="rating-label">
                             <input
-                              class="rating"
+                              class="rating-small"
                               max="5"
                               min="0"
                               oninput="this.style.setProperty('--value', this.value)"
@@ -48,7 +54,9 @@ function addcomment() {
                               >
                         </label>
                     </div>
-                    <p>${respuesta.comentarios[i].desc_comentario}</p>`;
+                    <div>
+                        <p class="texto-coment">${respuesta.comentarios[i].desc_comentario}</p>
+                    </div>`;
                 }
                 alertify.success('Comentario publicado correctamente');
                 container.innerHTML = recarga;
