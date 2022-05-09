@@ -268,6 +268,7 @@ class UsuarioController extends Controller
             return response()->json(array('resultado'=>"NOK: ".$e->getMessage()));
         }
     }
+    
     /*CONFIGURACION USER*/
     public function getConfigUser(){
         $user = session()->get('user');
@@ -279,6 +280,7 @@ class UsuarioController extends Controller
             return response()->json(array("configuration" => $configuration,"cursos"=>$cursos));
         }
     }
+
     public function changeConfigUser(Request $request){
         $user = session()->get('user');
         $json = json_decode(file_get_contents(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json')), true);
