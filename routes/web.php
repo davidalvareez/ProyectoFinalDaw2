@@ -151,4 +151,7 @@ Route::put('admin/tema',[CRUDAdminController::class,'actualizarTema']);
 
 Route::put('admin/user',[CRUDAdminController::class,'actualizarUsuario']);
 
+//Profesores
+Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
+
 //Mapas

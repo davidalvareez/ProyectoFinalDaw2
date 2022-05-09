@@ -289,4 +289,10 @@ class UsuarioController extends Controller
         Storage::disk('config-user')->put("user-".$user->id.".json", $modifyJson);
         return response()->json(array("resultado" => "OK"));
     }
+
+    /*Profesores*/
+    public function MostrarProfesores(){
+        $MostrarProfesores = DB::select('SELECT * from tbl_usuario INNER JOIN tbl_rol ON tbl_usuario.id_rol = tbl_rol.id INNER JOIN tbl_avatar ON tbl_usuario.id = tbl_avatar.id_usu WHERE tbl_rol.id = 4;');
+        return view ('profesores',compact('MostrarProfesores'));
+    }
 }
