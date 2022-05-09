@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApuntesController;
-use App\Http\Controllers\CentroController;
+use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CRUDAdminController;
 /*
@@ -140,4 +140,7 @@ Route::put('admin/tema',[CRUDAdminController::class,'actualizarTema']);
 
 Route::put('admin/user',[CRUDAdminController::class,'actualizarUsuario']);
 
-//Mapas
+//OAUTH
+Route::get('login-google',[OAuthController::class,'login_google']);
+ 
+Route::get('google-callback',[OAuthController::class,'google_callback']);
