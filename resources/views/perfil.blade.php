@@ -75,7 +75,7 @@
                     <div class="content-baja">
                         <h2 class="titular">DARSE DE BAJA</h2>
                         <div class="darse-baja">
-                            <button class="btn-glass" onclick="window.location.href='{{url('darseDeBaja')}}'">Elimina tu cuenta</button>
+                            <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Elimina tu cuenta</button>
                         </div>
                     </div>
                 </div>
