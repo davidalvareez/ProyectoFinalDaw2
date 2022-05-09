@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <!----------------------------------- AlertifyJS ------------------------------------------------------->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
@@ -35,10 +32,10 @@
                         <h2>INFORMACIÓN PERSONAL</h2>
                         <div class="menu-info-persona">
                             <div id="menu-info-persona">
-                                <div class="div-info">{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</div>
-                                <div class="div-info">{{$perfilUser[0]->fecha_nac_usu}}</div>
-                                <div class="div-info">{{$perfilUser[0]->correo_usu}}</div>
-                                <div class="div-info">{{$perfilUser[0]->nombre_centro}}</div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h3></div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->fecha_nac_usu}}</h3></div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->correo_usu}}</h3></div>
+                                <div class="div-info"><h3>{{$perfilUser[0]->nombre_centro}}</h3></div>
                             </div>
                             @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                                 <button class="btn-glass" onclick="modalDatosUser();">Editar información</button>
@@ -49,18 +46,20 @@
                 <div class="region-avatar">
                     <div class="content-avatar">
                         <div class="region-foto">
-                            <div class="content-foto" >
-                                <img id ="imgAvatar" class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
+                            <div class="content-foto">
+                                <div class="content-img">
+                                    <img id ="imgAvatar" class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
                                     <a class="add-button" onclick="modalbox();return false;"><span class="fa-solid fa-pencil"></span></a>
+                                </div>
                                 <h1 class="user-nickname" id="NickName">{{$perfilUser[0]->nick_usu}}</h1>
                             </div>
                         </div>
                         <div class="region-datos">
                             <div class="valoracion">
-                                <p>{{$perfilUser[0]->valoracion}}*</p>
+                                <h4>{{$perfilUser[0]->valoracion}}*</h4>
                             </div>
                             <div class="descargas">
-                                <p>{{$perfilUser[0]->descargas}} descargas</p>
+                                <h4>{{$perfilUser[0]->descargas}} descargas</h4>
                             </div>
                         </div>
                     </div>
@@ -75,14 +74,13 @@
                     <div class="content-baja">
                         <h2 class="titular">DARSE DE BAJA</h2>
                         <div class="darse-baja">
-                            <button class="btn-glass" onclick="window.location.href='{{url('darseDeBaja')}}'">Elimina tu cuenta</button>
+                            <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Elimina tu cuenta</button>
                         </div>
                     </div>
                 </div>
                 <div class="region-mis-apuntes">
                     <div class="content-mis-apuntes">
                         <h2>MIS APUNTES</h2>
-                    </div>
                     <!--- Aqui Empieza Las Cartas--->
                     <div class="owl-carousel owl-carousel-4">
                         @foreach($apuntesUser as $recentnotes)
@@ -171,13 +169,14 @@
                         @endforeach
                     </div>
                     <!--- Aqui Terminan Las Cartas--->
+                    </div>
+
                 </div>
             </div>
         </div>
         <!--- Aqui Empieza El Modal Actualizar--->
-        <div class="modal hidden" id="modalActualizar">
+        <div class="modal2" id="modalActualizar">
             <div class="modal-content" id="modalBox">
-
             </div>
         </div>
         <!--- Aqui Termina El Modal Actualizar--->
@@ -190,27 +189,28 @@
         <!--- Aqui Empieza El Modal Configuración--->
         <!--- Aqui Empieza El Modal Actualizar Avatar--->
         <div id="myModal" class="modal2">
-            <div class="modal-content">
+            <div class="modal-content-avatar">
                 <span class="close" onclick="closeModal();">&times;</span>
-                <br><br>
-                <form id="editarAvatar" onsubmit="actualizarAvatarUsu();return false;" enctype="multipart/form-data">
-                    <h1>Escoge tu avatar</h1>
-                    <br>
-                    <p style="float: left; padding-left:75px">Selecciona un avatar predefinido:</p>
-                    <br>
-                    <div class="grid">
-                        @foreach($avatares as $avatar)
-                        <div>
-                            <button class="elegiravatar" onclick="avatarSelected('{{$avatar->img_avatar}}'); chBackcolor(this);return false;"><img src={{asset('storage').'/'.$avatar->img_avatar}} width="100px" height="100px"></button>
+                <div class="avatar-content">
+                    <form id="editarAvatar" onsubmit="actualizarAvatarUsu();return false;" enctype="multipart/form-data">
+                        <h1>Escoge tu avatar</h1>
+                        <br>
+                        <p style="float: left; padding-left:75px">Selecciona un avatar predefinido:</p>
+                        <br>
+                        <div class="grid">
+                            @foreach($avatares as $avatar)
+                            <div>
+                                <button class="elegiravatar" onclick="avatarSelected('{{$avatar->img_avatar}}'); chBackcolor(this);return false;"><img src={{asset('storage').'/'.$avatar->img_avatar}} width="100px" height="100px"></button>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
-                    </div>
-                    <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
-                    <input type="file" name="img_avatar_usu2" id="img_avatar_usu">
-                    <br><br>
-                    <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema">
-                    <button  type="submit" class="aceptarbtn" value="Aceptar">Aceptar</button>
-                </form>
+                        <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
+                        <input type="file" name="img_avatar_usu2" id="img_avatar_usu">
+                        <br><br>
+                        <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema">
+                        <button  type="submit" class="aceptarbtn" value="Aceptar">Aceptar</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!--- Aqui Termina El Modal Actualizar Avatar--->

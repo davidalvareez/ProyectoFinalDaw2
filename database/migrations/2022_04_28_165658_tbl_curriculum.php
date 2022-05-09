@@ -16,7 +16,7 @@ class TblCurriculum extends Migration
         Schema::create('tbl_curriculum', function (Blueprint $table) {
 
             $table->id();
-            $table->string('nombre_curriculum');
+            $table->string('nombre_curriculum')->nullable();
             $table->unsignedBigInteger('id_usu');
 
             $table->foreign('id_usu')->references('id')->on('tbl_usuario');
