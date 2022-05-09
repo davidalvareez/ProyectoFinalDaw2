@@ -156,6 +156,9 @@ Route::get('login-google',[OAuthController::class,'login_google']);
  
 Route::get('google-callback',[OAuthController::class,'google_callback']);
 
+Route::get('oauth-register',[OAuthController::class,'oauthViewRegisterAlumno']);
+
+Route::post('oauth-register-alumno',[OAuthController::class,'oauthRegisterAlumno']);
 //Profesores
 Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
 
