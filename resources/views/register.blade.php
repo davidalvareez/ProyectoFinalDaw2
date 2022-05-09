@@ -41,7 +41,7 @@
                       </div>
                       <div class="card-flap flap2">
                         <div class="card-actions">
-                        <button class="btn-glass" onclick="closeModalSeleccion()">Seleccionar</button>
+                        <button class="btn-glass" onclick="closeModalSeleccion(3);">Seleccionar</button>
                         </div>
                       </div>
                     </div>
@@ -66,7 +66,7 @@
                       </div>
                       <div class="card-flap flap2">
                         <div class="card-actions">
-                          <button class="btn-glass" onclick="modalProfe();closeModalSeleccion();">Seleccionar</button>
+                          <button class="btn-glass" onclick="modalProfe();closeModalSeleccion(4);">Seleccionar</button>
                         </div>
                       </div>
                     </div>
@@ -119,12 +119,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('nombre_usu')
-                                    <script>
-                                        alertify.error("Falta nombre");
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menudos">
                                     <h4 class="pizq">Apellido</h4>
                                     <div>
@@ -136,12 +131,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('apellido_usu')
-                                    <script>
-                                        alertify.error("Falta apellido");
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menudos">
                                     <h4 class="pizq">Nickname</h4>
                                     <div>
@@ -153,15 +143,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('nick_usu')
-                                    <script>
-                                        let nick_usu = document.getElementById("nick_usu").value;
-                                        if (nick_usu == ""){
-                                            alertify.error("Falta nickname");
-                                        }
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menudos">
                                     <h4 class="pizq">Fecha de nacimiento</h4>
                                     <div>
@@ -173,12 +155,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('fecha_nac_usu')
-                                    <script>
-                                        alertify.error("Falta fecha de nacimiento");
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menudos">
                                     <h4 class="pizq">Centro</h4>
                                     <div>
@@ -202,12 +179,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @error('centro')
-                                    <script>
-                                        alertify.error("Falta especificar centro");
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menudos">
                                     <h4 class="pizq">Email</h4>
                                     <div>
@@ -219,15 +191,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('correo_usu')
-                                    <script>
-                                        let correo_usu = document.getElementById("correo_usu").value;
-                                        if (nick_usu == ""){
-                                            alertify.error("Falta email");
-                                        }
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menudos">
                                     <h4 class="pizq">Contraseña</h4>
                                     <div>
@@ -239,12 +203,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('contra_usu')
-                                    <script>
-                                        alertify.error("Falta introducir la contraseña");
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menudos">
                                     <h4 class="pizq">Repetir contraseña</h4>
                                     <div>
@@ -256,18 +215,14 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @error('contra_usu_verify')
-                                    <script>
-                                        alertify.error("Falta validar la contraseña");
-                                    </script>
-                                @enderror
-                                
+                                                                
                                 <div class="menuuno">
                                     <h4 class="pizq">Avatar</h4>
                                     <div>
                                         <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
                                         <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema" value="">
                                         <input type="file" name="img_avatar_usu2" id="img_avatar_usu2" value="">
+                                        <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="">
                                     </div>
                                 </div>
                                 <!-- <div class="alienarright">
@@ -305,12 +260,7 @@
             @enderror
         </div>
     </div>
-    @error('nombre_usu')
-        <script>
-            alertify.error("Falta nombre");
-        </script>
-    @enderror
-    
+        
     <div class="menudos">
         <h4 class="pizq">Apellido</h4>
         <div>
@@ -322,11 +272,6 @@
             @enderror
         </div>
     </div>
-    @error('apellido_usu')
-        <script>
-            alertify.error("Falta apellido");
-        </script>
-    @enderror
     
     <div class="menudos">
         <h4 class="pizq">Nickname</h4>
@@ -339,14 +284,6 @@
             @enderror
         </div>
     </div>
-    @error('nick_usu')
-        <script>
-            let nick_usu = document.getElementById("nick_usu").value;
-            if (nick_usu == ""){
-                alertify.error("Falta nickname");
-            }
-        </script>
-    @enderror
     
     <div class="menudos">
         <h4 class="pizq">Fecha de nacimiento</h4>
@@ -359,11 +296,6 @@
             @enderror
         </div>
     </div>
-    @error('fecha_nac_usu')
-        <script>
-            alertify.error("Falta fecha de nacimiento");
-        </script>
-    @enderror
     
     <div class="menudos">
         <h4 class="pizq">Centro</h4>
@@ -388,11 +320,6 @@
             </div>
         </div>
     </div>
-    @error('centro')
-        <script>
-            alertify.error("Falta especificar centro");
-        </script>
-    @enderror
     
     <div class="menudos">
         <h4 class="pizq">Email</h4>
@@ -405,14 +332,6 @@
             @enderror
         </div>
     </div>
-    @error('correo_usu')
-        <script>
-            let correo_usu = document.getElementById("correo_usu").value;
-            if (nick_usu == ""){
-                alertify.error("Falta email");
-            }
-        </script>
-    @enderror
     
     <div class="menudos">
         <h4 class="pizq">Contraseña</h4>
@@ -425,11 +344,6 @@
             @enderror
         </div>
     </div>
-    @error('contra_usu')
-        <script>
-            alertify.error("Falta introducir la contraseña");
-        </script>
-    @enderror
     
     <div class="menudos">
         <h4 class="pizq">Repetir contraseña</h4>
@@ -442,11 +356,6 @@
             @enderror
         </div>
     </div>
-    @error('contra_usu_verify')
-        <script>
-            alertify.error("Falta validar la contraseña");
-        </script>
-    @enderror
     
     <div class="menuuno">
         <h4 class="pizq">Avatar</h4>
@@ -462,6 +371,7 @@
         <div>
             <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
             <input type="file" name="curriculum_profe2" id="curriculum_profe2" value="">
+            <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="4">
         </div>
     </div>
     <!-- <div class="alienarright">
