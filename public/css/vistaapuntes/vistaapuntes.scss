@@ -196,7 +196,7 @@
     background-color: #000000;
     color: white;
     &:hover {
-        background: linear-gradient(83deg, #727272, #333837);
+        background: linear-gradient(83deg, #333837, #727272);
         background-size: 600% 600%;
         -webkit-animation: aniGrad 8s ease infinite;
         animation: aniGrad 8s ease infinite;
@@ -306,6 +306,7 @@ body {
 textarea {
     resize: none;
     padding: 5px;
+    font-size: 16px;
 }
 
 ///////////////////

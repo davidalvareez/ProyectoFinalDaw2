@@ -25,7 +25,14 @@
                     {{-- <form action='{{url('logout')}}' method='get'>
                         <button class="btn btn-secondary">Logout</button>
                     </form> --}}
-                    <div>
+                    <button class="boton-menu cgradient-1" onclick="showUsers();return false">Users</button>
+                    <button class="boton-menu cgradient-1" onclick="showCentros();return false">Centros</button>
+                    <button class="boton-menu cgradient-1" onclick="showApuntes();return false">Apuntes</button>
+                    <button class="boton-menu cgradient-1" onclick="showDenuncias();return false">Denuncias</button>
+                    <button class="boton-menu cgradient-1" onclick="showHistorial();return false">Historial</button>
+                    <div id="message" style="color:green"></div>
+
+                    <div class="filtrador">
                         <form method="post" onsubmit="filtro();return false;">
                             <input type="hidden" name="_method" value="POST" id="postFiltro">
                             <div class="form-outline">
@@ -33,22 +40,23 @@
                             </div>
                          </form>
                     </div>
-                    <button class="boton-menu cgradient-1" onclick="showUsers();return false">Users</button>
-                    <button class="boton-menu cgradient-1" onclick="showCentros();return false">Centros</button>
-                    <button class="boton-menu cgradient-1" onclick="showApuntes();return false">Apuntes</button>
-                    <button class="boton-menu cgradient-1" onclick="showDenuncias();return false">Denuncias</button>
-                    <button class="boton-menu cgradient-1" onclick="showHistorial();return false">Historial</button>
-                    <div id="message" style="color:green"></div>
                 </div>
             </div>
         </div>
         <div class="region region2">
-            <div class="tablas">
-                <div class="content-tablas">
-                    <div id="content">
-    
-                    </div>
-                    <div id="myModal" class="modal">
+            <div class="content-region">
+                <div class="glassland">
+                    <div class="content-glassland">
+                        <div class="admin-content-glassland">
+                            <div class="tablas">
+                                <div class="content-tablas">
+                                    <div id="content">
+                                    </div>
+                                    <div id="myModal" class="modal">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

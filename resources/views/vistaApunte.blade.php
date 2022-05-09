@@ -72,7 +72,7 @@
                                                 </label>
                                             </div>
                                             <div class="crear-coment">
-                                                <textarea name="desc_comentario" cols="80" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
+                                                <textarea name="desc_comentario" cols="60" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
                                             </div>
                                             
                                             <input type="hidden" name="id_contenido" value={{$apunte[0]->id}}>
@@ -117,6 +117,10 @@
                                     <div>
                                         <p class="texto-coment">{{$comentario->desc_comentario}}</p>
                                     </div>
+                                    <!--TEXTO SI NO HAY COMENTARIOS-->
+                                    {{-- @if($comentario->any())
+                                        <p>Actualmente no hay comentarios :)</p>
+                                    @endif --}}
                                     @endforeach
                                 </div>
                             </div>
