@@ -10,7 +10,7 @@
     <script src="{!! asset('js/vistaapuntes/vistaapuntes.js') !!}"></script>
     <title>Apunte</title>
 </head>
-<body class="vista-apuntes">
+<body class="vista-apuntes" oncontextmenu='return false'>
     <header></header>
     <main>
         <div class="menu">
@@ -22,7 +22,7 @@
                     <div class="content-apuntes">
                         {{-- <iframe src="https://docs.google.com/gview?url={{asset('storage').'/uploads/apuntes/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido.'&embedded=true'}}"></iframe> --}}
                         @if($apunte[0]->extension_contenido == ".pdf")
-                            <iframe src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
+                            <iframe id="framePDF" style="pointer-events:none;" src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
                         @elseif($apunte[0]->extension_contenido == '.jpeg' || $apunte[0]->extension_contenido == '.jpg' || $apunte[0]->extension_contenido == '.png')
                             <img src="{{$path}}">
                         @endif
