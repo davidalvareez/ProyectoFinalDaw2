@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../public/js/registro/registro.js"></script>
     <script src="{!! asset('js/admin/adminAjax.js') !!}"></script>
     <title>Admin CPanel</title>
@@ -24,6 +25,14 @@
                     {{-- <form action='{{url('logout')}}' method='get'>
                         <button class="btn btn-secondary">Logout</button>
                     </form> --}}
+                    <div>
+                        <form method="post" onsubmit="filtro();return false;">
+                            <input type="hidden" name="_method" value="POST" id="postFiltro">
+                            <div class="form-outline">
+                               <input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por titulo..." aria-label="Search" onkeyup="filtro(); return false;"/>
+                            </div>
+                         </form>
+                    </div>
                     <button class="boton-menu cgradient-1" onclick="showUsers();return false">Users</button>
                     <button class="boton-menu cgradient-1" onclick="showCentros();return false">Centros</button>
                     <button class="boton-menu cgradient-1" onclick="showApuntes();return false">Apuntes</button>

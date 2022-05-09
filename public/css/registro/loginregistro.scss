@@ -204,9 +204,67 @@
     @extend .flex;
 }
 
+//MODAL ------------------------------------------------------------------
+$padding: 15px;
+$first-color:#19c673; //color principal
+$second-color:#05a357; //color para resaltes pequeños
+$third-color:#f6f0ea; //color fondo para recuadritos y tal
+$fourth-color: #7319c6; //color triadico 1
+$fifth-color:#c67319; //color triadico 2
+$sixth-color: #19c3c6; //color analogo 1
+$seventh-color: #19c61d; // color analogo 2
+$eightth-color: #c6196c; //color complementario
+$white: #ffffff; //blanco
+$black: #000000; //negro
+$grey: #eee;
+$letter-grey: #797c7e;
+$font1: Poppins;
+$grid-float-breakpoint: 1200px; //puntp de canvio de pantallas
+$movil: 600px;
+$mobil: 600px;
+:root {
+    --first-color: #19c673; //color principal
+    --second-color: #05a357; //color para resaltes pequeños
+    --third-color: #f6f0ea; //color fondo para recuadritos y tal
+    --fourth-color: #7319c6; //color triadico 1
+    --fifth-color: #c67319; //color triadico 2
+    --sixth-color: #19c3c6; //color analogo 1
+    --seventh-color: #19c61d; // color analogo 2
+    --eightth-color: #c6196c; //color complementario
+    --white: #ffffff; //blanco
+    --black: #000000; //negro
+    --grey: #eee;
+    --letter-grey: #797c7e;
+    --font1: Poppins;
+}
+
+///////////////////////////////////////////////////
+/////configuración de la página
+//////////////////////////////////////////////////
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+* {
+    font-family: var(--font1);
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: auto;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    // min-height: 100vh;
+    position: relative;
+}
+
 .inputbtn {
     box-sizing: border-box;
-    padding: 2px 30px 10px 10px;
+    padding: 10px 30px 10px 10px;
     width: 100%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -268,15 +326,17 @@
 }
 
 .menudos {
-    width: 45.8%;
+    //width: 45.8%;
     float: left;
     padding: 10px;
 }
 
 .menuuno {
-    width: 94%;
+    //width: 94%;
     float: left;
     padding: 10px 10px 10px 10px;
+    grid-column-end: 3;
+    grid-column-start: 1;
 }
 
 .errortext {
@@ -290,6 +350,11 @@
 .one-column {
     width: 100%;
     padding-bottom: 10px;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 //MODAL ------------------------------------------------------------------
@@ -376,64 +441,6 @@
 
 .elegiravatar:active {
     border: 1px solid #000;
-}
-
-//MODAL ------------------------------------------------------------------
-$padding: 15px;
-$first-color:#19c673; //color principal
-$second-color:#05a357; //color para resaltes pequeños
-$third-color:#f6f0ea; //color fondo para recuadritos y tal
-$fourth-color: #7319c6; //color triadico 1
-$fifth-color:#c67319; //color triadico 2
-$sixth-color: #19c3c6; //color analogo 1
-$seventh-color: #19c61d; // color analogo 2
-$eightth-color: #c6196c; //color complementario
-$white: #ffffff; //blanco
-$black: #000000; //negro
-$grey: #eee;
-$letter-grey: #797c7e;
-$font1: Poppins;
-$grid-float-breakpoint: 1200px; //puntp de canvio de pantallas
-$movil: 600px;
-$mobil: 600px;
-:root {
-    --first-color: #19c673; //color principal
-    --second-color: #05a357; //color para resaltes pequeños
-    --third-color: #f6f0ea; //color fondo para recuadritos y tal
-    --fourth-color: #7319c6; //color triadico 1
-    --fifth-color: #c67319; //color triadico 2
-    --sixth-color: #19c3c6; //color analogo 1
-    --seventh-color: #19c61d; // color analogo 2
-    --eightth-color: #c6196c; //color complementario
-    --white: #ffffff; //blanco
-    --black: #000000; //negro
-    --grey: #eee;
-    --letter-grey: #797c7e;
-    --font1: Poppins;
-}
-
-///////////////////////////////////////////////////
-/////configuración de la página
-//////////////////////////////////////////////////
-html {
-    min-height: 100%;
-    position: relative;
-}
-
-* {
-    font-family: var(--font1);
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: auto;
-}
-
-body {
-    height: 100%;
-    width: 100%;
-    // min-height: 100vh;
-    position: relative;
 }
 
 ///////////////////

@@ -22,14 +22,18 @@ Route::get('validarcorreo', function () {
     return view('validarcorreo');
 });
 
+Route::post('validarCorreoUser', [UsuarioController::class,'validarUsuario']);
+
 //Indice
 Route::get('/', function () {
     return view('index');
 });
+
 //About us
 Route::get('aboutus', function () {
     return view('aboutus');
 });
+
 Route::get('buscador',[ApuntesController::class,'buscador']);
 
 //Procesos Login // Registro // LogOut
@@ -56,7 +60,10 @@ Route::post('perfil/changeConfigUser',[UsuarioController::class,'changeConfigUse
 
 Route::put('perfil/actualizarAvatar',[UsuarioController::class,'actualizarAvatar']);
 
+Route::delete('perfil/darseDeBaja',[UsuarioController::class,'DarseDeBaja']);
+
 //Pagina de apuntes
+
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
 
@@ -74,8 +81,11 @@ Route::delete('misApuntes/eliminarapunte/{id}',[ApuntesController::class,'misApu
 
 //Apunte
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
+
 Route::post('apuntes/comentar',[ApuntesController::class,'comentar']);
+
 Route::post('download',[ApuntesController::class,'download']);
+
 //FILTROS
 
 //Pagina buscador, busqueda multiple_of
@@ -88,6 +98,7 @@ Route::post('buscador/busquedaAvanzada/centro',[ApuntesController::class,'busque
 Route::post('buscador/busquedaAvanzada/curso',[ApuntesController::class,'busquedaAvanzadaCurso']);
 
 //CRUD ADMIN
+
 //Mostrar
 Route::get('admin',[CRUDAdminController::class,'adminView']);
 
@@ -122,6 +133,7 @@ Route::delete('admin/asignaturas/{id}',[CRUDAdminController::class,'eliminarAsig
 
 Route::delete('admin/temas/{id}',[CRUDAdminController::class,'eliminarTema']);
 
+
 //Mostrar
 Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
@@ -136,5 +148,10 @@ Route::put('admin/curso',[CRUDAdminController::class,'actualizarCurso']);
 Route::put('admin/asignatura',[CRUDAdminController::class,'actualizarAsignatura']);
 
 Route::put('admin/tema',[CRUDAdminController::class,'actualizarTema']);
+
+Route::put('admin/user',[CRUDAdminController::class,'actualizarUsuario']);
+
+//Profesores
+Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
 
 //Mapas

@@ -17,7 +17,7 @@ class TblComentarios extends Migration
 
             $table->id();
             $table->string('desc_comentario');
-            $table->integer('val_comentario');
+            $table->float('val_comentario');
             $table->unsignedBigInteger('id_contenido');
             $table->unsignedBigInteger('id_usu');
 

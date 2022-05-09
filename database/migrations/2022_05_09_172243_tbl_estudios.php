@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TblCurriculum extends Migration
+class TblEstudios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class TblCurriculum extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_curriculum', function (Blueprint $table) {
-
+        Schema::create('tbl_estudios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_curriculum')->nullable();
             $table->unsignedBigInteger('id_usu');
+            $table->unsignedBigInteger('id_curso');
 
             $table->foreign('id_usu')->references('id')->on('tbl_usuario');
-
+            $table->foreign('id_curso')->references('id')->on('tbl_cursos');
         });
     }
 
@@ -31,6 +30,6 @@ class TblCurriculum extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_curriculum');
+        Schema::dropIfExists('tbl_estudios');
     }
 }
