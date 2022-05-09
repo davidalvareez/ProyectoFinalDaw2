@@ -221,7 +221,7 @@ body {
           box-shadow: 0 7px 15px rgba(33, 34, 37, 0.05), 0 20px 45px rgba(48, 49, 54, 0.2);
 }
 
-.glass, main .content-region .region-header, main .content-region .region-menu, main .content-region .region-avatar, main .content-region .region-subir-apuntes, main .content-region .region-baja, main .content-region .region-mis-apuntes, .modal-content {
+.glass, main .content-region .region-header, main .content-region .region-menu, main .content-region .region-avatar, main .content-region .region-subir-apuntes, main .content-region .region-baja, main .content-region .region-mis-apuntes, .modal-content, .modal-content-avatar {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -862,7 +862,7 @@ main .content-region .region-mis-apuntes .content-mis-apuntes h2 {
   padding: 0 0 0 25px;
 }
 
-.formmodal {
+.modal-content-avatar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -879,10 +879,6 @@ main .content-region .region-mis-apuntes .content-mis-apuntes h2 {
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
-}
-
-.formmodal input {
-  width: 100%;
 }
 
 .modal2 {
@@ -908,7 +904,7 @@ main .content-region .region-mis-apuntes .content-mis-apuntes h2 {
   /* Black w/ opacity */
 }
 
-.modal-content {
+.modal-content, .modal-content-avatar {
   margin: auto;
   padding: 5px;
   border: 1px solid #888;

@@ -189,27 +189,28 @@
         <!--- Aqui Empieza El Modal Configuración--->
         <!--- Aqui Empieza El Modal Actualizar Avatar--->
         <div id="myModal" class="modal2">
-            <div class="modal-content">
+            <div class="modal-content-avatar">
                 <span class="close" onclick="closeModal();">&times;</span>
-                <br><br>
-                <form id="editarAvatar" onsubmit="actualizarAvatarUsu();return false;" enctype="multipart/form-data">
-                    <h1>Escoge tu avatar</h1>
-                    <br>
-                    <p style="float: left; padding-left:75px">Selecciona un avatar predefinido:</p>
-                    <br>
-                    <div class="grid">
-                        @foreach($avatares as $avatar)
-                        <div>
-                            <button class="elegiravatar" onclick="avatarSelected('{{$avatar->img_avatar}}'); chBackcolor(this);return false;"><img src={{asset('storage').'/'.$avatar->img_avatar}} width="100px" height="100px"></button>
+                <div class="avatar-content">
+                    <form id="editarAvatar" onsubmit="actualizarAvatarUsu();return false;" enctype="multipart/form-data">
+                        <h1>Escoge tu avatar</h1>
+                        <br>
+                        <p style="float: left; padding-left:75px">Selecciona un avatar predefinido:</p>
+                        <br>
+                        <div class="grid">
+                            @foreach($avatares as $avatar)
+                            <div>
+                                <button class="elegiravatar" onclick="avatarSelected('{{$avatar->img_avatar}}'); chBackcolor(this);return false;"><img src={{asset('storage').'/'.$avatar->img_avatar}} width="100px" height="100px"></button>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
-                    </div>
-                    <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
-                    <input type="file" name="img_avatar_usu2" id="img_avatar_usu">
-                    <br><br>
-                    <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema">
-                    <button  type="submit" class="aceptarbtn" value="Aceptar">Aceptar</button>
-                </form>
+                        <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
+                        <input type="file" name="img_avatar_usu2" id="img_avatar_usu">
+                        <br><br>
+                        <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema">
+                        <button  type="submit" class="aceptarbtn" value="Aceptar">Aceptar</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!--- Aqui Termina El Modal Actualizar Avatar--->

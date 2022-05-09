@@ -583,11 +583,9 @@ main {
 }
 
 //MODAL ------------------------------------------------------------------
-.formmodal{
+.modal-content-avatar {
     @include flex-cv($d:column);
-    input{
-        width:100%;
-    }
+    @extend .modal-content;
 }
 .modal2 {
     display: none; /* Hidden by default */
