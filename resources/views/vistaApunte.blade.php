@@ -19,13 +19,10 @@
         <div class="region">
             <div class="content-region">
                 <div class="apuntes">
-                    
                     <div class="content-apuntes">
                         {{-- <iframe src="https://docs.google.com/gview?url={{asset('storage').'/uploads/apuntes/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido.'&embedded=true'}}"></iframe> --}}
                         @if($apunte[0]->extension_contenido == ".pdf")
-                            <iframe src="{{$path}}" type="application/pdf"></iframe>
-                        @elseif($apunte[0]->extension_contenido == ".doc" || $apunte[0]->extension_contenido == ".docx")
-                            <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{$path}}" frameborder="0"></iframe>
+                            <iframe src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
                         @elseif($apunte[0]->extension_contenido == '.jpeg' || $apunte[0]->extension_contenido == '.jpg' || $apunte[0]->extension_contenido == '.png')
                             <img src="{{$path}}">
                         @endif
@@ -54,36 +51,42 @@
                     <div class="glassland">
                         <div class="content-glassland">
                             <div class="crearcomentario-content-glassland">
-                                <h4>Comentar</h4>
+                                <h3 class="titulo-coment">Dinos tu opinión sobre el apunte</h3>
                                 <div>
                                     <!--formulario para comentar-->
                                     <form id="formAddComment" onsubmit="addcomment(); return false;" method="post">
                                         <div class="nota-resta">
-                                            <label class="rating-label">
-                                                <input
-                                                  class="rating"
-                                                  max="5"
-                                                  min="0"
-                                                  oninput="this.style.setProperty('--value', this.value)"
-                                                  step="0.5"
-                                                  type="range"
-                                                  value="3.5"
-                                                  style="--value:3.5;"
-                                                  name="val_comentario"
-                                                  >
-                                            </label>
-                                            <textarea name="desc_comentario" cols="30" rows="10" maxlength="200"></textarea>
+                                            <div class="crear-coment">
+                                                <label class="rating-label">
+                                                    <input
+                                                    class="rating"
+                                                    max="5"
+                                                    min="0"
+                                                    oninput="this.style.setProperty('--value', this.value)"
+                                                    step="0.5"
+                                                    type="range"
+                                                    value="3.5"
+                                                    style="--value:3.5;"
+                                                    name="val_comentario"
+                                                    >
+                                                </label>
+                                            </div>
+                                            <div class="crear-coment">
+                                                <textarea name="desc_comentario" cols="80" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
+                                            </div>
+                                            
                                             <input type="hidden" name="id_contenido" value={{$apunte[0]->id}}>
-                                            <input type="submit" value="Enviar">
+
+                                            <div class="crear-coment">
+                                                <input class="btn-glass2" type="submit" value="Enviar">
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="absglass absglass1">
-                        <div class="content-absglass">
-                            <div class="comentarios-content-absglass">
+                        <div class="content-glassland">
+                            <div class="comentario-content-glassland">
                                 <h3 class="titulo-coment">Comentarios</h3>
                                 <div id="comentarios" class="comentario">
                                     <!--COMENTARIOS-->
@@ -96,7 +99,7 @@
                                             <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
                                         </div>
                                     </div>
-                                    <div class="nota-resta" style="padding-top:57px">
+                                    <div class="nota-resta">
                                         <label class="rating-label">
                                             <input
                                                 class="rating-small"
@@ -111,7 +114,9 @@
                                                 >
                                         </label>
                                     </div>
-                                    <p>{{$comentario->desc_comentario}}</p>
+                                    <div>
+                                        <p class="texto-coment">{{$comentario->desc_comentario}}</p>
+                                    </div>
                                     @endforeach
                                 </div>
                             </div>

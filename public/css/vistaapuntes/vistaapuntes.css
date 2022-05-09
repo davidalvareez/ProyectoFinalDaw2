@@ -140,7 +140,7 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.flex, .vista-apuntes main .region .glassland .content-glassland, .vista-apuntes main .region .content-region .apuntes, .vista-apuntes main .region .content-region .acciones, .vista-apuntes main .region2, .vista-apuntes main .region3 {
+.flex, .vista-apuntes main .region .glassland .content-glassland, .vista-apuntes main .region .content-region .apuntes, .vista-apuntes main .region .content-region .acciones, .vista-apuntes main .region2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -190,6 +190,25 @@
   animation: aniGrad 8s ease infinite;
 }
 
+.btn-glass2 {
+  margin: 15px 0px 0px 0px;
+  padding: 15px 60px;
+  font-size: 17px;
+  border: 1px solid rgba(77, 77, 77, 0.144);
+  text-decoration: none;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: #000000;
+  color: white;
+}
+
+.btn-glass2:hover {
+  background: linear-gradient(83deg, #727272, #333837);
+  background-size: 600% 600%;
+  -webkit-animation: aniGrad 8s ease infinite;
+  animation: aniGrad 8s ease infinite;
+}
+
 .absglass {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
@@ -230,7 +249,6 @@
   margin: 0;
   padding: 0;
   border: 0;
-  width: auto;
 }
 
 body {
@@ -247,16 +265,33 @@ body {
 }
 
 .comentario {
-  width: 250px;
-  padding: 10px;
-  border: 3px solid rgba(128, 128, 128, 0.219);
-  border-radius: 15px;
-  margin: 10px;
+  width: 95%;
+  margin: 20px;
 }
 
 .titulo-coment {
   text-align: left;
-  margin-left: 10px;
+  margin: 30px 0px 20px 35px;
+}
+
+.texto-coment {
+  text-align: left;
+  padding-bottom: 30px;
+}
+
+.nota-resta {
+  padding-top: 57px;
+  width: 100%;
+}
+
+.crear-coment {
+  width: 33.33%;
+  float: left;
+}
+
+textarea {
+  resize: none;
+  padding: 5px;
 }
 
 h1 {
@@ -338,8 +373,7 @@ h4 {
 }
 
 .vista-apuntes main .region2 {
-  padding-left: 90px;
-  margin-bottom: 0px;
+  padding: 0px 0px 60px 90px;
   width: 90%;
 }
 
@@ -348,36 +382,8 @@ h4 {
   padding: 20px;
 }
 
-.vista-apuntes main .region2 .content-region .absglass1 {
-  width: 80%;
-  right: 185px;
-  top: 1350px;
-  padding: 25px 15px 15px 15px;
-}
-
-.vista-apuntes main .region2 .content-region .absglass1 .content-absglass .comentarios-content-absglass .comentarios-btn-absglass {
-  margin: 10px 0px 0px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
-.vista-apuntes main .region3 {
-  padding-left: 90px;
-  margin-bottom: 60px;
-  width: 90%;
-}
-
-.vista-apuntes main .region3 .content-region .glassland .content-glassland .crearcomentario-content-glassland {
-  width: 80vw;
-  padding: 8%;
+.vista-apuntes main .region2 .content-region .glassland .content-glassland .comentario-content-glassland {
+  padding: 20px;
 }
 
 .vista-apuntes main [dir="rtl"] .rating {
@@ -386,6 +392,8 @@ h4 {
 
 .vista-apuntes main .rating-label,
 .vista-apuntes main .rating {
+  padding: 0px 20px 0px 15px;
+  float: left;
   display: block;
   font-family: ui-sans-serif, system-ui, sans-serif;
 }
