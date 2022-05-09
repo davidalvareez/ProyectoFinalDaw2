@@ -21,6 +21,7 @@ use App\Http\Controllers\CRUDAdminController;
 Route::get('validarcorreo', function () {
     return view('validarcorreo');
 });
+Route::post('validarCorreoUser', [UsuarioController::class,'validarUsuario']);
 
 //Indice
 Route::get('/', function () {

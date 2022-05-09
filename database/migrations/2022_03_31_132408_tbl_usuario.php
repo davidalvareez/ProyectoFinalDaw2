@@ -23,13 +23,13 @@ class TblUsuario extends Migration
             $table->string('contra_usu');
             $table->date('deshabilitado')->nullable();
             $table->time('tmpdeshabilitado')->nullable();
+            $table->boolean('validado');
             $table->unsignedBigInteger('id_centro')->nullable();
             $table->unsignedBigInteger('id_nivel')->nullable();
             $table->unsignedBigInteger('id_rol');
             $table->foreign('id_centro')->references('id')->on('tbl_centro');
             $table->foreign('id_nivel')->references('id')->on('tbl_niveles');
             $table->foreign('id_rol')->references('id')->on('tbl_rol');
-
         });
     }
 

@@ -24,7 +24,7 @@
                             <img src="{!! asset ('media/3Dicons-dinamicos/icons/png/mail\mail-dynamic-gradient.png') !!}" width="80px" height="80px">
                             <h2>¡Verifica tu correo!</h2>
                             <br>
-                            <form action="{{url('validarcorreo')}}" method="post">
+                            <form action="{{url('validarCorreoUser')}}" method="POST">
                                 @csrf
                                 <div>
                                     <h4 class="pizq">Email</h4>
@@ -46,7 +46,7 @@
                                         <p>Contraseña olvidada?</p>
                                     </a>
                                 </div> -->
-                                <input class="validarcorreo-btn-absglass" type="submit" value="VALIDAR"></input>
+                                <input class="validarcorreo-btn-absglass" type="submit" value="VALIDAR">
                                 <div class="">
                                     <div class="alienarleft">
                                         <p>Volver a la página de inicio?</p>
