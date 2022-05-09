@@ -452,15 +452,14 @@
         <h4 class="pizq">Avatar</h4>
         <div>
             <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
-            <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema" value="">
-            <input type="file" name="img_avatar_usu2" id="img_avatar_usu2" value="">
+            <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema_profe" value="">
+            <input type="file" name="img_avatar_usu2" id="img_avatar_usu_profe" value="">
         </div>
     </div>
 
     <div class="menuuno">
         <h4 class="pizq">Curriculum</h4>
         <div>
-            <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA ADJUNTAR CURRICULUM">
             <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
             <input type="file" name="curriculum_profe2" id="curriculum_profe2" value="">
         </div>

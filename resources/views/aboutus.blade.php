@@ -16,7 +16,6 @@
     </form>
     <header></header>
     <main>
-        <audio src="media/aboutus/music/liga.mp3" loop="10" autoplay="true"></audio>
         <div class="region region1">
             <div class="content-region">
                 <div class="presentacion">

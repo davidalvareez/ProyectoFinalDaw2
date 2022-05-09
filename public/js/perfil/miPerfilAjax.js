@@ -20,16 +20,16 @@ function llamadaAjax() {
 }
 window.onclick = function(event) {
     if (event.target == modalActualizar) {
-        modalActualizar.classList.add("hidden");
+        modalActualizar.style.display = 'none';
     }
 }
 
 function abrirModal() {
-    modalActualizar.classList.remove("hidden")
+    modalActualizar.style.display = 'block';
 }
 
 function cerrarModal() {
-    modalActualizar.classList.add("hidden")
+    modalActualizar.style.display = 'none';
 }
 
 function modalDatosUser() {
@@ -49,14 +49,10 @@ function modalDatosUser() {
             <div class="cerrar-modal">
                 <i class="fa-solid fa-xmark" onclick="cerrarModal();"></i>
             </div>
-            <div class="contenido-modal">
-                <div class="modal-first">
-                    <div class="contenido">`
+            <div class="contenido-modal">`
             for (let i = 0; i < respuesta.user.length; i++) {
                 recarga += `
-                    <div class="item etiqueta">
-                        <div class="boton-item">
-                            <form method="post" onsubmit="actualizarUser(); return false;" class="form-mod-perfil" id="editarPerfil">
+                            <form class="formmodal" method="post" onsubmit="actualizarUser(); return false;" class="form-mod-perfil" id="editarPerfil">
                                 <label>NickName</label>
                                 <input type="text" name="nick_usu" value="${respuesta.user[i].nick_usu}" placeholder="NickName...">
                                 <label>Nombre</label>
@@ -77,13 +73,8 @@ function modalDatosUser() {
                 }
                 recarga += `</datalist>
                                 <input type="submit" value="Actualizar">
-                            </form> 
-                        </div> 
-                    </div>`
+                            </form>`
             }
-            recarga += `</div>
-            </div>
-            `;
             contenedor.innerHTML = recarga;
             abrirModal();
         }

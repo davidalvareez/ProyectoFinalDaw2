@@ -6,6 +6,7 @@ window.onload = function() {
 
     var resgitroProf = document.getElementById("idRegister2");
     resgitroProf.style.display = "none";
+    document.getElementById("img_avatar_usu_profe").style.display = "none";
 }
 
 $(document).ready(function() {
@@ -60,6 +61,7 @@ function modalProfe() {
 
     var resgitroProf = document.getElementById("idRegister2");
     resgitroProf.style.display = "block";
+    document.getElementById("img_avatar_usu2").style.display = "none";
 }
 
 function modalbox() {
@@ -81,22 +83,24 @@ function closeModal2() {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
     let avatar = document.getElementById("img_avatar_sistema").value;
+    let avatarprofe = document.getElementById("img_avatar_sistema_profe").value;
     let image = document.getElementById("img_avatar_usu").files;
-    if (avatar == "" && image.length == 0) {
+    if (avatar == "" && image.length == 0 || avatarprofe == "" && image.length == 0) {
         return false;
     } else {
-        console.log(image);
         document.getElementById("clickselec").value = "AVATAR SELECCIONADO ✔";
         alertify.success("AVATAR SELECCIONADO ✔");
         let image2 = document.getElementById("img_avatar_usu2").files = image;
-        console.log(image2);
+        let image3 = document.getElementById("img_avatar_usu_profe").files = image;
+        console.log(image3);
         return true;
     }
 }
 
 function avatarSelected(img_avatar) {
-    console.log(img_avatar);
+    /* console.log(img_avatar); */
     document.getElementById("img_avatar_sistema").value = img_avatar;
+    document.getElementById("img_avatar_sistema_profe").value = img_avatar
 }
 
 function chBackcolor(avatar) {
@@ -111,7 +115,6 @@ function chBackcolor(avatar) {
 function hasAvatarOrImage() {
     let avatar = document.getElementById("img_avatar_sistema").value;
     let nombre = document.getElementById("nick_usu").value;
-    console.log(nombre);
     let image = document.getElementById("img_avatar_usu").files;
     if (avatar == "" && image.length == 0) {
         alertify.error("Selecciona avatar o imagen");
