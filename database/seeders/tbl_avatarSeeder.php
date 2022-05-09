@@ -133,5 +133,39 @@ class tbl_avatarSeeder extends Seeder
             'id_usu' => '13'
         ]);
 
+        //ID = 18
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/willbarca.jpeg',
+            'id_usu' => '14'
+        ]);
+
+        //ID = 19
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/SA.jpg',
+            'id_usu' => '15'
+        ]);
+
+        //ID = 20
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/ivan.jpg',
+            'id_usu' => '16'
+        ]);
+
+        //ID = 21
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/bobesponja.jfif',
+            'id_usu' => '17'
+        ]);
+
+        //ID = 22
+        DB::table('tbl_avatar')->insert([
+            'tipo_avatar' => 'Usuario',
+            'img_avatar' => 'uploads/avatar/cr7.jfif',
+            'id_usu' => '18'
+        ]);
     }
 }

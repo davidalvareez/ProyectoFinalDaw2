@@ -174,5 +174,65 @@ class tbl_usuariosSeeder extends Seeder
         /*-------------------------- DAVID ALVAREZ ----------------*/
         /*-------------------------- MARC ORTIZ ----------------*/
         /*-------------------------- ISAAC ORTIZ ----------------*/
+        /*-------------------------- EJEMPLO PROFESORES PRUEBA ----------------*/
+        //ID = 14
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'Tomás De Michele',
+            'nombre_usu' => 'Tomás',
+            'apellido_usu' => 'De Michele',
+            'fecha_nac_usu' => '1985-09-16',
+            'correo_usu' => 'tomasmichele@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'validado' => true,
+            'id_rol' => '4'
+        ]);
+
+        //ID = 15
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'Dolores Crotal',
+            'nombre_usu' => 'Dolores',
+            'apellido_usu' => 'Crotal',
+            'fecha_nac_usu' => '1985-10-16',
+            'correo_usu' => 'dolorescrotal@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'validado' => true,
+            'id_rol' => '4'
+        ]);
+
+        //ID = 16
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'Kerry Cabuela',
+            'nombre_usu' => 'Kerry',
+            'apellido_usu' => 'Cabuela',
+            'fecha_nac_usu' => '1985-11-16',
+            'correo_usu' => 'kerrycabuela@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'validado' => true,
+            'id_rol' => '4'
+        ]);
+
+        //ID = 16
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'Isma Ricon',
+            'nombre_usu' => 'Isma',
+            'apellido_usu' => 'Ricon',
+            'fecha_nac_usu' => '1985-12-16',
+            'correo_usu' => 'ismaricon@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'validado' => true,
+            'id_rol' => '4'
+        ]);
+
+        //ID = 17
+        DB::table('tbl_usuario')->insert([
+            'nick_usu' => 'Felipe Neduro',
+            'nombre_usu' => 'Felipe',
+            'apellido_usu' => 'Neduro',
+            'fecha_nac_usu' => '1985-08-16',
+            'correo_usu' => 'felipeneduro@gmail.com',
+            'contra_usu' => MD5('1234'),
+            'validado' => true,
+            'id_rol' => '4'
+        ]);
     }
 }
