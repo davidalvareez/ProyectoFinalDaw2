@@ -17,16 +17,19 @@ use App\Http\Controllers\CRUDAdminController;
 */
 //Enlaces a paginas
 
-//VALIDAR CORREO Y CAMBIAR CONTRASEÑA HECHO POR MARC PARA PRUEBAS
+//VALIDAR CORREO REGISTRO
 Route::get('validarcorreo', function () {
     return view('validarcorreo');
 });
 
-Route::get('cambiarPass', function () {
-    return view('cambiarPass');
-});
-
 Route::post('validarCorreoUser', [UsuarioController::class,'validarUsuario']);
+
+//VALIDAR CAMBIO CONTRASEÑA
+Route::get('cambiarPass',[UsuarioController::class,'validarContraseñaView']);
+
+Route::post('mailcambiarPass',[UsuarioController::class,'MAILvalidarContraseña']);
+
+Route::post('restablecerContraUser',[UsuarioController::class,'validarCambioContraseña']);
 
 //Indice
 Route::get('/', function () {
@@ -65,9 +68,6 @@ Route::post('perfil/changeConfigUser',[UsuarioController::class,'changeConfigUse
 Route::put('perfil/actualizarAvatar',[UsuarioController::class,'actualizarAvatar']);
 
 Route::delete('perfil/darseDeBaja',[UsuarioController::class,'DarseDeBaja']);
-
-//Pagina de apuntes
-
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
 
@@ -173,5 +173,3 @@ Route::get('oauth-register',[OAuthController::class,'oauthViewRegisterAlumno']);
 Route::post('oauth-register-alumno',[OAuthController::class,'oauthRegisterAlumno']);
 //Profesores
 Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
-
-//Mapas

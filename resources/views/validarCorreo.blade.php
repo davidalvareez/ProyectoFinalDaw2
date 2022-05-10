@@ -13,6 +13,28 @@
 </head>
 
 <body class="validarcorreo-page">
+    @if(isset($user_notfound))
+        @if ($user_notfound == true)
+            {{$user_notfound = false;}}
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Usuario no encontrado',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
+    @endif
+    @if(isset($incorrect_code))
+        @if ($incorrect_code == true)
+            {{$incorrect_code = false;}}
+            <script>
+                alertify.error("Codigo incorrecto");
+            </script>
+        @endif
+    @endif
     <header>
     </header>
     <main>
