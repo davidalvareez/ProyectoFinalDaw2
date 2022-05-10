@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use App\Http\Requests\ValidateResetPassword;
+use App\Http\Requests\ValidateVerifyMail;
 use Illuminate\Support\Facades\MAIL;
 use App\Mail\sendMail;
 
@@ -145,19 +147,19 @@ class UsuarioController extends Controller
         }
     }
     //Validar usuario
-    public function validarUsuario(Request $request){
+    public function validarUsuario(ValidateVerifyMail $request){
         $datos = $request->except("_token");
         $user = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$datos["correo"]]);
-        $user = $user[0];
-        $existvalidar = DB::select("SELECT * FROM tbl_validacion WHERE id_usu = ?",[$user->id]);
-        if (count($existvalidar) == 0) {
-            return "Validacion no encontrado";
+        if (count($user) == 0) {
+            $user_notfound = true;
+            return view("validarCorreo",compact("user_notfound"));
         }else{
+            $user = $user[0];
             $validar = DB::select("SELECT * FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
             if(count($validar) == 0){
-                return "Codigo incorrecto";
+                $incorrect_code = true;
+                return view("validarCorreo",compact("incorrect_code"));
             }else{
-
                 try {
                     DB::beginTransaction();
                     DB::delete("DELETE FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
@@ -168,6 +170,65 @@ class UsuarioController extends Controller
                 } catch (\Exception $e) {
                     DB::rollBack();
                     return $e;
+                }
+            }   
+        }
+    }
+    //Validar contraseña
+    public function validarContraseñaView(){
+        return view('cambiarPass');
+    }
+    public function MAILvalidarContraseña(Request $request){
+        $datos = $request->except("_token","_method");
+        $correo_nick = $datos["nick_correo"];
+        $existUser = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ? or nick_usu = ?",[$correo_nick,$correo_nick]);
+        if (count($existUser) == 0) {
+            return response()->json(array("resultado" => "NotExist"));
+        }else{
+            try {
+                $existUser = $existUser[0];
+                $code = rand(1000,9999);
+                DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$existUser->id]);
+                $urlValidateUser = url("cambiarPass");
+                $sub = "Codigo de validacion de usuario";
+                $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($existUser->correo_usu)->send($enviar);
+            } catch (\Exception $e) {
+                return response()->json(array("resultado" => "NOK: ".$e->getMessage()));
+            }
+        }
+    }
+    public function validarCambioContraseña(ValidateResetPassword $request){
+        $datos = $request->except("_token");
+        $user = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$datos["correo_usu"]]);
+        if (count($user) == 0) {
+            $user_notfound = true;
+            return view("cambiarPass",compact("user_notfound"));
+        }else{
+            $user = $user[0];
+            $password_encrypt = md5($datos["contra_usu"]);
+            if ($user->contra_usu == $password_encrypt) {
+                $samepassword = true;
+                return view("cambiarPass",compact("samepassword"));
+            }else{
+                $validar = DB::select("SELECT * FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
+                if(count($validar) == 0){
+                    $incorrect_code = true;
+                    return view("cambiarPass",compact("incorrect_code"));
+                }else{
+                    try {
+                        DB::beginTransaction();
+                        DB::delete("DELETE FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
+                        DB::update("UPDATE tbl_usuario set contra_usu = ? WHERE id = ?",[$password_encrypt,$user->id]);
+                        DB::commit();
+                        return redirect('login');
+                    } catch (\Exception $e) {
+                        DB::rollBack();
+                        return $e;
+                    }
                 }
             }   
         }
@@ -306,7 +367,32 @@ class UsuarioController extends Controller
         Storage::disk('config-user')->put("user-".$user->id.".json", $modifyJson);
         return response()->json(array("resultado" => "OK"));
     }
-
+    /*DARSE DE BAJA */
+    public function DarseDeBaja(Request $request){
+        $user= session()->get('user');
+        $datos = $request->except("_token","_method");
+        $password_encrypt = md5($datos["contra_usu"]);
+        $correctPassword = DB::select("SELECT * FROM tbl_usuario WHERE contra_usu = ? AND id = ?",[$password_encrypt,$user->id]);
+        if (count($correctPassword) == 0) {
+            return response()->json(array("resultado"=>"IncorrectPassword"));
+        }else{
+            try{
+                DB::beginTransaction();
+                DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$user->id,$user->id]);
+                DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$user->id]);
+                DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$user->id]);
+                DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$user->id]);
+                DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$user->id]);
+                DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$user->id]);
+                DB::commit();
+                $redirect = url('/');
+                return response()->json(array('resultado'=>'OK','redirect'=>$redirect));
+            }catch(\Exception $e){
+                DB::rollBack();
+                return response()->json(array('resultado'=>'NOK'.$e->getMessage()));
+            }
+        }
+    }
     /*Profesores*/
     public function MostrarProfesores(){
         $MostrarProfesores = DB::select('SELECT * from tbl_usuario INNER JOIN tbl_rol ON tbl_usuario.id_rol = tbl_rol.id INNER JOIN tbl_avatar ON tbl_usuario.id = tbl_avatar.id_usu WHERE tbl_rol.id = 4;');
