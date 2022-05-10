@@ -17,9 +17,13 @@ use App\Http\Controllers\CRUDAdminController;
 */
 //Enlaces a paginas
 
-//VALIDAR CORREO HECHO POR MARC PARA PRUEBAS
+//VALIDAR CORREO Y CAMBIAR CONTRASEÑA HECHO POR MARC PARA PRUEBAS
 Route::get('validarcorreo', function () {
     return view('validarcorreo');
+});
+
+Route::get('cambiarPass', function () {
+    return view('cambiarPass');
 });
 
 Route::post('validarCorreoUser', [UsuarioController::class,'validarUsuario']);
