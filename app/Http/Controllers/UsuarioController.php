@@ -37,12 +37,14 @@ class UsuarioController extends Controller
             //Si es 0 login incorrecto
             if ($existUser == 0) {
                 //Mandarlo al login conforme usuario y contraseña incorrecto
-                return "Mal";
+                $fail_login = true;
+                return view("login",compact("fail_login"));
             //En caso contrario comprovamos lo siguiente
             }else{
                 $user = $user[0];
                 if ($user->validado == false) {
-                    return "Pendiente de validar";
+                    $fail_validate = true;
+                    return view("login",compact("fail_validate"));
                 }else{
                     //date_default_timezone_set("Europe/Madrid");
                     $sysDate = date('Y-m-d H:i:s');
@@ -71,7 +73,8 @@ class UsuarioController extends Controller
                                 return redirect("buscador");
                             }
                         }else{
-                            return "Sigues baneado";
+                            $fail_banned = true;
+                            return view("login",compact("fail_banned"));
                         }
                     }
                 }
