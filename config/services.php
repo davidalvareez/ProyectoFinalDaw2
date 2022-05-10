@@ -35,4 +35,17 @@ return [
         'client_secret' => env('GOOGLE_OAUTH_KEY'),
         'redirect' => '/google-callback',
     ],
+
+    'facebook' => [    
+        'client_id' => env('FACEBOOK_OAUTH_ID'),  
+        'client_secret' => env('FACEBOOK_OAUTH_KEY'),  
+        'redirect' => 'https://notehubdaw2.com/public/facebook-callback' 
+    ],
+
+    'twitter' => [    
+        'client_id' => env('TWITTER_OAUTH_ID'),  
+        'client_secret' => env('TWITTER_OAUTH_KEY'),  
+        'redirect' => 'https://notehubdaw2.com/public/twitter-callback' 
+      ],
+      
 ];

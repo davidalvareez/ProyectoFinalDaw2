@@ -14,6 +14,12 @@ class OAuthController extends Controller
     public function login_google(){
         return Socialite::driver('google')->redirect();
     }
+    public function login_facebook(){
+        return Socialite::driver('facebook')->redirect();
+    }
+    public function login_twitter(){
+        return Socialite::driver('twitter')->redirect();
+    }
     public function google_callback(){
         $user_google = Socialite::driver('google')->user();
         //dd($user_google);
@@ -34,6 +40,64 @@ class OAuthController extends Controller
                 DB::beginTransaction();
                 $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$user_google->user["given_name"].$user_google->user["family_name"],"nombre_usu"=>$user_google->user["given_name"],"apellido_usu"=>$user_google->user["family_name"],"fecha_nac_usu"=>null,"correo_usu"=>$user_google->email,"contra_usu"=>null,"validado"=>false,"id_rol"=>null,"id_centro"=>null]);
                 DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$user_google->avatar,$id]);
+                DB::commit();
+                session()->put("id",$id);
+                return redirect('oauth-register');
+            } catch (\Exception $e) {
+                DB::rollback();
+                return $e;
+            }
+        }
+    }
+    public function facebook_callback(){
+        $user_facebook = Socialite::driver('facebook')->user();
+        //dd($user_facebook);
+        $existUser = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$user_facebook->email]);
+        if (count($existUser) != 0) {
+            $existUser = $existUser[0];
+            //Si no tiene centro, contraseña, fecha de nacimiento,rol se manda al registro en caso contrario al buscador.
+            if ($existUser->contra_usu == null && $existUser->fecha_nac_usu == null && $existUser->id_rol == null && $existUser->id_centro == null) {
+                $id = $existUser->id;
+                session()->put("id",$id);
+                return redirect('oauth-register');
+            }else{
+                session()->put("user",$existUser);
+                return redirect("buscador");
+            }
+        }else{
+            try {
+                DB::beginTransaction();
+                $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$user_facebook->name,"nombre_usu"=>$user_facebook->name,"apellido_usu"=>$user_facebook->name,"fecha_nac_usu"=>null,"correo_usu"=>$user_facebook->email,"contra_usu"=>null,"validado"=>false,"id_rol"=>null,"id_centro"=>null]);
+                DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$user_facebook->avatar,$id]);
+                DB::commit();
+                session()->put("id",$id);
+                return redirect('oauth-register');
+            } catch (\Exception $e) {
+                DB::rollback();
+                return $e;
+            }
+        }
+    }
+    public function twitter_callback(){
+        $user_twitter = Socialite::driver('twitter')->user();
+        //dd($user_twitter);
+        $existUser = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$user_twitter->email]);
+        if (count($existUser) != 0) {
+            $existUser = $existUser[0];
+            //Si no tiene centro, contraseña, fecha de nacimiento,rol se manda al registro en caso contrario al buscador.
+            if ($existUser->contra_usu == null && $existUser->fecha_nac_usu == null && $existUser->id_rol == null && $existUser->id_centro == null) {
+                $id = $existUser->id;
+                session()->put("id",$id);
+                return redirect('oauth-register');
+            }else{
+                session()->put("user",$existUser);
+                return redirect("buscador");
+            }
+        }else{
+            try {
+                DB::beginTransaction();
+                $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$user_twitter->nickname,"nombre_usu"=>$user_twitter->name,"apellido_usu"=>$user_twitter->name,"fecha_nac_usu"=>null,"correo_usu"=>$user_twitter->email,"contra_usu"=>null,"validado"=>false,"id_rol"=>null,"id_centro"=>null]);
+                DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$user_twitter->avatar,$id]);
                 DB::commit();
                 session()->put("id",$id);
                 return redirect('oauth-register');
