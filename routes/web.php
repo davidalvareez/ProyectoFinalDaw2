@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApuntesController;
-use App\Http\Controllers\CentroController;
+use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CRUDAdminController;
 /*
@@ -151,6 +151,22 @@ Route::put('admin/tema',[CRUDAdminController::class,'actualizarTema']);
 
 Route::put('admin/user',[CRUDAdminController::class,'actualizarUsuario']);
 
+//OAUTH
+Route::get('login-google',[OAuthController::class,'login_google']);
+ 
+Route::get('google-callback',[OAuthController::class,'google_callback']);
+
+Route::get('login-facebook',[OAuthController::class,'login_facebook']);
+ 
+Route::get('facebook-callback',[OAuthController::class,'facebook_callback']);
+
+Route::get('login-twitter',[OAuthController::class,'login_twitter']);
+ 
+Route::get('twitter-callback',[OAuthController::class,'twitter_callback']);
+
+Route::get('oauth-register',[OAuthController::class,'oauthViewRegisterAlumno']);
+
+Route::post('oauth-register-alumno',[OAuthController::class,'oauthRegisterAlumno']);
 //Profesores
 Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
 

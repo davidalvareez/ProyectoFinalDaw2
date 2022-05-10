@@ -94,18 +94,25 @@ class UsuarioController extends Controller
             /* return $datos; */
         }
         if ($request->hasFile('curriculum_profe2')) {
-            $file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
-            /* return $file; */
+            //$file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
+            $path_folder = 'uploads/curriculum/';
+            $filecur = $request->file('curriculum_profe2');
+            $fileName = $filecur->getClientOriginalName();
+            $filecur->storeAs($path_folder,$fileName);
+            $nomcur= $path_folder.$fileName;
+            /* return $nomcur; */
         }else{
-            $file2= "";
+            $fileName= "";
         }
         //Sentencia de creacion de usuario
         try {
             //Cogemos el id del centro y hacemos el registro como usuario normal
             $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
-            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>3,"id_centro"=>$id_centro[0]->id]);
+            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
             DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
-            DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$file2,$id]);
+            if ($datos["tipo_usuario"]==4) {
+                DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
+            }    
             $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
             $newuser=$newuser[0];
             //INSERTAMOS CODIGO DE VALIDACION
