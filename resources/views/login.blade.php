@@ -13,6 +13,47 @@
 </head>
 
 <body class="login-page">
+    @if(isset($fail_login))
+        @if ($fail_login == true)
+            {{$fail_login = false;}}
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Usuario y contraseña incorrecto',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
+    @endif
+    @if(isset($fail_validate))
+        @if ($fail_validate == true)
+            {{$fail_validate = false;}}
+            <script>
+                Swal.fire({
+                icon: 'warning',
+                title: 'Cuenta no validada',
+                footer: '<a href="validarcorreo">Validar cuenta</a>'
+                })
+            </script>
+        @endif
+    @endif
+    @if(isset($fail_banned))
+        @if ($fail_banned == true)
+            {{$fail_validate = false;}}
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Tu cuenta sigue baneada',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+            </script>
+        @endif
+    @endif
     <header>
     </header>
     <main>
@@ -55,6 +96,11 @@
                                         <a href="{{url('register')}}">
                                             <p>Crear cuenta</p>
                                         </a>
+                                    </div>
+                                    <div>
+                                        <button onclick="{{url('login-google')}}">Login Google</button>
+                                        <button onclick="{{url('login-facebook')}}">Login Facebook</button>
+                                        <button onclick="{{url('login-twitter')}}">Login Twitter</button>
                                     </div>
                                 </div>
                             </form>
