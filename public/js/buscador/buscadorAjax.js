@@ -98,12 +98,12 @@ function multiplyFilter() {
                                                     <div class="container-info">
                                                         <div class="avatar-user user-img">
                                                             <div class="filter">
-                                                                <img src="storage/${respuesta[i].img_avatar}" alt="" class="avatar img">
+                                                                <img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">
                                                             </div>
                                                         </div>
                                                         <div class="container-text">
                                                             <div class="username">
-                                                                <p><span>${respuesta[i].nick_usu}</span></p>
+                                                                <p><span onclick="window.location.href='perfil/${respuesta[i].nick_usu}'">${respuesta[i].nick_usu}</span></p>
                                                             </div>
                                                             <div class="column-2">
                                                                 <div class="stars">
@@ -262,12 +262,12 @@ function busquedaAvanzada() {
                                                                         <div class="container-info">
                                                                             <div class="avatar-user user-img">
                                                                                 <div class="filter">
-                                                                                    <img src="storage/${respuesta[i].img_avatar}" alt="" class="avatar img">
+                                                                                    <img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="container-text">
                                                                                 <div class="username">
-                                                                                    <p><span>${respuesta[i].nick_usu}</span></p>
+                                                                                    <p><span onclick="window.location.href='perfil/${respuesta[i].nick_usu}'">${respuesta[i].nick_usu}</span></p>
                                                                                 </div>
                                                                                 <div class="column-2">
                                                                                     <div class="stars">
