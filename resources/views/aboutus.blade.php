@@ -22,52 +22,56 @@
                     <div class="content-presentacion">
                         <h1>Nuestro equipo</h1>
                         <div class="alineacion">
-                            <div class="carta carta1" data-aos="zoom-in-up">
+                            <div class="carta cartadavid" data-aos="zoom-in-up">
                                 <div class="content-carta">
-                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifdavid.gif') !!}" alt="" srcset="">
-                                    <h3>David Álvarez Rodríguez</h3>
-                                    <h4>Departamento de Frontend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/fire/fire-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset('media/3Dicons-dinamicos/icons/png/flash/flash-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="img-david" src="{!! asset ('media/aboutus/img-aboutus/david.png') !!}" alt="" srcset="">
+                                    <div class="nombre">
+                                        <h3>David Álvarez Rodríguez</h3>
+                                        <h4>Departamento de Frontend</h4>
+                                    </div>
+                                    <div class="content-imagenes">
+                                        <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/fire/fire-dynamic-color.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset('media/3Dicons-dinamicos/icons/png/flash/flash-dynamic-premium.png') !!}" alt="" srcset="">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="carta carta2" data-aos="zoom-in-up">
+                            <div class="carta cartamarc" data-aos="zoom-in-up">
                                 <div class="content-carta">
-                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifmarc.gif') !!}" alt="" srcset="">
+                                    <img class="img-marc" src="{!! asset ('media/aboutus/img-aboutus/marc.png') !!}" alt="" srcset="">
                                     <h3>Marc Ortiz García</h3>
                                     <h4>Departamento de Frontend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/rocket/rocket-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/painting-brush/paint-brush-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/rocket/rocket-dynamic-color.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/painting-brush/paint-brush-dynamic-color.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
-                            <div class="carta carta3" data-aos="zoom-in-up">
+                            <div class="carta cartaisaac" data-aos="zoom-in-up">
                                 <div class="content-carta">
-                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifmiguel.gif') !!}" alt="" srcset="">
+                                    <img class="img-isaac" src="{!! asset ('media/aboutus/img-aboutus/isaac.png') !!}" alt="" srcset="">
                                     <h3>Isaac Ortiz Moncusí </h3>
                                     <h4>Departamento de Frontend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/crown/crown-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/magic-trick/magic-trick-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/crown/crown-dynamic-color.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/magic-trick/magic-trick-dynamic-color.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
-                            <div class="carta carta4" data-aos="zoom-in-up">
+                            <div class="carta cartaraul" data-aos="zoom-in-up">
                                 <div class="content-carta">
-                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifraul.gif') !!}" alt="" srcset="">
+                                    <img class="img-raul" src="{!! asset ('media/aboutus/img-aboutus/raul.png') !!}" alt="" srcset="">
                                     <h3>Raúl Santacruz Cela</h3> 
                                     <h4>Departamento de Backend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/key/key-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/medal/medal-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/key/key-dynamic-color.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/medal/medal-dynamic-color.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
-                            <div class="carta carta5" data-aos="zoom-in-up">
+                            <div class="carta cartamiguel" data-aos="zoom-in-up">
                                 <div class="content-carta">
-                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifmiguel.gif') !!}" alt="" srcset="">
+                                    <img class="img-miguel" src="{!! asset ('media/aboutus/img-aboutus/miguel.png') !!}" alt="" srcset="">
                                     <h3>Miguel Gras Garrido</h3>
                                     <h4>Departamento de Backend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/bulb/bulb-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/shield/sheild-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/bulb/bulb-dynamic-color.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/shield/sheild-dynamic-color.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
-                            <div class="carta carta6" data-aos="zoom-in-up">
+                            <div class="carta cartaxavi" data-aos="zoom-in-up">
                                 <div class="content-carta">
-                                    <img class="img-carta" src="{!! asset ('media/aboutus/img-aboutus/gifxavi.gif') !!}" alt="" srcset="">
+                                    <img class="img-xavi" src="{!! asset ('media/aboutus/img-aboutus/xavi.png') !!}" alt="" srcset="">
                                     <h3>Xavi Gómez Gallego</h3>  
                                     <h4>Departamento de Backend</h4>
-                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/calculator/calculator-dynamic-gradient.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/gym/gym-dynamic-gradient.png') !!}" alt="" srcset="">
+                                    <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/calculator/calculator-dynamic-color.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/gym/gym-dynamic-color.png') !!}" alt="" srcset="">
                                 </div>
                             </div>
                         </div>
@@ -85,12 +89,12 @@
                                     <div class="content-carta">
                                         <h3>¿QUIENES SOMOS?</h3>
                                         <h4>Somos 6 estudiantes de Desarrollo de Aplicaciones Web. El equipo está compuesto por 2 departamentos. Departamento de Frontend, formado por David Álvarez, Isaac Ortiz y Marc Ortiz.
-                                        Y departamento de Backend, formado por Xavi Gómez, Miguel Gras y Raúl Santacruz. Unidos hemos creado NoteHub.
+                                        Y departamento de Backend, formado por Xavi Gómez, Miguel Gras y Raúl Santacruz.
                                     </div>
                                 </div>
                                 <div class="carta-explicacion carta2" data-aos="fade-up">
                                     <div class="content-carta">
-                                        <h3>¿POR QUÉ HEMOS CREADO ESTA WEB?</h3>
+                                        <h3>¿POR QUÉ CREAMOS NOTEHUB?</h3>
                                         <h4>Hemos creado esta web porque creemos que se necesitan más herramientas que ayuden a los estudiantes de todos los cursos. 
                                             Tener apuntes es una cosa básica, necesaria y algo que debería tener acceso cualquier persona. Este equipo ha intentado centralizar todo la información posible 
                                             que nos proporcionan los diferentes estudiantes de toda España.

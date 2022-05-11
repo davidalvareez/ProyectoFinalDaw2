@@ -132,16 +132,23 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.flex, .about-us main .region, .about-us main .region2 .content-region .explicacion {
+.flex-cv, .about-us main .region, .about-us main .region2 .content-region .explicacion, .about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  text-align: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 }
 
 :root {
@@ -174,7 +181,7 @@ body {
   width: 100%;
   min-height: 100vh;
   position: relative;
-  background-image: url("../../media/aboutus/img-aboutus/fondoaboutus.jpg");
+  background-image: url("../../media/aboutus/img-aboutus/fondo3.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -205,6 +212,7 @@ h4 {
 
 .about-us main .region {
   width: 100%;
+  text-align: center;
 }
 
 .about-us main .carta {
@@ -217,8 +225,34 @@ h4 {
   padding: 10px;
 }
 
-.about-us main .img-carta {
-  margin: 0px 0px 30px 0px;
+.about-us main .img-david {
+  width: 300px;
+  height: 100%;
+}
+
+.about-us main .img-marc {
+  width: 255px;
+  height: 100%;
+}
+
+.about-us main .img-isaac {
+  width: 300px;
+  height: 100%;
+}
+
+.about-us main .img-xavi {
+  width: 300px;
+  height: 100%;
+}
+
+.about-us main .img-miguel {
+  width: 300px;
+  height: 100%;
+}
+
+.about-us main .img-raul {
+  width: 300px;
+  height: 100%;
 }
 
 .about-us main .icono-carta {
@@ -242,6 +276,30 @@ h4 {
   grid-gap: 136px 112px;
   -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
   grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
+}
+
+.about-us main .region1 .content-region .presentacion .content-presentacion .alineacion .cartadavid {
+  padding: 100px 0px 0px 0px;
+}
+
+.about-us main .region1 .content-region .presentacion .content-presentacion .alineacion .cartamarc {
+  padding: 100px 0px 0px 0px;
+}
+
+.about-us main .region1 .content-region .presentacion .content-presentacion .alineacion .cartaisaac {
+  padding: 140px 0px 0px 0px;
+}
+
+.about-us main .region1 .content-region .presentacion .content-presentacion .alineacion .cartaraul {
+  padding: 30px 0px 0px 0px;
+}
+
+.about-us main .region1 .content-region .presentacion .content-presentacion .alineacion .cartamiguel {
+  padding: 50px 0px 0px 0px;
+}
+
+.about-us main .region1 .content-region .presentacion .content-presentacion .alineacion .cartaxavi {
+  padding: 105px 0px 0px 0px;
 }
 
 .about-us main .region2 {
