@@ -53,8 +53,8 @@ function showUsers() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-menu cgradient-1" type="submit" value="Create" onclick="modalboxCrearUser();">Crear</button>
-                    <table class="table table-striped table-dark">
+                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearUser();">Crear</button>
+                    <table class="table table-striped">
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nickname</th>
@@ -65,14 +65,12 @@ function showUsers() {
                     <th scope="col">Fecha habilitado</th>
                     <th scope="col">Centro de estudio</th>
                     <th scope="col">Rol</th>
-                    <th scope="col">Nivel</th>
                     <th scope="col">Imagen Avatar</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Eliminar</th>
+                    <th scope="col" colspan="3">Acciones</th>
                     </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                        <td scope="row">${respuesta[i].id}</td>
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
                         <td>${respuesta[i].nick_usu}</td>
                         <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
                         <td>${respuesta[i].fecha_nac_usu}</td>
@@ -83,10 +81,10 @@ function showUsers() {
                         <td>${respuesta[i].nombre_rol}</td>
                         <td><img class="imgavatar" src="storage/${respuesta[i].img_avatar}"></td>
                         <td>
-                        <button class="boton_modificar" type="submit" value="Edit" onclick="modalboxUser(${respuesta[i].id},'${respuesta[i].nombre_usu}','${respuesta[i].apellido_usu}','${respuesta[i].nick_usu}','${respuesta[i].fecha_nac_usu}','${respuesta[i].correo_usu}','${respuesta[i].deshabilitado}','${respuesta[i].tmpdeshabilitado}','${respuesta[i].nombre_rol}');return false;">Modificar</button>
+                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxUser(${respuesta[i].id},'${respuesta[i].nombre_usu}','${respuesta[i].apellido_usu}','${respuesta[i].nick_usu}','${respuesta[i].fecha_nac_usu}','${respuesta[i].correo_usu}','${respuesta[i].deshabilitado}','${respuesta[i].tmpdeshabilitado}','${respuesta[i].nombre_rol}');return false;">Modificar</button>
                         </td>
                         <td>
-                        <button class= "boton_eliminar" type="submit" value="Delete" onclick="swalUsers(${respuesta[i].id});return false;">Eliminar</button>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalUsers(${respuesta[i].id});return false;">Eliminar</button>
                         </td>
                         </tr>`
                 }
@@ -133,7 +131,8 @@ function showCentros() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                    <table class="table table-striped table-dark">
+                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearCentro();">Crear</button>
+                    <table class="table table-striped">
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
@@ -143,7 +142,7 @@ function showCentros() {
                     </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                         <td scope="row">${respuesta[i].id}</td>
+                         <td scope="row"><b>${respuesta[i].id}</b></td>
                          <td>${respuesta[i].nombre_centro}</td>
                          <td>${respuesta[i].com_auto_centro}, ${respuesta[i].ciudad_centro}</td>
                          <td>${respuesta[i].direccion_centro}</td>
@@ -151,7 +150,7 @@ function showCentros() {
                          <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
                          </td>
                          <td>
-                         <button class= "btn btn-danger" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
+                         <button class= "btn btn-warning" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
                          </td>
                          </tr>`
                 }
@@ -201,8 +200,8 @@ function showCursos(idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-menu cgradient-1" type="submit" value="Edit" onclick="showCentros();">Voler a centros</button>
-                    <table class="table table-striped table-dark">
+                <button class="boton-volver" type="submit" value="Edit" onclick="showCentros();">Voler a centros</button>
+                    <table class="table table-striped">
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
@@ -212,7 +211,7 @@ function showCursos(idCentro) {
                         </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                             <td scope="row">${respuesta[i].id}</td>
+                             <td scope="row"><b>${respuesta[i].id}</b></td>
                              <td>${respuesta[i].nombre_curso}</td>
                              <td>${respuesta[i].nombre_corto_curso}</td>
                              <td>${respuesta[i].tipo_curso}</td>
@@ -223,7 +222,7 @@ function showCursos(idCentro) {
                              <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCursos(${respuesta[i].id},${idCentro});return false;">Eliminar</button>
                              </td>
                              <td>
-                             <button class= "btn btn-danger" type="submit" value="Delete" onclick="showAsignaturas(${respuesta[i].id}, ${idCentro});return false;">Ver asignaturas</button>
+                             <button class= "btn btn-warning" type="submit" value="Delete" onclick="showAsignaturas(${respuesta[i].id}, ${idCentro});return false;">Ver asignaturas</button>
                              </td>
                              </tr>`
                 }
@@ -270,8 +269,8 @@ function showAsignaturas(idCurso, idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-menu cgradient-1" type="submit" value="Edit" onclick="showCursos(${idCentro});">Voler a Cursos</button>
-                            <table class="table table-striped table-dark">
+                <button class="boton-volver" type="submit" value="Edit" onclick="showCursos(${idCentro});">Voler a Cursos</button>
+                            <table class="table table-striped">
                             <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
@@ -279,7 +278,7 @@ function showAsignaturas(idCurso, idCentro) {
                             </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                 <td scope="row">${respuesta[i].id}</td>
+                                 <td scope="row"><b>${respuesta[i].id}</b></td>
                                  <td>${respuesta[i].nombre_asignatura}</td>
                                  <td>
                                  <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxAsignatura(${idCurso},${respuesta[i].id},'${respuesta[i].nombre_asignatura}','${respuesta[i].id_curso}');return false;">Editar</button>
@@ -288,7 +287,7 @@ function showAsignaturas(idCurso, idCentro) {
                                  <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalAsignaturas(${respuesta[i].id},${idCurso},${idCentro});return false;">Eliminar</button>
                                  </td>
                                  <td>
-                                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="showTemas(${respuesta[i].id}, ${idCurso}, ${idCentro} );return false;">Ver temas</button>
+                                 <button class= "btn btn-warning" type="submit" value="Delete" onclick="showTemas(${respuesta[i].id}, ${idCurso}, ${idCentro} );return false;">Ver temas</button>
                                  </td>
                                  </tr>`
                 }
@@ -337,8 +336,8 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-menu cgradient-1" type="submit" value="Edit" onclick="showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
-                                <table class="table table-striped table-dark">
+                <button class="boton-volver" type="submit" value="Edit" onclick="showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
+                                <table class="table table-striped">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre tema</th>
@@ -346,7 +345,7 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row">${respuesta[i].id}</td>
+                                     <td scope="row"><b>${respuesta[i].id}</b></td>
                                      <td>${respuesta[i].nombre_tema}</td>
                                      <td>
                                      <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
@@ -400,7 +399,7 @@ function showApuntes() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                                <table class="table table-striped table-dark">
+                                <table class="table table-striped">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Documento</th>
@@ -410,7 +409,7 @@ function showApuntes() {
                                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row">${respuesta[i].id}</td>
+                                     <td scope="row"><b>${respuesta[i].id}</b></td>
                                      <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
                                      <td>${respuesta[i].fecha_publicacion_contenido}</td>
                                      <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
@@ -463,7 +462,7 @@ function showDenuncias() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                                <table class="table table-striped table-dark">
+                                <table class="table table-striped">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tipo</th>
@@ -474,7 +473,7 @@ function showDenuncias() {
                                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row">${respuesta[i].id}</td>
+                                     <td scope="row"><b>${respuesta[i].id}</b></td>
                                      <td>${respuesta[i].tipus_denuncia}</td>
                                      <td>${respuesta[i].desc_denuncia}</td>
                                      <td>${respuesta[i].acusado}</td>
@@ -532,7 +531,7 @@ function showHistorial() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                                <table class="table table-striped table-dark">
+                                <table class="table table-striped">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre Apuntes</th>
@@ -541,7 +540,7 @@ function showHistorial() {
                                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row">${respuesta[i].id}</td>
+                                     <td scope="row"><b>${respuesta[i].id}</b></td>
                                      <td>${respuesta[i].nombre_contenido}</td>
                                      <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
                                      <td>
@@ -1068,17 +1067,17 @@ function modalboxCentro(id, nombre, pais, com_auto, ciudad, direccion) {
                     <form id="formUpdate" method="post" onsubmit="actualizarCentro();closeModal();return false;">
                         <h2 id="nombreCentro">${nombre}</h2>
                         <b><span>Nombre centro:</span>
-                        <input type="text" name="nombre" id="nombre" value="${nombre}"><br>
+                        <input class="input-editar" type="text" name="nombre" id="nombre" value="${nombre}"><br>
                         <b><span>Pais centro:</span>
-                        <input type="text" name="pais" id="pais" value="${pais}"><br>
+                        <input class="input-editar" type="text" name="pais" id="pais" value="${pais}"><br>
                         <b><span>Comunidad autonoma:</span>
-                        <input type="text" name="com_auto" id="com_auto" value="${com_auto}"><br>
+                        <input class="input-editar" type="text" name="com_auto" id="com_auto" value="${com_auto}"><br>
                         <b><span>Ciudad:</span>
-                        <input type="text" name="ciudad" id="ciudad" value="${ciudad}"><br>
+                        <input class="input-editar" type="text" name="ciudad" id="ciudad" value="${ciudad}"><br>
                         <b><span>Dirección:</span>
-                        <input type="text" name="direccion" id="direccion" value="${direccion}"><br>
+                        <input class="input-editar" type="text" name="direccion" id="direccion" value="${direccion}"><br>
                         <input type="hidden" name="id" id="id" value="${id}">
-                        <input type="submit" value="Editar">
+                        <input class="boton-guardar" type="submit" value="Guardar">
                     </form>
                 </div>`;
     modal.innerHTML = recarga;
@@ -1093,13 +1092,13 @@ function modalboxCurso(idCentro, id, nombre, nombre_corto_curso, tipo_curso) {
                     <form id="formUpdateCurso" method="post" onsubmit="actualizarCurso(${idCentro});closeModal();return false;">
                         <h2 id="nombreCurso">${nombre}</h2>
                         <b><span>Nombre Curso:</span>
-                        <input type="text" name="nombre_curso" id="nombre_curso" value="${nombre}"><br>
+                        <input class="input-editar" type="text" name="nombre_curso" id="nombre_curso" value="${nombre}"><br>
                         <b><span>Nombre corto:</span>
-                        <input type="text" name="nombre_corto_curso" id="nombre_corto_curso" value="${nombre_corto_curso}"><br>
+                        <input class="input-editar" type="text" name="nombre_corto_curso" id="nombre_corto_curso" value="${nombre_corto_curso}"><br>
                         <b><span>Tipo curso:</span>
-                        <input type="text" name="tipo_curso" id="tipo_curso" value="${tipo_curso}"><br>
+                        <input class="input-editar" type="text" name="tipo_curso" id="tipo_curso" value="${tipo_curso}"><br>
                         <input type="hidden" name="id" id="id" value="${id}">
-                        <input type="submit" value="Editar">
+                        <input class="boton-guardar" type="submit" value="Guardar">
                     </form>
                 </div>`;
     modal.innerHTML = recarga;
@@ -1117,9 +1116,9 @@ function modalboxAsignatura(idCurso, id, nombre_asignatura) {
                     <form id="formUpdateAsignatura" method="post" onsubmit="actualizarAsignatura(${idCurso});closeModal();return false;">
                         <h2 id="nombreAsignatura">${nombre_asignatura}</h2>
                         <b><span>Nombre Asignatura:</span>
-                        <input type="text" name="nombre_asignatura" id="nombre_asignatura" value="${nombre_asignatura}"><br>
+                        <input class="input-editar" type="text" name="nombre_asignatura" id="nombre_asignatura" value="${nombre_asignatura}"><br>
                         <input type="hidden" name="id" id="id" value="${id}">
-                        <input type="submit" value="Editar">
+                        <input class="boton-guardar" type="submit" value="Guardar">
                     </form>
                 </div>`;
     modal.innerHTML = recarga;
@@ -1137,9 +1136,9 @@ function modalboxTema(idAsignatura, id, nombre_tema) {
                     <form id="formUpdateTema" method="post" onsubmit="actualizarTema(${idAsignatura});closeModal();return false;">
                         <h2 id="nombreTema">${nombre_tema}</h2>
                         <b><span>Nombre Tema:</span>
-                        <input type="text" name="nombre_tema" id="nombre_tema" value="${nombre_tema}"><br>
+                        <input class="input-editar" type="text" name="nombre_tema" id="nombre_tema" value="${nombre_tema}"><br>
                         <input type="hidden" name="id" id="id" value="${id}">
-                        <input type="submit" value="Editar">
+                        <input class="boton-guardar" type="submit" value="Guardar">
                     </form>
                 </div>`;
     modal.innerHTML = recarga;
@@ -1162,23 +1161,23 @@ function modalboxUser(id, nombre_usu, apellido_usu, nick_usu, fecha_nac_usu, cor
     recarga += `<div class="modal-content">
                     <span class="close" onclick="closeModal();">&times;</span>
                     <form id="formUpdateUser" method="post" onsubmit="actualizarUser();closeModal();return false;">
-                        <h2 id="nombreUser">${nombre_usu}</h2>
+                        <h2 id="nombreUser">${nombre_usu} ${apellido_usu}</h2>
                         <b><span>Nombre usuario:</span>
-                        <input type="text" name="nombre_usu" id="nombre_usu" value="${nombre_usu}"><br>
+                        <input class="input-editar" type="text" name="nombre_usu" id="nombre_usu" value="${nombre_usu}"><br>
                         <b><span>Apellido usuario:</span>
-                        <input type="text" name="apellido_usu" id="apellido_usu" value="${apellido_usu}"><br>
+                        <input class="input-editar" type="text" name="apellido_usu" id="apellido_usu" value="${apellido_usu}"><br>
                         <b><span>Nickname usuario:</span>
-                        <input type="text" name="nick_usu" id="nick_usu" value="${nick_usu}"><br>
+                        <input class="input-editar" type="text" name="nick_usu" id="nick_usu" value="${nick_usu}"><br>
                         <b><span>Fecha nacimiento usuario:</span>
-                        <input type="date" name="fecha_nac_usu" id="fecha_nac_usu" value="${fecha_nac_usu}"><br>
+                        <input class="input-editar" type="date" name="fecha_nac_usu" id="fecha_nac_usu" value="${fecha_nac_usu}"><br>
                         <b><span>Correo usuario:</span>
-                        <input type="text" name="correo_usu" id="correo_usu" value="${correo_usu}"><br>
+                        <input class="input-editar" type="text" name="correo_usu" id="correo_usu" value="${correo_usu}"><br>
                         <b><span>Fecha deshabilitado:</span>
-                        <input type="date" name="deshabilitado" id="deshabilitado" value="${deshabilitado}"><br>
+                        <input class="input-editar" type="date" name="deshabilitado" id="deshabilitado" value="${deshabilitado}"><br>
                         <b><span>Hora deshabilitado:</span>
-                        <input type="time" name="tmpdeshabilitado" id="tmpdeshabilitado" value="${tmpdeshabilitado}"><br>
+                        <input class="input-editar" type="time" name="tmpdeshabilitado" id="tmpdeshabilitado" value="${tmpdeshabilitado}"><br>
                         <b><span>Rol usuario:</span>
-                        <select name="nombre_rol" id="nombre_rol">
+                        <select class="input-editar" name="nombre_rol" id="nombre_rol">
                             <option value="${nombre_rol}" selected>${nombre_rol}</option>
                             <option value="Administrador">Administrador</option>
                             <option value="Moderador">Moderador</option>  
@@ -1187,7 +1186,7 @@ function modalboxUser(id, nombre_usu, apellido_usu, nick_usu, fecha_nac_usu, cor
                             <option value="Empresa">Empresa</option>                              
                         </select><br>
                         <input type="hidden" name="id" id="id" value="${id}">
-                        <input type="submit" value="Editar">
+                        <input class="boton-guardar" type="submit" value="Guardar">
                     </form>
                 </div>`;
     modal.innerHTML = recarga;

@@ -1,12 +1,10 @@
 window.onload = function() {
-    document.getElementById("img_avatar_usu2").style.display = "none";
 
     var modal = document.getElementById("myModal2");
     modal.style.display = "block";
 
     var resgitroProf = document.getElementById("idRegister2");
     resgitroProf.style.display = "none";
-    document.getElementById("img_avatar_usu_profe").style.display = "none";
 }
 
 $(document).ready(function() {
@@ -61,7 +59,6 @@ function modalProfe() {
 
     var resgitroProf = document.getElementById("idRegister2");
     resgitroProf.style.display = "block";
-    document.getElementById("img_avatar_usu2").style.display = "none";
 }
 
 function modalbox() {
@@ -74,14 +71,9 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-function closeModalSeleccion(user) {
+function closeModalSeleccion() {
     var modal = document.getElementById("myModal2");
     modal.style.display = "none";
-    if (user == 3) {
-        document.getElementById("tipo_usuario2").value = 3;
-    } else {
-        document.getElementById("tipo_usuario2").value = 4;
-    }
 }
 
 function closeModal2() {
