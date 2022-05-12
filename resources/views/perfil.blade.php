@@ -89,7 +89,11 @@
                                         <div class="foto img img-apuntes">
                                             <div class="container-foto container-img">
                                                 <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
-                                                <img class="img foto prev-apunt" src="../media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
+                                                @if ($recentnotes->extension_contenido == ".pdf")
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @else
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="header-apuntes">
