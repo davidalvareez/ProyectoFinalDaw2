@@ -1,16 +1,7 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
     <script src="{!! asset ('js/login/login.js')!!}"></script>
-    <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
-    <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
     <title>Login page</title>
 </head>
 
@@ -88,8 +79,22 @@
                                     <a onclick="forgetPassword();">
                                         <p>Contraseña olvidada?</p>
                                     </a>
-                                </div> 
-                                <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
+                                </div> -->
+                                <div class="boton-entrar">
+                                    <input class="login-btn-absglass" type="submit" value="ENTRAR">
+                                </div>
+                                <div class="redes-sociales">
+                                    <div class="alienarleft-2">
+                                        <h4>o inicia sesión con:</h4>
+                                    </div>
+                                    <div class="botones-distributed">
+                                        <div class="botones-right">
+                                            <a onclick="{{url('login-facebook')}}"><img src="{!! asset ('media/loginregister/facebook.png') !!}" alt="facebook" class="icono-socialmedia"></a>
+                                            <a onclick="{{url('login-twitter')}}"><img src="{!! asset ('media/loginregister/twitter.png') !!}" alt="twitter" class="icono-socialmedia"></a>
+                                            <a onclick="{{url('login-google')}}"><img src="{!! asset ('media/loginregister/google.png') !!}" alt="google" class="icono-socialmedia"></a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="">
                                     <div class="alienarleft">
                                         <p>No estás registrado?</p>
@@ -99,25 +104,17 @@
                                             <p>Crear cuenta</p>
                                         </a>
                                     </div>
-                                    <div>
-                                        <button onclick="{{url('login-google')}}">Login Google</button>
-                                        <button onclick="{{url('login-facebook')}}">Login Facebook</button>
-                                        <button onclick="{{url('login-twitter')}}">Login Twitter</button>
-                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-region">
                 <div class="imagenrelleno">
                     <img src="{!! asset ('media/loginregister/imagen1.png') !!}" alt="imglogin" class="imgredondeada">
                 </div>
             </div>
         </div>
     </main>
+    @include ('template.footer')
 </body>
 </html>
-<div style="padding-bottom: 91px"></div>
-@include ('template.footer')

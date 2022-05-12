@@ -40,7 +40,7 @@ class ApuntesController extends Controller
                 }
             }
             $sqlrecent .= "GROUP BY content.id ORDER BY content.fecha_publicacion_contenido DESC LIMIT 15";
-            $sqlpopular .= "GROUP BY content.id ORDER BY valoracion DESC LIMIT 15";
+            $sqlpopular .= "GROUP BY content.id ORDER BY valoracion DESC,descargas DESC LIMIT 15";
             
             //Mostrar los más recientes
             $recent=DB::select($sqlrecent);

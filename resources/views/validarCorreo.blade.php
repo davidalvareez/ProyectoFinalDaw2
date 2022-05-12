@@ -1,11 +1,4 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{!! asset ('css/validarcorreo/validarcorreo.css')!!}">
     <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
     <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
@@ -83,15 +76,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-region">
                 <div class="imagenrelleno">
                     <img src="{!! asset ('media/validarcorreo/img2validar.png') !!}" alt="imglogin" class="imgvalidacion">
                 </div>
             </div>
         </div>
     </main>
+    @include ('template.footer')
 </body>
 </html>
-<div style="padding-bottom: 91px"></div>
-@include ('template.footer')

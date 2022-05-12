@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             tbl_usuariosSeeder::class,
             tbl_avatarSeeder::class,
             tbl_contenidosSeeder::class,
+            tbl_estudiosSeeder::class,
         ]);
     }
 }

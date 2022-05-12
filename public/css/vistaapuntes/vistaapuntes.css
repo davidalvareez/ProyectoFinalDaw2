@@ -271,12 +271,12 @@ body {
 
 .titulo-coment {
   text-align: left;
-  margin: 30px 0px 20px 35px;
+  margin: 30px 0px 30px 35px;
 }
 
 .texto-coment {
   text-align: left;
-  padding-bottom: 30px;
+  padding: 50px 0px 60px 20px;
 }
 
 .nota-resta {
