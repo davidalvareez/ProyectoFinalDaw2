@@ -312,9 +312,16 @@ public function registerProfe(RegisterProfeValidation $request){
             WHERE users.nick_usu = ?
             GROUP BY id_content",[$nick_usu]);
 
+            $apunteDestacado = DB::select("SELECT content.id, (sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_contenidos content 
+            INNER JOIN tbl_usuario user ON content.id_usu = user.id
+            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+            WHERE user.nick_usu = ?
+            GROUP BY content.id ORDER BY valoracion DESC,descargas DESC LIMIT 1",[$nick_usu]);
+
             $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
 
-            return view('perfil',compact('perfilUser','apuntesUser', 'avatares'));
+            return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado'));
         }else{
             return redirect('/');
         }
