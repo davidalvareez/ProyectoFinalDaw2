@@ -172,21 +172,16 @@
                 </div>
             </div>
         </div>
-        <!--- Aqui Empieza El Modal Actualizar--->
-        <div class="modal2" id="modalActualizar">
+        <div class="modal" id="modalActualizar">
             <div class="modal-content" id="modalBox">
             </div>
         </div>
-        <!--- Aqui Termina El Modal Actualizar--->
-        <!--- Aqui Empieza El Modal Configuración--->
-        <div class="modal2" id="modalConfiguracion">
+        <div class="modal" id="modalConfiguracion">
             <div class="modal-content" id="modalBoxConfiguracion">
 
             </div>
         </div>
-        <!--- Aqui Empieza El Modal Configuración--->
-        <!--- Aqui Empieza El Modal Actualizar Avatar--->
-        <div id="myModal" class="modal2">
+        <div id="myModal" class="modal">
             <div class="modal-content-avatar">
                 <span class="close" onclick="closeModal();">&times;</span>
                 <div class="avatar-content">

@@ -221,7 +221,7 @@ body {
           box-shadow: 0 7px 15px rgba(33, 34, 37, 0.05), 0 20px 45px rgba(48, 49, 54, 0.2);
 }
 
-.glass, main .content-region .region-header, main .content-region .region-menu, main .content-region .region-avatar, main .content-region .region-subir-apuntes, main .content-region .region-baja, main .content-region .region-mis-apuntes, .modal-content, .modal-content-avatar {
+.glass, main .content-region .region-header, main .content-region .region-menu, main .content-region .region-avatar, main .content-region .region-subir-apuntes, main .content-region .region-baja, main .content-region .region-mis-apuntes, .modal .modal-content, .modal .modal-content-avatar {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -881,35 +881,60 @@ main .content-region .region-mis-apuntes .content-mis-apuntes h2 {
           flex-flow: column wrap;
 }
 
-.modal2 {
+.modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
+  padding-top: 30px;
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
 
-.modal-content, .modal-content-avatar {
+.modal .modal-content, .modal .modal-content-avatar {
   margin: auto;
-  padding: 5px;
   border: 1px solid #888;
-  width: 60%;
-  height: 60%;
+  width: 40%;
+  height: 85%;
+}
+
+.modal .modal-content .contenido-modal, .modal .modal-content-avatar .contenido-modal {
+  width: 100%;
+  height: 100%;
+}
+
+.modal .modal-content .contenido-modal .formmodal, .modal .modal-content-avatar .contenido-modal .formmodal {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+}
+
+.modal .modal-content .contenido-modal .formmodal input, .modal .modal-content-avatar .contenido-modal .formmodal input {
+  width: 40%;
+  height: 50px;
+  margin: 10px 0px;
+  font-size: 18px;
+  outline: none;
+  text-align: center;
 }
 
 .aceptarbtn {
