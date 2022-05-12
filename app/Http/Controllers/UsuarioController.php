@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
+use App\Http\Requests\RegisterProfeValidation;
 use App\Http\Requests\ValidateResetPassword;
 use App\Http\Requests\ValidateVerifyMail;
 use Illuminate\Support\Facades\MAIL;
@@ -96,18 +97,6 @@ class UsuarioController extends Controller
             /* return $file; */
         }else{
             $file = $datos["img_avatar_sistema"];
-            /* return $datos; */
-        }
-        if ($request->hasFile('curriculum_profe2')) {
-            //$file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
-            $path_folder = 'uploads/curriculum/';
-            $filecur = $request->file('curriculum_profe2');
-            $fileName = $filecur->getClientOriginalName();
-            $filecur->storeAs($path_folder,$fileName);
-            $nomcur= $path_folder.$fileName;
-            /* return $nomcur; */
-        }else{
-            $fileName= "";
         }
         //Sentencia de creacion de usuario
         try {
@@ -115,9 +104,9 @@ class UsuarioController extends Controller
             $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
             $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
             DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
-            if ($datos["tipo_usuario"]==4) {
-                DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
-            }    
+            // if ($datos["tipo_usuario"]==4) {
+            //     DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
+            // }   
             $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
             $newuser=$newuser[0];
             //INSERTAMOS CODIGO DE VALIDACION
@@ -146,6 +135,66 @@ class UsuarioController extends Controller
             return $e->getMessage();
         }
     }
+
+
+public function registerProfe(RegisterProfeValidation $request){
+    $datos=$request->except("_token");
+    //Contraseña convertida a md5
+    /* return $datos; */
+    $password = md5($datos["contra_profe"]);
+    if ($request->hasFile('img_avatar_usu2')) {
+        $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
+        /* return $file; */
+    }else{
+        $file = $datos["img_avatar_sistema"];
+        /* return $datos; */
+    }
+    //Sentencia de creacion de usuario
+    try {
+        //Cogemos el id del centro y hacemos el registro como usuario normal
+        $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
+        $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_profe'],"apellido_usu"=>$datos['apellido_profe'],"fecha_nac_usu"=>$datos['fecha_nac_profe'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
+        DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
+    if ($request->hasFile('curriculum_profe2')) {
+        //$file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
+        $path_folder = 'uploads/curriculum/';
+        $filecur = $request->file('curriculum_profe2');
+        $fileName = $datos['nombre_profe'].$datos['apellido_profe'].'_'.$id.'_CV.pdf';
+        $filecur->storeAs('public/'.$path_folder,$fileName);
+        $nomcur= $path_folder.$fileName;
+        /* return $nomcur; */
+    }else{
+        $nomcur= "";
+    }
+        DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
+        $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
+        $newuser=$newuser[0];
+        //INSERTAMOS CODIGO DE VALIDACION
+        $code = rand(1000,9999);
+        DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$newuser->id]);
+        //Crear JSON archivo de configuración
+        $json = [
+            "id" => $newuser->id,
+            "curso" => null,
+            "idioma" => null,
+            "darkmode" => false
+        ];
+        $json = json_encode($json);
+        //Almacenar JSON
+        Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
+        //request()->file($json)->store('uploads/configuration','public');
+        $urlValidateUser = url("validarcorreo");
+        $sub = "Codigo de validacion de usuario";
+        $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
+        $datos = array('message'=>$msj);
+        $enviar = new sendMail($datos);
+        $enviar->sub = $sub;
+        Mail::to($newuser->correo_usu)->send($enviar);
+        return redirect("login");
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+}
     //Validar usuario
     public function validarUsuario(ValidateVerifyMail $request){
         $datos = $request->except("_token");
@@ -402,7 +451,72 @@ class UsuarioController extends Controller
     }
     /*Profesores*/
     public function MostrarProfesores(){
-        $MostrarProfesores = DB::select('SELECT * from tbl_usuario INNER JOIN tbl_rol ON tbl_usuario.id_rol = tbl_rol.id INNER JOIN tbl_avatar ON tbl_usuario.id = tbl_avatar.id_usu WHERE tbl_rol.id = 4;');
-        return view ('profesores',compact('MostrarProfesores'));
+        //Todos los profes
+        $MostrarProfesores = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+        avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+        cursos.id_centro FROM tbl_usuario user
+        LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+        INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+        INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+        WHERE user.id_rol = ?",[4]);
+        //Todos los cursos
+        $allCursos = DB::select("SELECT * FROM tbl_cursos GROUP BY nombre_curso ORDER BY id ASC");
+        return view ('profesores',compact('MostrarProfesores','allCursos'));
+    }
+
+    public function multiplyFilterProfesores(Request $request){
+        $datos = $request->except("_token","_method");
+        if ($datos["filter"] == "") {
+            $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+            avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+            cursos.id_centro FROM tbl_usuario user
+            LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+            INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+            INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+            WHERE user.id_rol = ?",[4]);
+        }else{
+            $id = $datos["filter"][0];
+            if (is_numeric($id)) {
+                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                cursos.id_centro FROM tbl_usuario user
+                LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                WHERE user.id_rol = ? AND user.id = ?",[4,$datos["filter"]]);
+            }else{
+                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                cursos.id_centro FROM tbl_usuario user
+                LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                WHERE user.id_rol = ? AND (user.nick_usu LIKE ? OR user.nombre_usu LIKE ? OR cursos.nombre_curso LIKE ?)",[4,'%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%']);
+            }
+        }
+        return response()->json($filterProfe);
+    }
+    public function advancedFilterProfesores(Request $request){
+        $datos = $request->except("_token","_method");
+        if ($datos["cursos"] == null) {
+            $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                cursos.id_centro FROM tbl_usuario user
+                LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                WHERE user.id_rol = ?",[4]);
+        }else{
+            $cursos = $datos["cursos"];
+            $select = "SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+            avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+            cursos.id_centro FROM tbl_usuario user
+            LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+            INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+            INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+            WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";                   
+            $filterProfe = DB::select($select);
+        }
+        return response()->json($filterProfe);
     }
 }
