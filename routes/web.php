@@ -41,8 +41,6 @@ Route::get('aboutus', function () {
     return view('aboutus');
 });
 
-Route::get('buscador',[ApuntesController::class,'buscador']);
-
 //Procesos Login // Registro // LogOut
 Route::post('login',[UsuarioController::class,'login']);
 
@@ -95,6 +93,9 @@ Route::post('download',[ApuntesController::class,'download']);
 //FILTROS
 
 //Pagina buscador, busqueda multiple_of
+
+Route::get('buscador',[ApuntesController::class,'buscador']);
+
 Route::post('buscador/multiplyfilter',[ApuntesController::class,'multiplyFilter']);
 
 Route::post('buscador/busquedaAvanzada',[ApuntesController::class,'busquedaAvanzada']);
@@ -139,7 +140,6 @@ Route::delete('admin/asignaturas/{id}',[CRUDAdminController::class,'eliminarAsig
 
 Route::delete('admin/temas/{id}',[CRUDAdminController::class,'eliminarTema']);
 
-
 //Mostrar
 Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
@@ -159,19 +159,24 @@ Route::put('admin/user',[CRUDAdminController::class,'actualizarUsuario']);
 
 //OAUTH
 Route::get('login-google',[OAuthController::class,'login_google']);
- 
+
 Route::get('google-callback',[OAuthController::class,'google_callback']);
 
 Route::get('login-facebook',[OAuthController::class,'login_facebook']);
- 
+
 Route::get('facebook-callback',[OAuthController::class,'facebook_callback']);
 
 Route::get('login-twitter',[OAuthController::class,'login_twitter']);
- 
+
 Route::get('twitter-callback',[OAuthController::class,'twitter_callback']);
 
 Route::get('oauth-register',[OAuthController::class,'oauthViewRegisterAlumno']);
 
 Route::post('oauth-register-alumno',[OAuthController::class,'oauthRegisterAlumno']);
+
 //Profesores
 Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
+
+Route::post('profesores/multiplyfilter',[UsuarioController::class,'multiplyFilterProfesores']);
+
+Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);
