@@ -1354,7 +1354,7 @@ function modalboxCrearUser() {
     var recarga = '';
     recarga += `<div class="modal-content">
                     <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formUpdateUser" method="post" onsubmit="actualizarUser();closeModal();return false;">
+                    <form id="formCrearUser" method="post" onsubmit="crearUser();closeModal();return false;" enctype="multipart/form-data">
                         <h2 id="nombreUser">Crear usuario</h2>
                         <b><span>Nombre usuario:</span>
                         <input type="text" name="nombre_usu" id="nombre_usu" value=""><br>
@@ -1370,11 +1370,51 @@ function modalboxCrearUser() {
                         <select name="nombre_rol" id="nombre_rol">
                             <option value="Administrador">Administrador</option>
                             <option value="Moderador">Moderador</option>  
-                            <option value="Cliente">Cliente</option>                                
+                            <option value="Cliente">Cliente</option>
+                            <option value="Profesor">Profesor</option>
+                            <option value="Empresa">Empresa</option>                                    
                         </select><br>
-                        <input type="hidden" name="id" id="id" value="${id}">
+                        <input type="file" name="img_avatar_usu2" id="img_avatar_usu_profe" value="">
                         <input type="submit" value="Editar">
                     </form>
                 </div>`;
     modal.innerHTML = recarga;
+}
+
+/* CrearUser */
+function crearUser() {
+    /* console.log(nombre_usu);
+    console.log(apellido_usu);
+    console.log(nick_usu);
+    console.log(fecha_nac_usu);
+    console.log(correo_usu);
+    console.log(nombre_rol);
+    return false; */
+    var message = document.getElementById('message');
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+    var token = document.getElementById('token').getAttribute("content");
+    var formData = new FormData(document.getElementById('formCrearUser'));
+    formData.append('_token', token);
+    formData.append('_method', "POST");
+    /* Inicializar un objeto AJAX */
+    var ajax = llamadaAjax();
+
+    ajax.open("POST", "admin/crearuser", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta);
+            return false;
+            if (respuesta.resultado == "OK") {
+                //message.innerHTML = '<p>Usuario modificado correctamente.</p>';
+                alertify.success("Usuario creado correctamente");
+                showUsers();
+            } else {
+                message.innerHTML = respuesta.resultado;
+                alertify.error("Ha habido un error");
+            }
+            /* console.log(respuesta); */
+        }
+    }
+    ajax.send(formData)
 }

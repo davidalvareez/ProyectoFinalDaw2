@@ -41,6 +41,8 @@ Route::post('login',[UsuarioController::class,'login']);
 
 Route::post('register',[UsuarioController::class,'register']);
 
+Route::post('registerProfe',[UsuarioController::class,'registerProfe']);
+
 Route::get('login',[UsuarioController::class,'loginView']);
 
 Route::get('register',[UsuarioController::class,'registerView']);
@@ -138,7 +140,7 @@ Route::delete('admin/temas/{id}',[CRUDAdminController::class,'eliminarTema']);
 Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
 //Crear
-
+Route::post('admin/crearuser',[CRUDAdminController::class,'crearUser']);
 
 //Actualizar
 Route::put('admin/centro',[CRUDAdminController::class,'actualizarCentro']);
