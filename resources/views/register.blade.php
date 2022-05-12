@@ -473,6 +473,30 @@
                                         <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema_profe" value="">
                                         <input type="file" name="img_avatar_usu2" id="img_avatar_usu_profe" value="">
                                     </div>
+                                    <div>
+                                        @error('img_avatar_usu')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                        @error('img_avatar_usu2')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <div class="menuuno">
@@ -481,6 +505,19 @@
                                         <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
                                         <input type="file" name="curriculum_profe2" id="curriculum_profe2" value="">
                                         <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="4">
+                                    </div>
+                                    <div>
+                                        @error('curriculum_profe2')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- <div class="alienarright">
