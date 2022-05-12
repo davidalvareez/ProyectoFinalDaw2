@@ -34,7 +34,6 @@ class RegisterProfeValidation extends FormRequest
             'contra_profe_verify' => 'required|min:4|max:255|same:contra_profe',
             'img_avatar_usu'=>'mimes:jpg,png,jpeg,webp,svg',
             'img_avatar_usu2'=>'mimes:jpg,png,jpeg,webp,svg',
-            'curriculum_profe'=>'mimes:pdf',
             'curriculum_profe2'=>'mimes:pdf',
         ];
     }
