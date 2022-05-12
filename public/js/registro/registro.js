@@ -60,7 +60,7 @@ function modalProfe() {
     modal.style.display = "none";
 
     var resgitroProf = document.getElementById("idRegister2");
-    resgitroProf.style.display = "block";
+    resgitroProf.style.display = ""; //NO PONER NADA PARA QUE EL GRID SE VEA BIEN
     document.getElementById("img_avatar_usu2").style.display = "none";
 }
 

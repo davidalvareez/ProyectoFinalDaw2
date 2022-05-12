@@ -1,15 +1,7 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="../public/js/registro/registro.js"></script>
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
     <link rel="stylesheet" href="{!! asset ('css/registro/styles.css')!!}">
-    <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
     <title>Register</title>
 </head>
 
@@ -71,6 +63,19 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="redes-sociales">
+                    <div class="alienar-2">
+                        <h4>o comienza a regístrarte con:</h4>
+                    </div>
+                    <div class="botones-distributed">
+                        <div class="botones-right">
+                            <a onclick="{{url('login-facebook')}}"><img src="{!! asset ('media/loginregister/facebook.png') !!}" alt="facebook" class="icono-socialmedia"></a>
+                            <a onclick="{{url('login-twitter')}}"><img src="{!! asset ('media/loginregister/twitter.png') !!}" alt="twitter" class="icono-socialmedia"></a>
+                            <a onclick="{{url('login-google')}}"><img src="{!! asset ('media/loginregister/google.png') !!}" alt="google" class="icono-socialmedia"></a>
+                        </div>
+                    </div>
+                </div>
                 </div>
               </div>
         </div>
@@ -225,11 +230,7 @@
                                         <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="">
                                     </div>
                                 </div>
-                                <!-- <div class="alienarright">
-                                    <a href="">
-                                        <p>Contraseña olvidada?</p>
-                                    </a>
-                                </div> -->
+
                                 <div class="menuuno">
                                     <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
                                 </div>
@@ -245,7 +246,7 @@
                                 </div>
                             </form>
 {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
-<form action="{{url('register')}}" class="formulario-grid" id="idRegister2" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
+<form action="{{url('register')}}" class="formulario2-grid" id="idRegister2" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
                                 
     @csrf
 
@@ -374,11 +375,7 @@
             <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="4">
         </div>
     </div>
-    <!-- <div class="alienarright">
-        <a href="">
-            <p>Contraseña olvidada?</p>
-        </a>
-    </div> -->
+
     <div class="menuuno">
         <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
     </div>
@@ -397,14 +394,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-region">
                 <div class="imagenrelleno">
                     <img src="{!! asset ('media/loginregister/imagen2.png') !!}" alt="imgregistro" class="imgredondeada2">
                 </div>
             </div>
         </div>
     </main>
+    @include ('template.footer')
 </body>
 </html>
-@include ('template.footer')

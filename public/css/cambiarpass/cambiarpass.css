@@ -214,7 +214,7 @@
   background-color: #0e7a30cc;
 }
 
-.flex, .iconoanimacion, .cambiarpass-page main .region .glassland .content-glassland, .cambiarpass-page main .region1, .cambiarpass-page main .region1 .content-region .glassland .content-glassland {
+.flex, .iconoanimacion, .cambiarpass-page main .region .glassland .content-glassland, .cambiarpass-page main .region1 .content-region .glassland .content-glassland {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -394,13 +394,48 @@ h4 {
   background-repeat: no-repeat;
 }
 
-.cambiarpass-page main .region1 {
-  margin: 4% 0% 2% 17%;
+.cambiarpass-page main {
+  height: calc(100vh - 105px);
+}
+
+@media (min-width: 1200px) {
+  .cambiarpass-page main {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cambiarpass-page main .region1 {
+    padding: 5% 0% 5% 10%;
+  }
+}
+
+.cambiarpass-page main .region1 .content-region {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+@media (max-width: 1200px) {
+  .cambiarpass-page main .region1 .content-region {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .cambiarpass-page main .region1 .content-region .glassland .content-glassland .cambiarpass-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
+  padding: calc(20px + 0.5vh) calc(15px + 1vw);
 }
 
 .cambiarpass-page main .region1 .content-region .glassland .content-glassland .cambiarpass-content-glassland .inputbtn::-webkit-input-placeholder {
@@ -419,11 +454,9 @@ h4 {
   font-family: "Font Awesome\ 6 pro";
 }
 
-.cambiarpass-page main .region1 .content-region .imagenrelleno {
-  padding-left: 250px;
-}
-
-.cambiarpass-page main .region1 .content-region .imagenrelleno .imgpass {
-  width: 60%;
+@media (max-width: 1200px) {
+  .cambiarpass-page main .region1 .content-region .imagenrelleno {
+    display: none;
+  }
 }
 /*# sourceMappingURL=cambiarpass.css.map */
