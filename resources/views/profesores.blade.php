@@ -1,7 +1,4 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{!!asset('css/buscador/styles.css')!!}">
     <script src="{!! asset('js/profesores/profesoresAjax.js') !!}"></script>
@@ -60,8 +57,6 @@
             </table>
         </div>
     </main>
-<footer>
     @include('template.footer')
-</footer>
 </body>
 </html>

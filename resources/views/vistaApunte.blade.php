@@ -1,16 +1,11 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{!! asset ('css/vistaapuntes/vistaapuntes.css') !!}">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{!! asset('js/vistaapuntes/vistaapuntes.js') !!}"></script>
     <title>Apunte</title>
 </head>
-<body class="vista-apuntes" oncontextmenu='return false'>
+<body class="vista-apuntes">
     <header></header>
     <main>
         <div class="menu">
@@ -22,7 +17,7 @@
                     <div class="content-apuntes">
                         {{-- <iframe src="https://docs.google.com/gview?url={{asset('storage').'/uploads/apuntes/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido.'&embedded=true'}}"></iframe> --}}
                         @if($apunte[0]->extension_contenido == ".pdf")
-                            <iframe id="framePDF" style="pointer-events:none;" src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
+                            <iframe id="framePDF" src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
                         @elseif($apunte[0]->extension_contenido == '.jpeg' || $apunte[0]->extension_contenido == '.jpg' || $apunte[0]->extension_contenido == '.png')
                             <img src="{{$path}}">
                         @endif
@@ -98,6 +93,9 @@
                                         <div style="float:left">
                                             <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
                                         </div>
+                                        <div style="float:left">
+                                            <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
+                                        </div>
                                     </div>
                                     <div class="nota-resta">
                                         <label class="rating-label">
@@ -130,6 +128,6 @@
             </div>
         </div>
     </main>
-    <footer>@include('template.footer')</footer>
+    @include('template.footer')
 </body>
 </html>
