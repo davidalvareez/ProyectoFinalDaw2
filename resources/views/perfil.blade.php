@@ -31,7 +31,9 @@
                                 <div class="div-info"><h3>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h3></div>
                                 <div class="div-info"><h3>{{$perfilUser[0]->fecha_nac_usu}}</h3></div>
                                 <div class="div-info"><h3>{{$perfilUser[0]->correo_usu}}</h3></div>
-                                <div class="div-info"><h3>{{$perfilUser[0]->nombre_centro}}</h3></div>
+                                @if ($perfilUser[0]->nombre_centro != null)
+                                    <div class="div-info"><h3>{{$perfilUser[0]->nombre_centro}}</h3></div>
+                                @endif
                             </div>
                             @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                                 <button class="btn-glass" onclick="modalDatosUser();">Editar información</button>
