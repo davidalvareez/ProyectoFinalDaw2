@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{!! asset ('css/validarcorreo/validarcorreo.css')!!}">
+    <link rel="stylesheet" href="{!! asset ('css/cambiarpass/cambiarpass.css')!!}">
     <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
     <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
-    <title>Validar correo</title>
+    <title>Restablecer contraseña</title>
 </head>
 
-<body class="validarcorreo-page">
+<body class="cambiarpass-page">
     @if(isset($user_notfound))
         @if ($user_notfound == true)
             {{$user_notfound = false;}}
@@ -21,6 +21,20 @@
                     position: 'center',
                     icon: 'error',
                     title: 'Usuario no encontrado',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
+    @endif
+    @if(isset($samepassword))
+        @if ($samepassword == true)
+            {{$samepassword = false;}}
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'La contraseña no puede ser igual a la antigua',
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -42,16 +56,16 @@
             <div class="content-region">
                 <div class="glassland">
                     <div class="content-glassland">
-                        <div class="validarcorreo-content-glassland">
-                            <img src="{!! asset ('media/3Dicons-dinamicos/icons/png/mail\mail-dynamic-gradient.png') !!}" width="80px" height="80px">
-                            <h2>¡Verifica tu correo!</h2>
+                        <div class="cambiarpass-content-glassland">
+                            <img src="{!! asset ('media/3Dicons-dinamicos/icons/png/key\key-dynamic-gradient.png') !!}" width="80px" height="80px">
+                            <h2>¡Restablece tu contraseña!</h2>
                             <br>
-                            <form action="{{url('validarCorreoUser')}}" method="POST">
+                            <form action="{{url('restablecerContraUser')}}" method="POST">
                                 @csrf
                                 <div>
-                                    <h4 class="pizq">Email</h4>
-                                    <input class="inputbtn" type="text" name="correo" id="correo" placeholder="&#xf007">
-                                    @error('correo')
+                                    <h4 class="pizq">Correo</h4>
+                                    <input class="inputbtn" type="email" name="correo_usu" id="correo_usu" placeholder="&#xf007">
+                                    @error('correo_usu')
                                     <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
@@ -63,22 +77,39 @@
                                     <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
+                                <br>
+                                <div>
+                                    <h4 class="pizq">Contraseña nueva</h4>
+                                    <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="&#xf023">
+                                    @error('contra_usu')
+                                    <p class="errortext">{{$message}}</p>
+                                    @enderror
+                                </div>
+                                <br>
+                                <div>
+                                    <h4 class="pizq">Confirmar contraseña nueva</h4>
+                                    <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="&#xf023">
+                                    @error('contra_usu_verify')
+                                    <p class="errortext">{{$message}}</p>
+                                    @enderror
+                                </div>
                                 <!-- <div class="alienarright">
                                     <a href="">
                                         <p>Contraseña olvidada?</p>
                                     </a>
                                 </div> -->
-                                <input class="validarcorreo-btn-absglass" type="submit" value="VALIDAR">
-                                <div class="">
+                                <input class="cambiarpass-btn-absglass" type="submit" value="Restablecer contraseña">
+                                {{-- <div class="">
                                     <div class="alienarleft">
-                                        <p>Volver a la página de inicio?</p>
+                                        <p>Cancelar proceso</p>
                                     </div>
                                     <div class="alienarleft">
-                                        <a href="{{url('/')}}">
+                                        <a href="{{url('/login')}}">
                                             <p>Click aquí</p>
                                         </a>
                                     </div>
-                                </div>
+                                </div> --}}
+                                <br><br><br>
                             </form>
                         </div>
                     </div>
@@ -86,7 +117,7 @@
             </div>
             <div class="content-region">
                 <div class="imagenrelleno">
-                    <img src="{!! asset ('media/validarcorreo/img2validar.png') !!}" alt="imglogin" class="imgvalidacion">
+                    <img src="{!! asset ('media/cambiarpass/cambiarpass.png') !!}" alt="imgpass" class="imgpass">
                 </div>
             </div>
         </div>

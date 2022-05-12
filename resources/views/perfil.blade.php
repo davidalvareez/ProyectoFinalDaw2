@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <!----------------------------------- AlertifyJS ------------------------------------------------------->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <script src="{!! asset('js/perfil/miPerfilAjax.js') !!}"></script>
     <script src="{!! asset('js/buscador/js.js') !!}"></script>
     <link rel="stylesheet" href="{!!asset('css/miPerfil/styles.css')!!}">
@@ -72,10 +68,12 @@
                 </div>
                 <div class="region-baja">
                     <div class="content-baja">
+                        @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                         <h2 class="titular">DARSE DE BAJA</h2>
                         <div class="darse-baja">
-                            <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Elimina tu cuenta</button>
+                            <button class="btn-glass" onclick="darsedeBaja();">Elimina tu cuenta</button>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="region-mis-apuntes">

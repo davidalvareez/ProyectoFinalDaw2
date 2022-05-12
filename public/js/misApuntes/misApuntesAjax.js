@@ -7,7 +7,7 @@ window.onload = function() {
     radioYes.onclick = function() {
         document.getElementById('selectTema').style.display = 'none';
         document.getElementById('textNewTema').style.display = 'block';
-        form[4][0].selected = true;
+        form[5][0].selected = true;
     }
     radioNo.onclick = function() {
         document.getElementById('selectTema').style.display = 'block';
@@ -179,6 +179,16 @@ function subirApuntes() {
                 alertify.warning('El apunte ya existe cambie el nombre');
             } else if (respuesta.resultado == "nullTema") {
                 alertify.error('Especifique tema');
+            } else if (respuesta.resultado == "nullCentro") {
+                alertify.error('Especifique centro');
+            } else if (respuesta.resultado == "nullCurso") {
+                alertify.error('Especifique curso');
+            } else if (respuesta.resultado == "nullAsignatura") {
+                alertify.error('Especifique asignatura');
+            } else if (respuesta.resultado == "nullApunte") {
+                alertify.error('Tienes que subir un archivo');
+            } else if (respuesta.resultado == "nullExtensionApunte") {
+                alertify.error('La extension del archivo no es correcta');
             }
         }
     }

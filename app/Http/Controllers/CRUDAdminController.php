@@ -213,12 +213,12 @@ class CRUDAdminController extends Controller
         public function eliminarUser($id){
             try{
                 DB::beginTransaction();
-                DB::select("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
-                DB::select("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_historial WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_usuario WHERE id= ?",[$id]);
+                DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
+                DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
             }catch(\Exception $e){

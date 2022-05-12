@@ -6,13 +6,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
+    <script src="{!! asset ('js/login/login.js')!!}"></script>
     <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
     <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
     <title>Login page</title>
 </head>
 
 <body class="login-page">
+    @if(isset($fail_login))
+        @if ($fail_login == true)
+            {{$fail_login = false;}}
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Usuario y contraseña incorrecto',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
+    @endif
+    @if(isset($fail_validate))
+        @if ($fail_validate == true)
+            {{$fail_validate = false;}}
+            <script>
+                Swal.fire({
+                icon: 'warning',
+                title: 'Cuenta no validada',
+                footer: '<a href="validarcorreo">Validar cuenta</a>'
+                })
+            </script>
+        @endif
+    @endif
+    @if(isset($fail_banned))
+        @if ($fail_banned == true)
+            {{$fail_validate = false;}}
+            <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Tu cuenta sigue baneada',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+            </script>
+        @endif
+    @endif
     <header>
     </header>
     <main>
@@ -41,11 +84,11 @@
                                     <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
-                                <!-- <div class="alienarright">
-                                    <a href="">
+                                <div class="alienarright">
+                                    <a onclick="forgetPassword();">
                                         <p>Contraseña olvidada?</p>
                                     </a>
-                                </div> -->
+                                </div> 
                                 <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
                                 <div class="">
                                     <div class="alienarleft">
@@ -55,6 +98,11 @@
                                         <a href="{{url('register')}}">
                                             <p>Crear cuenta</p>
                                         </a>
+                                    </div>
+                                    <div>
+                                        <button onclick="{{url('login-google')}}">Login Google</button>
+                                        <button onclick="{{url('login-facebook')}}">Login Facebook</button>
+                                        <button onclick="{{url('login-twitter')}}">Login Twitter</button>
                                     </div>
                                 </div>
                             </form>
