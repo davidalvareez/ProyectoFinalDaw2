@@ -291,13 +291,14 @@ public function registerProfe(RegisterProfeValidation $request){
     //Vista Perfil
     public function perfil($nick_usu){
         if (session()->get("user")) {
+            //return $nick_usu;
             $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
             LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-            INNER JOIN tbl_centro centro ON user.id_centro = centro.id
+            LEFT JOIN tbl_centro centro ON user.id_centro = centro.id
             LEFT JOIN tbl_contenidos content ON content.id_usu = user.id
             LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
             LEFT JOIN tbl_historial hist ON hist.id_usu = user.id
-            WHERE nick_usu = ?",[$nick_usu]);
+            WHERE user.nick_usu = ?",[$nick_usu]);
 
             $apuntesUser = DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
             FROM tbl_contenidos content
