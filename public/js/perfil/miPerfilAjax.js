@@ -257,3 +257,35 @@ function changeConfigUser() {
     }
     ajax.send(formData);
 }
+
+function darsedeBaja() {
+    Swal.fire({
+        title: "Darse de baja",
+        text: "Introduce tu contraseña",
+        input: 'password',
+        showCancelButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let token = document.getElementById('token').getAttribute("content");
+            let formData = new FormData();
+            formData.append('_token', token);
+            formData.append('_method', 'DELETE');
+            formData.append('contra_usu', result.value);
+            let ajax = llamadaAjax();
+            ajax.open("POST", "darseDeBaja", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "IncorrectPassword") {
+                        alertify.error("Contraseña incorrecta");
+                    } else if (respuesta.resultado == "OK") {
+                        window.location.href = respuesta.redirect;
+                    } else {
+                        alertify.error(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+        }
+    });
+}

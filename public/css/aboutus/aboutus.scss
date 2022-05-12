@@ -132,11 +132,13 @@
     border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.flex {
+.flex-cv {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    justify-items: center;
     align-content: center;
-    text-align: center;
+    align-items: center;
+    flex-flow: row wrap;
 }
 
 $padding: 15px;
@@ -189,7 +191,7 @@ body {
     width: 100%;
     min-height: 100vh;
     position: relative;
-    background-image: url("../../media/aboutus/img-aboutus/fondoaboutus.jpg");
+    background-image: url("../../media/aboutus/img-aboutus/fondo3.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -222,8 +224,9 @@ h4 {
 .about-us {
     main {
         .region {
-            @extend .flex;
+            @extend .flex-cv;
             width: 100%;
+            text-align: center;
         }
         .carta {
             @extend .glass;
@@ -235,8 +238,29 @@ h4 {
             width: 100%;
             padding: 10px;
         }
-        .img-carta {
-            margin: 0px 0px 30px 0px;
+        .img-david{
+            width: 300px;
+            height:100%;
+        }
+        .img-marc{
+            width: 255px;
+            height:100%;
+        }
+        .img-isaac{
+            width: 300px;
+            height:100%;
+        }
+        .img-xavi{
+            width: 300px;
+            height:100%;
+        }
+        .img-miguel{
+            width: 300px;
+            height:100%;
+        }
+        .img-raul{
+            width: 300px;
+            height:100%;
         }
         .icono-carta {
             width: 90px;
@@ -256,6 +280,24 @@ h4 {
                             grid-gap: 136px 112px;
                             -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
                             grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
+                            .cartadavid{
+                                padding: 100px 0px 0px 0px;
+                            }
+                            .cartamarc{
+                                padding: 100px 0px 0px 0px;
+                            }
+                            .cartaisaac{
+                                padding: 140px 0px 0px 0px;
+                            }
+                            .cartaraul{
+                                padding: 30px 0px 0px 0px;
+                            }
+                            .cartamiguel{
+                                padding: 50px 0px 0px 0px;
+                            }
+                            .cartaxavi{
+                                padding: 105px 0px 0px 0px;
+                            }
                         }
                     }
                 }
@@ -266,7 +308,7 @@ h4 {
             .content-region {
                 width: 100%;
                 .explicacion {
-                    @extend .flex;
+                    @extend .flex-cv;
                     width: 100%;
                     .content-explicacion {
                         .preguntas {
@@ -279,6 +321,8 @@ h4 {
                             grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
                             .carta1 {
                                 padding: 23px 23px 23px 23px;
+                                @extend .flex-cv;
+                                
                             }
                             .carta2 {
                                 padding: 23px 23px 23px 23px;

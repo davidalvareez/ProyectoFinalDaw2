@@ -25,13 +25,18 @@
             </div>
             <div class="advancedSearch">
                 <div class="container">
-                    <button class="btn-abrirPop">Busqueda avanzada</button>
+                    <form onchange="advancedFilterProfesores();" method="POST" id="filterCurso">
+                        @foreach($allCursos as $cursos)
+                            <input type="checkbox" name="cursos" value="{{$cursos->id}}"/>
+                            <label name="{{$cursos->nombre_curso}}">{{$cursos->nombre_curso}}</label>
+                        @endforeach
+                    </form>
                 </div>
             </div>
         </div>
     </header>
     <main>
-        <div class="">
+        <div class="" id="contenedor">
             <table class="table table-striped table-dark">
                 <tr>
                     <th scope="col">#</th>

@@ -17,16 +17,19 @@ use App\Http\Controllers\CRUDAdminController;
 */
 //Enlaces a paginas
 
-//VALIDAR CORREO Y CAMBIAR CONTRASEÑA HECHO POR MARC PARA PRUEBAS
+//VALIDAR CORREO REGISTRO
 Route::get('validarcorreo', function () {
     return view('validarcorreo');
 });
 
-Route::get('cambiarPass', function () {
-    return view('cambiarPass');
-});
-
 Route::post('validarCorreoUser', [UsuarioController::class,'validarUsuario']);
+
+//VALIDAR CAMBIO CONTRASEÑA
+Route::get('cambiarPass',[UsuarioController::class,'validarContraseñaView']);
+
+Route::post('mailcambiarPass',[UsuarioController::class,'MAILvalidarContraseña']);
+
+Route::post('restablecerContraUser',[UsuarioController::class,'validarCambioContraseña']);
 
 //Indice
 Route::get('/', function () {
@@ -38,12 +41,12 @@ Route::get('aboutus', function () {
     return view('aboutus');
 });
 
-Route::get('buscador',[ApuntesController::class,'buscador']);
-
 //Procesos Login // Registro // LogOut
 Route::post('login',[UsuarioController::class,'login']);
 
 Route::post('register',[UsuarioController::class,'register']);
+
+Route::post('registerProfe',[UsuarioController::class,'registerProfe']);
 
 Route::get('login',[UsuarioController::class,'loginView']);
 
@@ -65,9 +68,6 @@ Route::post('perfil/changeConfigUser',[UsuarioController::class,'changeConfigUse
 Route::put('perfil/actualizarAvatar',[UsuarioController::class,'actualizarAvatar']);
 
 Route::delete('perfil/darseDeBaja',[UsuarioController::class,'DarseDeBaja']);
-
-//Pagina de apuntes
-
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
 
@@ -93,6 +93,9 @@ Route::post('download',[ApuntesController::class,'download']);
 //FILTROS
 
 //Pagina buscador, busqueda multiple_of
+
+Route::get('buscador',[ApuntesController::class,'buscador']);
+
 Route::post('buscador/multiplyfilter',[ApuntesController::class,'multiplyFilter']);
 
 Route::post('buscador/busquedaAvanzada',[ApuntesController::class,'busquedaAvanzada']);
@@ -137,12 +140,11 @@ Route::delete('admin/asignaturas/{id}',[CRUDAdminController::class,'eliminarAsig
 
 Route::delete('admin/temas/{id}',[CRUDAdminController::class,'eliminarTema']);
 
-
 //Mostrar
 Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
 //Crear
-
+Route::post('admin/crearuser',[CRUDAdminController::class,'crearUser']);
 
 //Actualizar
 Route::put('admin/centro',[CRUDAdminController::class,'actualizarCentro']);
@@ -157,21 +159,24 @@ Route::put('admin/user',[CRUDAdminController::class,'actualizarUsuario']);
 
 //OAUTH
 Route::get('login-google',[OAuthController::class,'login_google']);
- 
+
 Route::get('google-callback',[OAuthController::class,'google_callback']);
 
 Route::get('login-facebook',[OAuthController::class,'login_facebook']);
- 
+
 Route::get('facebook-callback',[OAuthController::class,'facebook_callback']);
 
 Route::get('login-twitter',[OAuthController::class,'login_twitter']);
- 
+
 Route::get('twitter-callback',[OAuthController::class,'twitter_callback']);
 
 Route::get('oauth-register',[OAuthController::class,'oauthViewRegisterAlumno']);
 
 Route::post('oauth-register-alumno',[OAuthController::class,'oauthRegisterAlumno']);
+
 //Profesores
 Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
 
-//Mapas
+Route::post('profesores/multiplyfilter',[UsuarioController::class,'multiplyFilterProfesores']);
+
+Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);

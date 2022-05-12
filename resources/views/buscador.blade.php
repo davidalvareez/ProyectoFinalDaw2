@@ -97,12 +97,12 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
-                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" alt="" class="avatar img">
+                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'" alt="" class="avatar img">
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
                                                     <div class="username">
-                                                        <p><span>{{$recentnotes->nick_usu}}</span></p>
+                                                        <p><span onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'">{{$recentnotes->nick_usu}}</span></p>
                                                     </div>
                                                     <div class="column-2">
                                                         <div class="stars">
@@ -211,12 +211,12 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
-                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" alt="" class="avatar img">
+                                                        <img src="{{asset('storage').'/'.$popularnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'" alt="" class="avatar img">
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
                                                     <div class="username">
-                                                        <p><span>{{$popularnotes->nick_usu}}</span></p>
+                                                        <p><span onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'">{{$popularnotes->nick_usu}}</span></p>
                                                     </div>
                                                     <div class="column-2">
                                                         <div class="stars">

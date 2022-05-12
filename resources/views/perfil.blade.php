@@ -1,9 +1,5 @@
 @include('template.header')
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <!----------------------------------- AlertifyJS ------------------------------------------------------->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
     <script src="{!! asset('js/perfil/miPerfilAjax.js') !!}"></script>
     <script src="{!! asset('js/buscador/js.js') !!}"></script>
     <link rel="stylesheet" href="{!!asset('css/miPerfil/styles.css')!!}">
@@ -29,7 +25,9 @@
                                 <div class="div-info"><h3>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h3></div>
                                 <div class="div-info"><h3>{{$perfilUser[0]->fecha_nac_usu}}</h3></div>
                                 <div class="div-info"><h3>{{$perfilUser[0]->correo_usu}}</h3></div>
-                                <div class="div-info"><h3>{{$perfilUser[0]->nombre_centro}}</h3></div>
+                                @if ($perfilUser[0]->nombre_centro != null)
+                                    <div class="div-info"><h3>{{$perfilUser[0]->nombre_centro}}</h3></div>
+                                @endif
                             </div>
                             @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                                 <button class="btn-glass" onclick="modalDatosUser();">Editar información</button>
@@ -66,18 +64,29 @@
                 </div>
                 <div class="region-baja">
                     <div class="content-baja">
+                        @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                         <h2 class="titular">DARSE DE BAJA</h2>
                         <div class="darse-baja">
-                            <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Elimina tu cuenta</button>
+                            <button class="btn-glass" onclick="darsedeBaja();">Elimina tu cuenta</button>
                         </div>
+                        @else
+                            @if (count($apunteDestacado) == 1)
+                            <h2 class="titular">APUNTE DESTACADO</h2>
+                            <div class="darse-baja">
+                                <button class="btn-glass" onclick="window.location.href='{{url('apuntes/'.$apunteDestacado[0]->id)}}'">Ver apunte destacado</button>
+                            </div>
+                            @else
+                                <h2 class="titular">No tiene ningun apunte</h2>
+                            @endif
+                        @endif
                     </div>
                 </div>
                 <div class="region-mis-apuntes">
                     <div class="content-mis-apuntes">
-                        <h2>MIS APUNTES</h2>
+                        <h2>APUNTES</h2>
                     <!--- Aqui Empieza Las Cartas--->
                     <div class="owl-carousel owl-carousel-4">
-                        @foreach($apuntesUser as $recentnotes)
+                        @foreach($apuntesUser as $apunte)
                         <div class="card resultado card-resultado">
                             <div class="container">
                                 <div class="front-card">
@@ -85,18 +94,22 @@
                                         <div class="foto img img-apuntes">
                                             <div class="container-foto container-img">
                                                 <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
-                                                <img class="img foto prev-apunt" src="../media/ejemploApuntes.jpg" alt="Apuntes de la estructura osea">
+                                                @if ($recentnotes->extension_contenido == ".pdf")
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @else
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="header-apuntes">
                                             <div class="name-content">
-                                                <h3 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</span></h3>
+                                                <h3 class="name-content_text"><span class="">{{$apunte->nombre_contenido}}{{$apunte->extension_contenido}}</span></h3>
                                             </div>
                                             <div class="centro info-centro">
-                                                <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">{{$recentnotes->nombre_centro}}</span></p>
+                                                <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">{{$apunte->nombre_centro}}</span></p>
                                             </div>
                                             <div class="id-content">
-                                                <small class="name-content_text"><span class="">#{{$recentnotes->id_content}}</span></small>
+                                                <small class="name-content_text"><span class="">#{{$apunte->id_content}}</span></small>
                                             </div>
                                         </div>
                                     </div>
@@ -108,26 +121,26 @@
                                                 <div class="container-info">
                                                     <div class="avatar-user user-img">
                                                         <div class="filter">
-                                                            <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" alt="" class="avatar img">
+                                                            <img src="{{asset('storage').'/'.$apunte->img_avatar}}" alt="" class="avatar img">
                                                         </div>
                                                     </div>
                                                     <div class="container-text">
                                                         <div class="username">
-                                                            <p><span>{{$recentnotes->nick_usu}}</span></p>
+                                                            <p><span>{{$apunte->nick_usu}}</span></p>
                                                         </div>
                                                         <div class="column-2">
                                                             <div class="stars">
-                                                                <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">{{$recentnotes->valoracion}}</span></p>
+                                                                <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">{{$apunte->valoracion}}</span></p>
                                                             </div>
                                                             <div class="down info-stats">
-                                                                <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">{{$recentnotes->descargas}}</span></p>
+                                                                <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">{{$apunte->descargas}}</span></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="date-info left-right">
                                                     <div class="date">
-                                                        <p><span class="icon-date"><i class="fa-duotone fa-calendar-days"></i></span> <span class="date-text">{{$recentnotes->fecha_publicacion_contenido}}</span></p>
+                                                        <p><span class="icon-date"><i class="fa-duotone fa-calendar-days"></i></span> <span class="date-text">{{$apunte->fecha_publicacion_contenido}}</span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,16 +148,16 @@
                                         <div class="bottom">
                                             <div class="content-info">
                                                 <div class="name-content">
-                                                    <h4 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</span></h4>
+                                                    <h4 class="name-content_text"><span class="">{{$apunte->nombre_contenido}}{{$apunte->extension_contenido}}</span></h4>
                                                 </div>
                                                 <div class="school-content">
-                                                    <p class="school-content_text"><span class="">{{$recentnotes->nombre_centro}}</span></p>
+                                                    <p class="school-content_text"><span class="">{{$apunte->nombre_centro}}</span></p>
                                                 </div>
                                                 <div class="class-content">
-                                                    <p class="class-content_text"><span class="">{{$recentnotes->nombre_asignatura}}</span></p>
+                                                    <p class="class-content_text"><span class="">{{$apunte->nombre_asignatura}}</span></p>
                                                 </div>
                                                 <div class="unit-content">
-                                                    <p class="unit-content_text"><span class="">{{$recentnotes->nombre_tema }}</span></p>
+                                                    <p class="unit-content_text"><span class="">{{$apunte->nombre_tema }}</span></p>
                                                 </div>
                                             </div>
                                             <div class="buttons-actions">
@@ -152,7 +165,7 @@
                                                     <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
                                                 </div>
                                                 <div class="go-button">
-                                                    <button><a href="{{url('apuntes/'.$recentnotes->id_content)}}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
+                                                    <button><a href="{{url('apuntes/'.$apunte->id_content)}}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
                                                 </div>
                                             </div>
                                         </div>

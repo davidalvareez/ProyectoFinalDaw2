@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginValidation;
+use App\Http\Requests\RegisterValidation;
+use Illuminate\Support\Facades\MAIL;
+use App\Mail\sendMail;
 
 class CRUDAdminController extends Controller
 {
@@ -84,12 +89,64 @@ class CRUDAdminController extends Controller
 
 //Crear
     /* CrearUsuarios */
-        public function insertUsuario(Request $request){    
-            try{
-                DB::insert('INSERT into tbl_usuario (titulo, descripcion) values (?,?)',[$request->input('titulo'),$request->input('descripcion')]);
-                return response()->json(array('resultado'=> 'OK'));
-            }catch (\Throwable $th) {
-                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        public function crearUser(Request $request){ 
+            $datos=$request->except("_token");
+            //Contraseña convertida a md5
+            /* return $datos; */
+            $password = md5($datos["contra_usu"]);
+            if ($request->hasFile('img_avatar_usu2')) {
+                $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
+                /* return $file; */
+            }else{
+                $file = $datos["img_avatar_sistema"];
+                /* return $datos; */
+            }
+            if ($request->hasFile('curriculum_profe2')) {
+                //$file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
+                $path_folder = 'uploads/curriculum/';
+                $filecur = $request->file('curriculum_profe2');
+                $fileName = $filecur->getClientOriginalName();
+                $filecur->storeAs($path_folder,$fileName);
+                $nomcur= $path_folder.$fileName;
+                /* return $nomcur; */
+            }else{
+                $fileName= "";
+            }
+            //Sentencia de creacion de usuario
+            try {
+                //Cogemos el id del centro y hacemos el registro como usuario normal
+                $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
+                $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
+                DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
+                if ($datos["tipo_usuario"]==4) {
+                    DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
+                }    
+                $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
+                $newuser=$newuser[0];
+                //INSERTAMOS CODIGO DE VALIDACION
+                $code = rand(1000,9999);
+                DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$newuser->id]);
+                //Crear JSON archivo de configuración
+                $json = [
+                    "id" => $newuser->id,
+                    "curso" => null,
+                    "idioma" => null,
+                    "darkmode" => false
+                ];
+                $json = json_encode($json);
+                //Almacenar JSON
+                Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
+                //request()->file($json)->store('uploads/configuration','public');
+                $urlValidateUser = url("validarcorreo");
+                $sub = "Codigo de validacion de usuario";
+                $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($newuser->correo_usu)->send($enviar);
+                return redirect("login");
+            } catch (\Exception $e) {
+                return $e->getMessage();
             }
         }
 
@@ -156,12 +213,12 @@ class CRUDAdminController extends Controller
         public function eliminarUser($id){
             try{
                 DB::beginTransaction();
-                DB::select("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
-                DB::select("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_historial WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
-                DB::select("DELETE FROM tbl_usuario WHERE id= ?",[$id]);
+                DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
+                DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
             }catch(\Exception $e){

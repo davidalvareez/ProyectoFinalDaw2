@@ -40,7 +40,7 @@ class ApuntesController extends Controller
                 }
             }
             $sqlrecent .= "GROUP BY content.id ORDER BY content.fecha_publicacion_contenido DESC LIMIT 15";
-            $sqlpopular .= "GROUP BY content.id ORDER BY valoracion DESC LIMIT 15";
+            $sqlpopular .= "GROUP BY content.id ORDER BY valoracion DESC,descargas DESC LIMIT 15";
             
             //Mostrar los más recientes
             $recent=DB::select($sqlrecent);
@@ -269,85 +269,108 @@ class ApuntesController extends Controller
     public function misApuntes_subirapunte(Request $request){
         $user = session()->get('user');
         $datos = $request->except("_token");
-        $centro = DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+        //return response()->json(array('resultado'=>$datos));
+        if ($datos["centro"] == ""){
+            return response()->json(array('resultado'=> 'nullCentro'));
+        }
+        if (!isset($datos["curso"])){
+            return response()->json(array('resultado'=> 'nullCurso'));
+        }
+        if (!isset($datos["asignatura"])){
+            return response()->json(array('resultado'=> 'nullAsignatura'));
+        }
         //Si no ha especificado el tema le hacemos saltar error
-        if ($datos["text_tema"] == null && $datos["select_tema"] == null) {
+        if ($datos["text_tema"] == null && !isset($datos["select_tema"])) {
             return response()->json(array('resultado'=> 'nullTema'));
+        }
+        if (!$request->hasFile("apuntes")) {
+            return response()->json(array('resultado'=> 'nullApunte'));
         }else{
-            //En caso que usase el input text le creamos carpeta y se almacenará el tema en la base de datos
-            if ($datos["text_tema"] != null) {
-                $tema = $datos["text_tema"];
-                $path = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
-                if(!file_exists($path)){
-                    //En caso que el tema no exista en la ruta le haremos insert en la base de datos del tema y cogemos el id de asignatura y creamos la carpeta
-                    $existTema = DB::select("SELECT * FROM tbl_temas temas
-                                             INNER JOIN tbl_asignaturas asignatura ON asignatura.id=temas.id_asignatura
-                                             INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
-                                             INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-                                             WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ? AND temas.nombre_tema = ?",[$datos['id_centro'],$datos['curso'],$datos['asignatura'],$tema]);
-                    //Si no existe tema creamos el insert y cogemos el id de la asignatura
-                    if (count($existTema)==0) {
-                        $id_asignatura = DB::select("SELECT asignatura.id FROM tbl_asignaturas asignatura
-                        INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
-                        INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-                        WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ?",[$datos['id_centro'],$datos['curso'],$datos['asignatura']]);
-                        $id_new_tema  = DB::table("tbl_temas")->insertGetId(["nombre_tema"=>$tema,"id_asignatura"=>$id_asignatura[0]->id]);
-                    }
-                    Storage::makeDirectory('uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
-                }
-            }else{
-                //En caso que el tema ya exista cogemos datos del select
-                $tema = $datos["select_tema"];
+            $apunte = $request->file('apuntes');
+            //Cogemos el nombre original del fichero
+            $ApunteName = $apunte->getClientOriginalName();
+            //Cogemos la extension del contenido y el nombre para la base de datos
+            $arrayFileName = explode('.',$ApunteName);
+            //Extension del archivo
+            $extensionApunteFile = $arrayFileName[1];
+            if ($extensionApunteFile != "pdf" && $extensionApunteFile != "jpg" && $extensionApunteFile != "png") {
+                return response()->json(array('resultado'=> 'nullExtensionApunte'));
             }
-            if ($request->hasFile('apuntes')) {
-                //En caso que tenga fichero comprobamos si ya existe el apunte
-                $path = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema.'/'.$request->file('apuntes'));
-                if (file_exists($path)) {
-                    return response()->json(array('resultado'=> 'existApunte'));
-                }else{
-                    //Cogemos ruta de la carpeta
-                    $path_folder = 'public/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema;
-                    $file = $request->file('apuntes');
-                    //Cogemos el nombre original del fichero
-                    $fileName = $file->getClientOriginalName();
-                    //Cogemos la extension del contenido y el nombre para la base de datos
-                    $arrayFileName = explode('.',$fileName);
-                    //Nombre del archivo
-                    $nameFile = $arrayFileName[0];
-                    //Extension del archivo
-                    $extensionFile = $arrayFileName[1];
-                    try {
-                        //Lo almacenamos con el nombre original y le hacemos insert
-                        if (isset($id_new_tema)) {
-                            $id_tema = $id_new_tema;
-                        }else{
-                            $id_tema_select = DB::select("SELECT temas.id FROM tbl_temas temas
-                                             INNER JOIN tbl_asignaturas asignatura ON asignatura.id=temas.id_asignatura
-                                             INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
-                                             INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-                                             WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ? AND temas.nombre_tema = ?",[$datos['id_centro'],$datos['curso'],$datos['asignatura'],$tema]);
-                            $id_tema = $id_tema_select[0]->id;
-                        }
-                        $nombre_contenido = DB::select("SELECT * FROM tbl_contenidos where nombre_contenido = ?",[$nameFile]);
-                        if (count($nombre_contenido) == 0) {
-                            DB::insert("INSERT INTO tbl_contenidos (nombre_contenido,idioma_contenido,extension_contenido,fecha_publicacion_contenido,id_tema,id_usu) VALUES (?,?,?,?,?,?)",
-                            [$nameFile,"Español",".".$extensionFile,date('Y-m-d H:i:s'),$id_tema,$user->id]);
-                                $file->storeAs($path_folder,$fileName);
-                                if ($extensionFile == "pdf") {
-                                    $imagickpath = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
-                                    $im = new Imagick ($imagickpath.'/'.$fileName."[0]");
-                                    $im->setImageFormat("png");
-                                    $im->writeImage($imagickpath.'/'.$nameFile.".png"); // fails with no error message
-                                    //instead
-                                    //file_put_contents ($path_folder."/test_0.jpg", $im); // works, or:
-                                }
-                                return response()->json(array('resultado'=> 'OK'));
-                        }else{
-                            return response()->json(array('resultado'=> 'existApunte'));
-                        }
-                    } catch (\Exception $e) {
-                        return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
+        }
+        $centro = DB::select("SELECT id,nombre_centro FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
+        //En caso que usase el input text le creamos carpeta y se almacenará el tema en la base de datos
+        if ($datos["text_tema"] != null) {
+            $tema = $datos["text_tema"];
+            $path = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
+            if(!file_exists($path)){
+                //En caso que el tema no exista en la ruta le haremos insert en la base de datos del tema y cogemos el id de asignatura y creamos la carpeta
+                $existTema = DB::select("SELECT * FROM tbl_temas temas
+                                         INNER JOIN tbl_asignaturas asignatura ON asignatura.id=temas.id_asignatura
+                                         INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
+                                         INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                                         WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ? AND temas.nombre_tema = ?",[$centro[0]->id,$datos['curso'],$datos['asignatura'],$tema]);
+                //Si no existe tema creamos el insert y cogemos el id de la asignatura
+                if (count($existTema)==0) {
+                    $id_asignatura = DB::select("SELECT asignatura.id FROM tbl_asignaturas asignatura
+                    INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
+                    INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                    WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ?",[$centro[0]->id,$datos['curso'],$datos['asignatura']]);
+                    $id_new_tema  = DB::table("tbl_temas")->insertGetId(["nombre_tema"=>$tema,"id_asignatura"=>$id_asignatura[0]->id]);
+                }
+                Storage::makeDirectory('uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
+            }
+        }else{
+            //En caso que el tema ya exista cogemos datos del select
+            $tema = $datos["select_tema"];
+        }
+        if ($request->hasFile('apuntes')) {
+            //En caso que tenga fichero comprobamos si ya existe el apunte
+            $path = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema.'/'.$request->file('apuntes'));
+            if (file_exists($path)) {
+                return response()->json(array('resultado'=> 'existApunte'));
+            }else{
+                //Cogemos ruta de la carpeta
+                $path_folder = 'public/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema;
+                $file = $request->file('apuntes');
+                //Cogemos el nombre original del fichero
+                $fileName = $file->getClientOriginalName();
+                //Cogemos la extension del contenido y el nombre para la base de datos
+                $arrayFileName = explode('.',$fileName);
+                //Nombre del archivo
+                $nameFile = $arrayFileName[0];
+                //Extension del archivo
+                $extensionFile = $arrayFileName[1];
+                try {
+                    //Lo almacenamos con el nombre original y le hacemos insert
+                    if (isset($id_new_tema)) {
+                        $id_tema = $id_new_tema;
+                    }else{
+                        $id_tema_select = DB::select("SELECT temas.id FROM tbl_temas temas
+                                         INNER JOIN tbl_asignaturas asignatura ON asignatura.id=temas.id_asignatura
+                                         INNER JOIN tbl_cursos curso ON curso.id=asignatura.id_curso
+                                         INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                                         WHERE centro.id = ? AND curso.nombre_curso = ? AND asignatura.nombre_asignatura = ? AND temas.nombre_tema = ?",[$centro[0]->id,$datos['curso'],$datos['asignatura'],$tema]);
+                        $id_tema = $id_tema_select[0]->id;
                     }
+                    $nombre_contenido = DB::select("SELECT * FROM tbl_contenidos where nombre_contenido = ?",[$nameFile]);
+                    if (count($nombre_contenido) == 0) {
+                        DB::insert("INSERT INTO tbl_contenidos (nombre_contenido,idioma_contenido,extension_contenido,fecha_publicacion_contenido,id_tema,id_usu) VALUES (?,?,?,?,?,?)",
+                        [$nameFile,"Español",".".$extensionFile,date('Y-m-d H:i:s'),$id_tema,$user->id]);
+                            $file->storeAs($path_folder,$fileName);
+                            if ($extensionFile == "pdf") {
+                                $imagickpath = public_path('storage/uploads/apuntes/'.$centro[0]->nombre_centro.'/'.$datos["curso"].'/'.$datos["asignatura"].'/'.$tema);
+                                $im = new Imagick ($imagickpath.'/'.$fileName."[0]");
+                                $im->setImageFormat("png");
+                                $im->writeImage($imagickpath.'/'.$nameFile.".png"); // fails with no error message
+                                //instead
+                                //file_put_contents ($path_folder."/test_0.jpg", $im); // works, or:
+                            }
+                            return response()->json(array('resultado'=> 'OK'));
+                    }else{
+                        return response()->json(array('resultado'=> 'existApunte'));
+                    }
+                } catch (\Exception $e) {
+                    return response()->json(array('resultado'=> 'NOK: '.$e->getMessage()));
                 }
             }
         }

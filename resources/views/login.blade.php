@@ -1,5 +1,7 @@
 @include('template.header')
+    <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
+    <script src="{!! asset ('js/login/login.js')!!}"></script>
     <title>Login page</title>
 </head>
 
@@ -73,8 +75,8 @@
                                     <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
-                                <!-- <div class="alienarright">
-                                    <a href="">
+                                <div class="alienarright">
+                                    <a onclick="forgetPassword();">
                                         <p>Contraseña olvidada?</p>
                                     </a>
                                 </div> -->
