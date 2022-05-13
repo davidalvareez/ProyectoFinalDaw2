@@ -318,11 +318,18 @@ public function registerProfe(RegisterProfeValidation $request){
             LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
             LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
             WHERE user.nick_usu = ?
-            GROUP BY content.id ORDER BY valoracion DESC,descargas DESC LIMIT 1",[$nick_usu]);
+            GROUP BY content.id ORDER BY valoracion DESC LIMIT 1",[$nick_usu]);
+
+            $apunteDescargas = DB::select("SELECT content.id, (sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_contenidos content 
+            INNER JOIN tbl_usuario user ON content.id_usu = user.id
+            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+            WHERE user.nick_usu = ?
+            GROUP BY content.id ORDER BY descargas DESC LIMIT 1",[$nick_usu]);
 
             $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
 
-            return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado'));
+            return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado','apunteDescargas'));
         }else{
             return redirect('/');
         }
@@ -391,7 +398,9 @@ public function registerProfe(RegisterProfeValidation $request){
         }
         //Comprobamos si es avatar del sistema
         if ($isAvatarSistema == false) {
-            Storage::delete('public/'.$userImage);
+            if (file_exists(storage_path('app/public/'.$userImage))) {
+                Storage::delete('public/'.$userImage);
+            }
         }
         if ($request->hasFile('img_avatar_usu2')) {
             //$file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
