@@ -179,6 +179,8 @@ Route::get('oauth-register',[OAuthController::class,'oauthViewRegisterAlumno']);
 
 Route::post('oauth-register-alumno',[OAuthController::class,'oauthRegisterAlumno']);
 
+Route::post('oauth-register-profesor',[OAuthController::class,'oauthRegisterProfesor']);
+
 //Profesores
 Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
 
