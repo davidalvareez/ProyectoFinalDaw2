@@ -94,10 +94,10 @@
                                         <div class="foto img img-apuntes">
                                             <div class="container-foto container-img">
                                                 <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
-                                                @if ($recentnotes->extension_contenido == ".pdf")
-                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @if ($apunte->extension_contenido == ".pdf")
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png'}}" alt="Apuntes">
                                                 @else
-                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido}}" alt="Apuntes">
                                                 @endif
                                             </div>
                                         </div>
@@ -212,7 +212,7 @@
                             @endforeach
                         </div>
                         <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
-                        <input type="file" name="img_avatar_usu2" id="img_avatar_usu">
+                        <input type="file" onchange="deselectAvatar();" name="img_avatar_usu2" id="img_avatar_usu">
                         <br><br>
                         <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema">
                         <button  type="submit" class="aceptarbtn" value="Aceptar">Aceptar</button>
