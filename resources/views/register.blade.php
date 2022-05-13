@@ -16,7 +16,7 @@
                   <h1 class="titulo">SELECCIONA TU PERFIL</h1>
                   <div class="card">
                     <div class="card__image-holder">
-                      <img class="card__image" src="./img/alumno.jpg"/>
+                      <img class="card__image" src="{!! asset ('media/loginregister/alumno.jpg') !!}"/>
                     </div>
                     <div class="card-title">
                       <a href="#" class="toggle-info btn">
@@ -40,7 +40,7 @@
                   </div>
                   <div class="card">
                     <div class="card__image-holder">
-                      <img class="card__image" src="./img/profesor.jpg"/>
+                      <img class="card__image" src="{!! asset ('media/loginregister/profesor.jpg') !!}"/>
                     </div>
                     <div class="card-title">
                       <a href="#" class="toggle-info btn">
@@ -64,18 +64,16 @@
                     </div>
                   </div>
 
-                  <div class="redes-sociales">
-                    <div class="alienar-2">
-                        <h4>o comienza a regístrarte con:</h4>
-                    </div>
-                    <div class="botones-distributed">
-                        <div class="botones-right">
+                    <div class="redes-sociales">
+                        <div class="alienar-2">
+                            <h4>o comienza a regístrarte con:</h4>
+                        </div>
+                        <div class="botones-redes">
                             <a onclick="{{url('login-facebook')}}"><img src="{!! asset ('media/loginregister/facebook.png') !!}" alt="facebook" class="icono-socialmedia"></a>
                             <a onclick="{{url('login-twitter')}}"><img src="{!! asset ('media/loginregister/twitter.png') !!}" alt="twitter" class="icono-socialmedia"></a>
                             <a onclick="{{url('login-google')}}"><img src="{!! asset ('media/loginregister/google.png') !!}" alt="google" class="icono-socialmedia"></a>
                         </div>
                     </div>
-                </div>
                 </div>
               </div>
         </div>
@@ -500,12 +498,11 @@
                                     </div>
                                 </div>
 
-<<<<<<< HEAD
                                 <div class="menuuno">
-                                    <h4 class="pizq">Curriculum</h4>
+                                    <h4 class="pizq">Currículum</h4>
                                     <div>
                                         <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
-                                        <input type="file" name="curriculum_profe2" id="curriculum_profe2" value="">
+                                        <input class="inputbtn-selec2" type="file" name="curriculum_profe2" id="curriculum_profe2" value="AÑADIR CURRÍCULUM">
                                         <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="4">
                                     </div>
                                     <div>
@@ -541,33 +538,6 @@
                                     </div>
                                 </div>
                             </form>
-=======
-
-    <div class="menuuno">
-        <h4 class="pizq">Curriculum</h4>
-        <div>
-            <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
-            <input type="file" name="curriculum_profe2" id="curriculum_profe2" value="">
-            <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="4">
-        </div>
-    </div>
-
-    <div class="menuuno">
-        <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
-    </div>
-    <div class="">
-        <div class="alienarleft">
-            <p>Ya estás registrado?</p>
-        </div>
-        <div class="alienarleft">
-            <a href="{{url('login')}}">
-                <p>Inicia sesión</p>
-            </a>
-        </div>
-    </div>
-</form>
-
->>>>>>> main
 {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                         </div>
                     </div>

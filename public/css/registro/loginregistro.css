@@ -310,6 +310,15 @@ body {
   background-color: #dddddd;
 }
 
+.inputbtn-selec2 {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 30px 10px 0px;
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 .imginputbtn {
   position: absolute;
   right: 10px;
@@ -388,21 +397,13 @@ body {
       grid-template-columns: 1fr 1fr;
 }
 
-.botones-distributed .botones-right a:hover {
+.botones-redes a:hover {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
 }
 
-.botones-distributed p.botones-links a:hover {
-  text-decoration: underline;
-}
-
 .icono-socialmedia {
   width: 100%;
-}
-
-.redes-sociales {
-  padding-bottom: 30px;
 }
 
 .modal {
@@ -526,6 +527,12 @@ h4 {
   height: calc(100vh - 105px);
 }
 
+@media (max-width: 1200px) {
+  .login-page main {
+    height: 100%;
+  }
+}
+
 @media (min-width: 1200px) {
   .login-page main .region1 {
     padding: 5% 0% 5% 10%;
@@ -575,26 +582,18 @@ h4 {
   }
 }
 
-.login-page main .botones-distributed .botones-right a {
+.login-page main .botones-redes a {
   display: inline-block;
   width: 35px;
   height: 35px;
-  background-color: #ffffff00;
-  border-radius: 2px;
-  font-size: 20px;
-  color: #33383b;
-  text-align: center;
-  line-height: 35px;
-  margin-left: -120px;
-  margin-top: 35px;
   -webkit-transition: all .25s;
   transition: all .25s;
   cursor: pointer;
+  padding-top: 10px;
 }
 
-.login-page main .alienarleft-2 {
-  float: left;
-  padding: 40px 50px 5px 7px;
+.login-page main .redes-sociales {
+  padding: 80px 0px 30px 0px;
 }
 
 .registro-page {
@@ -636,18 +635,12 @@ h4 {
   }
 }
 
-.registro-page main .botones-distributed .botones-right a {
+.registro-page main .botones-redes a {
   display: inline-block;
   width: 45px;
   height: 45px;
-  background-color: #ffffff00;
-  border-radius: 2px;
-  font-size: 20px;
-  color: #33383b;
-  text-align: center;
-  line-height: 35px;
   margin-left: 8px;
-  margin-top: 35px;
+  margin-top: 20px;
   -webkit-transition: all .25s;
   transition: all .25s;
   cursor: pointer;
