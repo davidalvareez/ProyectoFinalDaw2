@@ -379,6 +379,20 @@ public function registerProfe(RegisterProfeValidation $request){
 
     public function actualizarAvatar(Request $request){
         $user = session()->get('user');
+        //Cogemos si tiene alguno del sistema para no borrarlo.
+        $userImage = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[$user->id]);
+        $userImage = $userImage[0]->img_avatar;
+        $avataresSistema = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[null]);
+        $isAvatarSistema = false;
+        foreach ($avataresSistema as $avatarSistema){
+            if ($avatarSistema["img_avatar"] == $userImage) {
+                $isAvatarSistema = true;
+            }
+        }
+        //Comprobamos si es avatar del sistema
+        if ($isAvatarSistema == false) {
+            Storage::delete('public/'.$userImage);
+        }
         if ($request->hasFile('img_avatar_usu2')) {
             //$file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
             $file = $request->file('img_avatar_usu2');

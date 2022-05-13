@@ -132,7 +132,17 @@ function closeModal() {
 
 function avatarSelected(img_avatar) {
     document.getElementById("img_avatar_sistema").value = img_avatar;
-    console.log(document.getElementById("img_avatar_sistema").value);
+    document.getElementById("img_avatar_usu").value = null;
+}
+
+function deselectAvatar() {
+    allAvatar = document.getElementsByClassName("elegiravatar");
+    for (let i = 0; i < allAvatar.length; i++) {
+        allAvatar[i].style.border = "white";
+
+    }
+    document.getElementById("img_avatar_sistema").value = null;
+    document.getElementById("img_avatar_sistema_profe").value = null;
 }
 
 function chBackcolor(avatar) {

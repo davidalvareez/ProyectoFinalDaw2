@@ -100,7 +100,7 @@
                                         @endforeach
                                     </div>
                                     <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
-                                    <input type="file" name="img_avatar_usu" id="img_avatar_usu" onclick="deselectAvatar();">
+                                    <input type="file" name="img_avatar_usu" id="img_avatar_usu" onchange="deselectAvatar();">
                                     <br><br>
                                     <button onclick="closeModal2();return false;" class="aceptarbtn" value="Aceptar">Aceptar</button>
                                 </div>
@@ -472,7 +472,7 @@
                                     <div>
                                         <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
                                         <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema_profe" value="">
-                                        <input type="file" name="img_avatar_usu2" id="img_avatar_usu_profe" value="">
+                                        <input type="file" onchange="deselectAvatar();" name="img_avatar_usu2" id="img_avatar_usu_profe" value="">
                                     </div>
                                     <div>
                                         @error('img_avatar_usu')
