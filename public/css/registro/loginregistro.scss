@@ -295,6 +295,14 @@ body {
     }
 }
 
+.inputbtn-selec2 {
+    box-sizing: border-box;
+    padding: 10px 30px 10px 0px;
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
 .imginputbtn {
     position: absolute;
     right: 10px;
@@ -371,21 +379,13 @@ body {
 }
 
 //BOTONES REDES SOCIALES
-.botones-distributed .botones-right a:hover {
+.botones-redes a:hover {
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
 }
 
-.botones-distributed p.botones-links a:hover {
-    text-decoration: underline;
-}
-
 .icono-socialmedia {
     width: 100%;
-}
-
-.redes-sociales {
-    padding-bottom: 30px;
 }
 
 //MODAL ------------------------------------------------------------------
@@ -524,6 +524,9 @@ h4 {
     main {
         //@extend .flex;
         height: calc(100vh - 105px);
+        @media(max-width: $grid-float-breakpoint) {
+            height: 100%;
+        }
         .region {
             .glassland {
                 @extend .glass2;
@@ -565,24 +568,16 @@ h4 {
                 }
             }
         }
-        .botones-distributed .botones-right a {
+        .botones-redes a {
             display: inline-block;
             width: 35px;
             height: 35px;
-            background-color: #ffffff00;
-            border-radius: 2px;
-            font-size: 20px;
-            color: #33383b;
-            text-align: center;
-            line-height: 35px;
-            margin-left: -120px;
-            margin-top: 35px;
             transition: all .25s;
             cursor: pointer;
+            padding-top: 10px;
         }
-        .alienarleft-2 {
-            float: left;
-            padding: 40px 50px 5px 7px;
+        .redes-sociales {
+            padding: 80px 0px 30px 0px;
         }
     }
 }
@@ -634,18 +629,12 @@ h4 {
                 }
             }
         }
-        .botones-distributed .botones-right a {
+        .botones-redes a {
             display: inline-block;
             width: 45px;
             height: 45px;
-            background-color: #ffffff00;
-            border-radius: 2px;
-            font-size: 20px;
-            color: #33383b;
-            text-align: center;
-            line-height: 35px;
             margin-left: 8px;
-            margin-top: 35px;
+            margin-top: 20px;
             transition: all .25s;
             cursor: pointer;
         }
