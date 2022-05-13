@@ -1,128 +1,10 @@
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-Black.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
-}
+@import './variables.scss';
+@import './fonts.scss';
 
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
-    font-weight: 900;
-    font-style: italic;
-}
 
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-Bold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
-    font-weight: 700;
-    font-style: italic;
-}
+////////////////////////////////////////////////////////////////
 
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
-    font-weight: 800;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
-    font-weight: 200;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-Italic.ttf") format("truetype");
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-Medium.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
-    font-weight: 500;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../../media/aboutus/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../media/aboutus/fonts/poppins/Poppins-Thin.ttf") format("truetype");
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url("../media/aboutus/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
-    font-weight: 100;
-    font-style: italic;
-}
 
 $padding: 15px;
 $first-color:#2397ee; //color principal
@@ -184,7 +66,22 @@ $mobil: 600px;
     --grey: #eee;
     --letter-grey: #797c7e;
     --font1: Poppins;
+    ::-webkit-scrollbar{
+        width: 10px;
+        &-track{
+            background: var(--svgColor2);
+        }
+        &-thumb{
+            background: var(--svgColor1);
+            &:hover{
+                
+            }
+        }
+    }
+
 }
+
+
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////ESTILOS GENERALES DE LOS TEXTOS///////////////////////////77
 ////////////////////////////////////////////////////////////////////////////////
@@ -217,6 +114,27 @@ h4 {
     font-weight: bold;
 }
 
+.btn-glass{
+    background: var(--svgColor1);
+    border-radius: calc(25px + 5vw);
+    color: var(--white);
+    font-size: calc(13px + 0.2vw);
+    padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
+    
+
+    &_b{
+        background: var(--svgColor1a);
+    }
+}
+
+
+.glass-2 {
+    backdrop-filter: blur(10px) saturate(105%);
+    -webkit-backdrop-filter: blur(13px) saturate(180%);
+    background-color: #a3a8b062;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 * {
@@ -240,6 +158,9 @@ body {
 ////////////////////////////////////////////////////////////////////////////////////
 //
 .darkmode {
+    a,p,h1,h2,h3,h4,h5,h6,button{
+        color: var(--white);
+    }
     p {
         color: var(--white);
     }
@@ -263,6 +184,16 @@ body {
         color: var(--svgColor2);
         color: var(--white);
     }
+    .btn-glass_b{
+        background: var(--svgColor2a);
+    }
+}
+////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////
+main{
+    padding-top: calc(20px + 3vh);
 }
 
 .background {
@@ -333,10 +264,10 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 11;
-    .background {
+    z-index: 9;
+    .background-mn {
         min-width: 100vw;
-        min-height: 100vh;
+        
         position: fixed;
         right: 0;
         top: 0;
@@ -344,7 +275,7 @@ body {
         .container-bg {
             position: relative;
             width: 100vw;
-            height: 100vh;
+            
             .coso {
                 position: absolute;
                 
@@ -366,7 +297,7 @@ body {
                 }
             }
             .widget-menu {
-                width: 70%;
+                width: 65%;
                 >.row {
                     nav {
                         ul {
@@ -386,8 +317,9 @@ body {
                     }
                 }
             }
-            .widget-toogle {
-                width: 10%;
+            .widget-toggle {
+                width: 15%;
+                margin-top: calc(-10px + -1vh);
             }
         }
     }
@@ -564,5 +496,207 @@ body {
     }
     100% {
         background-position: 0% 52%;
+    }
+}
+
+
+
+//MODAL
+.modal-content-avatar {
+    @extend .modal-content;
+    @extend .glass-2;
+    text-align: center;
+    display: flex;
+    text-align: center;
+    flex-flow: column;
+    
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 11;
+    padding-top: calc(20px + 2vh);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow:auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    .modal-content{
+        margin: auto;
+        border: 1px solid #888;
+        width: 40%;
+        height: 89%;
+        @extend .glass-2;
+        .avatar-content{
+            width:100%;
+            height:100%;
+            @include flex-cv();
+        }
+        .contenido-modal{
+            width: 100%;
+            height: 100%;
+            .formmodal{
+                width: 100%;
+                height: 100%;
+                @include flex-cv($d:column);
+                input{
+                    width: 40%;
+                    height: 50px;
+                    margin: 10px 0px;
+                    font-size: 18px;
+                    outline: none;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+/////////////////////widgets////////////////////////////////77
+///////////////////////////////////////////////////////////////////
+
+/////////clase de las cartas de los apuntes
+.card {
+    @extend .glass-2;
+    color: #555;
+    padding: 15px;
+    height: 300px;
+    margin: 15px;
+    &:hover {
+        >.container {
+            .front-card {
+                display: none;
+            }
+            .reverse-card {
+                display: block;
+            }
+        }
+    }
+    >.container {
+        @extend .allwh;
+        .front-card {
+            @extend .allwh;
+            .container-front {
+                @extend .allwh;
+                .img-apuntes {
+                    width: 90%;
+                    overflow: hidden;
+                    height: 60%;
+                    margin: auto;
+                    border-radius: 8px 8px 0px 0px;
+                    .container-img {
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+                .header-apuntes {
+                    height: 40%;
+                    .name-content {}
+                    .info-centro {}
+                    .id-content {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        padding: 5px 15px 15px 15px;
+                    }
+                }
+            }
+        }
+        .reverse-card {
+            @extend .allwh;
+            display: none;
+            .container-reverse {
+                @extend .allwh;
+                @extend .glass-2;
+                border-radius: 0;
+                >.top {
+                    height: 35%;
+                    .user-info {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        .container-info {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            align-items: center;
+                            width: 70%;
+                            .avatar-user {
+                                font-size: 50px;
+                                .filter {
+                                    img {}
+                                    i {}
+                                }
+                            }
+                            .container-text {
+                                .username {
+                                    p {}
+                                }
+                                .column-2 {
+                                    .stars {}
+                                    .info-stats {}
+                                }
+                            }
+                        }
+                        .date-info {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            justify-items: flex-end;
+                            width: 30%;
+                            .date {
+                                font-size: 13px;
+                                i {}
+                                .date-text {}
+                            }
+                        }
+                    }
+                }
+                .bottom {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                    height: 65%;
+                    .content-info {
+                        display: flex;
+                        flex-flow: column nowrap;
+                        justify-content: flex-end;
+                        .name.content {}
+                        .school-content {}
+                        .class-content {}
+                        .unit-content {}
+                    }
+                    .buttons-actions {
+                        display: flex;
+                        flex-flow: column nowrap;
+                        justify-content: flex-end;
+                        align-items: center;
+                        button {
+                            background: transparent;
+                            a {
+                                color: var(--white);
+                            }
+                        }
+                        .download-button {
+                            button {
+                                a {
+                                    i {}
+                                }
+                            }
+                        }
+                        .go-button {
+                            button {
+                                a {
+                                    i {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

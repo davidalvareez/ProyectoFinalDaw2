@@ -1,0 +1,19 @@
+.glass-2 {
+    backdrop-filter: blur(10px) saturate(105%);
+    -webkit-backdrop-filter: blur(13px) saturate(180%);
+    background-color: #a3a8b062;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+.allwh {
+    height: 100%;
+    width: 100%;
+}
+@mixin flex-cv($d: row, $w: wrap){
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    flex-flow: $d $w;
+}

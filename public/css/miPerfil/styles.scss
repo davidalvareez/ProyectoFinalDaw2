@@ -1,3 +1,6 @@
+@import '../base/base.scss';
+
+
 ///////////VARIABLES GLOBALES///////////////
 
 $padding: 15px;
@@ -40,27 +43,25 @@ $mobil: 800px;
     align-items: center;
     flex-flow: $d $w;
 }
-.allwh {
-    height: 100%;
-    width: 100%;
-}
 
 
-.btn-glass{
-    padding: 10px 75px;
-    font-size: 18px;
-    border: 0;
-    text-decoration: none;
-    border-radius: 15px;
-    cursor: pointer;
-    background: #854ad4;
-}
-.btn-glass:hover {
-    background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-    background-size: 600% 600%;
-    -webkit-animation: aniGrad 8s ease infinite;
-    animation: aniGrad 8s ease infinite;
-}
+
+// .btn-glass{
+//     padding: 10px 75px;
+//     font-size: 18px;
+//     border: 0;
+//     text-decoration: none;
+//     border-radius: 15px;
+//     cursor: pointer;
+//     background: #854ad4;
+
+// }
+// .btn-glass:hover {
+//     background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
+//     background-size: 600% 600%;
+//     -webkit-animation: aniGrad 8s ease infinite;
+//     animation: aniGrad 8s ease infinite;
+// }
 
 
 
@@ -73,147 +74,6 @@ $mobil: 800px;
     animation: aniGrad 8s ease infinite;
 }
 
-.card {
-    @extend .glass-2;
-    color: #555;
-    padding: 15px;
-    height: 300px;
-    margin: 15px;
-    &:hover {
-        >.container {
-            .front-card {
-                display: none;
-            }
-            .reverse-card {
-                display: block;
-            }
-        }
-    }
-    >.container {
-        @extend .allwh;
-        .front-card {
-            @extend .allwh;
-            .container-front {
-                @extend .allwh;
-                .img-apuntes {
-                    width: 90%;
-                    overflow: hidden;
-                    height: 60%;
-                    margin: auto;
-                    border-radius: 8px 8px 0px 0px;
-                    .container-img {
-                        img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                        }
-                    }
-                }
-                .header-apuntes {
-                    height: 40%;
-                    .name-content {}
-                    .info-centro {}
-                    .id-content {
-                        position: absolute;
-                        right: 0;
-                        bottom: 0;
-                        padding: 5px 15px 15px 15px;
-                    }
-                }
-            }
-        }
-        .reverse-card {
-            @extend .allwh;
-            display: none;
-            .container-reverse {
-                @extend .allwh;
-                @extend .glass-2;
-                border-radius: 0;
-                >.top {
-                    height: 35%;
-                    .user-info {
-                        display: flex;
-                        flex-flow: row nowrap;
-                        .container-info {
-                            display: flex;
-                            flex-flow: row nowrap;
-                            align-items: center;
-                            width: 70%;
-                            .avatar-user {
-                                font-size: 50px;
-                                .filter {
-                                    img {}
-                                    i {}
-                                }
-                            }
-                            .container-text {
-                                .username {
-                                    p {}
-                                }
-                                .column-2 {
-                                    .stars {}
-                                    .info-stats {}
-                                }
-                            }
-                        }
-                        .date-info {
-                            display: flex;
-                            flex-flow: row nowrap;
-                            justify-items: flex-end;
-                            width: 30%;
-                            .date {
-                                font-size: 13px;
-                                i {}
-                                .date-text {}
-                            }
-                        }
-                    }
-                }
-                .bottom {
-                    display: flex;
-                    flex-flow: row nowrap;
-                    justify-content: space-between;
-                    height: 65%;
-                    .content-info {
-                        display: flex;
-                        flex-flow: column nowrap;
-                        justify-content: flex-end;
-                        .name.content {}
-                        .school-content {}
-                        .class-content {}
-                        .unit-content {}
-                    }
-                    .buttons-actions {
-                        display: flex;
-                        flex-flow: column nowrap;
-                        justify-content: flex-end;
-                        align-items: center;
-                        button {
-                            background: transparent;
-                            a {
-                                color: var(--white);
-                            }
-                        }
-                        .download-button {
-                            button {
-                                a {
-                                    i {}
-                                }
-                            }
-                        }
-                        .go-button {
-                            button {
-                                a {
-                                    i {}
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 
 main {

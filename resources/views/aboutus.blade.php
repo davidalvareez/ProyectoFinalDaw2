@@ -7,9 +7,6 @@
 </head>
 <body class="about-us">
   @include('template.menu')  
-    <form action='{{url('login')}}' method='get'>
-        <button class="btn btn-secondary">Login</button>
-    </form>
     <header></header>
     <main>
         <div class="region region1">

@@ -1,22 +1,23 @@
 @include('template.header')
 
+    <link rel="stylesheet" href="{!!asset('css/miPerfil/styles.css')!!}">
+    <title>Mi Perfil</title>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <script src="{!! asset('js/perfil/miPerfilAjax.js') !!}"></script>
     <script src="{!! asset('js/buscador/js.js') !!}"></script>
-    <link rel="stylesheet" href="{!!asset('css/miPerfil/styles.css')!!}">
-    <title>Mi Perfil</title>
 </head>
 <body class="mi-perfil">
     @include('template.menu') 
+    <header></header>
     <main>
         <div class="region-perfil">
             <div class="content-region">
                 <div class="region-header">
                     <div class="content-header">
-                        <button class="btn-glass" onclick="window.location.href='{{url('buscador')}}'">Inicio</button>
-                        <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Mis apuntes</button>
-                        <button class="btn-glass" onclick="openModalConfig();getConfigUser();">Configuración</button>
-                        <button class="btn-glass" onclick="window.location.href='{{url('logout')}}'">Cerrar sesion</button>
+                        <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('buscador')}}'">Inicio</button>
+                        <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('misApuntes')}}'">Mis apuntes</button>
+                        <button class="btn-glass btn-glass_b" onclick="openModalConfig();getConfigUser();">Configuración</button>
+                        <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('logout')}}'">Cerrar sesion</button>
                     </div>
                 </div>
                 <div class="region-menu">

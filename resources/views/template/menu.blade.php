@@ -1,6 +1,6 @@
 
     <div class="menu">
-        <div class="background">
+        <div class="background-mn">
             <div class="container-bg">
                 <div class="coso coso0">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:rgba(241, 242, 243, 0);display:block;z-index:1;position:relative" width="2013" height="141" preserveAspectRatio="xMidYMid" viewBox="0 0 2013 141">
