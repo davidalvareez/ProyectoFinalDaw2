@@ -385,7 +385,7 @@ public function registerProfe(RegisterProfeValidation $request){
         $avataresSistema = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[null]);
         $isAvatarSistema = false;
         foreach ($avataresSistema as $avatarSistema){
-            if ($avatarSistema["img_avatar"] == $userImage) {
+            if ($avatarSistema->img_avatar == $userImage) {
                 $isAvatarSistema = true;
             }
         }
@@ -398,7 +398,7 @@ public function registerProfe(RegisterProfeValidation $request){
             $file = $request->file('img_avatar_usu2');
             //Cogemos el nombre original del fichero
             $fileName = "uploads/avatar/".$file->getClientOriginalName();
-            $file->storeAs('uploads/avatar',$fileName);
+            $file->storeAs('public/',$fileName);
             /* return $file; */
         }else{
             $fileName = $request["img_avatar_sistema"];
