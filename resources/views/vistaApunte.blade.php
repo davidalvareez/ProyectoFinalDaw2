@@ -32,6 +32,12 @@
                                 <input class="btn-glass" type="submit" value="Descargar">
                             </form>
                         </div>
+                        <!--DENUNCIAR COMENTARIO-->
+                        @if ($apunte[0]->id_usu != Session::get('user')->id)
+                            <div class="descargar">
+                                <button class="btn-glass" onclick="denunciarApunte({{$apunte[0]->id_usu}},{{$apunte[0]->id}});">Denunciar</button>
+                            </div>
+                        @endif
                         {{-- <div class="volveratras">
                             <button class="btn-acciones" onclick="window.location.href='{{url('buscador')}}'">Volver atrás</button>
                         </div> --}}
@@ -85,41 +91,49 @@
                                 <h3 class="titulo-coment">Comentarios</h3>
                                 <div id="comentarios" class="comentario">
                                     <!--COMENTARIOS-->
-                                    @foreach($comentarios as $comentario)
-                                    <div>
-                                        <div style="float: left">
-                                            <h4 style="margin-left:20px;">{{$comentario->nick_usu}}</h4>
+                                    @if (count($comentarios) > 0)
+                                        @foreach($comentarios as $comentario)
+                                        <div>
+                                            <div style="float: left">
+                                                <h4 style="margin-left:20px;">{{$comentario->nick_usu}}</h4>
+                                            </div>
+                                            <div style="float:left">
+                                                <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
+                                            </div>
+                                            <!--DENUNCIAR COMENTARIO-->
+                                            @if ($comentario->id_usu != Session::get('user')->id)
+                                                <div style="float:left">
+                                                    <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" onclick="denunciarComentario({{$comentario->id_usu}},{{$comentario->id}});" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
+                                                </div>
+                                            @endif
                                         </div>
-                                        <div style="float:left">
-                                            <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
+                                        <div class="nota-resta">
+                                            <label class="rating-label">
+                                                <input
+                                                    class="rating-small"
+                                                    max="5"
+                                                    min="0"
+                                                    oninput="this.style.setProperty('--value', this.value)"
+                                                    step="0.5"
+                                                    type="range"
+                                                    value="{{$comentario->val_comentario}}"
+                                                    style="--value:{{$comentario->val_comentario}};"
+                                                    disabled
+                                                    >
+                                            </label>
                                         </div>
-                                        <div style="float:left">
-                                            <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
+                                        <div>
+                                            <p class="texto-coment">{{$comentario->desc_comentario}}</p>
                                         </div>
-                                    </div>
-                                    <div class="nota-resta">
-                                        <label class="rating-label">
-                                            <input
-                                                class="rating-small"
-                                                max="5"
-                                                min="0"
-                                                oninput="this.style.setProperty('--value', this.value)"
-                                                step="0.5"
-                                                type="range"
-                                                value="{{$comentario->val_comentario}}"
-                                                style="--value:{{$comentario->val_comentario}};"
-                                                disabled
-                                                >
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <p class="texto-coment">{{$comentario->desc_comentario}}</p>
-                                    </div>
-                                    <!--TEXTO SI NO HAY COMENTARIOS-->
-                                    {{-- @if($comentario->any())
+                                        <!--TEXTO SI NO HAY COMENTARIOS-->
+                                        {{-- @if($comentario->any())
+                                            <p>Actualmente no hay comentarios :)</p>
+                                        @endif --}}
+                                        @endforeach
+                                    @else
+                                        <!--TEXTO SI NO HAY COMENTARIOS-->
                                         <p>Actualmente no hay comentarios :)</p>
-                                    @endif --}}
-                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
