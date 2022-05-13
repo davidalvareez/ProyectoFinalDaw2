@@ -68,6 +68,7 @@ Route::post('perfil/changeConfigUser',[UsuarioController::class,'changeConfigUse
 Route::put('perfil/actualizarAvatar',[UsuarioController::class,'actualizarAvatar']);
 
 Route::delete('perfil/darseDeBaja',[UsuarioController::class,'DarseDeBaja']);
+
 //Mis apuntes
 Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
 
@@ -87,6 +88,10 @@ Route::delete('misApuntes/eliminarapunte/{id}',[ApuntesController::class,'misApu
 Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
 
 Route::post('apuntes/comentar',[ApuntesController::class,'comentar']);
+
+Route::post('apuntes/denunciarComentario',[ApuntesController::class,'denunciarComentario']);
+
+Route::post('apuntes/denunciarApunte',[ApuntesController::class,'denunciarApunte']);
 
 Route::post('download',[ApuntesController::class,'download']);
 

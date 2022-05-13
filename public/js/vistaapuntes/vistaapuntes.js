@@ -70,3 +70,79 @@ function addcomment() {
     }
     ajax.send(formData);
 }
+
+function denunciarComentario(id_usu_comentario, id_comentario) {
+    Swal.fire({
+        title: "Denunciar comentario",
+        text: "Escribe motivo de denuncia",
+        input: 'text',
+        confirmButtonText: "Denunciar comentario",
+        cancelButtonText: "Cancelar",
+        showCancelButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let token = document.getElementById('token').getAttribute("content");
+            let formData = new FormData();
+            formData.append('_token', token);
+            formData.append('_method', 'POST');
+            formData.append('id_acusado', id_usu_comentario);
+            formData.append('id_comentario', id_comentario);
+            formData.append('desc_denuncia', result.value);
+            let ajax = llamadaAjax();
+            ajax.open("POST", "denunciarComentario", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "nullDenuncia") {
+                        alertify.error("Escribe el motivo de denuncia");
+                    } else if (respuesta.resultado == "existDenuncia") {
+                        alertify.warning("Ya has denunciado este comentario");
+                    } else if (respuesta.resultado == "OK") {
+                        alertify.success("Denuncia enviada correctamente");
+                    } else {
+                        alertify.error(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+        }
+    });
+}
+
+function denunciarApunte(id_usu_apunte, id_apunte) {
+    Swal.fire({
+        title: "Denunciar comentario",
+        text: "Escribe motivo de denuncia",
+        input: 'text',
+        confirmButtonText: "Denunciar comentario",
+        cancelButtonText: "Cancelar",
+        showCancelButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let token = document.getElementById('token').getAttribute("content");
+            let formData = new FormData();
+            formData.append('_token', token);
+            formData.append('_method', 'POST');
+            formData.append('id_acusado', id_usu_apunte);
+            formData.append('id_contenido', id_apunte);
+            formData.append('desc_denuncia', result.value);
+            let ajax = llamadaAjax();
+            ajax.open("POST", "denunciarApunte", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "nullDenuncia") {
+                        alertify.error("Escribe el motivo de denuncia");
+                    } else if (respuesta.resultado == "existDenuncia") {
+                        alertify.warning("Ya has denunciado este apunte");
+                    } else if (respuesta.resultado == "OK") {
+                        alertify.success("Denuncia enviada correctamente");
+                    } else {
+                        alertify.error(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+        }
+    });
+}
