@@ -84,7 +84,15 @@
                                     </div>
                                     <div>
                                         @error('fecha_nac_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                            <?php
+                                            //echo $message;
+
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>                                
@@ -100,7 +108,15 @@
                                     </div>
                                     <div>
                                         @error('centro')
-                                        <p class="errortext">{{$message}}</p>
+                                            <?php
+                                            //echo $message;
+                                            
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+                                            
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                     <div>
@@ -118,7 +134,15 @@
                                     </div>
                                     <div>
                                         @error('contra_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                            <?php
+                                            //echo $message;
+                                            
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+                                            
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -130,7 +154,15 @@
                                     </div>
                                     <div>
                                         @error('contra_usu_verify')
-                                        <p class="errortext">{{$message}}</p>
+                                            <?php
+                                            //echo $message;
+                                            
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+                                            
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -151,11 +183,19 @@
                                 <div class="menudos">
                                     <h4 class="pizq">Fecha de nacimiento</h4>
                                     <div>
-                                        <input class="inputbtn" type="date" name="fecha_nac_usu" id="fecha_nac_usu">
+                                        <input class="inputbtn" type="date" name="fecha_nac_prof" id="fecha_nac_prof">
                                     </div>
                                     <div>
-                                        @error('fecha_nac_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        @error('fecha_nac_prof')
+                                            <?php
+                                            //echo $message;
+                                            
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+                                            
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -171,11 +211,6 @@
                                         </datalist>
                                     </div>
                                     <div>
-                                        @error('centro')
-                                        <p class="errortext">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                    <div>
                                         <div style="float: left">
                                             <a href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=(INSERTE NOMBRE DEL CENTRO) no se encuentra en el selector de centros.">
                                                 <p>No encuentras tu centro?</p>
@@ -186,11 +221,19 @@
                                 <div class="menudos">
                                     <h4 class="pizq">Contraseña</h4>
                                     <div>
-                                        <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="Contraseña">
+                                        <input class="inputbtn" type="password" name="contra_profe" id="contra_profe" placeholder="Contraseña">
                                     </div>
                                     <div>
-                                        @error('contra_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        @error('contra_profe')
+                                            <?php
+                                            //echo $message;
+                                            
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+                                            
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -198,11 +241,19 @@
                                 <div class="menudos">
                                     <h4 class="pizq">Repetir contraseña</h4>
                                     <div>
-                                        <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
+                                        <input class="inputbtn" type="password" name="contra_profe_verify" id="contra_profe_verify" placeholder="Repetir contraseña">
                                     </div>
                                     <div>
-                                        @error('contra_usu_verify')
-                                        <p class="errortext">{{$message}}</p>
+                                        @error('contra_profe_verify')
+                                            <?php
+                                            //echo $message;
+                                            
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+                                            
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -211,6 +262,19 @@
                                     <div>
                                         <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
                                         <input type="file" name="curriculum_profe2" id="curriculum_profe2" value="">
+                                    </div>
+                                    <div>
+                                        @error('curriculum_profe2')
+                                            <?php
+                                            //echo $message;
+                                            
+                                            echo "<script>";
+                                            echo    "alertify.error('".$message."')";
+                                            echo "</script>";
+                                            
+                                            ?>
+                                            {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- <div class="alienarright">
