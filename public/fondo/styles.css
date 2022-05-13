@@ -1,0 +1,614 @@
+.glass-2, .widget-rectangle > .container > .row .blur-1 {
+  background: rgba(255, 255, 255, 0.57);
+  -webkit-backdrop-filter: blur(13px) saturate(105%);
+          backdrop-filter: blur(13px) saturate(105%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.866);
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url("media/fonts/poppins/Poppins-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+:root {
+  --first-color: #2397ee;
+  --second-color: #31fc40;
+  --third-color: #ffbf05;
+  --fourth-color: #e6235f;
+  --orangeD: #ffbf05;
+  --greenD: #31fc40;
+  --blueD: #2397ee;
+  --roseD: #e6235f;
+  --purpleL: #9c2bae;
+  --roseL: #fc2e76;
+  --tiempoAnim: 25s;
+  --svgColor1: #9c2bae;
+  --svgColor2: #ffffff;
+  --svgColor1a: #fc2e76;
+  --svgColor2a: #ffffff;
+  /** light side **/
+  --blue-background: #C2E9F6;
+  --blue-border: #72cce3;
+  --blue-color: #96dcee;
+  --yellow-background: #fffaa8;
+  --yellow-border: #f5eb71;
+  /** dark side **/
+  --indigo-background: #808fc7;
+  --indigo-border: #5d6baa;
+  --indigo-color: #6b7abb;
+  --gray-border: #e8e8ea;
+  --gray-dots: #e8e8ea;
+  /** general **/
+  --white: #fff;
+  --bgBody: #ffffff;
+  --bgBodyD: #2e2e2e;
+  --font1: Poppins;
+}
+
+a {
+  text-decoration: none;
+  color: var(--first-color);
+}
+
+h1 {
+  font-family: var(--font1);
+  font-size: calc(48px + 1vw);
+  font-weight: bold;
+}
+
+h2 {
+  font-family: var(--font1);
+  font-size: calc(18px + 1vw);
+  font-weight: 400;
+}
+
+h3 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.5vw);
+  font-weight: bold;
+}
+
+h4 {
+  font-family: var(--font1);
+  font-size: calc(18px + 0.1vw);
+  font-weight: bold;
+}
+
+* {
+  font-family: var(--font1);
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: auto;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: var(--bgBody);
+  font-family: var(--font1);
+}
+
+.darkmode p {
+  color: var(--white);
+}
+
+.darkmode a {
+  color: var(--svgColor2);
+  color: var(--white);
+}
+
+.darkmode h1 {
+  color: var(--svgColor1);
+  color: var(--white);
+}
+
+.darkmode h2 {
+  color: var(--svgColor1);
+  color: var(--white);
+}
+
+.darkmode h3 {
+  color: var(--svgColor4);
+  color: var(--white);
+}
+
+.darkmode h4 {
+  color: var(--svgColor2);
+  color: var(--white);
+}
+
+.menu > .container > .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.menu > .container > .row .widget-logo {
+  width: 20%;
+}
+
+.menu > .container > .row .widget-menu {
+  width: 70%;
+}
+
+.menu > .container > .row .widget-menu > .row nav ul {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.menu > .container > .row .widget-menu > .row nav ul li {
+  padding: 10px 15px;
+}
+
+.menu > .container > .row .widget-menu > .row nav ul li a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.menu > .container > .row .widget-toogle {
+  width: 10%;
+}
+
+.background {
+  min-width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -10;
+}
+
+.background .container-bg {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.background .container-bg .coso {
+  position: absolute;
+}
+
+.background .container-bg .coso0 {
+  top: -40px;
+}
+
+.background .container-bg .coso1 {
+  left: -35vw;
+  top: -25vh;
+  -webkit-transform: scale(0.38) rotate(338deg);
+          transform: scale(0.38) rotate(338deg);
+}
+
+.background .container-bg .coso2 {
+  right: -41vw;
+  top: 20vh;
+  -webkit-transform: scale(0.3) rotate(326deg);
+          transform: scale(0.3) rotate(326deg);
+}
+
+.background .container-bg .coso3 {
+  left: 7vw;
+  bottom: -43vh;
+  -webkit-transform: scale(0.7);
+          transform: scale(0.7);
+}
+
+.background .container-bg .coso4 {
+  right: 37vw;
+  top: -24vh;
+  -webkit-transform: scale(0.2) rotate(30deg);
+          transform: scale(0.2) rotate(30deg);
+}
+
+.background .container-bg .coso5 {
+  right: -1vw;
+  top: -4vh;
+  -webkit-transform: scale(0.5) rotate(30deg);
+          transform: scale(0.5) rotate(30deg);
+}
+
+.background .container-bg .coso6 {
+  left: 29vw;
+  top: 13vh;
+  -webkit-transform: scale(1) rotate(296deg);
+          transform: scale(1) rotate(296deg);
+}
+
+.background .container-bg .coso7 {
+  right: -17vw;
+  top: 10vh;
+  -webkit-transform: scale(0.7) rotate(351deg);
+          transform: scale(0.7) rotate(351deg);
+}
+
+.widget-rectangle > .container > .row .basic {
+  border-radius: 10px;
+}
+
+.widget-rectangle > .container > .row .blur {
+  border-radius: 10px;
+}
+
+.widget-rectangle > .container > .row .blur-1 {
+  padding: 15px;
+  max-width: 200px;
+}
+
+.widget-rectangle > .container > .row .blur-1:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.layer > .container {
+  width: 100%;
+  height: 100%;
+}
+
+.layer > .container > .row {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.input-toggle {
+  display: none;
+}
+
+.input-toggle:checked {
+  /** This will all flip from sun to moon **/
+  /** Change the label color **/
+}
+
+.input-toggle:checked + .toggle-label {
+  background: var(--indigo-color);
+  border-color: var(--indigo-border);
+  /** Change the cloud to stars **/
+  /** Change the sun into the moon **/
+  /** Show the dimples on the moon **/
+}
+
+.input-toggle:checked + .toggle-label:before {
+  background: var(--white);
+  border-color: var(--gray-border);
+  -webkit-animation-name: switch;
+          animation-name: switch;
+  -webkit-animation-duration: 350ms;
+          animation-duration: 350ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.input-toggle:checked + .toggle-label:after {
+  -webkit-transition-delay: 350ms;
+          transition-delay: 350ms;
+  opacity: 1;
+}
+
+.input-toggle:checked + .toggle-label .toggle-label-background {
+  left: 60px;
+  width: 5px;
+}
+
+.input-toggle:checked + .toggle-label .toggle-label-background:before {
+  width: 5px;
+  height: 5px;
+  top: -25px;
+}
+
+.input-toggle:checked + .toggle-label .toggle-label-background:after {
+  width: 5px;
+  height: 5px;
+  left: -30px;
+  top: 20px;
+}
+
+.toggle-label {
+  -webkit-transform: scale(0.3);
+          transform: scale(0.3);
+  /** Placeholder element, starting at blue **/
+  width: 200px;
+  height: 100px;
+  background: var(--blue-color);
+  border-radius: 100px;
+  border: 5px solid var(--blue-border);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-transition: all 350ms ease-in;
+  transition: all 350ms ease-in;
+  /** The sun cloud and moon stars **/
+  /** Sun/Moon element **/
+  /** Gray dots on the moon **/
+}
+
+.toggle-label:before {
+  -webkit-animation-name: reverse;
+          animation-name: reverse;
+  -webkit-animation-duration: 350ms;
+          animation-duration: 350ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-transition: all 350ms ease-in;
+  transition: all 350ms ease-in;
+  content: "";
+  width: 82px;
+  height: 82px;
+  border: 5px solid var(--yellow-border);
+  top: 4px;
+  left: 4px;
+  position: absolute;
+  border-radius: 82px;
+  background: var(--yellow-background);
+}
+
+.toggle-label:after {
+  -webkit-transition-delay: 0ms;
+          transition-delay: 0ms;
+  -webkit-transition: all 250ms ease-in;
+  transition: all 250ms ease-in;
+  position: absolute;
+  content: "";
+  -webkit-box-shadow: var(--gray-dots) -13px 0 0 2px, var(--gray-dots) -24px 14px 0 -2px;
+          box-shadow: var(--gray-dots) -13px 0 0 2px, var(--gray-dots) -24px 14px 0 -2px;
+  left: 143px;
+  top: 23px;
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.toggle-label-background {
+  width: 10px;
+  height: 5px;
+  border-radius: 5px;
+  position: relative;
+  background: var(--white);
+  left: 135px;
+  top: 45px;
+  -webkit-transition: all 150ms ease-in;
+  transition: all 150ms ease-in;
+}
+
+.toggle-label-background:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  width: 40px;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--white);
+  left: -20px;
+  -webkit-transition: all 150ms ease-in;
+  transition: all 150ms ease-in;
+}
+
+.toggle-label-background:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 40px;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--white);
+  left: -10px;
+  -webkit-transition: all 150ms ease-in;
+  transition: all 150ms ease-in;
+}
+
+@-webkit-keyframes switch {
+  0% {
+    left: 4px;
+  }
+  60% {
+    left: 4px;
+    width: 112px;
+  }
+  100% {
+    left: 104px;
+    width: 82px;
+  }
+}
+
+@keyframes switch {
+  0% {
+    left: 4px;
+  }
+  60% {
+    left: 4px;
+    width: 112px;
+  }
+  100% {
+    left: 104px;
+    width: 82px;
+  }
+}
+
+@-webkit-keyframes reverse {
+  0% {
+    left: 104px;
+    width: 82px;
+  }
+  60% {
+    left: 72px;
+    width: 112px;
+  }
+  100% {
+    left: 4px;
+  }
+}
+
+@keyframes reverse {
+  0% {
+    left: 104px;
+    width: 82px;
+  }
+  60% {
+    left: 72px;
+    width: 112px;
+  }
+  100% {
+    left: 4px;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

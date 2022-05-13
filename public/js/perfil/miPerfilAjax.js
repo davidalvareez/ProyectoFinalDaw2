@@ -48,8 +48,9 @@ function modalDatosUser() {
             recarga += `
             <div class="contenido-modal">`
             for (let i = 0; i < respuesta.user.length; i++) {
-                recarga += `<span class="close" onclick="cerrarModal();">&times;</span>
+                recarga += `
                             <form class="formmodal" method="post" onsubmit="actualizarUser(); return false;" class="form-mod-perfil" id="editarPerfil">
+                                <span class="close" onclick="cerrarModal();">&times;</span>    
                                 <input type="text" name="nick_usu" value="${respuesta.user[i].nick_usu}" placeholder="NickName...">
                                 <input type="text" class="nombre-etiqueta-crear" name="nombre_usu" value="${respuesta.user[i].nombre_usu}" placeholder="Nombre...">
                                 <input type="text" name="apellido_usu" value="${respuesta.user[i].apellido_usu}" placeholder="Apellidos...">

@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{!! asset ('css/footer/footer.css')!!}">
-    <!-- CSS only -->
-</head>
-
-<body>
     <footer class="footer-distributed">
 
         <div class="footer-right">
@@ -35,6 +23,11 @@
         </div>
 
     </footer>
-</body>
+    
+    <div class="more-css">
+        <div class="toggle-darkl">
+            <style>
 
-</html>
+            </style>
+        </div>
+    </div>

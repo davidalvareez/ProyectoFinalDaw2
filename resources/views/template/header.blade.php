@@ -24,9 +24,8 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
-</head>
+    <!-- BASE -->
+    <link rel="stylesheet" href="{!!asset('css/base/base.css')!!}">
+    <link rel="stylesheet" href="{!! asset ('css/footer/footer.css')!!}">
+    <script rel="stylesheet" src="{!! asset ('js/base/js.js')!!}"></script>
 
-<body>
-</body>
-
-</html>

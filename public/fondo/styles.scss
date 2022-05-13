@@ -1,0 +1,536 @@
+.glass-2 {
+    background: rgba(255, 255, 255, 0.57);
+    backdrop-filter: blur(13px) saturate(105%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.866);
+    transition: all 0.7s;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('media/fonts/poppins/Poppins-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+:root {
+    --first-color: #2397ee;
+    --second-color: #31fc40;
+    --third-color: #ffbf05;
+    --fourth-color: #e6235f;
+    //colores dark mode
+    --orangeD: #ffbf05;
+    --greenD: #31fc40;
+    --blueD: #2397ee;
+    --roseD: #e6235f;
+    // colores Light
+    --purpleL: #9c2bae;
+    --roseL: #fc2e76;
+    --tiempoAnim: 25s;
+    /////Colores de los SVGs
+    --svgColor1: #9c2bae;
+    --svgColor2: #ffffff;
+    --svgColor1a: #fc2e76;
+    --svgColor2a: #ffffff;
+    ///Toogle Switch variables
+    /** light side **/
+    --blue-background: #C2E9F6;
+    --blue-border: #72cce3;
+    --blue-color: #96dcee;
+    --yellow-background: #fffaa8;
+    --yellow-border: #f5eb71;
+    /** dark side **/
+    --indigo-background: #808fc7;
+    --indigo-border: #5d6baa;
+    --indigo-color: #6b7abb;
+    --gray-border: #e8e8ea;
+    --gray-dots: #e8e8ea;
+    /** general **/
+    --white: #fff;
+    --bgBody: #ffffff;
+    --bgBodyD: #2e2e2e;
+    --font1: Poppins;
+}
+
+a {
+    text-decoration: none;
+    color: var(--first-color);
+}
+
+h1 {
+    font-family: var(--font1);
+    font-size: calc(48px + 1vw);
+    font-weight: bold;
+}
+
+h2 {
+    font-family: var(--font1);
+    font-size: calc(18px + 1vw);
+    font-weight: 400;
+}
+
+h3 {
+    font-family: var(--font1);
+    font-size: calc(18px + 0.5vw);
+    font-weight: bold;
+}
+
+h4 {
+    font-family: var(--font1);
+    font-size: calc(18px + 0.1vw);
+    font-weight: bold;
+}
+
+///////////////////////////////////////////////////
+/////configuración de la página
+///////////////////777
+* {
+    font-family: var(--font1);
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: auto;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: var(--bgBody);
+    font-family: var(--font1);
+}
+
+/////
+.darkmode {
+    p {
+        color: var(--white);
+    }
+    a {
+        color: var(--svgColor2);
+        color: var(--white);
+    }
+    h1 {
+        color: var(--svgColor1);
+        color: var(--white);
+    }
+    h2 {
+        color: var(--svgColor1);
+        color: var(--white);
+    }
+    h3 {
+        color: var(--svgColor4);
+        color: var(--white);
+    }
+    h4 {
+        color: var(--svgColor2);
+        color: var(--white);
+    }
+}
+
+.menu {
+    >.container {
+        >.row {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            .widget-logo {
+                width: 20%;
+                >.row {
+                    .filter {
+                        img {}
+                    }
+                }
+            }
+            .widget-menu {
+                width: 70%;
+                >.row {
+                    nav {
+                        ul {
+                            list-style-type: none;
+                            display: flex;
+                            flex-flow: row wrap;
+                            justify-content: center;
+                            li {
+                                padding: 10px 15px;
+                                a {
+                                    text-decoration: none;
+                                    color: var(--white);
+                                    span {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .widget-toogle {
+                width: 10%;
+            }
+        }
+    }
+}
+
+.background {
+    min-width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -10;
+    .container-bg {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        .coso {
+            position: absolute;
+            &0 {
+                top: -40px;
+            }
+            &1 {
+                left: -35vw;
+                top: -25vh;
+                transform: scale(0.38) rotate(338deg);
+            }
+            &2 {
+                right: -41vw;
+                top: 20vh;
+                transform: scale(0.3) rotate(326deg);
+            }
+            &3 {
+                left: 7vw;
+                bottom: -43vh;
+                transform: scale(0.70);
+            }
+            &4 {
+                right: 37vw;
+                top: -24vh;
+                transform: scale(0.2) rotate(30deg);
+            }
+            &5 {
+                right: -1vw;
+                top: -4vh;
+                transform: scale(0.5) rotate(30deg);
+            }
+            &6 {
+                left: 29vw;
+                top: 13vh;
+                transform: scale(1) rotate(296deg);
+            }
+            &7 {
+                right: -17vw;
+                top: 10vh;
+                transform: scale(0.7) rotate(351deg);
+            }
+        }
+    }
+}
+
+.widget-rectangle {
+    >.container {
+        >.row {
+            .basic {
+                border-radius: 10px;
+                &-1 {}
+            }
+            .blur {
+                border-radius: 10px;
+                &-1 {
+                    @extend .glass-2;
+                    padding: 15px;
+                    max-width: 200px;
+                    &:hover {
+                        transform: scale(1.02);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    >.container {
+        width: 100%;
+        height: 100%;
+        >.row {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.blur {
+    &-1 {}
+}
+
+//////////////
+.input-toggle {
+    display: none;
+    &:checked {
+        /** This will all flip from sun to moon **/
+        /** Change the label color **/
+        +.toggle-label {
+            background: var(--indigo-color);
+            border-color: var(--indigo-border);
+            /** Change the cloud to stars **/
+            /** Change the sun into the moon **/
+            /** Show the dimples on the moon **/
+            &:before {
+                background: var(--white);
+                border-color: var(--gray-border);
+                animation-name: switch;
+                animation-duration: 350ms;
+                animation-fill-mode: forwards;
+            }
+            &:after {
+                transition-delay: 350ms;
+                opacity: 1;
+            }
+            .toggle-label-background {
+                left: 60px;
+                width: 5px;
+                &:before {
+                    width: 5px;
+                    height: 5px;
+                    top: -25px;
+                }
+                &:after {
+                    width: 5px;
+                    height: 5px;
+                    left: -30px;
+                    top: 20px;
+                }
+            }
+        }
+    }
+}
+
+.toggle-label {
+    transform: scale(0.3);
+    /** Placeholder element, starting at blue **/
+    width: 200px;
+    height: 100px;
+    background: var(--blue-color);
+    border-radius: 100px;
+    border: 5px solid var(--blue-border);
+    display: flex;
+    position: relative;
+    transition: all 350ms ease-in;
+    /** The sun cloud and moon stars **/
+    /** Sun/Moon element **/
+    /** Gray dots on the moon **/
+    &:before {
+        animation-name: reverse;
+        animation-duration: 350ms;
+        animation-fill-mode: forwards;
+        transition: all 350ms ease-in;
+        content: "";
+        width: 82px;
+        height: 82px;
+        border: 5px solid var(--yellow-border);
+        top: 4px;
+        left: 4px;
+        position: absolute;
+        border-radius: 82px;
+        background: var(--yellow-background);
+    }
+    &:after {
+        transition-delay: 0ms;
+        transition: all 250ms ease-in;
+        position: absolute;
+        content: "";
+        box-shadow: var(--gray-dots) -13px 0 0 2px, var(--gray-dots) -24px 14px 0 -2px;
+        left: 143px;
+        top: 23px;
+        width: 10px;
+        height: 10px;
+        background: transparent;
+        border-radius: 50%;
+        opacity: 0;
+    }
+    &-background {
+        width: 10px;
+        height: 5px;
+        border-radius: 5px;
+        position: relative;
+        background: var(--white);
+        left: 135px;
+        top: 45px;
+        transition: all 150ms ease-in;
+        &:before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            width: 40px;
+            height: 5px;
+            border-radius: 5px;
+            background: var(--white);
+            left: -20px;
+            transition: all 150ms ease-in;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            width: 40px;
+            height: 5px;
+            border-radius: 5px;
+            background: var(--white);
+            left: -10px;
+            transition: all 150ms ease-in;
+        }
+    }
+}
+
+@keyframes switch {
+    0% {
+        left: 4px;
+    }
+    60% {
+        left: 4px;
+        width: 112px;
+    }
+    100% {
+        left: 104px;
+        width: 82px;
+    }
+}
+
+@keyframes reverse {
+    0% {
+        left: 104px;
+        width: 82px;
+    }
+    60% {
+        left: 72px;
+        width: 112px;
+    }
+    100% {
+        left: 4px;
+    }
+}
