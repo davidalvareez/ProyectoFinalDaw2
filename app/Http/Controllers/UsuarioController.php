@@ -334,22 +334,6 @@ public function registerProfe(RegisterProfeValidation $request){
             return redirect('/');
         }
     }
-
-    //Moderador
-    public function moderadorView(){
-        $moderador = DB::select("SELECT * FROM (SELECT tbl_denuncias.*,CONCAT_WS(' ', tbl_usuario.nombre_usu,tbl_usuario.apellido_usu) as 'demandante' FROM tbl_denuncias
-        LEFT JOIN tbl_usuario ON tbl_usuario.id = tbl_denuncias.id_demandante
-        LEFT JOIN tbl_contenidos ON tbl_contenidos.id = tbl_denuncias.id_contenido
-        LEFT JOIN tbl_comentarios ON tbl_comentarios.id = tbl_denuncias.id_comentario) denuncia1
-        INNER JOIN (
-            SELECT tbl_denuncias.id as 'id_denuncia',CONCAT_WS(' ', tbl_usuario.nombre_usu,tbl_usuario.apellido_usu) as 'acusado' FROM tbl_denuncias 
-               LEFT JOIN tbl_usuario ON tbl_usuario.id = tbl_denuncias.id_acusado
-            LEFT JOIN tbl_contenidos ON tbl_contenidos.id = tbl_denuncias.id_contenido
-            LEFT JOIN tbl_comentarios ON tbl_comentarios.id = tbl_denuncias.id_comentario
-        )denuncia2 on denuncia2.id_denuncia=denuncia1.id");
-        return view('moderadorView', compact('moderador'));
-    }
-
     //Actualizar Perfil
     public function ActualizarPerfil(Request $request){
         if (session()->get('user')) {

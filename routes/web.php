@@ -5,6 +5,8 @@ use App\Http\Controllers\ApuntesController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CRUDAdminController;
+use App\Http\Controllers\moderadorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -146,7 +148,6 @@ Route::delete('admin/asignaturas/{id}',[CRUDAdminController::class,'eliminarAsig
 Route::delete('admin/temas/{id}',[CRUDAdminController::class,'eliminarTema']);
 
 //Mostrar
-Route::get('moderador',[UsuarioController::class,'moderadorView']);
 
 //Crear
 Route::post('admin/crearuser',[CRUDAdminController::class,'crearUser']);
@@ -187,3 +188,16 @@ Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
 Route::post('profesores/multiplyfilter',[UsuarioController::class,'multiplyFilterProfesores']);
 
 Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);
+
+//Moderador
+//Mostrar
+Route::get('moderador',[moderadorController::class,'moderadorView']);
+
+Route::post('moderador/denuncias',[moderadorController::class,'moderadorDenuncias']);
+
+Route::post('moderador/comments',[moderadorController::class,'moderadorComments']);
+
+Route::post('moderador/notes',[moderadorController::class,'moderadorNotes']);
+
+//Eliminar
+Route::post('moderador/eliminar',[moderadorController::class,'eliminarDenuncia']);

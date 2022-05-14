@@ -17,7 +17,9 @@
                         {{-- <form action='{{url('logout')}}' method='get'>
                             <button class="btn btn-secondary">Logout</button>
                         </form> --}}
-                        <button class="boton-menu cgradient-1" return false">Denuncias</button>
+                        <button class="boton-menu cgradient-1" onclick="showAll();">Todas las denuncias</button>
+                        <button class="boton-menu cgradient-1" onclick="showComments();">Comentarios</button>
+                        <button class="boton-menu cgradient-1" onclick="showNotes();">Apuntes</button>
                     </div>
                 </div>
             </div>
@@ -31,7 +33,7 @@
                         <div class="admin-content-glassland">
                             <div class="tablas">
                                 <div class="content-tablas">
-                                    <div class="">
+                                    <div class="" id="content">
                                         <table class="table table-striped">
                                             <tr>
                                                 <th scope="col">#</th>
@@ -48,8 +50,8 @@
                                                 <td>{{$registro->desc_denuncia}}</td>
                                                 <td>{{$registro->acusado}}</td>
                                                 <td>{{$registro->demandante}}</td>
-                                                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones('{{$registro->id}}');return false;">Opciones</button></td>
-                                                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar('{{$registro->id}}');return false;">Eliminar</button></td>
+                                                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones({{$registro->id}},'{{$registro->acusado}}');return false;">Opciones</button></td>
+                                                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar({{$registro->id}},'{{$registro->demandante}}');return false;">Eliminar</button></td>
                                             </tr>
                                             @endforeach
                                         </table>
