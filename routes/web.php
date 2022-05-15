@@ -200,4 +200,8 @@ Route::post('moderador/comments',[moderadorController::class,'moderadorComments'
 Route::post('moderador/notes',[moderadorController::class,'moderadorNotes']);
 
 //Eliminar
-Route::post('moderador/eliminar',[moderadorController::class,'eliminarDenuncia']);
+Route::delete('moderador/eliminar',[moderadorController::class,'eliminarDenuncia']);
+
+Route::delete('moderador/eliminarcontent',[moderadorController::class,'eliminarContenido']);
+
+Route::delete('moderador/banearUser',[moderadorController::class,'banearUsuario']);

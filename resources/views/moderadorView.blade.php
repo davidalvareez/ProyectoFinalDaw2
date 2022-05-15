@@ -50,8 +50,8 @@
                                                 <td>{{$registro->desc_denuncia}}</td>
                                                 <td>{{$registro->acusado}}</td>
                                                 <td>{{$registro->demandante}}</td>
-                                                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones({{$registro->id}},'{{$registro->acusado}}');return false;">Opciones</button></td>
-                                                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar({{$registro->id}},'{{$registro->demandante}}');return false;">Eliminar</button></td>
+                                                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones({{$registro->id}},'{{$registro->nick_acusado}}');return false;">Opciones</button></td>
+                                                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar({{$registro->id}},'{{$registro->nick_demandante}}');return false;">Eliminar</button></td>
                                             </tr>
                                             @endforeach
                                         </table>
