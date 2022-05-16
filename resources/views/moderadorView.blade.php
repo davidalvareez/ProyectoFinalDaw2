@@ -13,7 +13,7 @@
             <div class="region region1">
                 <div class="menu">
                     <div class="content-menu">
-                        <h1>Vista Moderador</h1>
+                        <h1>Denuncias</h1>
                         {{-- <form action='{{url('logout')}}' method='get'>
                             <button class="btn btn-secondary">Logout</button>
                         </form> --}}

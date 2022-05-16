@@ -297,15 +297,14 @@
                                 <div class="menuuno">
                                     <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
                                 </div>
-                                <div class="">
+                                <div class="menuuno">
                                     <div class="alienarleft">
-                                        <p>Ya estás registrado?</p>
+                                        <p>Ya estás registrado? <a href="{{url('login')}}">Inicia sesión</a></p>
                                     </div>
-                                    <div class="alienarleft">
-                                        <a href="{{url('login')}}">
-                                            <p>Inicia sesión</p>
-                                        </a>
-                                    </div>
+                                </div>
+
+                                <div class="menuuno">
+                                    <label style="font-size: small">Al registrarte aceptas nuestros <a href="{{url('terminos')}}">Términos y Condiciones</a> y la <a href="{{url('privacidad')}}">Política de Privacidad</a>.</label>
                                 </div>
                             </form>
 {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
@@ -527,15 +526,14 @@
                                 <div class="menuuno">
                                     <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
                                 </div>
-                                <div class="">
+                                <div class="menuuno">
                                     <div class="alienarleft">
-                                        <p>Ya estás registrado?</p>
+                                        <p>Ya estás registrado? <a href="{{url('login')}}">Inicia sesión</a></p>
                                     </div>
-                                    <div class="alienarleft">
-                                        <a href="{{url('login')}}">
-                                            <p>Inicia sesión</p>
-                                        </a>
-                                    </div>
+                                </div>
+
+                                <div class="menuuno">
+                                    <label style="font-size: small">Al registrarte aceptas nuestros <a href="{{url('terminos')}}">Términos y Condiciones</a> y la <a href="{{url('privacidad')}}">Política de Privacidad</a>.</label>
                                 </div>
                             </form>
 {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}

@@ -95,15 +95,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="alienarleft">
-                                        <p>No estás registrado?</p>
-                                    </div>
-                                    <div class="alienarleft">
-                                        <a href="{{url('register')}}">
-                                            <p>Crear cuenta</p>
-                                        </a>
-                                    </div>
+                                <div class="alienarleft">
+                                    <p>No estás registrado? <a href="{{url('register')}}">Crear cuenta</a></p>  
                                 </div>
                             </form>
                         </div>
