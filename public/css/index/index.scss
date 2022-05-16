@@ -151,45 +151,6 @@
 	}
 }
 
-.glassbtn {
-	margin: 10px 0px 0px 0px;
-	padding: 24px 32px;
-	font-size: 20px;
-	border: 0;
-	text-decoration: none;
-	border-radius: 15px;
-	cursor: pointer;
-	background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-	background-size: 600% 600%;
-	-webkit-animation: aniGrad 8s ease infinite;
-	animation: aniGrad 8s ease infinite;
-}
-.flex {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	text-align: center;
-}
-.iconoanimacion {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	text-align: center;
-	position: relative;
-	width: 100px;
-	margin: auto;
-	height: 100px;
-}
 :root {
 	--first-color: #19c673;
 	--second-color: #05a357;
@@ -251,53 +212,78 @@ h4 {
 	animation: movi 2s ease infinite;
 	position: absolute;
 }
-.glass2 {
+.glass {
 	backdrop-filter: blur(10px) saturate(105%);
 	-webkit-backdrop-filter: blur(13px) saturate(180%);
 	background-color: #a3a8b062;
 	border-radius: 12px;
 	border: 1px solid rgba(255, 255, 255, 0.125);
 }
+
+.glassbtn {
+	margin: 10px 0px 0px 0px;
+	padding: 24px 32px;
+	font-size: 20px;
+	border: 0;
+	text-decoration: none;
+	border-radius: 15px;
+	cursor: pointer;
+	background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
+	background-size: 600% 600%;
+	-webkit-animation: aniGrad 8s ease infinite;
+	animation: aniGrad 8s ease infinite;
+}
+.flex-cv {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+}
+.iconoanimacion {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	text-align: center;
+	position: relative;
+	width: 100px;
+	margin: auto;
+	height: 100px;
+}
 .landing-page {
 	main {
 		background-image: url("../../media/loginregister/fondo3.png");
+		padding: calc(15px + 5vh);
+		padding-bottom: 150px;
 		.region {
 			.glassland {
-				backdrop-filter: blur(10px) saturate(105%);
-				-webkit-backdrop-filter: blur(13px) saturate(180%);
-				background-color: #a3a8b062;
-				border-radius: 12px;
-				border: 1px solid rgba(255, 255, 255, 0.125);
+				width: 90%;
+				@extend .glass;
 				.content-glassland {
-					display: -webkit-box;
-					display: -ms-flexbox;
-					display: flex;
-					-webkit-box-align: center;
-					-ms-flex-align: center;
-					align-items: center;
-					-ms-flex-line-pack: center;
-					align-content: center;
+					// display: -webkit-box;
+					// display: -ms-flexbox;
+					// display: flex;
+					// -webkit-box-align: center;
+					// -ms-flex-align: center;
+					// align-items: center;
+					// -ms-flex-line-pack: center;
+					// align-content: center;
+					@extend .flex-cv;
 					text-align: center;
 				}
 			}
 			.absglass {
-				backdrop-filter: blur(10px) saturate(105%);
-				-webkit-backdrop-filter: blur(13px) saturate(180%);
-				background-color: #a3a8b062;
-				border-radius: 12px;
-				border: 1px solid rgba(255, 255, 255, 0.125);
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-align: center;
-				-ms-flex-align: center;
-				align-items: center;
-				-ms-flex-line-pack: center;
-				align-content: center;
-				text-align: center;
+				@extend .glass;
+				@extend .flex-cv;
 				position: absolute;
 			}
-			width: 90%;
+			
 		}
 		.region-portada {
 			.absglassportada {
@@ -346,10 +332,16 @@ h4 {
 		.region1 {
 			.content-region {
 				.absglass1 {
+					padding: 15px;
+					width: 20%;
+					right: 216px;
+					top: 950px;
 					.content-absglass {
 						.crearcuenta-content-absglass {
+							@extend .flex-cv;
+							text-align: center;
 							.crearcuenta-btn-absglass {
-								margin: 10px 0px 0px 0px;
+								margin: 10px 0px;
 								padding: 24px 32px;
 								font-size: 20px;
 								border: 0;
@@ -363,10 +355,6 @@ h4 {
 							}
 						}
 					}
-					width: 20%;
-					right: 216px;
-					top: 950px;
-					padding: 25px 15px 15px 15px;
 				}
 				.glassland {
 					.content-glassland {
@@ -404,8 +392,14 @@ h4 {
 					}
 				}
 				.absglass2 {
+					width: 20%;
+					left: 230px;
+					top: 1539px;
+					padding: 15px;
 					.content-absglass {
 						.iniciarsesion-content-absglass {
+							@extend .flex-cv;
+							text-align: center;
 							.iniciarsesion-btn-absglass {
 								margin: 10px 0px 0px 0px;
 								padding: 24px 32px;
@@ -421,10 +415,6 @@ h4 {
 							}
 						}
 					}
-					width: 20%;
-					left: 230px;
-					top: 1539px;
-					padding: 25px 15px 15px 15px;
 				}
 			}
 			margin: 15% 0% 0% 5%;
@@ -454,6 +444,10 @@ h4 {
 					}
 				}
 				.absglass3 {
+					width: 20%;
+					right: 216px;
+					top: 2057px;
+					padding: 15px;
 					.content-absglass {
 						.subirapuntes-content-absglass {
 							.subirapuntes-btn-absglass {
@@ -471,10 +465,6 @@ h4 {
 							}
 						}
 					}
-					width: 20%;
-					right: 216px;
-					top: 2057px;
-					padding: 25px 15px 15px 15px;
 				}
 			}
 			margin: 10% 0% 0% 5%;
@@ -504,6 +494,10 @@ h4 {
 					}
 				}
 				.absglass4 {
+					width: 20%;
+					left: 230px;
+					top: 2626px;
+					padding: 15px;
 					.content-absglass {
 						.sabermas-content-absglass {
 							.sabermas-btn-absglass {
@@ -521,15 +515,9 @@ h4 {
 							}
 						}
 					}
-					width: 20%;
-					left: 230px;
-					top: 2626px;
-					padding: 25px 15px 15px 15px;
 				}
 			}
 			margin: 15% 0% 0% 5%;
 		}
-		padding: calc(15px + 5vh);
-		padding-bottom: 150px;
 	}
 }

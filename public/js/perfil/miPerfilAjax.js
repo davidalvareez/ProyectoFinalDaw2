@@ -46,26 +46,17 @@ function modalDatosUser() {
             var respuesta = JSON.parse(this.responseText);
             var recarga = '';
             recarga += `
-            <div class="cerrar-modal">
-                <i class="fa-solid fa-xmark" onclick="cerrarModal();"></i>
-            </div>
             <div class="contenido-modal">`
             for (let i = 0; i < respuesta.user.length; i++) {
                 recarga += `
                             <form class="formmodal" method="post" onsubmit="actualizarUser(); return false;" class="form-mod-perfil" id="editarPerfil">
-                                <label>NickName</label>
+                                <span class="close" onclick="cerrarModal();">&times;</span>    
                                 <input type="text" name="nick_usu" value="${respuesta.user[i].nick_usu}" placeholder="NickName...">
-                                <label>Nombre</label>
                                 <input type="text" class="nombre-etiqueta-crear" name="nombre_usu" value="${respuesta.user[i].nombre_usu}" placeholder="Nombre...">
-                                <label>Apellidos</label>
                                 <input type="text" name="apellido_usu" value="${respuesta.user[i].apellido_usu}" placeholder="Apellidos...">
-                                <label>Fecha Nacimiento</label>
                                 <input type="date" name="fecha_nac_usu" value="${respuesta.user[i].fecha_nac_usu}">
-                                <label>Correo</label>
                                 <input type="text" name="correo_usu" value="${respuesta.user[i].correo_usu}" placeholder="Correo electrónico...">
-                                <label>Contraseña</label>
                                 <input type="password" name="contra_usu" placeholder="Contraseña...">
-                                <label>Centro</label>
                                 <input list="centros" autocomplete="off" name="nombre_centro" value="${respuesta.user[i].nombre_centro}" />
                                 <datalist id="centros">`;
                 for (z in respuesta.centros) {
