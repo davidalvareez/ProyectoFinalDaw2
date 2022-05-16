@@ -318,31 +318,22 @@ public function registerProfe(RegisterProfeValidation $request){
             LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
             LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
             WHERE user.nick_usu = ?
-            GROUP BY content.id ORDER BY valoracion DESC,descargas DESC LIMIT 1",[$nick_usu]);
+            GROUP BY content.id ORDER BY valoracion DESC LIMIT 1",[$nick_usu]);
+
+            $apunteDescargas = DB::select("SELECT content.id, (sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_contenidos content 
+            INNER JOIN tbl_usuario user ON content.id_usu = user.id
+            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+            WHERE user.nick_usu = ?
+            GROUP BY content.id ORDER BY descargas DESC LIMIT 1",[$nick_usu]);
 
             $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
 
-            return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado'));
+            return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado','apunteDescargas'));
         }else{
             return redirect('/');
         }
     }
-
-    //Moderador
-    public function moderadorView(){
-        $moderador = DB::select("SELECT * FROM (SELECT tbl_denuncias.*,CONCAT_WS(' ', tbl_usuario.nombre_usu,tbl_usuario.apellido_usu) as 'demandante' FROM tbl_denuncias
-        LEFT JOIN tbl_usuario ON tbl_usuario.id = tbl_denuncias.id_demandante
-        LEFT JOIN tbl_contenidos ON tbl_contenidos.id = tbl_denuncias.id_contenido
-        LEFT JOIN tbl_comentarios ON tbl_comentarios.id = tbl_denuncias.id_comentario) denuncia1
-        INNER JOIN (
-            SELECT tbl_denuncias.id as 'id_denuncia',CONCAT_WS(' ', tbl_usuario.nombre_usu,tbl_usuario.apellido_usu) as 'acusado' FROM tbl_denuncias 
-               LEFT JOIN tbl_usuario ON tbl_usuario.id = tbl_denuncias.id_acusado
-            LEFT JOIN tbl_contenidos ON tbl_contenidos.id = tbl_denuncias.id_contenido
-            LEFT JOIN tbl_comentarios ON tbl_comentarios.id = tbl_denuncias.id_comentario
-        )denuncia2 on denuncia2.id_denuncia=denuncia1.id");
-        return view('moderadorView', compact('moderador'));
-    }
-
     //Actualizar Perfil
     public function ActualizarPerfil(Request $request){
         if (session()->get('user')) {
@@ -391,7 +382,9 @@ public function registerProfe(RegisterProfeValidation $request){
         }
         //Comprobamos si es avatar del sistema
         if ($isAvatarSistema == false) {
-            Storage::delete('public/'.$userImage);
+            if (file_exists(storage_path('app/public/'.$userImage))) {
+                Storage::delete('public/'.$userImage);
+            }
         }
         if ($request->hasFile('img_avatar_usu2')) {
             //$file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
