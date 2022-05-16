@@ -19,6 +19,15 @@ use App\Http\Controllers\moderadorController;
 */
 //Enlaces a paginas
 
+//TERMINOS Y CONDICIONES
+Route::get('terminos', function () {
+    return view('terminos');
+});
+
+//POLITICA DE PRIVACIDAD
+Route::get('privacidad', function () {
+    return view('privacidad');
+});
 //VALIDAR CORREO REGISTRO
 Route::get('validarcorreo', function () {
     return view('validarcorreo');
