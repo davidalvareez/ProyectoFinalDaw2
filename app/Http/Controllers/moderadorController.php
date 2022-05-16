@@ -104,12 +104,20 @@ class moderadorController extends Controller
                 $datosAcusado = DB::select("SELECT * FROM tbl_usuario WHERE nick_usu = ?",[$datos["nick_usu"]]);
                 $datosDenuncia = $datosDenuncia[0];
                 $datosAcusado = $datosAcusado[0];
+                $nombreApellido = $datosAcusado->nombre_usu." ".$datosAcusado->apellido_usu;
                 //Si la denuncia es un comentario eliminamos el comentario
                 if ($datosDenuncia->tipus_denuncia == "Comentario") {
                     try {
                         DB::beginTransaction();
+                        $sub = "Comentario eliminado";
+                        $msj = "Querido/a $nombreApellido hemos recibido denuncias hacia dicho comentario y a un contenido y hemos decidido eliminarlo, cualquier duda contacte con el equipo de NoteHub.";
                         DB::delete("DELETE FROM tbl_comentarios WHERE id = ?",[$datosDenuncia->id_comentario]);
                         DB::delete("DELETE FROM tbl_denuncias WHERE id = ?",[$datosDenuncia->id]);
+                        $datos = array('message'=>$msj);
+                        $enviar = new sendMail($datos);
+                        $enviar->sub = $sub;
+                        Mail::to($datosAcusado->correo_usu)->send($enviar);
+                        //Mail::to($datosAcusado->correo_usu)->send($enviar);
                         DB::commit();
                         return response()->json(array('resultado' => "OK"));
                     } catch (\Exception $e) {
@@ -118,7 +126,55 @@ class moderadorController extends Controller
                     }
                 //Si es un apunte borramos el apunte el historial que hay en el y la denuncia y borramos el apunte del storage para hacer limpieza en el servidor
                 }elseif ($datosDenuncia->tipus_denuncia == "Apunte"){
-                
+                    try {
+                        DB::beginTransaction();
+                        $sub = "Contenido eliminado";
+                        $msj = "Querido/a $nombreApellido hemos recibido denuncias hacia dicho contenido hemos decidido eliminarlo, cualquier duda contacte con el equipo de NoteHub.";
+                        $existComment = DB::SELECT("SELECT * FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                        if (count($existComment) != 0) {
+                            DB::delete("DELETE FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                        }
+                        $exitDenuncia =DB::select("SELECT * FROM tbl_denuncias WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                        if (count($exitDenuncia) != 0) {
+                            DB::delete("DELETE FROM tbl_denuncias WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                        }
+                        $existMultimedia = DB::select("SELECT * FROM tbl_multimedia WHERE id = ?",[$datosDenuncia->id_contenido]);
+                        if (count($existMultimedia) != 0) {
+                            DB::delete("DELETE FROM tbl_multimedia WHERE id = ?",[$datosDenuncia->id_contenido]);
+                        }
+                        $existHistorial = DB::select("SELECT * FROM tbl_historial WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                        if (count($existHistorial) != 0) {
+                            DB::delete("DELETE FROM tbl_historial WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                        }
+                        $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema,avatar.img_avatar FROM tbl_usuario usu 
+                        INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                        INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                        INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                        INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                        INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                        LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
+                        WHERE apuntes.id =  ?",[$datosDenuncia->id_contenido]);
+                        if ($apunte[0]->extension_contenido == ".pdf") {
+                            $pathPDF = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+                            $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
+                            Storage::delete($pathPDF); 
+                            Storage::delete($pathIMG); 
+                        }else{
+                            $path = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido; 
+                            Storage::delete($path); 
+                        }
+                        DB::delete("DELETE FROM tbl_contenidos WHERE id = ?",[$datosDenuncia->id_contenido]);
+                        $datos = array('message'=>$msj);
+                        $enviar = new sendMail($datos);
+                        $enviar->sub = $sub;
+                        Mail::to($datosAcusado->correo_usu)->send($enviar);
+                        //Mail::to($datosAcusado->correo_usu)->send($enviar);
+                        DB::commit();
+                        return response()->json(array('resultado' => "OK"));
+                    } catch (\Exception $e) {
+                        DB::rollback();
+                        return response()->json(array('resultado' => "NOK: ".$e->getMessage()));
+                    } 
                 }
             } catch (\Exception $e) {
                 return response()->json(array('resultado' => "NOK: ".$e->getMessage()));
@@ -126,8 +182,32 @@ class moderadorController extends Controller
         }
         public function banearUsuario(Request $request){
             $datos = $request->except("_token","_method");
-            $datosDenuncia = DB::select("SELECT * FROM tbl_denuncias WHERE id = ?",[$datos["id_denuncia"]]);
-            $datosAcusado = DB::select("SELECT * FROM tbl_usuario WHERE nick_usu = ?",[$datos["nick_usu"]]);
-            return response()->json($datos);
+            try {
+                $datosAcusado = DB::select("SELECT * FROM tbl_usuario WHERE nick_usu = ?",[$datos["nick_usu"]]);
+                $datosAcusado = $datosAcusado[0];
+                $nombreApellido = $datosAcusado->nombre_usu." ".$datosAcusado->apellido_usu;
+                $horaActual = date('H:i:s');
+                $datetime = $datos["fecha_denuncia"]." ".$horaActual;
+                DB::update("UPDATE tbl_usuario SET deshabilitado = ? WHERE id = ?",[$datetime,$datosAcusado->id]);
+                $sub = "Baneo de cuenta";
+                $msj = "Querido/a $nombreApellido el equipo de Notehub ha decidido banear a su cuenta debido a incidencias que usted ha ido comentiendo en nuestra, cualquier duda contacte con el equipo de Notehub.";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($datosAcusado->correo_usu)->send($enviar);
+                //Mail::to($datosAcusado->correo_usu)->send($enviar);
+                return response()->json(array('resultado' => "OK")); 
+            } catch (\Exception $e) {
+                return response()->json(array('resultado' => "NOK: ".$e->getMessage()));
+            }
+        }
+        public function quitardenuncia(Request $request){
+            $datos = $request->except("_token","_method");
+            try {
+                DB::delete("DELETE FROM tbl_denuncias WHERE id = ?",[$datos["id_denuncia"]]);
+                return response()->json(array('resultado' => "OK")); 
+            } catch (\Exception $e) {
+                return response()->json(array('resultado' => "NOK: ".$e->getMessage()));
+            }
         }
 }

@@ -177,14 +177,18 @@ function opciones(id_denuncia, acusado) {
                                     cancelButtonText: "Cancelar",
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                        let fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                                        fechaDenuncia = document.getElementById("fecha_denuncia").value;
                                         formData.append("fecha_denuncia", fechaDenuncia);
                                         ajax.open("POST", "moderador/banearUser", true);
                                         ajax.onreadystatechange = function() {
                                             if (ajax.readyState == 4 && ajax.status == 200) {
                                                 let respuesta = JSON.parse(this.responseText);
-                                                console.log(respuesta);
-                                                showAll();
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Baneo realizado correctamente");
+                                                    showAll();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
                                             }
                                         }
                                         ajax.send(formData);
@@ -195,7 +199,7 @@ function opciones(id_denuncia, acusado) {
                             }
                         });
                     } else {
-                        alertify.error(respuesta.resultado);
+                        console.log(respuesta.resultado);
                     }
                 }
             }
@@ -211,18 +215,58 @@ function opciones(id_denuncia, acusado) {
                 cancelButtonText: "Cancelar",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    //Preguntamos si tambien quiere eliminar el contenido
-                    let fechaDenuncia = document.getElementById("fecha_denuncia").value;
-                    console.log(fechaDenuncia);
-                    Swal.fire({
-                        title: "Opciones denuncia",
-                        text: "¿Deseas tambien eliminar el contenido?",
-                        showCancelButton: true,
-                        confirmButtonText: "Eliminar contenido",
-                        cancelButtonText: "Cancelar"
-                    }).then((result) => {
-                        console.log(result);
-                    });
+                    //Ejecutamos ajax para banear
+                    fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                    formData.append("fecha_denuncia", fechaDenuncia);
+                    ajax.open("POST", "moderador/banearUser", true);
+                    ajax.onreadystatechange = function() {
+                        if (ajax.readyState == 4 && ajax.status == 200) {
+                            let respuesta = JSON.parse(this.responseText);
+                            if (respuesta.resultado == "OK") {
+                                alertify.success("Baneo realizado correctamente");
+                                //Preguntamos si tambien quiere eliminar el contenido
+                                Swal.fire({
+                                    title: "Opciones denuncia",
+                                    text: "¿Deseas tambien eliminar el contenido?",
+                                    showCancelButton: true,
+                                    confirmButtonText: "Eliminar contenido",
+                                    cancelButtonText: "Cancelar"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        ajax.open("POST", "moderador/eliminarcontent", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Contenido eliminado correctamente");
+                                                    showAll();
+                                                }
+                                            } else {
+                                                console.log(respuesta.resultado);
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    } else if (result.isDismissed) {
+                                        ajax.open("POST", "moderador/quitardenuncia", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("La denuncia se ha quitado");
+                                                    showAll();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    }
+                                });
+                            } else {
+                                console.log(respuesta.resultado);
+                            }
+                        }
+                    }
+                    ajax.send(formData);
+                    //En caso que cancele ya una vez baneado eliminamos tambien la denuncia
                 }
             });
         }
@@ -253,7 +297,143 @@ function eliminar(id_denuncia, demandante) {
 }
 
 function opcionesComentario(id_denuncia, acusado) {
-
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'DELETE');
+    formData.append('id_denuncia', id_denuncia);
+    formData.append('nick_usu', acusado);
+    let ajax = llamadaAjax();
+    Swal.fire({
+        title: "Opciones denuncia",
+        text: "¿Que deseas hacer?",
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: "Eliminar contenido",
+        denyButtonText: "Banear usuario",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        //Elimina el contenido despues del ajax ejecutamos el swal
+        if (result.isConfirmed) {
+            ajax.open("POST", "moderador/eliminarcontent", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "OK") {
+                        alertify.success("Contenido eliminado correctamente");
+                        //Preguntamos si tambien quiere banear al usuario
+                        Swal.fire({
+                            title: "Opciones denuncia",
+                            text: "¿Deseas tambien denunciar al usuario?",
+                            showCancelButton: true,
+                            confirmButtonText: "Banear usuario",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                            //Si quiere denunciar al usuario le mostramos un input en formato fecha ya que cogemos la hora actual del sistema
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: "Opciones denuncia",
+                                    text: "¿Hasta que día desea banearlo?",
+                                    html: `<input type="date" id="fecha_denuncia"/>`,
+                                    showCancelButton: true,
+                                    confirmButtonText: "Enviar",
+                                    cancelButtonText: "Cancelar",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                                        formData.append("fecha_denuncia", fechaDenuncia);
+                                        ajax.open("POST", "moderador/banearUser", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                let respuesta = JSON.parse(this.responseText);
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Baneo realizado correctamente");
+                                                    showComments();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    }
+                                });
+                            } else if (result.isDismissed) {
+                                showComments();
+                            }
+                        });
+                    } else {
+                        console.log(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+            //Decide banear
+        } else if (result.isDenied) {
+            Swal.fire({
+                title: "Opciones denuncia",
+                text: "¿Hasta que día desea banearlo?",
+                html: `<input type="date" id="fecha_denuncia"/>`,
+                showCancelButton: true,
+                confirmButtonText: "Enviar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Ejecutamos ajax para banear
+                    fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                    formData.append("fecha_denuncia", fechaDenuncia);
+                    ajax.open("POST", "moderador/banearUser", true);
+                    ajax.onreadystatechange = function() {
+                        if (ajax.readyState == 4 && ajax.status == 200) {
+                            let respuesta = JSON.parse(this.responseText);
+                            if (respuesta.resultado == "OK") {
+                                alertify.success("Baneo realizado correctamente");
+                                //Preguntamos si tambien quiere eliminar el contenido
+                                Swal.fire({
+                                    title: "Opciones denuncia",
+                                    text: "¿Deseas tambien eliminar el contenido?",
+                                    showCancelButton: true,
+                                    confirmButtonText: "Eliminar contenido",
+                                    cancelButtonText: "Cancelar"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        ajax.open("POST", "moderador/eliminarcontent", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Contenido eliminado correctamente");
+                                                    showComments();
+                                                }
+                                            } else {
+                                                console.log(respuesta.resultado);
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    } else if (result.isDismissed) {
+                                        ajax.open("POST", "moderador/quitardenuncia", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("La denuncia se ha quitado");
+                                                    showComments();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    }
+                                });
+                            } else {
+                                console.log(respuesta.resultado);
+                            }
+                        }
+                    }
+                    ajax.send(formData);
+                    //En caso que cancele ya una vez baneado eliminamos tambien la denuncia
+                }
+            });
+        }
+    });
 }
 
 function eliminarComentario(id_denuncia, demandante) {
@@ -280,7 +460,143 @@ function eliminarComentario(id_denuncia, demandante) {
 }
 
 function opcionesApunte(id_denuncia, acusado) {
-
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'DELETE');
+    formData.append('id_denuncia', id_denuncia);
+    formData.append('nick_usu', acusado);
+    let ajax = llamadaAjax();
+    Swal.fire({
+        title: "Opciones denuncia",
+        text: "¿Que deseas hacer?",
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: "Eliminar contenido",
+        denyButtonText: "Banear usuario",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        //Elimina el contenido despues del ajax ejecutamos el swal
+        if (result.isConfirmed) {
+            ajax.open("POST", "moderador/eliminarcontent", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "OK") {
+                        alertify.success("Contenido eliminado correctamente");
+                        //Preguntamos si tambien quiere banear al usuario
+                        Swal.fire({
+                            title: "Opciones denuncia",
+                            text: "¿Deseas tambien denunciar al usuario?",
+                            showCancelButton: true,
+                            confirmButtonText: "Banear usuario",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                            //Si quiere denunciar al usuario le mostramos un input en formato fecha ya que cogemos la hora actual del sistema
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: "Opciones denuncia",
+                                    text: "¿Hasta que día desea banearlo?",
+                                    html: `<input type="date" id="fecha_denuncia"/>`,
+                                    showCancelButton: true,
+                                    confirmButtonText: "Enviar",
+                                    cancelButtonText: "Cancelar",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                                        formData.append("fecha_denuncia", fechaDenuncia);
+                                        ajax.open("POST", "moderador/banearUser", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                let respuesta = JSON.parse(this.responseText);
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Baneo realizado correctamente");
+                                                    showNotes();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    }
+                                });
+                            } else if (result.isDismissed) {
+                                showNotes();
+                            }
+                        });
+                    } else {
+                        console.log(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+            //Decide banear
+        } else if (result.isDenied) {
+            Swal.fire({
+                title: "Opciones denuncia",
+                text: "¿Hasta que día desea banearlo?",
+                html: `<input type="date" id="fecha_denuncia"/>`,
+                showCancelButton: true,
+                confirmButtonText: "Enviar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Ejecutamos ajax para banear
+                    fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                    formData.append("fecha_denuncia", fechaDenuncia);
+                    ajax.open("POST", "moderador/banearUser", true);
+                    ajax.onreadystatechange = function() {
+                        if (ajax.readyState == 4 && ajax.status == 200) {
+                            let respuesta = JSON.parse(this.responseText);
+                            if (respuesta.resultado == "OK") {
+                                alertify.success("Baneo realizado correctamente");
+                                //Preguntamos si tambien quiere eliminar el contenido
+                                Swal.fire({
+                                    title: "Opciones denuncia",
+                                    text: "¿Deseas tambien eliminar el contenido?",
+                                    showCancelButton: true,
+                                    confirmButtonText: "Eliminar contenido",
+                                    cancelButtonText: "Cancelar"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        ajax.open("POST", "moderador/eliminarcontent", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Contenido eliminado correctamente");
+                                                    showNotes();
+                                                }
+                                            } else {
+                                                console.log(respuesta.resultado);
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    } else if (result.isDismissed) {
+                                        ajax.open("POST", "moderador/quitardenuncia", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("La denuncia se ha quitado");
+                                                    showNotes();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    }
+                                });
+                            } else {
+                                console.log(respuesta.resultado);
+                            }
+                        }
+                    }
+                    ajax.send(formData);
+                    //En caso que cancele ya una vez baneado eliminamos tambien la denuncia
+                }
+            });
+        }
+    });
 }
 
 function eliminarApunte(id_denuncia, demandante) {

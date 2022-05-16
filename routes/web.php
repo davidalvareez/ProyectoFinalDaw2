@@ -205,3 +205,5 @@ Route::delete('moderador/eliminar',[moderadorController::class,'eliminarDenuncia
 Route::delete('moderador/eliminarcontent',[moderadorController::class,'eliminarContenido']);
 
 Route::delete('moderador/banearUser',[moderadorController::class,'banearUsuario']);
+
+Route::delete('moderador/quitardenuncia',[moderadorController::class,'quitardenuncia']);
