@@ -1,5 +1,4 @@
 <footer class="footer-distributed">
-
     <div class="footer-right">
 
         <a href="https://www.facebook.com/notehub.oficial"><i class="fa-brands fa-facebook-f"></i></a>
@@ -21,5 +20,4 @@
 
         <p>NoteHub &copy; 2022</p>
     </div>
-
 </footer>
