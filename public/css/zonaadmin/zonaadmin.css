@@ -228,9 +228,6 @@ body {
   width: 100%;
   min-height: 100vh;
   position: relative;
-  background-image: url("../../media/fotos/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .input-editar {

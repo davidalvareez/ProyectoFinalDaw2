@@ -299,7 +299,6 @@ h4 {
 }
 
 .landing-page main {
-  background-image: url("../../media/loginregister/fondo3.png");
   padding: calc(15px + 5vh);
   padding-bottom: 150px;
 }

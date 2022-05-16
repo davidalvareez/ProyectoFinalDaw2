@@ -517,16 +517,6 @@ h4 {
   font-weight: bold;
 }
 
-.login-page {
-  background-image: url("../../media/loginregister/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.login-page main {
-  height: calc(100vh - 105px);
-}
-
 @media (max-width: 1200px) {
   .login-page main {
     height: 100%;
@@ -594,12 +584,6 @@ h4 {
 
 .login-page main .redes-sociales {
   padding: 80px 0px 30px 0px;
-}
-
-.registro-page {
-  background-image: url("../../media/loginregister/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 @media (min-width: 1200px) {
