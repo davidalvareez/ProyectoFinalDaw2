@@ -30,7 +30,7 @@ class CRUDAdminController extends Controller
             }
 
             $users = DB::select("SELECT tbl_usuario.id, tbl_usuario.nick_usu, tbl_usuario.nombre_usu, tbl_usuario.apellido_usu, tbl_usuario.fecha_nac_usu,
-            tbl_usuario.correo_usu, tbl_usuario.deshabilitado, tbl_usuario.tmpdeshabilitado, tbl_centro.nombre_centro, tbl_rol.nombre_rol, tbl_niveles.nombre_nivel,tbl_avatar.img_avatar
+            tbl_usuario.correo_usu, tbl_usuario.deshabilitado, tbl_centro.nombre_centro, tbl_rol.nombre_rol, tbl_niveles.nombre_nivel,tbl_avatar.img_avatar
             FROM tbl_usuario INNER JOIN tbl_rol ON tbl_usuario.id_rol = tbl_rol.id
             LEFT JOIN tbl_centro ON tbl_usuario.id_centro = tbl_centro.id
             LEFT JOIN tbl_niveles ON tbl_usuario.id_nivel = tbl_niveles.id
@@ -217,7 +217,12 @@ class CRUDAdminController extends Controller
             try {  
                     $rol=DB::select("SELECT * FROM tbl_rol WHERE nombre_rol= ?",[$request["nombre_rol"]]);
                     /* return $rol; */
-                    DB::update("UPDATE tbl_usuario set nick_usu= ?, nombre_usu= ?, apellido_usu= ?, fecha_nac_usu= ?, correo_usu= ?, deshabilitado= ?, tmpdeshabilitado= ?, id_rol= ? where id=?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],$request["deshabilitado"],$request["tmpdeshabilitado"],$rol[0]->id,$request["id"]]);
+                    if ( $request["deshabilitado"] == null && $request["tmpdeshabilitado"] == null) {
+                        $datetime = null;
+                    }else{
+                        $datetime = $request["deshabilitado"].' '.$request["tmpdeshabilitado"];
+                    }
+                    DB::update("UPDATE tbl_usuario set nick_usu= ?, nombre_usu= ?, apellido_usu= ?, fecha_nac_usu= ?, correo_usu= ?, deshabilitado= ?, id_rol= ? where id=?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],$datetime,$rol[0]->id,$request["id"]]);
                     /* return response()->json($update); */
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
@@ -326,6 +331,7 @@ class CRUDAdminController extends Controller
                 DB::select("DELETE FROM tbl_comentarios WHERE id_contenido= ?",[$id]);
                 DB::select("DELETE FROM tbl_historial WHERE id_contenido= ?",[$id]);
                 DB::select("DELETE FROM tbl_contenidos WHERE id= ?",[$id]);                
+                
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
             }catch(\Exception $e){
