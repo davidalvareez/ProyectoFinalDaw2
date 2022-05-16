@@ -52,6 +52,11 @@
                                                 <td>{{$registro->demandante}}</td>
                                                 <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones({{$registro->id}},'{{$registro->nick_acusado}}');return false;">Opciones</button></td>
                                                 <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar({{$registro->id}},'{{$registro->nick_demandante}}');return false;">Eliminar</button></td>
+                                                @if ($registro->tipus_denuncia == "Comentario")
+                                                <td><button class= "btn btn-danger" type="submit" value="Ver comentario" onclick="window.location.href='{{url('apuntes/'.$registro->id_contenido.'#'.$registro->id)}}';return false;">Ver comentario</button></td>
+                                                @else
+                                                <td><button class= "btn btn-danger" type="submit" value="Ver apunte" onclick="window.location.href='{{url('apuntes/'.$registro->id_contenido)}}';return false;">Ver apunte</button></td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                         </table>

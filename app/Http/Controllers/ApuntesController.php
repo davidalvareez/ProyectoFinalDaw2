@@ -467,7 +467,7 @@ class ApuntesController extends Controller
                 return response()->json(array("resultado"=>"existDenuncia"));
             }else{
                 try {
-                    DB::insert("INSERT INTO tbl_denuncias (tipus_denuncia,desc_denuncia,id_comentario,id_demandante,id_acusado) VALUES (?,?,?,?,?)",["Comentario",$datos["desc_denuncia"],$datos["id_comentario"],$demandante->id,$datos["id_acusado"]]);
+                    DB::insert("INSERT INTO tbl_denuncias (tipus_denuncia,desc_denuncia,id_contenido,id_comentario,id_demandante,id_acusado) VALUES (?,?,?,?,?,?)",["Comentario",$datos["desc_denuncia"],$datos["id_contenido"],$datos["id_comentario"],$demandante->id,$datos["id_acusado"]]);
                     return response()->json(array("resultado"=>"OK"));
                 } catch (\Exception $e) {
                     return response()->json(array("resultado"=>"NOK: ".$e->getMessage()));

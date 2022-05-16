@@ -55,7 +55,7 @@ function addcomment() {
                         </label>
                     </div>
                     <div>
-                        <p class="texto-coment">${respuesta.comentarios[i].desc_comentario}</p>
+                        <p class="texto-coment" id="${respuesta.comentarios[i].id}">${respuesta.comentarios[i].desc_comentario}</p>
                     </div>`;
                 }
                 alertify.success('Comentario publicado correctamente');
@@ -71,7 +71,7 @@ function addcomment() {
     ajax.send(formData);
 }
 
-function denunciarComentario(id_usu_comentario, id_comentario) {
+function denunciarComentario(id_usu_comentario, id_comentario, id_contenido) {
     Swal.fire({
         title: "Denunciar comentario",
         text: "Escribe motivo de denuncia",
@@ -87,6 +87,7 @@ function denunciarComentario(id_usu_comentario, id_comentario) {
             formData.append('_method', 'POST');
             formData.append('id_acusado', id_usu_comentario);
             formData.append('id_comentario', id_comentario);
+            formData.append('id_contenido', id_contenido);
             formData.append('desc_denuncia', result.value);
             let ajax = llamadaAjax();
             ajax.open("POST", "denunciarComentario", true);
