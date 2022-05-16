@@ -103,7 +103,7 @@
                                             <!--DENUNCIAR COMENTARIO-->
                                             @if ($comentario->id_usu != Session::get('user')->id)
                                                 <div style="float:left">
-                                                    <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" onclick="denunciarComentario({{$comentario->id_usu}},{{$comentario->id}});" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
+                                                    <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" onclick="denunciarComentario({{$comentario->id_usu}},{{$comentario->id}},{{$apunte[0]->id}});" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
                                                 </div>
                                             @endif
                                         </div>
@@ -123,7 +123,7 @@
                                             </label>
                                         </div>
                                         <div>
-                                            <p class="texto-coment">{{$comentario->desc_comentario}}</p>
+                                            <p class="texto-coment" id="{{$comentario->id}}">{{$comentario->desc_comentario}}</p>
                                         </div>
                                         <!--TEXTO SI NO HAY COMENTARIOS-->
                                         {{-- @if($comentario->any())
