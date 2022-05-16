@@ -116,9 +116,8 @@ function deselectAvatar() {
         allAvatar[i].style.border = "white";
 
     }
-    let imga = document.getElementById("img_avatar_sistema").value = null;
-    let imga2 = document.getElementById("img_avatar_sistema_profe").value = null;
-    console.log(imga);
+    document.getElementById("img_avatar_sistema").value = null;
+    document.getElementById("img_avatar_sistema_profe").value = null;
 }
 
 function chBackcolor(avatar) {

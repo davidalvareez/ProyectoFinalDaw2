@@ -12,8 +12,10 @@
                 <div class="region-header">
                     <div class="content-header">
                         <button class="btn-glass" onclick="window.location.href='{{url('buscador')}}'">Inicio</button>
+                        @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                         <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Mis apuntes</button>
-                        <button class="btn-glass" onclick="openModalConfig();getConfigUser();">Configuración</button>
+                        <button class="btn-glass" onclick="getConfigUser();">Preferencias</button>
+                        @endif
                         <button class="btn-glass" onclick="window.location.href='{{url('logout')}}'">Cerrar sesion</button>
                     </div>
                 </div>
@@ -58,8 +60,19 @@
                 </div>
                 <div class="region-subir-apuntes">
                     <div class="content-subir-apuntes">
+                        @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                         <h2 class="titular">SUBIR APUNTES</h2>
                         <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Comparte tus apuntes</button>
+                        @else
+                        @if (count($apunteDestacado) == 1)
+                            <h2 class="titular">APUNTE MÁS DESCARGAS</h2>
+                            <div class="darse-baja">
+                                <button class="btn-glass" onclick="window.location.href='{{url('apuntes/'.$apunteDescargas[0]->id)}}'">Ver apunte</button>
+                            </div>
+                            @else
+                                <h2 class="titular">No tiene ningun apunte</h2>
+                            @endif
+                        @endif
                     </div>
                 </div>
                 <div class="region-baja">
@@ -71,9 +84,9 @@
                         </div>
                         @else
                             @if (count($apunteDestacado) == 1)
-                            <h2 class="titular">APUNTE DESTACADO</h2>
+                            <h2 class="titular">APUNTE MEJOR VALORADO</h2>
                             <div class="darse-baja">
-                                <button class="btn-glass" onclick="window.location.href='{{url('apuntes/'.$apunteDestacado[0]->id)}}'">Ver apunte destacado</button>
+                                <button class="btn-glass" onclick="window.location.href='{{url('apuntes/'.$apunteDestacado[0]->id)}}'">Ver apunte</button>
                             </div>
                             @else
                                 <h2 class="titular">No tiene ningun apunte</h2>
@@ -94,10 +107,10 @@
                                         <div class="foto img img-apuntes">
                                             <div class="container-foto container-img">
                                                 <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
-                                                @if ($recentnotes->extension_contenido == ".pdf")
-                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @if ($apunte->extension_contenido == ".pdf")
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png'}}" alt="Apuntes">
                                                 @else
-                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido}}" alt="Apuntes">
                                                 @endif
                                             </div>
                                         </div>
@@ -212,7 +225,7 @@
                             @endforeach
                         </div>
                         <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
-                        <input type="file" name="img_avatar_usu2" id="img_avatar_usu">
+                        <input type="file" onchange="deselectAvatar();" name="img_avatar_usu2" id="img_avatar_usu">
                         <br><br>
                         <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema">
                         <button  type="submit" class="aceptarbtn" value="Aceptar">Aceptar</button>

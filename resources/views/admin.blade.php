@@ -56,6 +56,6 @@
             </div>
         </div>
     </main>
-    @include ('template.footer')
+    {{-- @include ('template.footer') --}}
 </body>
 </html>

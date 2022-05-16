@@ -483,7 +483,7 @@ function showDenuncias() {
                                      <td>${respuesta[i].demandante}</td>
 
                                      <td>
-                                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
+                                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Opciones</button>
                                      </td>
                                      <td>
                                      <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarDenuncias(${respuesta[i].id});return false;">Eliminar</button>

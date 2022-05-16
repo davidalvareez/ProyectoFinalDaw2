@@ -77,25 +77,25 @@
                                 </div>
                                 <div class="alienarright">
                                     <a onclick="forgetPassword();">
-                                        <p>Contraseña olvidada?</p>
+                                        <p style="cursor: pointer">Contraseña olvidada?</p>
                                     </a>
-                                </div> -->
+                                </div>
                                 <div class="boton-entrar">
                                     <input class="login-btn-absglass" type="submit" value="ENTRAR">
                                 </div>
                                 <div class="redes-sociales">
-                                    <div class="alienarleft-2">
-                                        <h4>o inicia sesión con:</h4>
+                                    <div>
+                                        <h4>o inicia sesión con</h4>
                                     </div>
-                                    <div class="botones-distributed">
-                                        <div class="botones-right">
+                                    <div>
+                                        <div class="botones-redes">
                                             <a onclick="{{url('login-facebook')}}"><img src="{!! asset ('media/loginregister/facebook.png') !!}" alt="facebook" class="icono-socialmedia"></a>
                                             <a onclick="{{url('login-twitter')}}"><img src="{!! asset ('media/loginregister/twitter.png') !!}" alt="twitter" class="icono-socialmedia"></a>
                                             <a onclick="{{url('login-google')}}"><img src="{!! asset ('media/loginregister/google.png') !!}" alt="google" class="icono-socialmedia"></a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="">
+                                <div>
                                     <div class="alienarleft">
                                         <p>No estás registrado?</p>
                                     </div>
