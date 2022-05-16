@@ -484,9 +484,6 @@ h4 {
 }
 
 .login-page {
-  background-image: url("../../media/loginregister/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
   overflow-y: hidden;
 }
 
