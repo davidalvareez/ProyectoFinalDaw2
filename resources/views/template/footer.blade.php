@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-    <footer class="footer-distributed">
-=======
 <footer class="footer-distributed">
     <div class="footer-right">
 
@@ -9,7 +6,6 @@
         <a href="https://www.instagram.com/notehub.oficial"><i class="fa-brands fa-instagram"></i></a>
 
     </div>
->>>>>>> main
 
     <div class="footer-left">
 
@@ -22,28 +18,6 @@
             <a href="mailto:notehubdaw2@gmail.com">notehubdaw2@gmail.com</a>
         </p>
 
-<<<<<<< HEAD
-                <a class="link-1">2022</a>
-
-                <a href="https://goo.gl/maps/TVrDESsEywPBnykd6">Hospitalet de Llobregat</a>
-
-                <a href="mailto:notehubdaw2@gmail.com">notehubdaw2@gmail.com</a>
-            </p>
-
-            <p>NoteHub &copy; 2022</p>
-        </div>
-
-    </footer>
-    
-    <div class="more-css">
-        <div class="toggle-darkl">
-            <style>
-
-            </style>
-        </div>
-    </div>
-=======
         <p>NoteHub &copy; 2022</p>
     </div>
 </footer>
->>>>>>> main
