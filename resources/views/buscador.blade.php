@@ -1,7 +1,4 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{!!asset('css/buscador/styles.css')!!}">
     <script src="{!! asset('js/buscador/buscadorAjax.js') !!}"></script>
@@ -272,7 +269,7 @@
         </div>
     </div>
 </main>
-<footer>@include('template.footer')</footer>
+@include('template.footer')
     <div class="overlay" id="overlay">
         <div class="popup" id="popup">
             <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop"><i class="fas fa-times"></i></a>

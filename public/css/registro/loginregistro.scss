@@ -189,6 +189,10 @@
     background-color: #0e7a30cc;
 }
 
+.hide {
+    display: none;
+}
+
 .flex {
     display: flex;
     align-items: center;
@@ -258,7 +262,7 @@ html {
 body {
     height: 100%;
     width: 100%;
-    // min-height: 100vh;
+    min-height: 100vh;
     position: relative;
 }
 
@@ -291,6 +295,14 @@ body {
     }
 }
 
+.inputbtn-selec2 {
+    box-sizing: border-box;
+    padding: 10px 30px 10px 0px;
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
 .imginputbtn {
     position: absolute;
     right: 10px;
@@ -307,7 +319,7 @@ body {
 
 .alienarleft {
     float: left;
-    padding: 40px 10px 5px 7px;
+    padding: 0px 10px 5px 7px;
 }
 
 .alienarright {
@@ -352,9 +364,28 @@ body {
     padding-bottom: 10px;
 }
 
+.boton-entrar {
+    padding-bottom: 45px;
+}
+
 .formulario-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.formulario2-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+//BOTONES REDES SOCIALES
+.botones-redes a:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+
+.icono-socialmedia {
+    width: 100%;
 }
 
 //MODAL ------------------------------------------------------------------
@@ -490,27 +521,34 @@ h4 {
     background-image: url("../../media/loginregister/fondo3.png");
     background-size: cover;
     background-repeat: no-repeat;
-    overflow-y: hidden;
     main {
         //@extend .flex;
+        height: calc(100vh - 105px);
+        @media(max-width: $grid-float-breakpoint) {
+            height: 100%;
+        }
         .region {
             .glassland {
                 @extend .glass2;
-                .content-glassland {
-                    @extend .flex;
-                }
             }
         }
         .region1 {
-            margin: 5% 0% 5% 10%;
-            @extend .flex;
+            @media(min-width: $grid-float-breakpoint) {
+                padding: 5% 0% 5% 10%;
+            }
             .content-region {
+                @extend .flex;
+                justify-content: space-around;
+                @media(max-width: $grid-float-breakpoint) {
+                    flex-flow: column;
+                    justify-content: center;
+                }
                 .glassland {
+                    @media(max-width: $grid-float-breakpoint) {}
                     .content-glassland {
                         @extend .flex;
                         .login-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
+                            padding: calc(20px + 0.5vh) calc(15px + 1vw);
                             .inputbtn {
                                 &::placeholder {
                                     font-family: "Font Awesome\ 6 pro";
@@ -522,11 +560,24 @@ h4 {
                         }
                     }
                 }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 41%;
+                @media(max-width: $grid-float-breakpoint) {
+                    .imagenrelleno {
+                        // @extend .hide;
+                        display: none;
+                    }
                 }
             }
+        }
+        .botones-redes a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            transition: all .25s;
+            cursor: pointer;
+            padding-top: 10px;
+        }
+        .redes-sociales {
+            padding: 80px 0px 30px 0px;
         }
     }
 }
@@ -538,6 +589,7 @@ h4 {
     //overflow-y: hidden;
     main {
         //@extend .flex;
+        //height: calc(100vh - 105px);
         .region {
             .glassland {
                 @extend .glass2;
@@ -547,26 +599,47 @@ h4 {
             }
         }
         .region1 {
-            margin: 5% 5% 5% 5%;
-            @extend .flex;
+            @media(min-width: $grid-float-breakpoint) {
+                padding: 5% 0% 5% 10%;
+            }
             .content-region {
+                @extend .flex;
+                justify-content: space-around;
+                @media(max-width: $grid-float-breakpoint) {
+                    flex-flow: column;
+                    justify-content: center;
+                }
                 .glassland {
+                    @media(max-width: $grid-float-breakpoint) {}
                     .content-glassland {
                         @extend .flex;
                         .registro-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
+                            padding: calc(20px + 0.5vh) calc(15px + 1vw);
                             .login-btn-absglass {
                                 @extend .glassbtn;
                             }
                         }
                     }
                 }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 41%;
+                @media(max-width: $grid-float-breakpoint) {
+                    .imagenrelleno {
+                        // @extend .hide;
+                        display: none;
+                    }
                 }
             }
+        }
+        .botones-redes a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            margin-left: 8px;
+            margin-top: 20px;
+            transition: all .25s;
+            cursor: pointer;
+        }
+        .alienar-2 {
+            padding: 80px 0px 20px 0px;
         }
     }
 }

@@ -40,7 +40,7 @@ class ApuntesController extends Controller
                 }
             }
             $sqlrecent .= "GROUP BY content.id ORDER BY content.fecha_publicacion_contenido DESC LIMIT 15";
-            $sqlpopular .= "GROUP BY content.id ORDER BY valoracion DESC LIMIT 15";
+            $sqlpopular .= "GROUP BY content.id ORDER BY valoracion DESC,descargas DESC LIMIT 15";
             
             //Mostrar los más recientes
             $recent=DB::select($sqlrecent);
@@ -256,8 +256,10 @@ class ApuntesController extends Controller
             INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
             LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
             WHERE apuntes.id =  ?",[$id]);
-            $path = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
-            Storage::delete($path);    
+            $pathPDF = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+            $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
+            Storage::delete($pathPDF); 
+            Storage::delete($pathIMG);    
             DB::delete("DELETE FROM tbl_contenidos WHERE id = ?",[$id]);
             DB::commit();
             return response()->json(array('resultado'=>'OK'));
@@ -388,7 +390,7 @@ class ApuntesController extends Controller
             WHERE apuntes.id =  ?",[$id]);
             $path = asset('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
             //return $path;
-            $comentarios = DB::select("SELECT * FROM tbl_comentarios comment
+            $comentarios = DB::select("SELECT comment.*,user.nick_usu,avatar.img_avatar FROM tbl_comentarios comment
             INNER JOIN tbl_usuario user ON comment.id_usu = user.id
             LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
             WHERE comment.id_contenido = ?",[$apunte[0]->id]);
@@ -443,7 +445,7 @@ class ApuntesController extends Controller
                     return response()->json(array("resultado"=>"Comentado"));
                 }else{
                     DB::insert("INSERT INTO tbl_comentarios (desc_comentario,val_comentario,id_contenido,id_usu) VALUES (?,?,?,?)",[$datos["desc_comentario"],$datos["val_comentario"],$datos["id_contenido"],$user->id]);
-                    $comentarios = DB::select("SELECT * FROM tbl_comentarios comment
+                    $comentarios = DB::select("SELECT comment.*,user.nick_usu,avatar.img_avatar FROM tbl_comentarios comment
                                                INNER JOIN tbl_usuario user ON comment.id_usu = user.id
                                                LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
                                                WHERE comment.id_contenido = ?",[$datos["id_contenido"]]);
@@ -453,5 +455,45 @@ class ApuntesController extends Controller
         }else{
             return redirect('login');
         }
+    }
+    public function denunciarComentario(Request $request){
+        $demandante = session()->get('user');
+        $datos = $request->except("_token","_method");
+        if ($datos["desc_denuncia"] == null) {
+            return response()->json(array("resultado"=>"nullDenuncia"));
+        }else{
+            $existDenuncia = DB::select("SELECT * FROM tbl_denuncias WHERE id_comentario = ? AND id_demandante = ?",[$datos["id_comentario"],$demandante->id]);
+            if (count($existDenuncia) != 0) {
+                return response()->json(array("resultado"=>"existDenuncia"));
+            }else{
+                try {
+                    DB::insert("INSERT INTO tbl_denuncias (tipus_denuncia,desc_denuncia,id_contenido,id_comentario,id_demandante,id_acusado) VALUES (?,?,?,?,?,?)",["Comentario",$datos["desc_denuncia"],$datos["id_contenido"],$datos["id_comentario"],$demandante->id,$datos["id_acusado"]]);
+                    return response()->json(array("resultado"=>"OK"));
+                } catch (\Exception $e) {
+                    return response()->json(array("resultado"=>"NOK: ".$e->getMessage()));
+                }
+            }
+        }
+        return response()->json($datos);
+    }
+    public function denunciarApunte(Request $request){
+        $demandante = session()->get('user');
+        $datos = $request->except("_token","_method");
+        if ($datos["desc_denuncia"] == null) {
+            return response()->json(array("resultado"=>"nullDenuncia"));
+        }else{
+            $existDenuncia = DB::select("SELECT * FROM tbl_denuncias WHERE id_contenido = ? AND id_demandante = ?",[$datos["id_contenido"],$demandante->id]);
+            if (count($existDenuncia) != 0) {
+                return response()->json(array("resultado"=>"existDenuncia"));
+            }else{
+                try {
+                    DB::insert("INSERT INTO tbl_denuncias (tipus_denuncia,desc_denuncia,id_contenido,id_demandante,id_acusado) VALUES (?,?,?,?,?)",["Apunte",$datos["desc_denuncia"],$datos["id_contenido"],$demandante->id,$datos["id_acusado"]]);
+                    return response()->json(array("resultado"=>"OK"));
+                } catch (\Exception $e) {
+                    return response()->json(array("resultado"=>"NOK: ".$e->getMessage()));
+                }
+            }
+        }
+        return response()->json($datos);
     }
 }

@@ -396,9 +396,12 @@ h4 {
     background-image: url("../../media/cambiarpass/fondo3.png");
     background-size: cover;
     background-repeat: no-repeat;
-    //overflow-y: hidden;
     main {
         //@extend .flex;
+        height: calc(100vh - 105px);
+        @media(min-width: $grid-float-breakpoint) {
+            height: 100%;
+        }
         .region {
             .glassland {
                 @extend .glass2;
@@ -408,15 +411,22 @@ h4 {
             }
         }
         .region1 {
-            margin: 4% 0% 2% 17%;
-            @extend .flex;
+            @media(min-width: $grid-float-breakpoint) {
+                padding: 5% 0% 5% 10%;
+            }
             .content-region {
+                justify-content: space-around;
+                display: flex;
+                flex-flow: row wrap;
+                @media(max-width: $grid-float-breakpoint) {
+                    flex-flow: column;
+                    justify-content: center;
+                }
                 .glassland {
                     .content-glassland {
                         @extend .flex;
                         .cambiarpass-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
+                            padding: calc(20px + 0.5vh) calc(15px + 1vw);
                             .inputbtn {
                                 &::placeholder {
                                     font-family: "Font Awesome\ 6 pro";
@@ -428,11 +438,9 @@ h4 {
                         }
                     }
                 }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 250px;
-                    .imgpass {
-                        width: 60%;
+                @media(max-width: $grid-float-breakpoint) {
+                    .imagenrelleno {
+                        display: none;
                     }
                 }
             }

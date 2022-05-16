@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\RegisterUserOAuth;
+use App\Http\Requests\RegisterProfeOAuth;
 use Illuminate\Support\Facades\DB;
 use Imagick;
 
@@ -118,6 +119,50 @@ class OAuthController extends Controller
         try {
             $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
             DB::update("UPDATE tbl_usuario SET fecha_nac_usu = ?,contra_usu = ?,validado = ?,id_rol = ?, id_centro = ? WHERE id = ?",[$datos["fecha_nac_usu"],$password,true,$datos["id_rol"],$id_centro[0]->id,$datos["id"]]);
+            $json = [
+                "id" => $datos["id"],
+                "curso" => null,
+                "idioma" => null,
+                "darkmode" => false
+            ];
+            $json = json_encode($json);
+            //Almacenar JSON
+            Storage::disk('config-user')->put("user-".$datos["id"].".json", $json);
+            $user = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$datos["id"]]);
+            $user = $user[0];
+            session()->forget("id");
+            session()->put("user", $user);
+            return redirect("buscador");
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
+    public function oauthRegisterProfesor(RegisterProfeOAuth $request) {
+        $datos=$request->except("_token");
+        $password = md5($datos["contra_profe"]);
+        try {
+            if ($datos["centro"] == null) {
+                $id_centro = null;
+            }else{
+                $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
+                $id_centro=$id_centro[0]->id;
+            }
+            if ($request->hasFile('curriculum_profe2')) {
+                //$file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
+                $profe = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$datos["id"]]);
+                $profe = $profe [0];
+                $path_folder = 'uploads/curriculum/';
+                $filecur = $request->file('curriculum_profe2');
+                $fileName = $profe->nombre_usu.$profe->apellido_usu.'_'.$datos["id"].'_CV.pdf';
+                $filecur->storeAs('public/'.$path_folder,$fileName);
+                $NombreCurriculum = $path_folder.$fileName;
+                /* return $nomcur; */
+            }else{
+                $NombreCurriculum = "";
+            }
+            DB::update("UPDATE tbl_usuario SET fecha_nac_usu = ?,contra_usu = ?,validado = ?,id_rol = ?, id_centro = ? WHERE id = ?",[$datos["fecha_nac_prof"],$password,true,$datos["id_rol"],$id_centro,$datos["id"]]);
+            DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$NombreCurriculum,$datos["id"]]);
             $json = [
                 "id" => $datos["id"],
                 "curso" => null,

@@ -60,7 +60,7 @@ function modalProfe() {
     modal.style.display = "none";
 
     var resgitroProf = document.getElementById("idRegister2");
-    resgitroProf.style.display = "block";
+    resgitroProf.style.display = ""; //NO PONER NADA PARA QUE EL GRID SE VEA BIEN
     document.getElementById("img_avatar_usu2").style.display = "none";
 }
 
@@ -106,6 +106,18 @@ function avatarSelected(img_avatar) {
     /* console.log(img_avatar); */
     document.getElementById("img_avatar_sistema").value = img_avatar;
     document.getElementById("img_avatar_sistema_profe").value = img_avatar
+    document.getElementById("img_avatar_usu").value = null
+    document.getElementById("img_avatar_usu2").value = null
+}
+
+function deselectAvatar() {
+    allAvatar = document.getElementsByClassName("elegiravatar");
+    for (let i = 0; i < allAvatar.length; i++) {
+        allAvatar[i].style.border = "white";
+
+    }
+    document.getElementById("img_avatar_sistema").value = null;
+    document.getElementById("img_avatar_sistema_profe").value = null;
 }
 
 function chBackcolor(avatar) {
@@ -119,7 +131,7 @@ function chBackcolor(avatar) {
 
 function hasAvatarOrImage() {
     let avatar = document.getElementById("img_avatar_sistema").value;
-    let nombre = document.getElementById("nick_usu").value;
+    let nombreusu = document.getElementById("nick_usu").value;
     let image = document.getElementById("img_avatar_usu").files;
     if (avatar == "" && image.length == 0) {
         alertify.error("Selecciona avatar o imagen");

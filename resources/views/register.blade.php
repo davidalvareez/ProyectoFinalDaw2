@@ -1,15 +1,7 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="../public/js/registro/registro.js"></script>
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
     <link rel="stylesheet" href="{!! asset ('css/registro/styles.css')!!}">
-    <script src="{!! asset ('js/fontawesomePRO.js')!!}"></script>
     <title>Register</title>
 </head>
 
@@ -24,7 +16,7 @@
                   <h1 class="titulo">SELECCIONA TU PERFIL</h1>
                   <div class="card">
                     <div class="card__image-holder">
-                      <img class="card__image" src="./img/alumno.jpg"/>
+                      <img class="card__image" src="{!! asset ('media/loginregister/alumno.jpg') !!}"/>
                     </div>
                     <div class="card-title">
                       <a href="#" class="toggle-info btn">
@@ -48,7 +40,7 @@
                   </div>
                   <div class="card">
                     <div class="card__image-holder">
-                      <img class="card__image" src="./img/profesor.jpg"/>
+                      <img class="card__image" src="{!! asset ('media/loginregister/profesor.jpg') !!}"/>
                     </div>
                     <div class="card-title">
                       <a href="#" class="toggle-info btn">
@@ -71,6 +63,17 @@
                       </div>
                     </div>
                   </div>
+
+                    <div class="redes-sociales">
+                        <div class="alienar-2">
+                            <h4>o comienza a regístrarte con:</h4>
+                        </div>
+                        <div class="botones-redes">
+                            <a onclick="{{url('login-facebook')}}"><img src="{!! asset ('media/loginregister/facebook.png') !!}" alt="facebook" class="icono-socialmedia"></a>
+                            <a onclick="{{url('login-twitter')}}"><img src="{!! asset ('media/loginregister/twitter.png') !!}" alt="twitter" class="icono-socialmedia"></a>
+                            <a onclick="{{url('login-google')}}"><img src="{!! asset ('media/loginregister/google.png') !!}" alt="google" class="icono-socialmedia"></a>
+                        </div>
+                    </div>
                 </div>
               </div>
         </div>
@@ -95,7 +98,7 @@
                                         @endforeach
                                     </div>
                                     <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
-                                    <input type="file" name="img_avatar_usu" id="img_avatar_usu">
+                                    <input type="file" name="img_avatar_usu" id="img_avatar_usu" onchange="deselectAvatar();">
                                     <br><br>
                                     <button onclick="closeModal2();return false;" class="aceptarbtn" value="Aceptar">Aceptar</button>
                                 </div>
@@ -115,7 +118,15 @@
                                     </div>
                                     <div>
                                         @error('nombre_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -127,7 +138,15 @@
                                     </div>
                                     <div>
                                         @error('apellido_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -138,8 +157,17 @@
                                         <input class="inputbtn" type="text" name="nick_usu" id="nick_usu" placeholder="Nickname">
                                     </div>
                                     <div>
+                                        
                                         @error('nick_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -151,7 +179,15 @@
                                     </div>
                                     <div>
                                         @error('fecha_nac_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -168,7 +204,15 @@
                                     </div>
                                     <div>
                                         @error('centro')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                     <div>
@@ -187,7 +231,15 @@
                                     </div>
                                     <div>
                                         @error('correo_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -199,7 +251,15 @@
                                     </div>
                                     <div>
                                         @error('contra_usu')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -211,7 +271,15 @@
                                     </div>
                                     <div>
                                         @error('contra_usu_verify')
-                                        <p class="errortext">{{$message}}</p>
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
                                         @enderror
                                     </div>
                                 </div>
@@ -225,6 +293,231 @@
                                         <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="">
                                     </div>
                                 </div>
+
+                                <div class="menuuno">
+                                    <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
+                                </div>
+                                <div class="menuuno">
+                                    <div class="alienarleft">
+                                        <p>Ya estás registrado? <a href="{{url('login')}}">Inicia sesión</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="menuuno">
+                                    <label style="font-size: small">Al registrarte aceptas nuestros <a href="{{url('terminos')}}">Términos y Condiciones</a> y la <a href="{{url('privacidad')}}">Política de Privacidad</a>.</label>
+                                </div>
+                            </form>
+{{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+<form action="{{url('registerProfe')}}" class="formulario-grid" id="idRegister2" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
+                                
+    @csrf
+                                <div class="menudos">
+                                    <h4 class="pizq">Nombre</h4>
+                                    <div>
+                                        <input class="inputbtn" type="text" name="nombre_profe" id="nombre_profe" placeholder="Nombre">
+                                    </div>
+                                    <div>
+                                        @error('nombre_profe')
+                                        <script>
+                                            alertify.error("Falta nombre");
+                                        </script>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
+                                </div>
+                                    
+                                <div class="menudos">
+                                    <h4 class="pizq">Apellido</h4>
+                                    <div>
+                                        <input class="inputbtn" type="text" name="apellido_profe" id="apellido_profe" placeholder="Apellido">
+                                    </div>
+                                    <div>
+                                        @error('apellido_profe')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="menudos">
+                                    <h4 class="pizq">Nickname</h4>
+                                    <div>
+                                        <input class="inputbtn" type="text" name="nick_usu" id="nick_usu" placeholder="Nickname">
+                                    </div>
+                                    {{-- <div>
+                                        @error('nick_usu')
+                                        <script>
+                                            alertify.error("Falta nickname");
+                                        </script>
+                                        {{-- <p class="errortext">{{$message}}</p>
+                                        @enderror
+                                    </div> --}}
+                                </div>
+                                
+                                <div class="menudos">
+                                    <h4 class="pizq">Fecha de nacimiento</h4>
+                                    <div>
+                                        <input class="inputbtn" type="date" name="fecha_nac_profe" id="fecha_nac_profe">
+                                    </div>
+                                    <div>
+                                        @error('fecha_nac_profe')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="menudos">
+                                    <h4 class="pizq">Centro</h4>
+                                    <div>
+                                        <input class="inputbtn" autocomplete="off" list="browsers" name="centro" id="centro" placeholder="Seleccionar centro" >
+                                        <datalist id="browsers">
+                                            @foreach($centros as $centro)
+                                                <option value="{{$centro->nombre_centro}}">{{$centro->nombre_centro}}</option>
+                                            @endforeach
+                                        </datalist>
+                                    </div>
+                                    {{-- <div>
+                                        @error('centro')
+                                        <script>
+                                            alertify.error("Falta centro");
+                                        </script>
+                                        {{-- <p class="errortext">{{$message}}</p>
+                                        @enderror
+                                    </div> --}}
+                                    <div>
+                                        <div style="float: left">
+                                            <a href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=(INSERTE NOMBRE DEL CENTRO) no se encuentra en el selector de centros.">
+                                                <p>No encuentras tu centro?</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="menudos">
+                                    <h4 class="pizq">Email</h4>
+                                    <div>
+                                        <input class="inputbtn" type="email" name="correo_usu" id="correo_usu" placeholder="Email">
+                                    </div>
+                                    {{-- <div>
+                                        @error('correo_usu')
+                                        <script>
+                                            alertify.error("Falta email");
+                                        </script>
+                                        {{-- <p class="errortext">{{$message}}</p>
+                                        @enderror
+                                    </div> --}}
+                                </div>
+                                
+                                <div class="menudos">
+                                    <h4 class="pizq">Contraseña</h4>
+                                    <div>
+                                        <input class="inputbtn" type="password" name="contra_profe" id="contra_profe" placeholder="Contraseña">
+                                    </div>
+                                    <div>
+                                        @error('contra_profe')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="menudos">
+                                    <h4 class="pizq">Repetir contraseña</h4>
+                                    <div>
+                                        <input class="inputbtn" type="password" name="contra_profe_verify" id="contra_profe_verify" placeholder="Repetir contraseña">
+                                    </div>
+                                    <div>
+                                        @error('contra_profe_verify')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="menuuno">
+                                    <h4 class="pizq">Avatar</h4>
+                                    <div>
+                                        <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
+                                        <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema_profe" value="">
+                                        <input type="file" onchange="deselectAvatar();" name="img_avatar_usu2" id="img_avatar_usu_profe" value="">
+                                    </div>
+                                    <div>
+                                        @error('img_avatar_usu')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                        @error('img_avatar_usu2')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="menuuno">
+                                    <h4 class="pizq">Currículum</h4>
+                                    <div>
+                                        <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
+                                        <input class="inputbtn-selec2" type="file" name="curriculum_profe2" id="curriculum_profe2" value="AÑADIR CURRÍCULUM">
+                                        <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="4">
+                                    </div>
+                                    <div>
+                                        @error('curriculum_profe2')
+                                        <?php
+                                        //echo $message;
+                                        
+                                        echo "<script>";
+                                        echo    "alertify.error('".$message."')";
+                                        echo "</script>";
+                                        
+                                        ?>
+                                        {{-- <p class="errortext">{{$message}}</p> --}}
+                                        @enderror
+                                    </div>
+                                </div>
                                 <!-- <div class="alienarright">
                                     <a href="">
                                         <p>Contraseña olvidada?</p>
@@ -233,178 +526,26 @@
                                 <div class="menuuno">
                                     <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
                                 </div>
-                                <div class="">
+                                <div class="menuuno">
                                     <div class="alienarleft">
-                                        <p>Ya estás registrado?</p>
-                                    </div>
-                                    <div class="alienarleft">
-                                        <a href="{{url('login')}}">
-                                            <p>Inicia sesión</p>
-                                        </a>
+                                        <p>Ya estás registrado? <a href="{{url('login')}}">Inicia sesión</a></p>
                                     </div>
                                 </div>
+
+                                <div class="menuuno">
+                                    <label style="font-size: small">Al registrarte aceptas nuestros <a href="{{url('terminos')}}">Términos y Condiciones</a> y la <a href="{{url('privacidad')}}">Política de Privacidad</a>.</label>
+                                </div>
                             </form>
-{{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
-<form action="{{url('register')}}" class="formulario-grid" id="idRegister2" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
-                                
-    @csrf
-
-    <div class="menudos">
-        <h4 class="pizq">Nombre</h4>
-        <div>
-            <input class="inputbtn" type="text" name="nombre_usu" id="nombre_usu" placeholder="Nombre">
-        </div>
-        <div>
-            @error('nombre_usu')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-    </div>
-        
-    <div class="menudos">
-        <h4 class="pizq">Apellido</h4>
-        <div>
-            <input class="inputbtn" type="text" name="apellido_usu" id="apellido_usu" placeholder="Apellido">
-        </div>
-        <div>
-            @error('apellido_usu')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-    </div>
-    
-    <div class="menudos">
-        <h4 class="pizq">Nickname</h4>
-        <div>
-            <input class="inputbtn" type="text" name="nick_usu" id="nick_usu" placeholder="Nickname">
-        </div>
-        <div>
-            @error('nick_usu')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-    </div>
-    
-    <div class="menudos">
-        <h4 class="pizq">Fecha de nacimiento</h4>
-        <div>
-            <input class="inputbtn" type="date" name="fecha_nac_usu" id="fecha_nac_usu">
-        </div>
-        <div>
-            @error('fecha_nac_usu')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-    </div>
-    
-    <div class="menudos">
-        <h4 class="pizq">Centro</h4>
-        <div>
-            <input class="inputbtn" autocomplete="off" list="browsers" name="centro" id="centro" placeholder="Seleccionar centro" >
-            <datalist id="browsers">
-                @foreach($centros as $centro)
-                    <option value="{{$centro->nombre_centro}}">{{$centro->nombre_centro}}</option>
-                @endforeach
-            </datalist>
-        </div>
-        <div>
-            @error('centro')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-        <div>
-            <div style="float: left">
-                <a href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=(INSERTE NOMBRE DEL CENTRO) no se encuentra en el selector de centros.">
-                    <p>No encuentras tu centro?</p>
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="menudos">
-        <h4 class="pizq">Email</h4>
-        <div>
-            <input class="inputbtn" type="email" name="correo_usu" id="correo_usu" placeholder="Email">
-        </div>
-        <div>
-            @error('correo_usu')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-    </div>
-    
-    <div class="menudos">
-        <h4 class="pizq">Contraseña</h4>
-        <div>
-            <input class="inputbtn" type="password" name="contra_usu" id="contra_usu" placeholder="Contraseña">
-        </div>
-        <div>
-            @error('contra_usu')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-    </div>
-    
-    <div class="menudos">
-        <h4 class="pizq">Repetir contraseña</h4>
-        <div>
-            <input class="inputbtn" type="password" name="contra_usu_verify" id="contra_usu_verify" placeholder="Repetir contraseña">
-        </div>
-        <div>
-            @error('contra_usu_verify')
-            <p class="errortext">{{$message}}</p>
-            @enderror
-        </div>
-    </div>
-    
-    <div class="menuuno">
-        <h4 class="pizq">Avatar</h4>
-        <div>
-            <input class="inputbtn-selec" id="clickselec" type="submit" onclick="modalbox();return false;" value="CLICK PARA SELECCIONAR AVATAR">
-            <input type="hidden" name="img_avatar_sistema" id="img_avatar_sistema_profe" value="">
-            <input type="file" name="img_avatar_usu2" id="img_avatar_usu_profe" value="">
-        </div>
-    </div>
-
-    <div class="menuuno">
-        <h4 class="pizq">Curriculum</h4>
-        <div>
-            <input type="hidden" name="curriculum_profe" id="curriculum_profe" value="">
-            <input type="file" name="curriculum_profe2" id="curriculum_profe2" value="">
-            <input type="hidden" name="tipo_usuario" id="tipo_usuario2" value="4">
-        </div>
-    </div>
-    <!-- <div class="alienarright">
-        <a href="">
-            <p>Contraseña olvidada?</p>
-        </a>
-    </div> -->
-    <div class="menuuno">
-        <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
-    </div>
-    <div class="">
-        <div class="alienarleft">
-            <p>Ya estás registrado?</p>
-        </div>
-        <div class="alienarleft">
-            <a href="{{url('login')}}">
-                <p>Inicia sesión</p>
-            </a>
-        </div>
-    </div>
-</form>
 {{-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-region">
                 <div class="imagenrelleno">
                     <img src="{!! asset ('media/loginregister/imagen2.png') !!}" alt="imgregistro" class="imgredondeada2">
                 </div>
             </div>
         </div>
     </main>
+    @include ('template.footer')
 </body>
 </html>
-@include ('template.footer')

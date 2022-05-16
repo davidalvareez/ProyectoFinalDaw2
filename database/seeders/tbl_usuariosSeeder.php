@@ -177,7 +177,7 @@ class tbl_usuariosSeeder extends Seeder
         /*-------------------------- EJEMPLO PROFESORES PRUEBA ----------------*/
         //ID = 14
         DB::table('tbl_usuario')->insert([
-            'nick_usu' => 'Tomás De Michele',
+            'nick_usu' => 'TomásDeMichele',
             'nombre_usu' => 'Tomás',
             'apellido_usu' => 'De Michele',
             'fecha_nac_usu' => '1985-09-16',
@@ -189,7 +189,7 @@ class tbl_usuariosSeeder extends Seeder
 
         //ID = 15
         DB::table('tbl_usuario')->insert([
-            'nick_usu' => 'Dolores Crotal',
+            'nick_usu' => 'DoloresCrotal',
             'nombre_usu' => 'Dolores',
             'apellido_usu' => 'Crotal',
             'fecha_nac_usu' => '1985-10-16',
@@ -201,7 +201,7 @@ class tbl_usuariosSeeder extends Seeder
 
         //ID = 16
         DB::table('tbl_usuario')->insert([
-            'nick_usu' => 'Kerry Cabuela',
+            'nick_usu' => 'KerryCabuela',
             'nombre_usu' => 'Kerry',
             'apellido_usu' => 'Cabuela',
             'fecha_nac_usu' => '1985-11-16',
@@ -213,7 +213,7 @@ class tbl_usuariosSeeder extends Seeder
 
         //ID = 16
         DB::table('tbl_usuario')->insert([
-            'nick_usu' => 'Isma Ricon',
+            'nick_usu' => 'IsmaRicon',
             'nombre_usu' => 'Isma',
             'apellido_usu' => 'Ricon',
             'fecha_nac_usu' => '1985-12-16',
@@ -225,7 +225,7 @@ class tbl_usuariosSeeder extends Seeder
 
         //ID = 17
         DB::table('tbl_usuario')->insert([
-            'nick_usu' => 'Felipe Neduro',
+            'nick_usu' => 'FelipeNeduro',
             'nombre_usu' => 'Felipe',
             'apellido_usu' => 'Neduro',
             'fecha_nac_usu' => '1985-08-16',

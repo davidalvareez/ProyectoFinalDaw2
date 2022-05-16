@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Filesystem\Filesystem;
+use App\Http\Requests\LoginValidation;
+use App\Http\Requests\RegisterValidation;
+use Illuminate\Support\Facades\MAIL;
+use App\Mail\sendMail;
 
 class CRUDAdminController extends Controller
 {
@@ -83,22 +89,75 @@ class CRUDAdminController extends Controller
         }
 
 //Crear
-    /* CrearUsuarios */
-        public function insertUsuario(Request $request){    
+    /* CrearCentro */
+        public function crearCentro(Request $request){ 
+            $datos=$request->except("_token");
             try{
-                DB::insert('INSERT into tbl_usuario (titulo, descripcion) values (?,?)',[$request->input('titulo'),$request->input('descripcion')]);
+                DB::insert("INSERT INTO tbl_centro (nombre_centro, pais_centro, com_auto_centro, ciudad_centro, direccion_centro) VALUES (?,?,?,?,?)",[$datos["nombre_centro"],$datos["pais_centro"],$datos["com_auto_centro"],$datos["ciudad_centro"],$datos["direccion_centro"]]);
+                Storage::makeDirectory('public/uploads/apuntes/'.$datos["nombre_centro"]);
                 return response()->json(array('resultado'=> 'OK'));
-            }catch (\Throwable $th) {
+            }catch(\Throwable $th) {
                 return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
             }
         }
 
+    /* CrearCursos */
+    public function crearCurso(Request $request){ 
+        $datos=$request->except("_token");
+        try{
+            DB::beginTransaction();
+            DB::insert("INSERT INTO tbl_cursos (nombre_curso, nombre_corto_curso, tipo_curso, id_centro) VALUES (?,?,?,?)",[$datos["nombre_curso"],$datos["nombre_corto_curso"],$datos["tipo_curso"],$datos["id_centro"]]);
+            $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+            Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_curso"]);
+            DB::commit();
+            return response()->json(array('resultado'=> 'OK'));
+        }catch(\Throwable $th) {
+            DB::rollBack();
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    /* CrearAsignaturas */
+    public function crearAsignatura(Request $request){ 
+        $datos=$request->except("_token");
+        try{
+            DB::beginTransaction();
+            DB::insert("INSERT INTO tbl_asignaturas (nombre_asignatura, id_curso) VALUES (?,?)",[$datos["nombre_asignatura"],$datos["id_curso"]]);
+            $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+            $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
+            Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_asignatura"]);
+            DB::commit();
+            return response()->json(array('resultado'=> 'OK'));
+        }catch(\Throwable $th) {
+            DB::rollBack();
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
+
+    /* CrearTemas */
+    public function crearTema(Request $request){ 
+        $datos=$request->except("_token");
+        try{
+            DB::beginTransaction();
+            DB::insert("INSERT INTO tbl_temas (nombre_tema, id_asignatura) VALUES (?,?)",[$datos["nombre_tema"],$datos["id_asignatura"]]);
+            $nombre_asignatura=DB::select("SELECT nombre_asignatura FROM tbl_asignaturas WHERE id = ?",[$datos["id_asignatura"]]);
+            $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+            $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
+            Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_tema"]);
+            DB::commit();
+            return response()->json(array('resultado'=> 'OK'));
+        }catch(\Throwable $th) {
+            DB::rollBack();
+            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        }
+    }
 //Actualizar
     /* ActualizarCentro */
         public function actualizarCentro(Request $request){  
-            /* return response()->json($request); */
+            $datos=$request->except("_token");
             try {
-                DB::update("UPDATE tbl_centro set nombre_centro= ?, pais_centro= ?, com_auto_centro= ?, ciudad_centro= ?, direccion_centro= ? where id=?",[$request["nombre"],$request["pais"],$request["com_auto"],$request["ciudad"],$request["direccion"],$request["id"]]);
+                DB::update("UPDATE tbl_centro set nombre_centro= ?, pais_centro= ?, com_auto_centro= ?, ciudad_centro= ?, direccion_centro= ? where id=?",[$datos["nombre"],$datos["pais"],$datos["com_auto"],$datos["ciudad"],$datos["direccion"],$datos["id_centro"]]);
+                Storage::move('public/uploads/apuntes/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$datos["nombre"]);
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
                     return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
@@ -106,35 +165,50 @@ class CRUDAdminController extends Controller
         }
     /* ActualizarCurso */
         public function actualizarCurso(Request $request){  
-            /* return response()->json($request); */
+            $datos=$request->except("_token");
             try {  
-                DB::update("UPDATE tbl_cursos set nombre_curso= ?, nombre_corto_curso= ?, tipo_curso= ? where id=?",[$request["nombre_curso"],$request["nombre_corto_curso"],$request["tipo_curso"],$request["id"]]);
-                /* return $update; */
+                DB::beginTransaction();
+                DB::update("UPDATE tbl_cursos set nombre_curso= ?, nombre_corto_curso= ?, tipo_curso= ? where id=?",[$datos["nombre_curso"],$datos["nombre_corto_curso"],$datos["tipo_curso"],$datos["id"]]);
+                $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+                Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_curso"]);
+                DB::commit();
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
-                    return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+                DB::rollBack();
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
             }
         }
     /* ActualizarAsignatura */
         public function actualizarAsignatura(Request $request){  
-            /* return response()->json($request); */
+            $datos=$request->except("_token");
             try {  
-                DB::update("UPDATE tbl_asignaturas set nombre_asignatura= ? where id=?",[$request["nombre_asignatura"],$request["id"]]);
-                /* return $update; */
+                DB::beginTransaction();
+                DB::update("UPDATE tbl_asignaturas set nombre_asignatura= ? where id=?",[$datos["nombre_asignatura"],$datos["id"]]);
+                $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+                $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
+                Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_asignatura"]);
+                DB::commit();
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
-                    return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+                DB::rollBack();
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
             }
         }
     /* ActualizarTema */
         public function actualizarTema(Request $request){  
-            /* return response()->json($request); */
-            try {  
-                DB::update("UPDATE tbl_temas set nombre_tema= ? where id=?",[$request["nombre_tema"],$request["id"]]);
-                /* return $update; */
+            $datos=$request->except("_token");
+            try { 
+                DB::beginTransaction(); 
+                DB::update("UPDATE tbl_temas set nombre_tema= ? where id=?",[$datos["nombre_tema"],$datos["id"]]);
+                $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+                $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
+                $nombre_asignatura=DB::select("SELECT nombre_asignatura FROM tbl_asignaturas WHERE id = ?",[$datos["id_asignatura"]]);
+                Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_tema"]);
+                DB::commit();
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
-                    return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+                DB::rollBack();
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
             }
         }
     /* ActualizarUsuario */

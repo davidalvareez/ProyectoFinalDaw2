@@ -1,16 +1,11 @@
 @include('template.header')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{!! asset ('css/vistaapuntes/vistaapuntes.css') !!}">
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{!! asset('js/vistaapuntes/vistaapuntes.js') !!}"></script>
     <title>Apunte</title>
 </head>
-<body class="vista-apuntes" oncontextmenu='return false'>
+<body class="vista-apuntes">
     <header></header>
     <main>
         <div class="menu">
@@ -22,7 +17,7 @@
                     <div class="content-apuntes">
                         {{-- <iframe src="https://docs.google.com/gview?url={{asset('storage').'/uploads/apuntes/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido.'&embedded=true'}}"></iframe> --}}
                         @if($apunte[0]->extension_contenido == ".pdf")
-                            <iframe id="framePDF" style="pointer-events:none;" src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
+                            <iframe id="framePDF" src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
                         @elseif($apunte[0]->extension_contenido == '.jpeg' || $apunte[0]->extension_contenido == '.jpg' || $apunte[0]->extension_contenido == '.png')
                             <img src="{{$path}}">
                         @endif
@@ -37,6 +32,12 @@
                                 <input class="btn-glass" type="submit" value="Descargar">
                             </form>
                         </div>
+                        <!--DENUNCIAR COMENTARIO-->
+                        @if ($apunte[0]->id_usu != Session::get('user')->id)
+                            <div class="descargar">
+                                <button class="btn-glass" onclick="denunciarApunte({{$apunte[0]->id_usu}},{{$apunte[0]->id}});">Denunciar</button>
+                            </div>
+                        @endif
                         {{-- <div class="volveratras">
                             <button class="btn-acciones" onclick="window.location.href='{{url('buscador')}}'">Volver atrás</button>
                         </div> --}}
@@ -90,38 +91,49 @@
                                 <h3 class="titulo-coment">Comentarios</h3>
                                 <div id="comentarios" class="comentario">
                                     <!--COMENTARIOS-->
-                                    @foreach($comentarios as $comentario)
-                                    <div>
-                                        <div style="float: left">
-                                            <h4 style="margin-left:20px;">{{$comentario->nick_usu}}</h4>
+                                    @if (count($comentarios) > 0)
+                                        @foreach($comentarios as $comentario)
+                                        <div>
+                                            <div style="float: left">
+                                                <h4 style="margin-left:20px;">{{$comentario->nick_usu}}</h4>
+                                            </div>
+                                            <div style="float:left">
+                                                <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
+                                            </div>
+                                            <!--DENUNCIAR COMENTARIO-->
+                                            @if ($comentario->id_usu != Session::get('user')->id)
+                                                <div style="float:left">
+                                                    <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" onclick="denunciarComentario({{$comentario->id_usu}},{{$comentario->id}},{{$apunte[0]->id}});" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
+                                                </div>
+                                            @endif
                                         </div>
-                                        <div style="float:left">
-                                            <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
+                                        <div class="nota-resta">
+                                            <label class="rating-label">
+                                                <input
+                                                    class="rating-small"
+                                                    max="5"
+                                                    min="0"
+                                                    oninput="this.style.setProperty('--value', this.value)"
+                                                    step="0.5"
+                                                    type="range"
+                                                    value="{{$comentario->val_comentario}}"
+                                                    style="--value:{{$comentario->val_comentario}};"
+                                                    disabled
+                                                    >
+                                            </label>
                                         </div>
-                                    </div>
-                                    <div class="nota-resta">
-                                        <label class="rating-label">
-                                            <input
-                                                class="rating-small"
-                                                max="5"
-                                                min="0"
-                                                oninput="this.style.setProperty('--value', this.value)"
-                                                step="0.5"
-                                                type="range"
-                                                value="{{$comentario->val_comentario}}"
-                                                style="--value:{{$comentario->val_comentario}};"
-                                                disabled
-                                                >
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <p class="texto-coment">{{$comentario->desc_comentario}}</p>
-                                    </div>
-                                    <!--TEXTO SI NO HAY COMENTARIOS-->
-                                    {{-- @if($comentario->any())
+                                        <div>
+                                            <p class="texto-coment" id="{{$comentario->id}}">{{$comentario->desc_comentario}}</p>
+                                        </div>
+                                        <!--TEXTO SI NO HAY COMENTARIOS-->
+                                        {{-- @if($comentario->any())
+                                            <p>Actualmente no hay comentarios :)</p>
+                                        @endif --}}
+                                        @endforeach
+                                    @else
+                                        <!--TEXTO SI NO HAY COMENTARIOS-->
                                         <p>Actualmente no hay comentarios :)</p>
-                                    @endif --}}
-                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -130,6 +142,6 @@
             </div>
         </div>
     </main>
-    <footer>@include('template.footer')</footer>
+    @include('template.footer')
 </body>
 </html>

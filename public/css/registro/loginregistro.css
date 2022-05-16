@@ -214,7 +214,11 @@
   background-color: #0e7a30cc;
 }
 
-.flex, .iconoanimacion, .login-page main .region .glassland .content-glassland, .login-page main .region1, .login-page main .region1 .content-region .glassland .content-glassland, .registro-page main .region .glassland .content-glassland, .registro-page main .region1, .registro-page main .region1 .content-region .glassland .content-glassland {
+.hide {
+  display: none;
+}
+
+.flex, .iconoanimacion, .login-page main .region1 .content-region, .login-page main .region1 .content-region .glassland .content-glassland, .registro-page main .region .glassland .content-glassland, .registro-page main .region1 .content-region, .registro-page main .region1 .content-region .glassland .content-glassland {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -266,6 +270,7 @@ html {
 body {
   height: 100%;
   width: 100%;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -305,6 +310,15 @@ body {
   background-color: #dddddd;
 }
 
+.inputbtn-selec2 {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 30px 10px 0px;
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 .imginputbtn {
   position: absolute;
   right: 10px;
@@ -321,7 +335,7 @@ body {
 
 .alienarleft {
   float: left;
-  padding: 40px 10px 5px 7px;
+  padding: 0px 10px 5px 7px;
 }
 
 .alienarright {
@@ -365,11 +379,31 @@ body {
   padding-bottom: 10px;
 }
 
+.boton-entrar {
+  padding-bottom: 45px;
+}
+
 .formulario-grid {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
+}
+
+.formulario2-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.botones-redes a:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+
+.icono-socialmedia {
+  width: 100%;
 }
 
 .modal {
@@ -487,16 +521,43 @@ h4 {
   background-image: url("../../media/loginregister/fondo3.png");
   background-size: cover;
   background-repeat: no-repeat;
-  overflow-y: hidden;
 }
 
-.login-page main .region1 {
-  margin: 5% 0% 5% 10%;
+.login-page main {
+  height: calc(100vh - 105px);
+}
+
+@media (max-width: 1200px) {
+  .login-page main {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login-page main .region1 {
+    padding: 5% 0% 5% 10%;
+  }
+}
+
+.login-page main .region1 .content-region {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media (max-width: 1200px) {
+  .login-page main .region1 .content-region {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
+  padding: calc(20px + 0.5vh) calc(15px + 1vw);
 }
 
 .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::-webkit-input-placeholder {
@@ -515,8 +576,24 @@ h4 {
   font-family: "Font Awesome\ 6 pro";
 }
 
-.login-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
+@media (max-width: 1200px) {
+  .login-page main .region1 .content-region .imagenrelleno {
+    display: none;
+  }
+}
+
+.login-page main .botones-redes a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  -webkit-transition: all .25s;
+  transition: all .25s;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+.login-page main .redes-sociales {
+  padding: 80px 0px 30px 0px;
 }
 
 .registro-page {
@@ -525,16 +602,51 @@ h4 {
   background-repeat: no-repeat;
 }
 
-.registro-page main .region1 {
-  margin: 5% 5% 5% 5%;
+@media (min-width: 1200px) {
+  .registro-page main .region1 {
+    padding: 5% 0% 5% 10%;
+  }
+}
+
+.registro-page main .region1 .content-region {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media (max-width: 1200px) {
+  .registro-page main .region1 .content-region {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
+  padding: calc(20px + 0.5vh) calc(15px + 1vw);
 }
 
-.registro-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
+@media (max-width: 1200px) {
+  .registro-page main .region1 .content-region .imagenrelleno {
+    display: none;
+  }
+}
+
+.registro-page main .botones-redes a {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  margin-left: 8px;
+  margin-top: 20px;
+  -webkit-transition: all .25s;
+  transition: all .25s;
+  cursor: pointer;
+}
+
+.registro-page main .alienar-2 {
+  padding: 80px 0px 20px 0px;
 }
 /*# sourceMappingURL=loginregistro.css.map */

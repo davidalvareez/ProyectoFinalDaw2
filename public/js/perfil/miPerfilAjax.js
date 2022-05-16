@@ -123,7 +123,17 @@ function closeModal() {
 
 function avatarSelected(img_avatar) {
     document.getElementById("img_avatar_sistema").value = img_avatar;
-    console.log(document.getElementById("img_avatar_sistema").value);
+    document.getElementById("img_avatar_usu").value = null;
+}
+
+function deselectAvatar() {
+    allAvatar = document.getElementsByClassName("elegiravatar");
+    for (let i = 0; i < allAvatar.length; i++) {
+        allAvatar[i].style.border = "white";
+
+    }
+    document.getElementById("img_avatar_sistema").value = null;
+    document.getElementById("img_avatar_sistema_profe").value = null;
 }
 
 function chBackcolor(avatar) {
@@ -177,18 +187,7 @@ function actualizarAvatarUsu() {
     ajax.send(formData)
 }
 /*CONFIGURACIÓN USER*/
-function openModalConfig() {
-    let modalConfiguracion = document.getElementById("modalConfiguracion");
-    modalConfiguracion.style.display = "block";
-}
-
-function closeModalConfig() {
-    let modalConfiguracion = document.getElementById("modalConfiguracion");
-    modalConfiguracion.style.display = "none";
-}
-
 function getConfigUser() {
-    let modalConfiguracionRecarga = document.getElementById("modalBoxConfiguracion")
     let token = document.getElementById('token').getAttribute("content");
     let formData = new FormData();
     formData.append('_token', token);
@@ -198,33 +197,28 @@ function getConfigUser() {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
-            console.log(respuesta);
-            let recarga = "";
-            recarga += `
-            <span class="close" onclick="closeModalConfig();">&times;</span>
-            <div class="">
-                <div class="">
-                    <div class="">
-                    <div class="">
-                        <div class="">
-                            <form method="post" onsubmit="changeConfigUser(); return false;" class="" id="changeConfig">`
+            recarga = '';
             if (respuesta.configuration == null) {
-                recarga += `<input list="cursos" autocomplete="off" name="nombre_curso"/>`
+                recarga += `<input list="cursos" autocomplete="off" name="nombre_curso" id="nombre_curso"/>`
             } else {
-                recarga += `<input list="cursos" autocomplete="off" name="nombre_curso" value="${respuesta.configuration}" />`
+                recarga += `<input list="cursos" autocomplete="off" name="nombre_curso" id="nombre_curso" value="${respuesta.configuration}" />`
             }
             recarga += `<datalist id="cursos">`;
             for (z in respuesta.cursos) {
                 recarga += `<option value="${respuesta.cursos[z].nombre_curso}">`
             }
-            recarga += `</datalist>
-                                            <input type="submit" value="Cambiar configuración">
-                                        </form> 
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>`
-            modalConfiguracionRecarga.innerHTML = recarga;
+            recarga += `</datalist>`;
+            Swal.fire({
+                title: '¿Que estas cursando?',
+                html: recarga,
+                showCancelButton: true,
+                confirmButtonText: 'Cambiar configuracion',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    changeConfigUser();
+                }
+            })
         }
     }
     ajax.send(formData);
@@ -232,9 +226,10 @@ function getConfigUser() {
 
 function changeConfigUser() {
     let token = document.getElementById('token').getAttribute("content");
-    let formData = new FormData(document.getElementById('changeConfig'));
+    let formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
+    formData.append('nombre_curso', document.getElementById('nombre_curso').value);
     let ajax = llamadaAjax();
     ajax.open("POST", "changeConfigUser", true);
     ajax.onreadystatechange = function() {
@@ -242,7 +237,6 @@ function changeConfigUser() {
             let respuesta = JSON.parse(this.responseText);
             if (respuesta.resultado == "OK") {
                 alertify.success("Configuracion cambiada correctamente");
-                closeModalConfig();
             }
         }
     }
