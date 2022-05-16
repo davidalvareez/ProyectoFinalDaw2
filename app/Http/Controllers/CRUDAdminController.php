@@ -30,7 +30,7 @@ class CRUDAdminController extends Controller
             }
 
             $users = DB::select("SELECT tbl_usuario.id, tbl_usuario.nick_usu, tbl_usuario.nombre_usu, tbl_usuario.apellido_usu, tbl_usuario.fecha_nac_usu,
-            tbl_usuario.correo_usu, tbl_usuario.deshabilitado, tbl_centro.nombre_centro, tbl_rol.nombre_rol, tbl_niveles.nombre_nivel,tbl_avatar.img_avatar
+            tbl_usuario.correo_usu, tbl_usuario.deshabilitado,tbl_centro.nombre_centro, tbl_rol.nombre_rol, tbl_niveles.nombre_nivel,tbl_avatar.img_avatar
             FROM tbl_usuario INNER JOIN tbl_rol ON tbl_usuario.id_rol = tbl_rol.id
             LEFT JOIN tbl_centro ON tbl_usuario.id_centro = tbl_centro.id
             LEFT JOIN tbl_niveles ON tbl_usuario.id_nivel = tbl_niveles.id
@@ -157,7 +157,9 @@ class CRUDAdminController extends Controller
             $datos=$request->except("_token");
             try {
                 DB::update("UPDATE tbl_centro set nombre_centro= ?, pais_centro= ?, com_auto_centro= ?, ciudad_centro= ?, direccion_centro= ? where id=?",[$datos["nombre"],$datos["pais"],$datos["com_auto"],$datos["ciudad"],$datos["direccion"],$datos["id_centro"]]);
-                Storage::move('public/uploads/apuntes/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$datos["nombre"]);
+                if ($datos["nombre_antiguo"] != $datos["nombre"]) {
+                    Storage::move('public/uploads/apuntes/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$datos["nombre"]);
+                }
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
                     return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
@@ -170,7 +172,9 @@ class CRUDAdminController extends Controller
                 DB::beginTransaction();
                 DB::update("UPDATE tbl_cursos set nombre_curso= ?, nombre_corto_curso= ?, tipo_curso= ? where id=?",[$datos["nombre_curso"],$datos["nombre_corto_curso"],$datos["tipo_curso"],$datos["id"]]);
                 $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
-                Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_curso"]);
+                if ($datos["nombre_antiguo"] != $datos["nombre_curso"]) {
+                    Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_curso"]);
+                }
                 DB::commit();
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
@@ -186,7 +190,9 @@ class CRUDAdminController extends Controller
                 DB::update("UPDATE tbl_asignaturas set nombre_asignatura= ? where id=?",[$datos["nombre_asignatura"],$datos["id"]]);
                 $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
                 $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
-                Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_asignatura"]);
+                if ($datos["nombre_antiguo"] != $datos["nombre_asignatura"]) {
+                    Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_asignatura"]);
+                }
                 DB::commit();
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
@@ -203,7 +209,9 @@ class CRUDAdminController extends Controller
                 $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
                 $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
                 $nombre_asignatura=DB::select("SELECT nombre_asignatura FROM tbl_asignaturas WHERE id = ?",[$datos["id_asignatura"]]);
-                Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_tema"]);
+                if ($datos["nombre_antiguo"] != $datos["nombre_tema"]) {
+                    Storage::move('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_antiguo"], 'public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_tema"]);
+                }
                 DB::commit();
                 return response()->json(array('resultado'=> 'OK'));
             } catch (\Throwable $th) {
@@ -217,7 +225,7 @@ class CRUDAdminController extends Controller
             try {  
                     $rol=DB::select("SELECT * FROM tbl_rol WHERE nombre_rol= ?",[$request["nombre_rol"]]);
                     /* return $rol; */
-                    if ( $request["deshabilitado"] == null && $request["tmpdeshabilitado"] == null) {
+                    if ($request["deshabilitado"] == null && $request["tmpdeshabilitado"] == null) {
                         $datetime = null;
                     }else{
                         $datetime = $request["deshabilitado"].' '.$request["tmpdeshabilitado"];

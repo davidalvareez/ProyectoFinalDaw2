@@ -518,12 +518,9 @@ h4 {
 // }
 //////////////
 .login-page {
-    background-image: url("../../media/loginregister/fondo3.png");
-    background-size: cover;
-    background-repeat: no-repeat;
     main {
         //@extend .flex;
-        height: calc(100vh - 105px);
+        // height: calc(100vh - 105px);
         @media(max-width: $grid-float-breakpoint) {
             height: 100%;
         }
@@ -583,9 +580,6 @@ h4 {
 }
 
 .registro-page {
-    background-image: url("../../media/loginregister/fondo3.png");
-    background-size: cover;
-    background-repeat: no-repeat;
     //overflow-y: hidden;
     main {
         //@extend .flex;

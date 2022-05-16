@@ -403,12 +403,6 @@ h4 {
   font-weight: bold;
 }
 
-.misapuntes-page {
-  background-image: url("../../media/misapuntes/fondo2.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 .misapuntes-page main .region1 {
   padding-left: 90px;
   margin-bottom: 60px;

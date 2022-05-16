@@ -388,12 +388,6 @@ h4 {
   font-weight: bold;
 }
 
-.cambiarpass-page {
-  background-image: url("../../media/cambiarpass/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 .cambiarpass-page main {
   height: calc(100vh - 105px);
 }
