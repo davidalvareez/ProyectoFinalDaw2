@@ -19,11 +19,11 @@
                     {{-- <form action='{{url('logout')}}' method='get'>
                         <button class="btn btn-secondary">Logout</button>
                     </form> --}}
-                    <button class="boton-menu cgradient-1" onclick="showUsers();return false">Users</button>
-                    <button class="boton-menu cgradient-1" onclick="showCentros();return false">Centros</button>
-                    <button class="boton-menu cgradient-1" onclick="showApuntes();return false">Apuntes</button>
-                    <button class="boton-menu cgradient-1" onclick="showDenuncias();return false">Denuncias</button>
-                    <button class="boton-menu cgradient-1" onclick="showHistorial();return false">Historial</button>
+                    <button class="boton-menu cgradient-1" onclick="showUsers();closeModal();return false">Users</button>
+                    <button class="boton-menu cgradient-1" onclick="showCentros();closeModal();return false">Centros</button>
+                    <button class="boton-menu cgradient-1" onclick="showApuntes();closeModal();return false">Apuntes</button>
+                    <button class="boton-menu cgradient-1" onclick="showDenuncias();closeModal();return false">Denuncias</button>
+                    <button class="boton-menu cgradient-1" onclick="showHistorial();closeModal();return false">Historial</button>
                     <div id="message" style="color:green"></div>
 
                     <div class="filtrador">
