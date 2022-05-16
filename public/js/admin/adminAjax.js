@@ -60,7 +60,6 @@ function showUsers() {
                     <th scope="col">Nombre y Apellido</th>
                     <th scope="col">Fecha nacimiento</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">Estado</th>
                     <th scope="col">Fecha habilitado</th>
                     <th scope="col">Centro de estudio</th>
                     <th scope="col">Rol</th>
@@ -75,7 +74,6 @@ function showUsers() {
                         <td>${respuesta[i].fecha_nac_usu}</td>
                         <td>${respuesta[i].correo_usu}</td>
                         <td>${respuesta[i].deshabilitado}</td>
-                        <td>${respuesta[i].tmpdeshabilitado}</td>
                         <td>${respuesta[i].nombre_centro}</td>
                         <td>${respuesta[i].nombre_rol}</td>
                         <td><img class="imgavatar" src="storage/${respuesta[i].img_avatar}"></td>
@@ -1055,20 +1053,10 @@ function swalUsers(id) {
 }
 
 //ModalBox
-/* Cerrar ModalBox */
-function closeModal() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "none";
-}
 /*ModalBox Centro*/
 function modalboxCentro(idCentro, nombre, pais, com_auto, ciudad, direccion) {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formUpdate" method="post" onsubmit="actualizarCentro();closeModal();return false;">
-                        <h2 id="nombreCentro">${nombre}</h2>
+    recarga += `<form id="formUpdate" method="post">
                         <b><span>Nombre centro:</span>
                         <input class="input-editar" type="text" name="nombre" id="nombre" value="${nombre}"><br>
                         <b><span>Pais centro:</span>
@@ -1081,20 +1069,23 @@ function modalboxCentro(idCentro, nombre, pais, com_auto, ciudad, direccion) {
                         <input class="input-editar" type="text" name="direccion" id="direccion" value="${direccion}"><br>
                         <input type="hidden" name="id_centro" id="id_centro" value="${idCentro}">
                         <input type="hidden" name="nombre_antiguo" id="nombre_antiguo" value="${nombre}">
-                        <input class="boton-guardar" type="submit" value="Guardar">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Actualizar centro: ${nombre}`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            actualizarCentro();
+        }
+    });
 }
 /*ModalBox Curso*/
 function modalboxCurso(idCentro, id, nombre, nombre_corto_curso, tipo_curso) {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formUpdateCurso" method="post" onsubmit="actualizarCurso(${idCentro});closeModal();return false;">
-                        <h2 id="nombreCurso">${nombre}</h2>
+    recarga += `<form id="formUpdateCurso" method="post">
                         <b><span>Nombre Curso:</span>
                         <input class="input-editar" type="text" name="nombre_curso" id="nombre_curso" value="${nombre}"><br>
                         <b><span>Nombre corto:</span>
@@ -1104,46 +1095,46 @@ function modalboxCurso(idCentro, id, nombre, nombre_corto_curso, tipo_curso) {
                         <input type="hidden" name="id" id="id" value="${id}">
                         <input type="hidden" name="id_centro" id="id_centro" value="${idCentro}">
                         <input type="hidden" name="nombre_antiguo" id="nombre_antiguo" value="${nombre}">
-                        <input class="boton-guardar" type="submit" value="Guardar">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Actualizar curso: ${nombre}`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            actualizarCurso(idCentro);
+        }
+    });
 }
 /*ModalBox Asignatura*/
 function modalboxAsignatura(idCentro, idCurso, id, nombre_asignatura) {
-    /*  console.log(idCurso);
-        console.log(id);
-        console.log(nombre_asignatura); */
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formUpdateAsignatura" method="post" onsubmit="actualizarAsignatura(${idCurso},${idCentro});closeModal();return false;">
-                        <h2 id="nombreAsignatura">${nombre_asignatura}</h2>
+    recarga += `<form id="formUpdateAsignatura" method="post">
                         <b><span>Nombre Asignatura:</span>
                         <input class="input-editar" type="text" name="nombre_asignatura" id="nombre_asignatura" value="${nombre_asignatura}"><br>
                         <input type="hidden" name="id" id="id" value="${id}">
                         <input type="hidden" name="id_centro" id="id_centro" value="${idCentro}">
                         <input type="hidden" name="id_curso" id="id_curso" value="${idCurso}">
                         <input type="hidden" name="nombre_antiguo" id="nombre_antiguo" value="${nombre_asignatura}">
-                        <input class="boton-guardar" type="submit" value="Guardar">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Actualizar asignatura: ${nombre_asignatura}`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            actualizarAsignatura(idCurso, idCentro);
+        }
+    });
 }
 /*ModalBox Tema*/
 function modalboxTema(idCentro, idCurso, idAsignatura, id, nombre_tema) {
-    /*  console.log(idAsignatura);
-        console.log(id);
-        console.log(nombre_tema); */
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formUpdateTema" method="post" onsubmit="actualizarTema(${idCentro},${idCurso},${idAsignatura});closeModal();return false;">
-                        <h2 id="nombreTema">${nombre_tema}</h2>
+    recarga += `<form id="formUpdateTema" method="post">
                         <b><span>Nombre Tema:</span>
                         <input class="input-editar" type="text" name="nombre_tema" id="nombre_tema" value="${nombre_tema}"><br>
                         <input type="hidden" name="id" id="id" value="${id}">
@@ -1151,30 +1142,23 @@ function modalboxTema(idCentro, idCurso, idAsignatura, id, nombre_tema) {
                         <input type="hidden" name="id_curso" id="id_curso" value="${idCurso}">
                         <input type="hidden" name="id_asignatura" id="id_asignatura" value="${idAsignatura}">
                         <input type="hidden" name="nombre_antiguo" id="nombre_antiguo" value="${nombre_tema}">
-                        <input class="boton-guardar" type="submit" value="Guardar">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Actualizar tema: ${nombre_tema}`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            actualizarAsignatura(idCentro, idCurso, idAsignatura);
+        }
+    });
 }
 /*ModalBox User*/
 function modalboxUser(id, nombre_usu, apellido_usu, nick_usu, fecha_nac_usu, correo_usu, deshabilitado, tmpdeshabilitado, nombre_rol) {
-    /* console.log(id);
-    console.log(nombre_usu);
-    console.log(apellido_usu);
-    console.log(nick_usu);
-    console.log(fecha_nac_usu);
-    console.log(correo_usu);
-    console.log(deshabilitado);
-    console.log(nombre_centro);
-    console.log(nombre_rol);
-    return false; */
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
-    var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formUpdateUser" method="post" onsubmit="actualizarUser();closeModal();return false;">
-                        <h2 id="nombreUser">${nombre_usu} ${apellido_usu}</h2>
+    let recarga = '';
+    recarga += `<form id="formUpdateUser" method="post" onsubmit="actualizarUser();return false;">
                         <b><span>Nombre usuario:</span>
                         <input class="input-editar" type="text" name="nombre_usu" id="nombre_usu" value="${nombre_usu}"><br>
                         <b><span>Apellido usuario:</span>
@@ -1199,10 +1183,18 @@ function modalboxUser(id, nombre_usu, apellido_usu, nick_usu, fecha_nac_usu, cor
                             <option value="Empresa">Empresa</option>                              
                         </select><br>
                         <input type="hidden" name="id" id="id" value="${id}">
-                        <input class="boton-guardar" type="submit" value="Guardar">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Actualizar usuario: ${nick_usu}`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Enviar",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            actualizarUser();
+        }
+    });
 }
 
 //Actualizar
@@ -1352,12 +1344,8 @@ function actualizarUser() {
 
 /*ModalBox Crear Centro*/
 function modalboxCrearCentro() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formCrearCentro" method="post" onsubmit="crearCentro();closeModal();return false;" enctype="multipart/form-data">
+    recarga += `<form id="formCrearCentro" method="post" enctype="multipart/form-data">
                         <h2 id="nombreCentro">Crear centro</h2>
                         <b><span>Nombre del Centro:</span>
                         <input type="text" name="nombre_centro" id="nombre_centro" value=""><br>
@@ -1369,20 +1357,23 @@ function modalboxCrearCentro() {
                         <input type="text" name="ciudad_centro" id="ciudad_centro" value=""><br>
                         <b><span>Dirección del centro:</span>
                         <input type="text" name="direccion_centro" id="direccion_centro" value=""><br>
-                        <input type="submit" value="Crear">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Crear centro`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Crear",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            crearCentro();
+        }
+    });
 }
 /*ModalBox Crear Curso*/
 function modalboxCrearCurso(idCentro) {
-    console.log(idCentro);
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formCrearCurso" method="post" onsubmit="crearCurso(${idCentro});closeModal();return false;" enctype="multipart/form-data">
+    recarga += `<form id="formCrearCurso" method="post" enctype="multipart/form-data">
                         <h2 id="nombreCurso">Crear Curso</h2>
                         <b><span>Nombre del Curso:</span>
                         <input type="text" name="nombre_curso" id="nombre_curso" value=""><br>
@@ -1391,53 +1382,65 @@ function modalboxCrearCurso(idCentro) {
                         <b><span>Tipo de curso:</span>
                         <input type="text" name="tipo_curso" id="tipo_curso" value=""><br>
                         <input type="hidden" name="id_centro" id="id_centro" value="${idCentro}"><br>
-                        <input type="submit" value="Crear">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Crear curso`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Crear",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            crearCurso(idCentro);
+        }
+    });
 }
 
 /*ModalBox Crear Asignatura*/
 function modalboxCrearAsignatura(idCurso, idCentro) {
-    /* console.log(idCurso);
-    console.log(idCentro); */
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formCrearAsignatura" method="post" onsubmit="crearAsignatura(${idCurso});closeModal();return false;" enctype="multipart/form-data">
+    recarga += `<form id="formCrearAsignatura" method="post" enctype="multipart/form-data">
                         <h2 id="nombreAsignatura">Crear Curso</h2>
                         <b><span>Nombre de la Asignatura:</span>
                         <input type="text" name="nombre_asignatura" id="nombre_asignatura" value=""><br>
                         <input type="hidden" name="id_curso" id="id_curso" value="${idCurso}"><br>
                         <input type="hidden" name="id_centro" id="id_centro" value="${idCentro}"><br>
-                        <input type="submit" value="Crear">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Crear asignatura`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Crear",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            crearAsignatura(idCurso);
+        }
+    });
 }
 
 /*ModalBox Crear Tema*/
 function modalboxCrearTema(idAsignatura, idCurso, idCentro) {
-    /* console.log(idCurso);
-    console.log(idCentro); */
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
     var recarga = '';
-    recarga += `<div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <form id="formCrearTema" method="post" onsubmit="crearTema(${idAsignatura});closeModal();return false;" enctype="multipart/form-data">
+    recarga += `<form id="formCrearTema" method="post" enctype="multipart/form-data">
                         <h2 id="nombreTema">Crear Curso</h2>
                         <b><span>Nombre del Tema:</span>
                         <input type="text" name="nombre_tema" id="nombre_tema" value=""><br>
                         <input type="hidden" name="id_asignatura" id="id_asignatura" value="${idAsignatura}"><br>
                         <input type="hidden" name="id_curso" id="id_curso" value="${idCurso}"><br>
                         <input type="hidden" name="id_centro" id="id_centro" value="${idCentro}"><br>
-                        <input type="submit" value="Crear">
-                    </form>
-                </div>`;
-    modal.innerHTML = recarga;
+                    </form>`;
+    Swal.fire({
+        title: `Crear tema`,
+        html: recarga,
+        showCancelButton: true,
+        confirmButtonText: "Crear",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            crearTema(idAsignatura);
+        }
+    });
 }
 
 /* CrearCentro */
