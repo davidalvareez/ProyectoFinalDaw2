@@ -101,6 +101,10 @@ function actualizarUser() {
                 contenedor.innerHTML = recarga;
                 nickname.innerText = recargaNick;
                 cerrarModal();
+            } else if (respuesta.resultado == "existNick") {
+                alertify.error("Ya existe un nick");
+            } else if (respuesta.resultado == "existEmail") {
+                alertify.error("Ya existe un correo");
             } else {
                 console.log(respuesta.resultado)
                 alertify.error("Ha ocurrido un error");

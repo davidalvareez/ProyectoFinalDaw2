@@ -16,57 +16,44 @@ class UsuarioController extends Controller
 {
     //Login + registro
     //Funciones view para hacer funciones + formulario
-    public function loginView(){
-        return view('login');
-    }
+        public function loginView(){
+            return view('login');
+        }
 
-    public function registerView(){
-        $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
-        $centros = DB::select("SELECT * FROM tbl_centro");
-        //return $avatares;
-        return view('register',compact('avatares','centros'));
-    }
+        public function registerView(){
+            $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
+            $centros = DB::select("SELECT * FROM tbl_centro");
+            //return $avatares;
+            return view('register',compact('avatares','centros'));
+        }
 
     //Funciones de hacer login y registro
-    public function login(LoginValidation $request){
-        $datos=$request->except("_token");
-        //Contraseña convertida a md5
-        $password = md5($datos["contra_usu"]);
-        //Sentencia que exista el usuario
-        try {
-            $user = DB::select("SELECT * FROM tbl_usuario WHERE (correo_usu = ? or nick_usu = ?) AND contra_usu = ?",[$datos["correo_nick"],$datos["correo_nick"],$password]);
-            //Coger la longitud del array si coge 1 esta bien en caso contrario mal
-            $existUser = count($user);
-            //Si es 0 login incorrecto
-            if ($existUser == 0) {
-                //Mandarlo al login conforme usuario y contraseña incorrecto
-                $fail_login = true;
-                return view("login",compact("fail_login"));
-            //En caso contrario comprovamos lo siguiente
-            }else{
-                $user = $user[0];
-                if ($user->validado == false) {
-                    $fail_validate = true;
-                    return view("login",compact("fail_validate"));
+        public function login(LoginValidation $request){
+            $datos=$request->except("_token");
+            //Contraseña convertida a md5
+            $password = md5($datos["contra_usu"]);
+            //Sentencia que exista el usuario
+            try {
+                $user = DB::select("SELECT * FROM tbl_usuario WHERE (correo_usu = ? or nick_usu = ?) AND contra_usu = ?",[$datos["correo_nick"],$datos["correo_nick"],$password]);
+                //Coger la longitud del array si coge 1 esta bien en caso contrario mal
+                $existUser = count($user);
+                //Si es 0 login incorrecto
+                if ($existUser == 0) {
+                    //Mandarlo al login conforme usuario y contraseña incorrecto
+                    $fail_login = true;
+                    return view("login",compact("fail_login"));
+                //En caso contrario comprovamos lo siguiente
                 }else{
-                    //date_default_timezone_set("Europe/Madrid");
-                    $sysDate = date('Y-m-d H:i:s');
-                    //Una vez dentro cogemos fecha actual del sistema
-                    //Si no está baneado es decir es nulo para dentro
-                    if ($user->deshabilitado == null) {
-                        session()->put("user",$user);
-                        if ($user->id_rol == 1) {
-                            return redirect("admin");
-                        }elseif($user->id_rol == 2){
-                            return redirect("moderador");
-                        }else{
-                            return redirect("buscador");
-                        }
-                    } else{
-                        //Si esta baneado validamos entre fecha/hora actual y el baneo y si el sistema es mayor o igual lo ponemos a nulo y lo devolvemos a la vista
-                        $timeBanned = $user->deshabilitado;
-                        if ($timeBanned <= $sysDate) {
-                            DB::select('UPDATE tbl_usuario SET deshabilitado=null where id = ?',[$user->id]);
+                    $user = $user[0];
+                    if ($user->validado == false) {
+                        $fail_validate = true;
+                        return view("login",compact("fail_validate"));
+                    }else{
+                        //date_default_timezone_set("Europe/Madrid");
+                        $sysDate = date('Y-m-d H:i:s');
+                        //Una vez dentro cogemos fecha actual del sistema
+                        //Si no está baneado es decir es nulo para dentro
+                        if ($user->deshabilitado == null) {
                             session()->put("user",$user);
                             if ($user->id_rol == 1) {
                                 return redirect("admin");
@@ -75,456 +62,477 @@ class UsuarioController extends Controller
                             }else{
                                 return redirect("buscador");
                             }
-                        }else{
-                            $fail_banned = true;
-                            return view("login",compact("fail_banned"));
+                        } else{
+                            //Si esta baneado validamos entre fecha/hora actual y el baneo y si el sistema es mayor o igual lo ponemos a nulo y lo devolvemos a la vista
+                            $timeBanned = $user->deshabilitado;
+                            if ($timeBanned <= $sysDate) {
+                                DB::select('UPDATE tbl_usuario SET deshabilitado=null where id = ?',[$user->id]);
+                                session()->put("user",$user);
+                                if ($user->id_rol == 1) {
+                                    return redirect("admin");
+                                }elseif($user->id_rol == 2){
+                                    return redirect("moderador");
+                                }else{
+                                    return redirect("buscador");
+                                }
+                            }else{
+                                $fail_banned = true;
+                                return view("login",compact("fail_banned"));
+                            }
                         }
                     }
                 }
+            } catch (\Exception $e) {
+                return $e->getMessage();
             }
-        } catch (\Exception $e) {
-            return $e->getMessage();
         }
-    }
 
-    public function register(RegisterValidation $request){
-        $datos=$request->except("_token");
-        //Contraseña convertida a md5
-        /* return $datos; */
-        $password = md5($datos["contra_usu"]);
-        if ($request->hasFile('img_avatar_usu2')) {
-            $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
-            /* return $file; */
-        }else{
-            $file = $datos["img_avatar_sistema"];
-        }
-        //Sentencia de creacion de usuario
-        try {
-            //Cogemos el id del centro y hacemos el registro como usuario normal
-            $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
-            $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
-            DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
-            // if ($datos["tipo_usuario"]==4) {
-            //     DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
-            // }   
-            $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
-            $newuser=$newuser[0];
-            //INSERTAMOS CODIGO DE VALIDACION
-            $code = rand(1000,9999);
-            DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$newuser->id]);
-            //Crear JSON archivo de configuración
-            $json = [
-                "id" => $newuser->id,
-                "curso" => null,
-                "idioma" => null,
-                "darkmode" => false
-            ];
-            $json = json_encode($json);
-            //Almacenar JSON
-            Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
-            //request()->file($json)->store('uploads/configuration','public');
-            $urlValidateUser = url("validarcorreo");
-            $sub = "Codigo de validacion de usuario";
-            $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
-            $datos = array('message'=>$msj);
-            $enviar = new sendMail($datos);
-            $enviar->sub = $sub;
-            Mail::to($newuser->correo_usu)->send($enviar);
-            return redirect("login");
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-
-public function registerProfe(RegisterProfeValidation $request){
-    $datos=$request->except("_token");
-    //Contraseña convertida a md5
-    /* return $datos; */
-    $password = md5($datos["contra_profe"]);
-    if ($request->hasFile('img_avatar_usu2')) {
-        $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
-        /* return $file; */
-    }else{
-        $file = $datos["img_avatar_sistema"];
-        /* return $datos; */
-    }
-    //Sentencia de creacion de usuario
-    try {
-        //Cogemos el id del centro y hacemos el registro como usuario normal
-        $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
-        $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_profe'],"apellido_usu"=>$datos['apellido_profe'],"fecha_nac_usu"=>$datos['fecha_nac_profe'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
-        DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
-    if ($request->hasFile('curriculum_profe2')) {
-        //$file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
-        $path_folder = 'uploads/curriculum/';
-        $filecur = $request->file('curriculum_profe2');
-        $fileName = $datos['nombre_profe'].$datos['apellido_profe'].'_'.$id.'_CV.pdf';
-        $filecur->storeAs('public/'.$path_folder,$fileName);
-        $nomcur= $path_folder.$fileName;
-        /* return $nomcur; */
-    }else{
-        $nomcur= "";
-    }
-        DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
-        $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
-        $newuser=$newuser[0];
-        //INSERTAMOS CODIGO DE VALIDACION
-        $code = rand(1000,9999);
-        DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$newuser->id]);
-        //Crear JSON archivo de configuración
-        $json = [
-            "id" => $newuser->id,
-            "curso" => null,
-            "idioma" => null,
-            "darkmode" => false
-        ];
-        $json = json_encode($json);
-        //Almacenar JSON
-        Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
-        //request()->file($json)->store('uploads/configuration','public');
-        $urlValidateUser = url("validarcorreo");
-        $sub = "Codigo de validacion de usuario";
-        $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
-        $datos = array('message'=>$msj);
-        $enviar = new sendMail($datos);
-        $enviar->sub = $sub;
-        Mail::to($newuser->correo_usu)->send($enviar);
-        return redirect("login");
-    } catch (\Exception $e) {
-        return $e->getMessage();
-    }
-}
-    //Validar usuario
-    public function validarUsuario(ValidateVerifyMail $request){
-        $datos = $request->except("_token");
-        $user = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$datos["correo"]]);
-        if (count($user) == 0) {
-            $user_notfound = true;
-            return view("validarCorreo",compact("user_notfound"));
-        }else{
-            $user = $user[0];
-            $validar = DB::select("SELECT * FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
-            if(count($validar) == 0){
-                $incorrect_code = true;
-                return view("validarCorreo",compact("incorrect_code"));
+        public function register(RegisterValidation $request){
+            $datos=$request->except("_token");
+            //Contraseña convertida a md5
+            /* return $datos; */
+            $password = md5($datos["contra_usu"]);
+            if ($request->hasFile('img_avatar_usu2')) {
+                $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
+                /* return $file; */
             }else{
-                try {
-                    DB::beginTransaction();
-                    DB::delete("DELETE FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
-                    DB::update("UPDATE tbl_usuario SET validado = ? WHERE id = ?",[true,$user->id]);
-                    DB::commit();
-                    session()->put("user",$user);
-                    return redirect('buscador');
-                } catch (\Exception $e) {
-                    DB::rollBack();
-                    return $e;
-                }
-            }   
-        }
-    }
-    //Validar contraseña
-    public function validarContraseñaView(){
-        return view('cambiarPass');
-    }
-    public function MAILvalidarContraseña(Request $request){
-        $datos = $request->except("_token","_method");
-        $correo_nick = $datos["nick_correo"];
-        $existUser = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ? or nick_usu = ?",[$correo_nick,$correo_nick]);
-        if (count($existUser) == 0) {
-            return response()->json(array("resultado" => "NotExist"));
-        }else{
+                $file = $datos["img_avatar_sistema"];
+            }
+            //Sentencia de creacion de usuario
             try {
-                $existUser = $existUser[0];
+                //Cogemos el id del centro y hacemos el registro como usuario normal
+                $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
+                $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_usu'],"apellido_usu"=>$datos['apellido_usu'],"fecha_nac_usu"=>$datos['fecha_nac_usu'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
+                DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
+                // if ($datos["tipo_usuario"]==4) {
+                //     DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
+                // }   
+                $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
+                $newuser=$newuser[0];
+                //INSERTAMOS CODIGO DE VALIDACION
                 $code = rand(1000,9999);
-                DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$existUser->id]);
-                $urlValidateUser = url("cambiarPass");
+                DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$newuser->id]);
+                //Crear JSON archivo de configuración
+                $json = [
+                    "id" => $newuser->id,
+                    "curso" => null,
+                    "idioma" => null,
+                    "darkmode" => false
+                ];
+                $json = json_encode($json);
+                //Almacenar JSON
+                Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
+                //request()->file($json)->store('uploads/configuration','public');
+                $urlValidateUser = url("validarcorreo");
                 $sub = "Codigo de validacion de usuario";
                 $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
                 $datos = array('message'=>$msj);
                 $enviar = new sendMail($datos);
                 $enviar->sub = $sub;
-                Mail::to($existUser->correo_usu)->send($enviar);
+                Mail::to($newuser->correo_usu)->send($enviar);
+                return redirect("login");
             } catch (\Exception $e) {
-                return response()->json(array("resultado" => "NOK: ".$e->getMessage()));
+                return $e->getMessage();
             }
         }
-    }
-    public function validarCambioContraseña(ValidateResetPassword $request){
-        $datos = $request->except("_token");
-        $user = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$datos["correo_usu"]]);
-        if (count($user) == 0) {
-            $user_notfound = true;
-            return view("cambiarPass",compact("user_notfound"));
-        }else{
-            $user = $user[0];
-            $password_encrypt = md5($datos["contra_usu"]);
-            if ($user->contra_usu == $password_encrypt) {
-                $samepassword = true;
-                return view("cambiarPass",compact("samepassword"));
+
+
+        public function registerProfe(RegisterProfeValidation $request){
+            $datos=$request->except("_token");
+            //Contraseña convertida a md5
+            /* return $datos; */
+            $password = md5($datos["contra_profe"]);
+            if ($request->hasFile('img_avatar_usu2')) {
+                $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
+                /* return $file; */
             }else{
+                $file = $datos["img_avatar_sistema"];
+                /* return $datos; */
+            }
+            //Sentencia de creacion de usuario
+            try {
+                //Cogemos el id del centro y hacemos el registro como usuario normal
+                $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
+                $id=DB::table("tbl_usuario")->insertGetId(["nick_usu"=>$datos['nick_usu'],"nombre_usu"=>$datos['nombre_profe'],"apellido_usu"=>$datos['apellido_profe'],"fecha_nac_usu"=>$datos['fecha_nac_profe'],"correo_usu"=>$datos['correo_usu'],"contra_usu"=>$password,"validado"=>false,"id_rol"=>$datos['tipo_usuario'],"id_centro"=>$id_centro[0]->id]);
+                DB::insert("INSERT INTO tbl_avatar (tipo_avatar, img_avatar, id_usu) VALUES (?,?,?)",["Usuario",$file,$id]);
+            if ($request->hasFile('curriculum_profe2')) {
+                //$file2 = $request->file('curriculum_profe2')->store('uploads/curriculum','public');
+                $path_folder = 'uploads/curriculum/';
+                $filecur = $request->file('curriculum_profe2');
+                $fileName = $datos['nombre_profe'].$datos['apellido_profe'].'_'.$id.'_CV.pdf';
+                $filecur->storeAs('public/'.$path_folder,$fileName);
+                $nomcur= $path_folder.$fileName;
+                /* return $nomcur; */
+            }else{
+                $nomcur= "";
+            }
+                DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$nomcur,$id]);
+                $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
+                $newuser=$newuser[0];
+                //INSERTAMOS CODIGO DE VALIDACION
+                $code = rand(1000,9999);
+                DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$newuser->id]);
+                //Crear JSON archivo de configuración
+                $json = [
+                    "id" => $newuser->id,
+                    "curso" => null,
+                    "idioma" => null,
+                    "darkmode" => false
+                ];
+                $json = json_encode($json);
+                //Almacenar JSON
+                Storage::disk('config-user')->put("user-".$newuser->id.".json", $json);
+                //request()->file($json)->store('uploads/configuration','public');
+                $urlValidateUser = url("validarcorreo");
+                $sub = "Codigo de validacion de usuario";
+                $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($newuser->correo_usu)->send($enviar);
+                return redirect("login");
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    //Validar usuario
+        public function validarUsuario(ValidateVerifyMail $request){
+            $datos = $request->except("_token");
+            $user = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$datos["correo"]]);
+            if (count($user) == 0) {
+                $user_notfound = true;
+                return view("validarCorreo",compact("user_notfound"));
+            }else{
+                $user = $user[0];
                 $validar = DB::select("SELECT * FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
                 if(count($validar) == 0){
                     $incorrect_code = true;
-                    return view("cambiarPass",compact("incorrect_code"));
+                    return view("validarCorreo",compact("incorrect_code"));
                 }else{
                     try {
                         DB::beginTransaction();
                         DB::delete("DELETE FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
-                        DB::update("UPDATE tbl_usuario set contra_usu = ? WHERE id = ?",[$password_encrypt,$user->id]);
+                        DB::update("UPDATE tbl_usuario SET validado = ? WHERE id = ?",[true,$user->id]);
                         DB::commit();
-                        return redirect('login');
+                        session()->put("user",$user);
+                        return redirect('buscador');
                     } catch (\Exception $e) {
                         DB::rollBack();
                         return $e;
                     }
-                }
-            }   
+                }   
+            }
         }
-    }
+    //Validar contraseña
+        public function validarContraseñaView(){
+            return view('cambiarPass');
+        }
+        public function MAILvalidarContraseña(Request $request){
+            $datos = $request->except("_token","_method");
+            $correo_nick = $datos["nick_correo"];
+            $existUser = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ? or nick_usu = ?",[$correo_nick,$correo_nick]);
+            if (count($existUser) == 0) {
+                return response()->json(array("resultado" => "NotExist"));
+            }else{
+                try {
+                    $existUser = $existUser[0];
+                    $code = rand(1000,9999);
+                    DB::insert("INSERT INTO tbl_validacion (code,id_usu) VALUES (?,?)",[$code,$existUser->id]);
+                    $urlValidateUser = url("cambiarPass");
+                    $sub = "Codigo de validacion de usuario";
+                    $msj = "El codigo de validacion es: $code. Insertalo en la página: $urlValidateUser";
+                    $datos = array('message'=>$msj);
+                    $enviar = new sendMail($datos);
+                    $enviar->sub = $sub;
+                    Mail::to($existUser->correo_usu)->send($enviar);
+                } catch (\Exception $e) {
+                    return response()->json(array("resultado" => "NOK: ".$e->getMessage()));
+                }
+            }
+        }
+        public function validarCambioContraseña(ValidateResetPassword $request){
+            $datos = $request->except("_token");
+            $user = DB::select("SELECT * FROM tbl_usuario WHERE correo_usu = ?",[$datos["correo_usu"]]);
+            if (count($user) == 0) {
+                $user_notfound = true;
+                return view("cambiarPass",compact("user_notfound"));
+            }else{
+                $user = $user[0];
+                $password_encrypt = md5($datos["contra_usu"]);
+                if ($user->contra_usu == $password_encrypt) {
+                    $samepassword = true;
+                    return view("cambiarPass",compact("samepassword"));
+                }else{
+                    $validar = DB::select("SELECT * FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
+                    if(count($validar) == 0){
+                        $incorrect_code = true;
+                        return view("cambiarPass",compact("incorrect_code"));
+                    }else{
+                        try {
+                            DB::beginTransaction();
+                            DB::delete("DELETE FROM tbl_validacion WHERE code = ? AND id_usu = ?",[$datos["codigo_usu"],$user->id]);
+                            DB::update("UPDATE tbl_usuario set contra_usu = ? WHERE id = ?",[$password_encrypt,$user->id]);
+                            DB::commit();
+                            return redirect('login');
+                        } catch (\Exception $e) {
+                            DB::rollBack();
+                            return $e;
+                        }
+                    }
+                }   
+            }
+        }
     //Logout
-    public function logout(){
-        session()->flush();
-        return redirect('/');
-    }
-
-    //Vista Perfil
-    public function perfil($nick_usu){
-        if (session()->get("user")) {
-            //return $nick_usu;
-            $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
-            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-            LEFT JOIN tbl_centro centro ON user.id_centro = centro.id
-            LEFT JOIN tbl_contenidos content ON content.id_usu = user.id
-            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-            LEFT JOIN tbl_historial hist ON hist.id_usu = user.id
-            WHERE user.nick_usu = ?",[$nick_usu]);
-
-            $apuntesUser = DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
-            FROM tbl_contenidos content
-            INNER JOIN tbl_usuario users ON content.id_usu = users.id
-            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
-            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-            WHERE users.nick_usu = ?
-            GROUP BY id_content",[$nick_usu]);
-
-            $apunteDestacado = DB::select("SELECT content.id, (sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_contenidos content 
-            INNER JOIN tbl_usuario user ON content.id_usu = user.id
-            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-            WHERE user.nick_usu = ?
-            GROUP BY content.id ORDER BY valoracion DESC LIMIT 1",[$nick_usu]);
-
-            $apunteDescargas = DB::select("SELECT content.id, (sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_contenidos content 
-            INNER JOIN tbl_usuario user ON content.id_usu = user.id
-            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-            WHERE user.nick_usu = ?
-            GROUP BY content.id ORDER BY descargas DESC LIMIT 1",[$nick_usu]);
-
-            $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
-
-            return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado','apunteDescargas'));
-        }else{
+        public function logout(){
+            session()->flush();
             return redirect('/');
         }
-    }
-    //Actualizar Perfil
-    public function ActualizarPerfil(Request $request){
-        if (session()->get('user')) {
-            $user = session()->get('user');
-            $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
-            INNER JOIN tbl_centro centro ON centro.id = user.id_centro
-            WHERE user.id = ?",[$user->id]);
-            $centros = DB::select("SELECT * FROM tbl_centro");
-            return response()->json(array("user"=>$dataUser,"centros"=>$centros));
-        }
-    }
 
-    public function ActualizarPerfilPut(Request $request){
-        $user = session()->get('user');
-        $NombreCentro = $request['nombre_centro'];
-        $idCentro = DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$NombreCentro]);
-        try {
-            DB::beginTransaction();
-            if($request['contra_usu'] == NULL){
-                DB::update("UPDATE tbl_usuario SET nick_usu = ?, nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, id_centro = ?  WHERE id = ?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],$idCentro[0]->id,$user->id]);
+    //Vista Perfil
+        public function perfil($nick_usu){
+            if (session()->get("user")) {
+                //return $nick_usu;
+                $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
+                LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+                LEFT JOIN tbl_centro centro ON user.id_centro = centro.id
+                LEFT JOIN tbl_contenidos content ON content.id_usu = user.id
+                LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                LEFT JOIN tbl_historial hist ON hist.id_usu = user.id
+                WHERE user.nick_usu = ?",[$nick_usu]);
+
+                $apuntesUser = DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                FROM tbl_contenidos content
+                INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
+                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                WHERE users.nick_usu = ?
+                GROUP BY id_content",[$nick_usu]);
+
+                $apunteDestacado = DB::select("SELECT content.id, (sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_contenidos content 
+                INNER JOIN tbl_usuario user ON content.id_usu = user.id
+                LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                WHERE user.nick_usu = ?
+                GROUP BY content.id ORDER BY valoracion DESC LIMIT 1",[$nick_usu]);
+
+                $apunteDescargas = DB::select("SELECT content.id, (sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_contenidos content 
+                INNER JOIN tbl_usuario user ON content.id_usu = user.id
+                LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                WHERE user.nick_usu = ?
+                GROUP BY content.id ORDER BY descargas DESC LIMIT 1",[$nick_usu]);
+
+                $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
+
+                return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado','apunteDescargas'));
             }else{
-                DB::update("UPDATE tbl_usuario SET SET nick_usu = ?, nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, contra_usu = ?, id_centro=?  WHERE id = ?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],md5($request["contra_usu"]),$idCentro[0]->id,$user->id]);
+                return redirect('/');
             }
-            $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
-            INNER JOIN tbl_centro centro ON centro.id = user.id_centro
-            WHERE user.id = ?",[$user->id]);
-            DB::commit();
-            return response()->json(array('resultado'=> "OK",'user'=>$dataUser));
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(array('resultado'=>"NOK: ".$e->getMessage()));
         }
-    }
+    //Actualizar Perfil
+        public function ActualizarPerfil(Request $request){
+            if (session()->get('user')) {
+                $user = session()->get('user');
+                $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
+                INNER JOIN tbl_centro centro ON centro.id = user.id_centro
+                WHERE user.id = ?",[$user->id]);
+                $centros = DB::select("SELECT * FROM tbl_centro");
+                return response()->json(array("user"=>$dataUser,"centros"=>$centros));
+            }
+        }
 
-    public function actualizarAvatar(Request $request){
-        $user = session()->get('user');
-        //Cogemos si tiene alguno del sistema para no borrarlo.
-        $userImage = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[$user->id]);
-        $userImage = $userImage[0]->img_avatar;
-        $avataresSistema = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[null]);
-        $isAvatarSistema = false;
-        foreach ($avataresSistema as $avatarSistema){
-            if ($avatarSistema->img_avatar == $userImage) {
-                $isAvatarSistema = true;
+        public function ActualizarPerfilPut(Request $request){
+            $user = session()->get('user');
+            $NombreCentro = $request['nombre_centro'];
+            $idCentro = DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$NombreCentro]);
+            $existNick = DB::select("SELECT * FROM tbl_usuario WHERE NOT id = ? AND nick_usu = ?",[$user->id,$request["nick_usu"]]);
+            $existEmail = DB::select("SELECT * FROM tbl_usuario WHERE NOT id = ? AND correo_usu = ?",[$user->id,$request["correo_usu"]]);
+            if (count($existNick) != 0) {
+                return response()->json(array('resultado'=> "existNick"));
+            }
+            if (count($existEmail) != 0) {
+                return response()->json(array('resultado'=> "existEmail"));
+            }
+            try {
+                DB::beginTransaction();
+                if($request['contra_usu'] == NULL){
+                    DB::update("UPDATE tbl_usuario SET nick_usu = ?, nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, id_centro = ?  WHERE id = ?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],$idCentro[0]->id,$user->id]);
+                }else{
+                    DB::update("UPDATE tbl_usuario SET SET nick_usu = ?, nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, contra_usu = ?, id_centro=?  WHERE id = ?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],md5($request["contra_usu"]),$idCentro[0]->id,$user->id]);
+                }
+                $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
+                INNER JOIN tbl_centro centro ON centro.id = user.id_centro
+                WHERE user.id = ?",[$user->id]);
+                DB::commit();
+                return response()->json(array('resultado'=> "OK",'user'=>$dataUser));
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return response()->json(array('resultado'=>"NOK: ".$e->getMessage()));
             }
         }
-        //Comprobamos si es avatar del sistema
-        if ($isAvatarSistema == false) {
-            if (file_exists(storage_path('app/public/'.$userImage))) {
-                Storage::delete('public/'.$userImage);
+
+        public function actualizarAvatar(Request $request){
+            $user = session()->get('user');
+            //Cogemos si tiene alguno del sistema para no borrarlo.
+            $userImage = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[$user->id]);
+            $userImage = $userImage[0]->img_avatar;
+            $avataresSistema = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[null]);
+            $isAvatarSistema = false;
+            foreach ($avataresSistema as $avatarSistema){
+                if ($avatarSistema->img_avatar == $userImage) {
+                    $isAvatarSistema = true;
+                }
+            }
+            //Comprobamos si es avatar del sistema
+            if ($isAvatarSistema == false) {
+                if (file_exists(storage_path('app/public/'.$userImage))) {
+                    Storage::delete('public/'.$userImage);
+                }
+            }
+            if ($request->hasFile('img_avatar_usu2')) {
+                //$file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
+                $file = $request->file('img_avatar_usu2');
+                //Cogemos el nombre original del fichero
+                $fileName = "uploads/avatar/".$file->getClientOriginalName();
+                $file->storeAs('public/',$fileName);
+                /* return $file; */
+            }else{
+                $fileName = $request["img_avatar_sistema"];
+                /* return $datos; */
+            }
+            try {
+                DB::beginTransaction();
+                DB::update("UPDATE tbl_avatar SET img_avatar = ? WHERE id_usu = ?",[$fileName,$user->id]);
+                $dataUser = DB::select("SELECT user.*,avatar.img_avatar FROM tbl_usuario user
+                LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
+                WHERE user.id = ?",[$user->id]);
+                DB::commit();
+                return response()->json(array('resultado'=> "OK",'user'=>$dataUser));
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return response()->json(array('resultado'=>"NOK: ".$e->getMessage()));
             }
         }
-        if ($request->hasFile('img_avatar_usu2')) {
-            //$file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
-            $file = $request->file('img_avatar_usu2');
-            //Cogemos el nombre original del fichero
-            $fileName = "uploads/avatar/".$file->getClientOriginalName();
-            $file->storeAs('public/',$fileName);
-            /* return $file; */
-        }else{
-            $fileName = $request["img_avatar_sistema"];
-            /* return $datos; */
-        }
-        try {
-            DB::beginTransaction();
-            DB::update("UPDATE tbl_avatar SET img_avatar = ? WHERE id_usu = ?",[$fileName,$user->id]);
-            $dataUser = DB::select("SELECT user.*,avatar.img_avatar FROM tbl_usuario user
-            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-            WHERE user.id = ?",[$user->id]);
-            DB::commit();
-            return response()->json(array('resultado'=> "OK",'user'=>$dataUser));
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(array('resultado'=>"NOK: ".$e->getMessage()));
-        }
-    }
     
     /*CONFIGURACION USER*/
-    public function getConfigUser(){
-        $user = session()->get('user');
-        if (file_exists(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json'))) {
-            //Si existe directamente cogemos el fichero y miramos si el campo esta nulo
-            $configuration = json_decode(file_get_contents(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json')), true);
-            $configuration = $configuration["curso"];
-            $cursos = DB::select("SELECT DISTINCT nombre_curso FROM tbl_cursos");
-            return response()->json(array("configuration" => $configuration,"cursos"=>$cursos));
-        }
-    }
-
-    public function changeConfigUser(Request $request){
-        $user = session()->get('user');
-        $json = json_decode(file_get_contents(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json')), true);
-        $json["curso"] = $request["nombre_curso"];
-        $modifyJson = json_encode($json);
-        Storage::disk('config-user')->put("user-".$user->id.".json", $modifyJson);
-        return response()->json(array("resultado" => "OK"));
-    }
-    /*DARSE DE BAJA */
-    public function DarseDeBaja(Request $request){
-        $user= session()->get('user');
-        $datos = $request->except("_token","_method");
-        $password_encrypt = md5($datos["contra_usu"]);
-        $correctPassword = DB::select("SELECT * FROM tbl_usuario WHERE contra_usu = ? AND id = ?",[$password_encrypt,$user->id]);
-        if (count($correctPassword) == 0) {
-            return response()->json(array("resultado"=>"IncorrectPassword"));
-        }else{
-            try{
-                DB::beginTransaction();
-                DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$user->id,$user->id]);
-                DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$user->id]);
-                DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$user->id]);
-                DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$user->id]);
-                DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$user->id]);
-                DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$user->id]);
-                DB::commit();
-                $redirect = url('/');
-                return response()->json(array('resultado'=>'OK','redirect'=>$redirect));
-            }catch(\Exception $e){
-                DB::rollBack();
-                return response()->json(array('resultado'=>'NOK'.$e->getMessage()));
+        public function getConfigUser(){
+            $user = session()->get('user');
+            if (file_exists(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json'))) {
+                //Si existe directamente cogemos el fichero y miramos si el campo esta nulo
+                $configuration = json_decode(file_get_contents(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json')), true);
+                $configuration = $configuration["curso"];
+                $cursos = DB::select("SELECT DISTINCT nombre_curso FROM tbl_cursos");
+                return response()->json(array("configuration" => $configuration,"cursos"=>$cursos));
             }
         }
-    }
-    /*Profesores*/
-    public function MostrarProfesores(){
-        //Todos los profes
-        $MostrarProfesores = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
-        avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-        cursos.id_centro FROM tbl_usuario user
-        LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
-        INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
-        INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
-        WHERE user.id_rol = ?",[4]);
-        //Todos los cursos
-        $allCursos = DB::select("SELECT * FROM tbl_cursos GROUP BY nombre_curso ORDER BY id ASC");
-        return view ('profesores',compact('MostrarProfesores','allCursos'));
-    }
 
-    public function multiplyFilterProfesores(Request $request){
-        $datos = $request->except("_token","_method");
-        if ($datos["filter"] == "") {
-            $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+        public function changeConfigUser(Request $request){
+            $user = session()->get('user');
+            $json = json_decode(file_get_contents(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json')), true);
+            $json["curso"] = $request["nombre_curso"];
+            $modifyJson = json_encode($json);
+            Storage::disk('config-user')->put("user-".$user->id.".json", $modifyJson);
+            return response()->json(array("resultado" => "OK"));
+        }
+    /*DARSE DE BAJA */
+        public function DarseDeBaja(Request $request){
+            $user= session()->get('user');
+            $datos = $request->except("_token","_method");
+            $password_encrypt = md5($datos["contra_usu"]);
+            $correctPassword = DB::select("SELECT * FROM tbl_usuario WHERE contra_usu = ? AND id = ?",[$password_encrypt,$user->id]);
+            if (count($correctPassword) == 0) {
+                return response()->json(array("resultado"=>"IncorrectPassword"));
+            }else{
+                try{
+                    DB::beginTransaction();
+                    DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$user->id,$user->id]);
+                    DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$user->id]);
+                    DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$user->id]);
+                    DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$user->id]);
+                    DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$user->id]);
+                    DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$user->id]);
+                    DB::commit();
+                    $redirect = url('/');
+                    return response()->json(array('resultado'=>'OK','redirect'=>$redirect));
+                }catch(\Exception $e){
+                    DB::rollBack();
+                    return response()->json(array('resultado'=>'NOK'.$e->getMessage()));
+                }
+            }
+        }
+    /*Profesores*/
+        public function MostrarProfesores(){
+            //Todos los profes
+            $MostrarProfesores = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
             avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
             cursos.id_centro FROM tbl_usuario user
             LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
             INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
             INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
             WHERE user.id_rol = ?",[4]);
-        }else{
-            $id = $datos["filter"][0];
-            if (is_numeric($id)) {
-                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
-                avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-                cursos.id_centro FROM tbl_usuario user
-                LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
-                INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
-                INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
-                WHERE user.id_rol = ? AND user.id = ?",[4,$datos["filter"]]);
-            }else{
-                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
-                avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-                cursos.id_centro FROM tbl_usuario user
-                LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
-                INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
-                INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
-                WHERE user.id_rol = ? AND (user.nick_usu LIKE ? OR user.nombre_usu LIKE ? OR cursos.nombre_curso LIKE ?)",[4,'%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%']);
-            }
+            //Todos los cursos
+            $allCursos = DB::select("SELECT * FROM tbl_cursos GROUP BY nombre_curso ORDER BY id ASC");
+            return view ('profesores',compact('MostrarProfesores','allCursos'));
         }
-        return response()->json($filterProfe);
-    }
-    public function advancedFilterProfesores(Request $request){
-        $datos = $request->except("_token","_method");
-        if ($datos["cursos"] == null) {
-            $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+
+        public function multiplyFilterProfesores(Request $request){
+            $datos = $request->except("_token","_method");
+            if ($datos["filter"] == "") {
+                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                 avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
                 cursos.id_centro FROM tbl_usuario user
                 LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                 INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
                 WHERE user.id_rol = ?",[4]);
-        }else{
-            $cursos = $datos["cursos"];
-            $select = "SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
-            avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-            cursos.id_centro FROM tbl_usuario user
-            LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
-            INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
-            INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
-            WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";                   
-            $filterProfe = DB::select($select);
+            }else{
+                $id = $datos["filter"][0];
+                if (is_numeric($id)) {
+                    $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                    avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                    cursos.id_centro FROM tbl_usuario user
+                    LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                    INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                    INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                    WHERE user.id_rol = ? AND user.id = ?",[4,$datos["filter"]]);
+                }else{
+                    $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                    avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                    cursos.id_centro FROM tbl_usuario user
+                    LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                    INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                    INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                    WHERE user.id_rol = ? AND (user.nick_usu LIKE ? OR user.nombre_usu LIKE ? OR cursos.nombre_curso LIKE ?)",[4,'%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%']);
+                }
+            }
+            return response()->json($filterProfe);
         }
-        return response()->json($filterProfe);
-    }
+        public function advancedFilterProfesores(Request $request){
+            $datos = $request->except("_token","_method");
+            if ($datos["cursos"] == null) {
+                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                    avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                    cursos.id_centro FROM tbl_usuario user
+                    LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                    INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                    INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                    WHERE user.id_rol = ?",[4]);
+            }else{
+                $cursos = $datos["cursos"];
+                $select = "SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                cursos.id_centro FROM tbl_usuario user
+                LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";                   
+                $filterProfe = DB::select($select);
+            }
+            return response()->json($filterProfe);
+        }
 }

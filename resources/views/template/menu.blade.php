@@ -34,24 +34,32 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a href=""><span>About us</span></a>
+                                    <a href="{{url('/')}}"><span>Home</span></a>
                                 </li>
                                 <li>
-                                    <a href=""><span>Buscador</span></a>
+                                    <a href="{{url('about-us')}}"><span>About us</span></a>
+                                </li>
+                                @if (Session::get('user'))
+                                <li>
+                                    <a href="{{url('buscador')}}"><span>Buscador</span></a>
                                 </li>
                                 <li>
-                                    <a href=""><span>Mis apuntes</span></a>
+                                    <a href="{{url('mis-apuntes')}}"><span>Mis apuntes</span></a>
                                 </li>
                                 <li>
-                                    <a href=""><span>Perfil</span></a>
+                                    <a href="{{url('perfil/'.Session::get('user')->nick_usu)}}"><span>Perfil</span></a>
                                 </li>
                                 <li class="register btn">
-                                    <a href=""><span>Register</span></a>
+                                    <a href="{{url('logout')}}"><span>Cerrar Sesión</span></a>
+                                </li>
+                                @else
+                                <li class="register btn">
+                                    <a href="{{url('register')}}"><span>Registro</span></a>
                                 </li>
                                 <li class="login-logout btn">
-                                    <a href=""><span>Login</span></a>
+                                    <a href="{{url('login')}}"><span>Login</span></a>
                                 </li>
-
+                                @endif
                             </ul>
                         </nav>
                     </div>
