@@ -346,15 +346,15 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row"><b>${respuesta[i].id}</b></td>
-                                     <td>${respuesta[i].nombre_tema}</td>
-                                     <td>
-                                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
-                                     </td>
-                                     <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
-                                     </td>
-                                     </tr>`
+                                    <td scope="row"><b>${respuesta[i].id}</b></td>
+                                    <td>${respuesta[i].nombre_tema}</td>
+                                    <td>
+                                    <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
+                                    </td>
+                                    <td>
+                                    <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
+                                    </td>
+                                    </tr>`
                 }
                 recarga += `</table>
                                 </div>`;
@@ -885,20 +885,6 @@ function eliminarTemas(tema_id, idAsignatura, idCurso, idCentro) {
 /* EliminarApuntes */
 function eliminarApuntes(apunte_id) {
     var message = document.getElementById('message');
-    /* console.log(apunte_id);
-    return false; */
-
-    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
-
-    /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
-        
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
     var token = document.getElementById('token').getAttribute("content");
     var formData = new FormData();
     formData.append('_token', token);

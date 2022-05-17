@@ -67,7 +67,7 @@ class tbl_cursosSeeder extends Seeder
         /*-------------------------- RAUL SANTACRUZ ----------------*/
         //ID 7
         DB::table('tbl_cursos')->insert([
-            'nombre_curso' => 'Medicina',
+            'nombre_curso' => 'Medicina UPF-UAB',
             'nombre_corto_curso' => NULL,
             'tipo_curso' => 'Universidad',
             'id_centro' => 6,

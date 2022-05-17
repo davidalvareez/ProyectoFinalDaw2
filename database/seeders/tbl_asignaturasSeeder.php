@@ -96,7 +96,7 @@ class tbl_asignaturasSeeder extends Seeder
         /*-------------------------- MIGUEL GRAS ----------------*/
         //ID 16
         DB::table('tbl_asignaturas')->insert([
-            'nombre_asignatura' => 'Fundamento de la pintura',
+            'nombre_asignatura' => 'Fundamentos de la pintura',
             'id_curso' => 5
         ]);
         //ID 17
