@@ -20,50 +20,50 @@ use App\Http\Controllers\moderadorController;
 //Enlaces a paginas
 
 //TERMINOS Y CONDICIONES
-Route::get('terminos', function () {
-    return view('terminos');
-});
+    Route::get('terminos', function () {
+        return view('terminos');
+    });
 
 //POLITICA DE PRIVACIDAD
-Route::get('privacidad', function () {
-    return view('privacidad');
-});
+    Route::get('privacidad', function () {
+        return view('privacidad');
+    });
 //VALIDAR CORREO REGISTRO
-Route::get('validarcorreo', function () {
-    return view('validarcorreo');
-});
+    Route::get('validarcorreo', function () {
+        return view('validarcorreo');
+    });
 
-Route::post('validarCorreoUser', [UsuarioController::class,'validarUsuario']);
+    Route::post('validarCorreoUser', [UsuarioController::class,'validarUsuario']);
 
 //VALIDAR CAMBIO CONTRASEÑA
-Route::get('cambiarPass',[UsuarioController::class,'validarContraseñaView']);
+    Route::get('cambiarPass',[UsuarioController::class,'validarContraseñaView']);
 
-Route::post('mailcambiarPass',[UsuarioController::class,'MAILvalidarContraseña']);
+    Route::post('mailcambiarPass',[UsuarioController::class,'MAILvalidarContraseña']);
 
-Route::post('restablecerContraUser',[UsuarioController::class,'validarCambioContraseña']);
+    Route::post('restablecerContraUser',[UsuarioController::class,'validarCambioContraseña']);
 
 //Indice
-Route::get('/', function () {
-    return view('index');
-});
+    Route::get('/', function () {
+        return view('index');
+    });
 
 //About us
-Route::get('aboutus', function () {
-    return view('aboutus');
-});
+    Route::get('about-us', function () {
+        return view('aboutus');
+    });
 
 //Procesos Login // Registro // LogOut
-Route::post('login',[UsuarioController::class,'login']);
+    Route::post('login',[UsuarioController::class,'login']);
 
-Route::post('register',[UsuarioController::class,'register']);
+    Route::post('register',[UsuarioController::class,'register']);
 
-Route::post('registerProfe',[UsuarioController::class,'registerProfe']);
+    Route::post('registerProfe',[UsuarioController::class,'registerProfe']);
 
-Route::get('login',[UsuarioController::class,'loginView']);
+    Route::get('login',[UsuarioController::class,'loginView']);
 
-Route::get('register',[UsuarioController::class,'registerView']);
+    Route::get('register',[UsuarioController::class,'registerView']);
 
-Route::get('logout',[UsuarioController::class,'logout']);
+    Route::get('logout',[UsuarioController::class,'logout']);
 
 //Pagina de perfil
     Route::get('perfil/{nick_usu}',[UsuarioController::class,'perfil']);
@@ -81,19 +81,19 @@ Route::get('logout',[UsuarioController::class,'logout']);
     Route::delete('perfil/darseDeBaja',[UsuarioController::class,'DarseDeBaja']);
 
 //Mis apuntes
-    Route::get('misApuntes',[ApuntesController::class,'misApuntes']);
+    Route::get('mis-apuntes',[ApuntesController::class,'misApuntes']);
 
-    Route::post('misApuntes/centro',[ApuntesController::class,'misApuntes_centro']);
+    Route::post('mis-apuntes/centro',[ApuntesController::class,'misApuntes_centro']);
 
-    Route::post('misApuntes/curso',[ApuntesController::class,'misApuntes_curso']);
+    Route::post('mis-apuntes/curso',[ApuntesController::class,'misApuntes_curso']);
 
-    Route::post('misApuntes/asignatura',[ApuntesController::class,'misApuntes_asignatura']);
+    Route::post('mis-apuntes/asignatura',[ApuntesController::class,'misApuntes_asignatura']);
 
-    Route::post('misApuntes/subirapunte',[ApuntesController::class,'misApuntes_subirapunte']);
+    Route::post('mis-apuntes/subirapunte',[ApuntesController::class,'misApuntes_subirapunte']);
 
-    Route::post('misApuntes/apuntes',[ApuntesController::class,'misApuntes_apuntes']);
+    Route::post('mis-apuntes/apuntes',[ApuntesController::class,'misApuntes_apuntes']);
 
-    Route::delete('misApuntes/eliminarapunte/{id}',[ApuntesController::class,'misApuntes_eliminarapunte']);
+    Route::delete('mis-apuntes/eliminarapunte/{id}',[ApuntesController::class,'misApuntes_eliminarapunte']);
 
 //Apunte
     Route::get('apuntes/{id}',[ApuntesController::class,'apuntes']);
@@ -195,30 +195,30 @@ Route::get('logout',[UsuarioController::class,'logout']);
 
     Route::post('oauth-register-alumno',[OAuthController::class,'oauthRegisterAlumno']);
 
-Route::post('oauth-register-profesor',[OAuthController::class,'oauthRegisterProfesor']);
+    Route::post('oauth-register-profesor',[OAuthController::class,'oauthRegisterProfesor']);
 
 //Profesores
     Route::get('profesores',[UsuarioController::class,'MostrarProfesores']);
 
     Route::post('profesores/multiplyfilter',[UsuarioController::class,'multiplyFilterProfesores']);
 
-Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);
+    Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);
 
 //Moderador
 //Mostrar
-Route::get('moderador',[moderadorController::class,'moderadorView']);
+    Route::get('moderador',[moderadorController::class,'moderadorView']);
 
-Route::post('moderador/denuncias',[moderadorController::class,'moderadorDenuncias']);
+    Route::post('moderador/denuncias',[moderadorController::class,'moderadorDenuncias']);
 
-Route::post('moderador/comments',[moderadorController::class,'moderadorComments']);
+    Route::post('moderador/comments',[moderadorController::class,'moderadorComments']);
 
-Route::post('moderador/notes',[moderadorController::class,'moderadorNotes']);
+    Route::post('moderador/notes',[moderadorController::class,'moderadorNotes']);
 
 //Eliminar
-Route::delete('moderador/eliminar',[moderadorController::class,'eliminarDenuncia']);
+    Route::delete('moderador/eliminar',[moderadorController::class,'eliminarDenuncia']);
 
-Route::delete('moderador/eliminarcontent',[moderadorController::class,'eliminarContenido']);
+    Route::delete('moderador/eliminarcontent',[moderadorController::class,'eliminarContenido']);
 
-Route::delete('moderador/banearUser',[moderadorController::class,'banearUsuario']);
+    Route::delete('moderador/banearUser',[moderadorController::class,'banearUsuario']);
 
-Route::delete('moderador/quitardenuncia',[moderadorController::class,'quitardenuncia']);
+    Route::delete('moderador/quitardenuncia',[moderadorController::class,'quitardenuncia']);

@@ -26,11 +26,11 @@
                         <h2>INFORMACIÓN PERSONAL</h2>
                         <div class="menu-info-persona">
                             <div id="menu-info-persona">
-                                <div class="div-info"><h3>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h3></div>
-                                <div class="div-info"><h3>{{$perfilUser[0]->fecha_nac_usu}}</h3></div>
-                                <div class="div-info"><h3>{{$perfilUser[0]->correo_usu}}</h3></div>
+                                <div class="div-info"><h4>{{$perfilUser[0]->nombre_usu}} {{$perfilUser[0]->apellido_usu}}</h4></div>
+                                <div class="div-info"><h4>{{$perfilUser[0]->fecha_nac_usu}}</h4></div>
+                                <div class="div-info"><h4>{{$perfilUser[0]->correo_usu}}</h4></div>
                                 @if ($perfilUser[0]->nombre_centro != null)
-                                    <div class="div-info"><h3>{{$perfilUser[0]->nombre_centro}}</h3></div>
+                                    <div class="div-info"><h4>{{$perfilUser[0]->nombre_centro}}</h4></div>
                                 @endif
                             </div>
                             @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)

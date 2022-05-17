@@ -41,7 +41,7 @@ function selectCurso() {
     formData.append('_method', 'POST');
     formData.append('nombre_centro', form[0].value);
     let ajax = llamadaAjax();
-    ajax.open("POST", "misApuntes/centro", true);
+    ajax.open("POST", "mis-apuntes/centro", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
@@ -81,7 +81,7 @@ function selectAsignatura() {
     formData.append('nombre_curso', form[1].value);
     formData.append('nombre_centro', form[0].value);
     let ajax = llamadaAjax();
-    ajax.open("POST", "misApuntes/curso", true);
+    ajax.open("POST", "mis-apuntes/curso", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
@@ -115,7 +115,7 @@ function selectTema() {
     formData.append('nombre_curso', form[1].value);
     formData.append('nombre_centro', form[0].value);
     let ajax = llamadaAjax();
-    ajax.open("POST", "misApuntes/asignatura", true);
+    ajax.open("POST", "mis-apuntes/asignatura", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
@@ -136,7 +136,7 @@ function apuntesAjax() {
     formData.append('_token', token);
     formData.append('_method', 'POST');
     let ajax = llamadaAjax();
-    ajax.open("POST", "misApuntes/apuntes", true);
+    ajax.open("POST", "mis-apuntes/apuntes", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
@@ -167,7 +167,7 @@ function subirApuntes() {
     formData.append('_token', token);
     formData.append('_method', 'POST');
     let ajax = llamadaAjax();
-    ajax.open("POST", "misApuntes/subirapunte", true);
+    ajax.open("POST", "mis-apuntes/subirapunte", true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
@@ -201,7 +201,7 @@ function eliminarApunte(id) {
     formData.append('_token', token);
     formData.append('_method', 'DELETE');
     let ajax = llamadaAjax();
-    ajax.open("POST", "misApuntes/eliminarapunte/" + id, true);
+    ajax.open("POST", "mis-apuntes/eliminarapunte/" + id, true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             let respuesta = JSON.parse(this.responseText);
