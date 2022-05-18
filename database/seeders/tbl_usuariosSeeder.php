@@ -91,7 +91,7 @@ class tbl_usuariosSeeder extends Seeder
             'nombre_usu' => 'Andreea',
             'apellido_usu' => 'Cerchia',
             'fecha_nac_usu' => '2001-04-24',
-            'correo_usu' => 'andreagb24@gmail.com',
+            'correo_usu' => 'andreagb199@gmail.com',
             'contra_usu' => MD5('1234'),
             'validado' => true,
             'id_centro' => 1,

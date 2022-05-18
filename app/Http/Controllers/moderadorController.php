@@ -82,10 +82,14 @@ class moderadorController extends Controller
                     $nombreApellido = $datosDemandante->nombre_usu." ".$datosDemandante->apellido_usu;
                     if ($datosDenuncia->tipus_denuncia == "Comentario") {
                         $sub = "Denuncia comentario denegado";
-                        $msj = "Querido/a $nombreApellido hemos recibido su denuncia hacia el comentario y no se ha aprobado, gracias por aportar al equipo de Note Hub";
+                        $msj = "Estimado/a $nombreApellido nuestro departamento ha recibido la denuncia propuesta hacia dicho comentario.
+                        Queremos sostener mediante un análisis detallado del problema que no va a poder llevarse a cabo por lo que no vamos a realizar ninguna acción sobre dicho comentario. 
+                        Un cordial saludo, el equipo de Note Hub";
                     }elseif ($datosDenuncia->tipus_denuncia == "Apunte"){
                         $sub = "Denuncia apunte denegado";
-                        $msj = "Querido/a $nombreApellido hemos recibido su denuncia hacia dicho apunte y no se ha aprobado, gracias por aportar al equipo de Note Hub";
+                        $msj = "Estimado/a $nombreApellido nuestro departamento ha recibido la denuncia propuesta hacia dicho apunte.
+                        Queremos sostener mediante un análisis detallado del problema que no va a poder llevarse a cabo por lo que no vamos a realizar ninguna acción sobre dicho documento. 
+                        Un cordial saludo, el equipo de Note Hub";
                     }
                     $datos = array('message'=>$msj);
                     $enviar = new sendMail($datos);
@@ -110,7 +114,9 @@ class moderadorController extends Controller
                         try {
                             DB::beginTransaction();
                             $sub = "Comentario eliminado";
-                            $msj = "Querido/a $nombreApellido hemos recibido denuncias hacia dicho comentario y a un contenido y hemos decidido eliminarlo, cualquier duda contacte con el equipo de NoteHub.";
+                            $msj = "Querido/a $nombreApellido nuestro departamento responde a su demanda hacia el comentario, reprendiendo las acciones necesarias para mejorar la plataforma y el correcto funcionamiento de esta. 
+                            Se censurará dicho contenido junto con una amonestación al usuario. 
+                            El equipo de Note Hub le desea un cordial saludo.";
                             DB::delete("DELETE FROM tbl_comentarios WHERE id = ?",[$datosDenuncia->id_comentario]);
                             DB::delete("DELETE FROM tbl_denuncias WHERE id = ?",[$datosDenuncia->id]);
                             $datos = array('message'=>$msj);
@@ -129,7 +135,9 @@ class moderadorController extends Controller
                         try {
                             DB::beginTransaction();
                             $sub = "Contenido eliminado";
-                            $msj = "Querido/a $nombreApellido hemos recibido denuncias hacia dicho contenido hemos decidido eliminarlo, cualquier duda contacte con el equipo de NoteHub.";
+                            $msj = "Querido/a $nombreApellido nuestro departamento responde a su demanda hacia el documento, reprendiendo las acciones necesarias para mejorar la plataforma y el correcto funcionamiento de esta. 
+                            Se censurará dicho contenido junto con una amonestación al usuario. 
+                            El equipo de Note Hub le desea un cordial saludo.";
                             $existComment = DB::SELECT("SELECT * FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
                             if (count($existComment) != 0) {
                                 DB::delete("DELETE FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
@@ -190,7 +198,7 @@ class moderadorController extends Controller
                     $datetime = $datos["fecha_denuncia"]." ".$horaActual;
                     DB::update("UPDATE tbl_usuario SET deshabilitado = ? WHERE id = ?",[$datetime,$datosAcusado->id]);
                     $sub = "Baneo de cuenta";
-                    $msj = "Querido/a $nombreApellido el equipo de Notehub ha decidido banear a su cuenta debido a incidencias que usted ha ido comentiendo en nuestra, cualquier duda contacte con el equipo de Notehub.";
+                    $msj = "Estimado/a $nombreApellido el equipo de Notehub ha decidido banear su cuenta debido a incidencias que usted ha ido comentiendo en nuestra plataforma, cualquier duda contacte con el equipo de Notehub.";
                     $datos = array('message'=>$msj);
                     $enviar = new sendMail($datos);
                     $enviar->sub = $sub;
