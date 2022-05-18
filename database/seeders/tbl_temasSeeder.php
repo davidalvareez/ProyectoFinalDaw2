@@ -23,7 +23,7 @@ class tbl_temasSeeder extends Seeder
         //Asignatura 2
         //ID 2
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Tema 6 y 7_ Ultrasonidos y Mecanoterapia',
+            'nombre_tema' => 'Ultrasonidos y Mecanoterapia',
             'id_asignatura' => 2
         ]);
         //Asignatura 3
@@ -92,13 +92,13 @@ class tbl_temasSeeder extends Seeder
         //Asignatura 11
         //ID 14
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Tema 4_ Continuacion',
+            'nombre_tema' => 'Tema 4',
             'id_asignatura' => 11
         ]);
         //Asignatura 12
         //ID 15
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Tema 1_ Fuentes de informacion interna y externa',
+            'nombre_tema' => 'Fuentes de informacion interna y externa',
             'id_asignatura' => 12
         ]);
         //Asignatura 13
@@ -116,7 +116,7 @@ class tbl_temasSeeder extends Seeder
         //Asignatura 15
         //ID 18
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Tema 1_ Fuentes de la informacion y normativa',
+            'nombre_tema' => 'Fuentes de informacion y normativa',
             'id_asignatura' => 15
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
