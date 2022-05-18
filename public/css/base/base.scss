@@ -1,11 +1,6 @@
 @import './variables.scss';
 @import './fonts.scss';
-
-
-
 ////////////////////////////////////////////////////////////////
-
-
 $padding: 15px;
 $first-color:#2397ee; //color principal
 $second-color:#31fc40; //color para resaltes pequeños
@@ -23,7 +18,6 @@ $font1: Poppins;
 $grid-float-breakpoint: 1200px; //puntp de canvio de pantallas
 $movil: 600px;
 $mobil: 600px;
-
 :root {
     --first-color: #2397ee;
     --second-color: #31fc40;
@@ -66,21 +60,17 @@ $mobil: 600px;
     --grey: #eee;
     --letter-grey: #797c7e;
     --font1: Poppins;
-    ::-webkit-scrollbar{
+     ::-webkit-scrollbar {
         width: 10px;
-        &-track{
+        &-track {
             background: var(--svgColor2);
         }
-        &-thumb{
+        &-thumb {
             background: var(--svgColor1);
-            &:hover{
-                
-            }
+            &:hover {}
         }
     }
-
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////ESTILOS GENERALES DE LOS TEXTOS///////////////////////////77
@@ -114,19 +104,26 @@ h4 {
     font-weight: bold;
 }
 
-.btn-glass{
+.btn-glass {
     background: var(--svgColor1);
     border-radius: calc(25px + 5vw);
     color: var(--white);
     font-size: calc(13px + 0.2vw);
     padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
-    
-
-    &_b{
+    &_b {
         background: var(--svgColor1a);
     }
 }
 
+.btn-glass_negro {
+    background: var(--black);
+    border-radius: calc(25px + 5vw);
+    color: var(--white);
+    font-size: calc(13px + 0.2vw);
+    padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
+    margin-top: 20px;
+    &_b {}
+}
 
 .glass-2 {
     backdrop-filter: blur(10px) saturate(105%);
@@ -135,6 +132,7 @@ h4 {
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 * {
@@ -158,7 +156,15 @@ body {
 ////////////////////////////////////////////////////////////////////////////////////
 //
 .darkmode {
-    a,p,h1,h2,h3,h4,h5,h6,button{
+    a,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    button {
         color: var(--white);
     }
     p {
@@ -184,15 +190,14 @@ body {
         color: var(--svgColor2);
         color: var(--white);
     }
-    .btn-glass_b{
+    .btn-glass_b {
         background: var(--svgColor2a);
     }
 }
-////////////////////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////////////////////////
-main{
+////////////////////////////////////////////////////////////////
+main {
     padding-top: calc(20px + 3vh);
 }
 
@@ -209,7 +214,6 @@ main{
         height: 100vh;
         .coso {
             position: absolute;
-            
             &0 {
                 top: -40px;
                 z-index: 10;
@@ -253,12 +257,8 @@ main{
     }
 }
 
-
 //////////////////////////77
 //MENU
-
-
-
 .menu {
     position: fixed;
     top: 0;
@@ -267,7 +267,6 @@ main{
     z-index: 9;
     .background-mn {
         min-width: 100vw;
-        
         position: fixed;
         right: 0;
         top: 0;
@@ -275,14 +274,15 @@ main{
         .container-bg {
             position: relative;
             width: 100vw;
-            
             .coso {
                 position: absolute;
-                
                 &0 {
                     top: -40px;
                     z-index: 10;
-                }}}}
+                }
+            }
+        }
+    }
     >.container {
         >.row {
             display: flex;
@@ -325,10 +325,7 @@ main{
     }
 }
 
-
 //toggle dark mode lightmode
-
-
 //////////////
 .input-toggle {
     display: none;
@@ -475,6 +472,7 @@ main{
         left: 4px;
     }
 }
+
 @-webkit-keyframes aniGrad {
     0% {
         background-position: 0% 52%;
@@ -499,8 +497,6 @@ main{
     }
 }
 
-
-
 //MODAL
 .modal-content-avatar {
     @extend .modal-content;
@@ -509,8 +505,8 @@ main{
     display: flex;
     text-align: center;
     flex-flow: column;
-    
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -520,28 +516,28 @@ main{
     top: 0;
     width: 100%;
     height: 100%;
-    overflow:auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    .modal-content{
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    .modal-content {
         margin: auto;
         border: 1px solid #888;
         width: 40%;
         height: 89%;
         @extend .glass-2;
-        .avatar-content{
-            width:100%;
-            height:100%;
-            @include flex-cv();
-        }
-        .contenido-modal{
+        .avatar-content {
             width: 100%;
             height: 100%;
-            .formmodal{
+            @include flex-cv();
+        }
+        .contenido-modal {
+            width: 100%;
+            height: 100%;
+            .formmodal {
                 width: 100%;
                 height: 100%;
-                @include flex-cv($d:column);
-                input{
+                @include flex-cv($d: column);
+                input {
                     width: 40%;
                     height: 50px;
                     margin: 10px 0px;
@@ -557,7 +553,6 @@ main{
 ///////////////////////////////////////////////////////////////////
 /////////////////////widgets////////////////////////////////77
 ///////////////////////////////////////////////////////////////////
-
 /////////clase de las cartas de los apuntes
 .card {
     @extend .glass-2;
