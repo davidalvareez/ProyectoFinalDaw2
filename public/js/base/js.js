@@ -9,38 +9,56 @@ $(document).ready(function() {
         bgD = "#2e2e2e",
         bgL = "#fff";
     let darkmode = getCookie("darkmode");
-    //alert(darkmode);
     var toggledl = $(".more-css .toggle-darkl");
     if (darkmode == 1) {
-        toggledl.html(`<style> :root{--svgColor1: ${purpleL}; --svgColor2: ${bgL};--svgColor1a: ${roseL}; --svgColor2a: ${bgL}; --bgBody: ${bgL}} </style>`)
+        //Primer modo claro
+        $("body").removeClass("darkmode");
+        $(".menu .widget-toggle .input-toggle").prop("checked", false);
+        toggledl.html(`<style> :root{--svgColor1a: ${purpleL}; --svgColor2a: ${bgL};--svgColor1: ${roseL}; --svgColor2: ${bgL}; --bgBody: ${bgL}} </style>`)
     } else if (darkmode == 2) {
+        //Modo oscuro
+        //Color amarillo
+        $("body").addClass("darkmode");
+        $(".menu .widget-toggle .input-toggle").prop("checked", true);
         toggledl.html(`<style> :root{--svgColor1: ${orangeD}; --svgColor2: ${roseD}; --svgColor1a: var(--svgColor1); --svgColor2a: var(--svgColor2); --bgBody: ${bgD}} </style>`)
     } else if (darkmode == 3) {
-        toggledl.html(`<style> :root{--svgColor1a: ${purpleL}; --svgColor2a: ${bgL};--svgColor1: ${roseL}; --svgColor2: ${bgL}; --bgBody: ${bgL}} </style>`)
+        //Segundo modo claro
+        $("body").removeClass("darkmode");
+        $(".menu .widget-toggle .input-toggle").prop("checked", false);
+        toggledl.html(`<style> :root{--svgColor1: ${purpleL}; --svgColor2: ${bgL};--svgColor1a: ${roseL}; --svgColor2a: ${bgL}; --bgBody: ${bgL}} </style>`)
     } else if (darkmode == 4) {
+        //Modo oscuro
+        //Color azul
+        $("body").addClass("darkmode");
+        $(".menu .widget-toggle .input-toggle").prop("checked", true);
         toggledl.html(`<style> :root{--svgColor1: ${blueD}; --svgColor2: ${greenD}; --svgColor1a: var(--svgColor1); --svgColor2a: var(--svgColor2); --bgBody: ${bgD}} </style>`)
     }
+
     $(".menu .widget-toggle .toggle-label").click(function() {
         if ($(".menu .widget-toggle .input-toggle").is(":checked")) {
+            //Modo claro
             $("body").removeClass("darkmode");
-            if (darkmode == 1) {
-                toggledl.html(`<style> :root{--svgColor1: ${purpleL}; --svgColor2: ${bgL};--svgColor1a: ${roseL}; --svgColor2a: ${bgL}; --bgBody: ${bgL}} </style>`)
-                darkmode = 2;
-                setCookie("darkmode", darkmode, 365);
-            } else if (darkmode == 3) {
-                toggledl.html(`<style> :root{--svgColor1a: ${purpleL}; --svgColor2a: ${bgL};--svgColor1: ${roseL}; --svgColor2: ${bgL}; --bgBody: ${bgL}} </style>`)
-                darkmode = 4;
-                setCookie("darkmode", darkmode, 365);
-            }
-        } else {
-            $("body").addClass("darkmode");
             if (darkmode == 2) {
-                toggledl.html(`<style> :root{--svgColor1: ${orangeD}; --svgColor2: ${roseD}; --svgColor1a: var(--svgColor1); --svgColor2a: var(--svgColor2); --bgBody: ${bgD}} </style>`)
+                toggledl.html(`<style> :root{--svgColor1: ${purpleL}; --svgColor2: ${bgL};--svgColor1a: ${roseL}; --svgColor2a: ${bgL}; --bgBody: ${bgL}} </style>`)
                 darkmode = 3;
                 setCookie("darkmode", darkmode, 365);
             } else if (darkmode == 4) {
-                toggledl.html(`<style> :root{--svgColor1: ${blueD}; --svgColor2: ${greenD}; --svgColor1a: var(--svgColor1); --svgColor2a: var(--svgColor2); --bgBody: ${bgD}} </style>`)
+                toggledl.html(`<style> :root{--svgColor1a: ${purpleL}; --svgColor2a: ${bgL};--svgColor1: ${roseL}; --svgColor2: ${bgL}; --bgBody: ${bgL}} </style>`)
                 darkmode = 1;
+                setCookie("darkmode", darkmode, 365);
+            }
+        } else {
+            //Modo oscuro
+            $("body").addClass("darkmode");
+            //Color amarillo
+            if (darkmode == 1) {
+                toggledl.html(`<style> :root{--svgColor1: ${orangeD}; --svgColor2: ${roseD}; --svgColor1a: var(--svgColor1); --svgColor2a: var(--svgColor2); --bgBody: ${bgD}} </style>`)
+                darkmode = 2;
+                setCookie("darkmode", darkmode, 365);
+                //Color azul
+            } else if (darkmode == 3) {
+                toggledl.html(`<style> :root{--svgColor1: ${blueD}; --svgColor2: ${greenD}; --svgColor1a: var(--svgColor1); --svgColor2a: var(--svgColor2); --bgBody: ${bgD}} </style>`)
+                darkmode = 4;
                 setCookie("darkmode", darkmode, 365);
             }
 
