@@ -1,8 +1,5 @@
 @import '../base/base.scss';
-
-
 ///////////VARIABLES GLOBALES///////////////
-
 $padding: 15px;
 $white: #ffffff; //blanco
 $black: #000000; //negro
@@ -20,6 +17,7 @@ $mobil: 800px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
 }
+
 .glass {
     background: rgba(255, 255, 255, 0.57);
     backdrop-filter: blur(13px) saturate(105%);
@@ -27,6 +25,7 @@ $mobil: 800px;
     border: 1px solid rgba(255, 255, 255, 0.866);
     transition: all 0.7s;
 }
+
 .flex-cv {
     display: flex;
     justify-content: center;
@@ -35,7 +34,32 @@ $mobil: 800px;
     align-items: center;
     flex-flow: row wrap;
 }
-@mixin flex-cv($d: row, $w: wrap){
+
+.swal2-popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 100%);
+    width: 32em;
+    max-width: 100%;
+    padding: 0 0 1.25em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #545454;
+    font-family: inherit;
+    font-size: 1.2rem;
+}
+
+.swal2-popup input {
+    border: 1.2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 80%;
+    padding: 10px;
+}
+
+@mixin flex-cv($d: row, $w: wrap) {
     display: flex;
     justify-content: center;
     justify-items: center;
@@ -43,8 +67,6 @@ $mobil: 800px;
     align-items: center;
     flex-flow: $d $w;
 }
-
-
 
 // .btn-glass{
 //     padding: 10px 75px;
@@ -54,7 +76,6 @@ $mobil: 800px;
 //     border-radius: 15px;
 //     cursor: pointer;
 //     background: #854ad4;
-
 // }
 // .btn-glass:hover {
 //     background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
@@ -62,9 +83,6 @@ $mobil: 800px;
 //     -webkit-animation: aniGrad 8s ease infinite;
 //     animation: aniGrad 8s ease infinite;
 // }
-
-
-
 .cgradient-1 {
     background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
     background-size: 600% 600%;
@@ -74,10 +92,8 @@ $mobil: 800px;
     animation: aniGrad 8s ease infinite;
 }
 
-
-
 main {
-    .region-perfil{
+    .region-perfil {
         margin: 75px 0px 0px 0px;
         .content-region {
             display: grid;
@@ -87,7 +103,7 @@ main {
             grid-column-gap: 25px;
             grid-row-gap: 30px;
             margin: 50px;
-            @media (max-width: $grid-float-breakpoint){
+            @media (max-width: $grid-float-breakpoint) {
                 grid-template-rows: auto;
                 grid-template-columns: 1fr;
             }
@@ -118,35 +134,35 @@ main {
                 }
             }
             .region-header {
-                @include flex-cv($d:row);
+                @include flex-cv($d: row);
                 @extend .glass;
                 .content-header {
-                    @include flex-cv($d:row);
-                    .btn-glass{
+                    @include flex-cv($d: row);
+                    .btn-glass {
                         @extend .btn-glass;
                         margin: 0 15px;
                     }
                 }
             }
             .region-menu {
-                @include flex-cv($d:column);
+                @include flex-cv($d: column);
                 @extend .glass;
                 .content-menu {
-                    @include flex-cv($d:column);
+                    @include flex-cv($d: column);
                     .menu-info-persona {
-                        @include flex-cv($d:column);
-                        #menu-info-persona{
+                        @include flex-cv($d: column);
+                        #menu-info-persona {
                             padding: 0px 50px;
-                            @include flex-cv($d:column);
+                            @include flex-cv($d: column);
                         }
                         .div-info {
                             margin: 0px 15px;
-                            @include flex-cv($d:column);
+                            @include flex-cv($d: column);
                             width: 100%;
                             padding: 10px 0px 0px 0px;
                             border-bottom: 2px solid grey;
                         }
-                        .btn-glass{
+                        .btn-glass {
                             @extend .btn-glass;
                             margin: 35px 0px;
                         }
@@ -154,15 +170,15 @@ main {
                 }
             }
             .region-avatar {
-                @include flex-cv($d:row);
+                @include flex-cv($d: row);
                 @extend .glass;
                 .content-avatar {
                     .region-foto {
                         .content-foto {
-                            @include flex-cv($d:column);
-                            .content-img{
+                            @include flex-cv($d: column);
+                            .content-img {
                                 position: relative;
-                                .add-button{
+                                .add-button {
                                     @include flex-cv();
                                     position: absolute;
                                     width: 35px;
@@ -182,29 +198,29 @@ main {
                         }
                     }
                     .region-datos {
-                        @include flex-cv($d:row);
+                        @include flex-cv($d: row);
                         margin: 30px 0;
                         justify-content: space-around;
                     }
                 }
             }
             .region-subir-apuntes {
-                @include flex-cv($d:column);
+                @include flex-cv($d: column);
                 @extend .glass;
-                .content-subir-apuntes{
-                    @include flex-cv($d:column);
-                    .btn-glass{
+                .content-subir-apuntes {
+                    @include flex-cv($d: column);
+                    .btn-glass {
                         @extend .btn-glass;
                         margin: 20px 0px;
                     }
                 }
             }
             .region-baja {
-                @include flex-cv($d:column);
+                @include flex-cv($d: column);
                 @extend .glass;
-                .content-baja{
-                    @include flex-cv($d:column);
-                    .btn-glass{
+                .content-baja {
+                    @include flex-cv($d: column);
+                    .btn-glass {
                         @extend .btn-glass;
                         margin: 20px 0px;
                     }
@@ -212,12 +228,12 @@ main {
             }
             .region-mis-apuntes {
                 padding: 15px;
-                @include flex-cv($d:column);
+                @include flex-cv($d: column);
                 @extend .glass;
                 .content-mis-apuntes {
                     width: 100%;
                     height: 100%;
-                    h2{
+                    h2 {
                         padding: 0 0 0 25px;
                     }
                 }
@@ -229,7 +245,6 @@ main {
             }
         }
     }
-
 }
 
 //MODAL ------------------------------------------------------------------
@@ -241,6 +256,7 @@ main {
     flex-flow: column;
     @extend .glass;
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -250,28 +266,28 @@ main {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow:auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    .modal-content{
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    .modal-content {
         margin: auto;
         border: 1px solid #888;
         width: 40%;
         height: 89%;
         @extend .glass;
-        .avatar-content{
-            width:100%;
-            height:100%;
-            @extend .flex-cv;
-        }
-        .contenido-modal{
+        .avatar-content {
             width: 100%;
             height: 100%;
-            .formmodal{
+            @extend .flex-cv;
+        }
+        .contenido-modal {
+            width: 100%;
+            height: 100%;
+            .formmodal {
                 width: 100%;
                 height: 100%;
-                @include flex-cv($d:column);
-                input{
+                @include flex-cv($d: column);
+                input {
                     width: 40%;
                     height: 50px;
                     margin: 10px 0px;
@@ -283,7 +299,6 @@ main {
         }
     }
 }
-
 
 .aceptarbtn {
     padding: 10px 10px 10px 10px;
