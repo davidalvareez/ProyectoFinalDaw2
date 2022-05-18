@@ -411,44 +411,32 @@ h4 {
   outline: none;
 }
 
-.zonaadmin main .region2 .content-region .glassland .content-glassland .admin-content-glassland .boton-tabla {
-  width: auto;
-  height: 30px;
-  border-radius: 7px;
-  border-color: black;
-  background-color: #fbff0f;
-  font-size: 14px;
-  font-weight: 500;
-  float: left;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  position: relative;
-  margin: 10px;
-  outline: none;
-}
-
 .zonaadmin main .region2 .content-region .glassland .content-glassland .admin-content-glassland .boton-volver {
-  width: 10%;
-  height: 30px;
-  border-radius: 7px;
-  border-color: black;
-  background-color: #0f5bff;
   color: white;
-  font-size: 14px;
-  font-weight: 500;
+  background-color: #0f5bff;
   float: right;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  position: relative;
-  margin: 10px;
-  outline: none;
+  margin: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
 
-.zonaadmin main .region2 .content-region .glassland .content-glassland .admin-content-glassland .cgradient-1 {
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
+.zonaadmin main .region2 .content-region .glassland .content-glassland .admin-content-glassland .boton-volver:hover {
+  background-color: #0a45c5;
 }
 
 .zonaadmin main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .table th,
@@ -460,7 +448,7 @@ h4 {
 }
 
 .zonaadmin main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .table th {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .zonaadmin main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .content-tablas .content {

@@ -154,7 +154,7 @@ function showCentros() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearCentro();">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearCentro();">Crear</button>
                     <table class="table table-striped">
                     <tr>
                     <th scope="col">#</th>
@@ -223,7 +223,7 @@ function showCursos(idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearCurso(${idCentro});">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearCurso(${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showCentros();">Voler a centros</button>
                     <table class="table table-striped">
                         <tr>
@@ -293,7 +293,7 @@ function showAsignaturas(idCurso, idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearAsignatura(${idCurso},${idCentro});">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearAsignatura(${idCurso},${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showCursos(${idCentro});">Voler a Cursos</button>
                             <table class="table table-striped">
                             <tr>
@@ -361,7 +361,7 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearTema(${idAsignatura},${idCurso},${idCentro});">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearTema(${idAsignatura},${idCurso},${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
                                 <table class="table table-striped">
                                 <tr>

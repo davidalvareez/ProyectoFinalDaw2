@@ -1,145 +1,4 @@
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-BlackItalic.ttf') format('truetype');
-    font-weight: 900;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-BoldItalic.ttf') format('truetype');
-    font-weight: 700;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: 800;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraLightItalic.ttf') format('truetype');
-    font-weight: 200;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Italic.ttf') format('truetype');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-MediumItalic.ttf') format('truetype');
-    font-weight: 500;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ThinItalic.ttf') format('truetype');
-    font-weight: 100;
-    font-style: italic;
-}
-
-.glass {
-    backdrop-filter: blur(10px) saturate(105%);
-    -webkit-backdrop-filter: blur(13px) saturate(180%);
-    background-color: #a3a8b062;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
-}
-
-.glass2 {
-    backdrop-filter: blur(300px) saturate(50%);
-    -webkit-backdrop-filter: blur(13px) saturate(180%);
-    background-color: #a3a8b062;
-    border-radius: 12px;
-    //border: 1px solid rgba(255, 255, 255, 0.125);
-}
-
+@import '../base/base.scss';
 .flex {
     display: flex;
     align-items: center;
@@ -152,121 +11,12 @@
     height: 100px;
 }
 
-.boton_modificar {
-    width: 100%;
-    height: 45px;
-    border-radius: 7px;
-    border-color: cadetblue;
-    background-color: #454d55;
-    ;
-    font-size: 18px;
-    font-weight: 500;
-    transition: all 0.5s ease;
-    position: relative;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    outline: none;
-}
-
-.boton_modificar:hover {
-    background: cadetblue;
-    color: #fff !important;
-}
-
-.boton_eliminar {
-    width: 100%;
-    height: 45px;
-    border-radius: 7px;
-    border-color: red;
-    background-color: #454d55;
-    ;
-    font-size: 18px;
-    font-weight: 500;
-    transition: all 0.5s ease;
-    position: relative;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    outline: none;
-}
-
-.boton_eliminar:hover {
-    background: red;
-    color: #fff !important;
-}
-
-$padding: 15px;
-$first-color:#19c673; //color principal
-$second-color:#05a357; //color para resaltes pequeños
-$third-color:#f6f0ea; //color fondo para recuadritos y tal
-$fourth-color: #7319c6; //color triadico 1
-$fifth-color:#c67319; //color triadico 2
-$sixth-color: #19c3c6; //color analogo 1
-$seventh-color: #19c61d; // color analogo 2
-$eightth-color: #c6196c; //color complementario
-$white: #ffffff; //blanco
-$black: #000000; //negro
-$grey: #eee;
-$letter-grey: #797c7e;
-$font1: Poppins;
-$grid-float-breakpoint: 1200px; //puntp de canvio de pantallas
-$movil: 600px;
-$mobil: 600px;
-:root {
-    --first-color: #19c673; //color principal
-    --second-color: #05a357; //color para resaltes pequeños
-    --third-color: #f6f0ea; //color fondo para recuadritos y tal
-    --fourth-color: #7319c6; //color triadico 1
-    --fifth-color: #c67319; //color triadico 2
-    --sixth-color: #19c3c6; //color analogo 1
-    --seventh-color: #19c61d; // color analogo 2
-    --eightth-color: #c6196c; //color complementario
-    --white: #ffffff; //blanco
-    --black: #000000; //negro
-    --grey: #eee;
-    --letter-grey: #797c7e;
-    --font1: Poppins;
-}
-
-///////////////////////////////////////////////////
-/////configuración de la página
-///////////////////
-* {
-    font-family: var(--font1);
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: auto;
-}
-
-body {
-    height: 100%;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-}
-
 .input-editar {
-    //width: 30%;
     margin: 10px;
 }
 
 .close {
     font-size: 40px !important;
-}
-
-.boton-guardar {
-    width: 6%;
-    height: 30px;
-    border-radius: 7px;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.5s ease;
-    position: relative;
-    margin: 10px;
-    outline: none;
 }
 
 .swal2-popup {
@@ -289,79 +39,6 @@ body {
     border: 1.2px solid rgb(0, 0, 0);
     border-radius: 5px;
     margin-bottom: 10px;
-}
-
-///////////////////
-h1 {
-    font-family: var(--font1);
-    font-size: calc(48px + 1vw);
-    font-weight: bold;
-}
-
-h2 {
-    font-family: var(--font1);
-    font-size: calc(18px + 1vw);
-    font-weight: 600;
-}
-
-h3 {
-    font-family: var(--font1);
-    font-size: calc(18px + 0.5vw);
-    font-weight: bold;
-}
-
-h4 {
-    font-family: var(--font1);
-    font-size: calc(18px + 0.1vw);
-    font-weight: bold;
-}
-
-@-webkit-keyframes aniGrad {
-    0% {
-        background-position: 0% 52%
-    }
-    50% {
-        background-position: 100% 49%
-    }
-    100% {
-        background-position: 0% 52%
-    }
-}
-
-@-moz-keyframes aniGrad {
-    0% {
-        background-position: 0% 52%
-    }
-    50% {
-        background-position: 100% 49%
-    }
-    100% {
-        background-position: 0% 52%
-    }
-}
-
-@-o-keyframes aniGrad {
-    0% {
-        background-position: 0% 52%
-    }
-    50% {
-        background-position: 100% 49%
-    }
-    100% {
-        background-position: 0% 52%
-    }
-}
-
-@keyframes aniGrad {
-    0% {
-        background-position: 0% 52%
-    }
-    50% {
-        background-position: 100% 49%
-    }
-    100% {
-        background-position: 0% 52%
-    }
 }
 
 .zonaadmin {
@@ -446,42 +123,31 @@ h4 {
                                 margin-top: 10px;
                                 outline: none;
                             }
-                            .boton-tabla {
-                                width: auto;
-                                height: 30px;
-                                border-radius: 7px;
-                                border-color: rgb(0, 0, 0);
-                                background-color: rgb(251, 255, 15);
-                                font-size: 14px;
-                                font-weight: 500;
-                                float: left;
-                                transition: all 0.5s ease;
-                                position: relative;
-                                margin: 10px;
-                                outline: none;
-                            }
                             .boton-volver {
-                                width: 10%;
-                                height: 30px;
-                                border-radius: 7px;
-                                border-color: rgb(0, 0, 0);
-                                background-color: rgb(15, 91, 255);
                                 color: white;
-                                font-size: 14px;
-                                font-weight: 500;
+                                background-color: rgb(15, 91, 255);
                                 float: right;
-                                transition: all 0.5s ease;
-                                position: relative;
-                                margin: 10px;
-                                outline: none;
-                            }
-                            .cgradient-1 {
-                                background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-                                background-size: 600% 600%;
-                                -webkit-animation: aniGrad 8s ease infinite;
-                                -moz-animation: aniGrad 8s ease infinite;
-                                -o-animation: aniGrad 8s ease infinite;
-                                animation: aniGrad 8s ease infinite;
+                                margin: 5px;
+                                padding: 6px 12px;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 1.42857143;
+                                text-align: center;
+                                white-space: nowrap;
+                                vertical-align: middle;
+                                -ms-touch-action: manipulation;
+                                touch-action: manipulation;
+                                cursor: pointer;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+                                background-image: none;
+                                border: 1px solid transparent;
+                                border-radius: 4px;
+                                &:hover {
+                                    background-color: rgb(10, 69, 197);
+                                }
                             }
                             .tablas {
                                 .table th,
@@ -492,7 +158,7 @@ h4 {
                                     vertical-align: middle;
                                 }
                                 .table th {
-                                    font-weight: bold;
+                                    font-weight: bold !important;
                                 }
                                 .content-tablas {
                                     .content {
