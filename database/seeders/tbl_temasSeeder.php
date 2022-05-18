@@ -23,7 +23,7 @@ class tbl_temasSeeder extends Seeder
         //Asignatura 2
         //ID 2
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Ultrasonidos y Mecanoterapia',
+            'nombre_tema' => 'Tema 6 y 7_ Ultrasonidos y Mecanoterapia',
             'id_asignatura' => 2
         ]);
         //Asignatura 3
@@ -92,13 +92,13 @@ class tbl_temasSeeder extends Seeder
         //Asignatura 11
         //ID 14
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Tema 4',
+            'nombre_tema' => 'Tema 4_ Continuacion',
             'id_asignatura' => 11
         ]);
         //Asignatura 12
         //ID 15
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Fuentes de informacion interna y externa',
+            'nombre_tema' => 'Tema 1_ Fuentes de informacion interna y externa',
             'id_asignatura' => 12
         ]);
         //Asignatura 13
@@ -116,7 +116,7 @@ class tbl_temasSeeder extends Seeder
         //Asignatura 15
         //ID 18
         DB::table('tbl_temas')->insert([
-            'nombre_tema' => 'Fuentes de informacion y normativa',
+            'nombre_tema' => 'Tema 1_ Fuentes de la informacion y normativa',
             'id_asignatura' => 15
         ]);
         /*-------------------------- MIGUEL GRAS ----------------*/
@@ -174,18 +174,19 @@ class tbl_temasSeeder extends Seeder
             'id_asignatura' => 23
         ]);
         /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //Asignatura 24
         //ID 28
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Farmacología',
             'id_asignatura' => 24
         ]);
-
+        //Asignatura 25
         //ID 29
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Inmunología',
             'id_asignatura' => 25
         ]);
-
+        //Asignatura 26
         //ID 30
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Microbiología',

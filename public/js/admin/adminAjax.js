@@ -154,7 +154,7 @@ function showCentros() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearCentro();">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearCentro();">Crear</button>
                     <table class="table table-striped">
                     <tr>
                     <th scope="col">#</th>
@@ -165,21 +165,22 @@ function showCentros() {
                     </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                         <td scope="row"><b>${respuesta[i].id}</b></td>
-                         <td>${respuesta[i].nombre_centro}</td>
-                         <td>${respuesta[i].com_auto_centro}, ${respuesta[i].ciudad_centro}</td>
-                         <td>${respuesta[i].direccion_centro}</td>
-                         <td>
-                         <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
-                         </td>
-                         <td>
-                         <button class= "btn btn-warning" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
-                         </td>
-                         </tr>`
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                        <td>${respuesta[i].nombre_centro}</td>
+                        <td>${respuesta[i].com_auto_centro}, ${respuesta[i].ciudad_centro}</td>
+                        <td>${respuesta[i].direccion_centro}</td>
+                        <td>
+                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-warning" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCentros(${respuesta[i].id});return false;">Eliminar</button>
+                        </td>
+                        </tr>`
                 }
-                /* <td>
-                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCentros(${respuesta[i].id});return false;">Eliminar</button>
-                 </td> */
+
                 recarga += `</table>
                     </div>`;
                 content.innerHTML = recarga;
@@ -223,7 +224,7 @@ function showCursos(idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearCurso(${idCentro});">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearCurso(${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showCentros();">Voler a centros</button>
                     <table class="table table-striped">
                         <tr>
@@ -293,7 +294,7 @@ function showAsignaturas(idCurso, idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearAsignatura(${idCurso},${idCentro});">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearAsignatura(${idCurso},${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showCursos(${idCentro});">Voler a Cursos</button>
                             <table class="table table-striped">
                             <tr>
@@ -361,7 +362,7 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                <button class="boton-tabla" type="submit" value="Create" onclick="modalboxCrearTema(${idAsignatura},${idCurso},${idCentro});">Crear</button>
+                <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearTema(${idAsignatura},${idCurso},${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
                                 <table class="table table-striped">
                                 <tr>
@@ -371,15 +372,15 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row"><b>${respuesta[i].id}</b></td>
-                                     <td>${respuesta[i].nombre_tema}</td>
-                                     <td>
-                                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
-                                     </td>
-                                     <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
-                                     </td>
-                                     </tr>`
+                                    <td scope="row"><b>${respuesta[i].id}</b></td>
+                                    <td>${respuesta[i].nombre_tema}</td>
+                                    <td>
+                                    <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
+                                    </td>
+                                    <td>
+                                    <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
+                                    </td>
+                                    </tr>`
                 }
                 recarga += `</table>
                                 </div>`;
@@ -749,6 +750,61 @@ function eliminarHistorial(historial_id) {
     ajax.send(formData)
 }
 /* EliminaCursos */
+function eliminarCentro(idCentro) {
+    var message = document.getElementById('message');
+    /* console.log(curso_id);
+    console.log(idCentro);
+    return false; */
+
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+
+    /* 
+            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+            var token = document.getElementById('token').getAttribute("content");
+        
+            Usar el objeto FormData para guardar los parámetros que se enviarán:
+            var formData = new FormData();
+            formData.append('_token', token);
+            formData.append('clave', valor);
+            */
+    var token = document.getElementById('token').getAttribute("content");
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', "DELETE");
+    /* Inicializar un objeto AJAX */
+    var ajax = llamadaAjax();
+    /*
+    ajax.open("method", "rutaURL", true);
+    GET  -> No envía parámetros
+    POST -> Sí envía parámetros
+    true -> asynchronous
+    */
+    ajax.open("POST", "admin/centro/" + idCentro, true);
+    ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                /* console.log(respuesta);
+                return false */
+                if (respuesta.resultado == "OK") {
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    //message.innerHTML = '<p>Curso eliminado correctamente.</p>';
+                    showCursos(idCentro);
+                } else {
+                    //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
+                    console.log(respuesta)
+                }
+            }
+        }
+        /*
+        send(string)->Sends the request to the server (used for POST)
+        */
+    ajax.send(formData)
+}
+/* EliminaCursos */
 function eliminarCursos(curso_id, idCentro) {
     var message = document.getElementById('message');
     /* console.log(curso_id);
@@ -910,20 +966,6 @@ function eliminarTemas(tema_id, idAsignatura, idCurso, idCentro) {
 /* EliminarApuntes */
 function eliminarApuntes(apunte_id) {
     var message = document.getElementById('message');
-    /* console.log(apunte_id);
-    return false; */
-
-    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
-
-    /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
-        
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
     var token = document.getElementById('token').getAttribute("content");
     var formData = new FormData();
     formData.append('_token', token);
@@ -963,7 +1005,7 @@ function eliminarApuntes(apunte_id) {
 
 //SweetAlerts
 /*Cerrar ModalBox*/
-/* function swalCentros(id) {
+function swalCentros(id) {
     swal({
             title: "Estas seguro de eliminar este centro?",
             text: "Una vez eliminado, no podras recuperar este centro!",
@@ -980,7 +1022,7 @@ function eliminarApuntes(apunte_id) {
                 eliminarCentro(id);
             }
         });
-} */
+}
 
 function swalCursos(id, idCentro) {
     swal({

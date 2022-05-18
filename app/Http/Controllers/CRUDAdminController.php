@@ -102,55 +102,55 @@ class CRUDAdminController extends Controller
         }
 
     /* CrearCursos */
-    public function crearCurso(Request $request){ 
-        $datos=$request->except("_token");
-        try{
-            DB::beginTransaction();
-            DB::insert("INSERT INTO tbl_cursos (nombre_curso, nombre_corto_curso, tipo_curso, id_centro) VALUES (?,?,?,?)",[$datos["nombre_curso"],$datos["nombre_corto_curso"],$datos["tipo_curso"],$datos["id_centro"]]);
-            $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
-            Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_curso"]);
-            DB::commit();
-            return response()->json(array('resultado'=> 'OK'));
-        }catch(\Throwable $th) {
-            DB::rollBack();
-            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        public function crearCurso(Request $request){ 
+            $datos=$request->except("_token");
+            try{
+                DB::beginTransaction();
+                DB::insert("INSERT INTO tbl_cursos (nombre_curso, nombre_corto_curso, tipo_curso, id_centro) VALUES (?,?,?,?)",[$datos["nombre_curso"],$datos["nombre_corto_curso"],$datos["tipo_curso"],$datos["id_centro"]]);
+                $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+                Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$datos["nombre_curso"]);
+                DB::commit();
+                return response()->json(array('resultado'=> 'OK'));
+            }catch(\Throwable $th) {
+                DB::rollBack();
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+            }
         }
-    }
 
     /* CrearAsignaturas */
-    public function crearAsignatura(Request $request){ 
-        $datos=$request->except("_token");
-        try{
-            DB::beginTransaction();
-            DB::insert("INSERT INTO tbl_asignaturas (nombre_asignatura, id_curso) VALUES (?,?)",[$datos["nombre_asignatura"],$datos["id_curso"]]);
-            $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
-            $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
-            Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_asignatura"]);
-            DB::commit();
-            return response()->json(array('resultado'=> 'OK'));
-        }catch(\Throwable $th) {
-            DB::rollBack();
-            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        public function crearAsignatura(Request $request){ 
+            $datos=$request->except("_token");
+            try{
+                DB::beginTransaction();
+                DB::insert("INSERT INTO tbl_asignaturas (nombre_asignatura, id_curso) VALUES (?,?)",[$datos["nombre_asignatura"],$datos["id_curso"]]);
+                $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+                $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
+                Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$datos["nombre_asignatura"]);
+                DB::commit();
+                return response()->json(array('resultado'=> 'OK'));
+            }catch(\Throwable $th) {
+                DB::rollBack();
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+            }
         }
-    }
 
     /* CrearTemas */
-    public function crearTema(Request $request){ 
-        $datos=$request->except("_token");
-        try{
-            DB::beginTransaction();
-            DB::insert("INSERT INTO tbl_temas (nombre_tema, id_asignatura) VALUES (?,?)",[$datos["nombre_tema"],$datos["id_asignatura"]]);
-            $nombre_asignatura=DB::select("SELECT nombre_asignatura FROM tbl_asignaturas WHERE id = ?",[$datos["id_asignatura"]]);
-            $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
-            $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
-            Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_tema"]);
-            DB::commit();
-            return response()->json(array('resultado'=> 'OK'));
-        }catch(\Throwable $th) {
-            DB::rollBack();
-            return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+        public function crearTema(Request $request){ 
+            $datos=$request->except("_token");
+            try{
+                DB::beginTransaction();
+                DB::insert("INSERT INTO tbl_temas (nombre_tema, id_asignatura) VALUES (?,?)",[$datos["nombre_tema"],$datos["id_asignatura"]]);
+                $nombre_asignatura=DB::select("SELECT nombre_asignatura FROM tbl_asignaturas WHERE id = ?",[$datos["id_asignatura"]]);
+                $nombre_centro=DB::select("SELECT nombre_centro FROM tbl_centro WHERE id = ?",[$datos["id_centro"]]);
+                $nombre_curso=DB::select("SELECT nombre_curso FROM tbl_cursos WHERE id = ?",[$datos["id_curso"]]);
+                Storage::makeDirectory('public/uploads/apuntes/'.$nombre_centro[0]->nombre_centro.'/'.$nombre_curso[0]->nombre_curso.'/'.$nombre_asignatura[0]->nombre_asignatura.'/'.$datos["nombre_tema"]);
+                DB::commit();
+                return response()->json(array('resultado'=> 'OK'));
+            }catch(\Throwable $th) {
+                DB::rollBack();
+                return response()->json(array('resultado'=> 'NOK: '.$th->getMessage()));
+            }
         }
-    }
 //Actualizar
     /* ActualizarCentro */
         public function actualizarCentro(Request $request){  
@@ -241,13 +241,64 @@ class CRUDAdminController extends Controller
 //Eliminar
     /* EliminarUsers */
         public function eliminarUser($id){
-            try{
+            $user= session()->get('user');
+                try{
+                    //Cogemos si tiene alguno del sistema para no borrarlo.
+                        $userImage = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[$id]);
+                        $userImage = $userImage[0]->img_avatar;
+                        $avataresSistema = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[null]);
+                        $isAvatarSistema = false;
+                        foreach ($avataresSistema as $avatarSistema){
+                            if ($avatarSistema->img_avatar == $userImage) {
+                                $isAvatarSistema = true;
+                            }
+                        }
+                        //Comprobamos si es avatar del sistema
+                        if ($isAvatarSistema == false) {
+                            if (file_exists(storage_path('app/public/'.$userImage))) {
+                                Storage::delete('public/'.$userImage);
+                            }
+                        }
                 DB::beginTransaction();
-                DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
-                DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$id]);
-                DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$id]);
+                $exitDenuncia =DB::select("SELECT * FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
+                if (count($exitDenuncia) != 0) {
+                    DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$id,$id]);
+                }
+                $existComment = DB::SELECT("SELECT * FROM tbl_comentarios WHERE id_usu = ?",[$id]);
+                if (count($existComment) != 0) {
+                    DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$id]);
+                }
+                $existHistorial = DB::select("SELECT * FROM tbl_historial WHERE id_usu = ?",[$id]);
+                if (count($existHistorial) != 0) {
+                    DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$id]);
+                }
+
+                $apuntes = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema FROM tbl_usuario usu 
+                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                WHERE apuntes.id_usu =  ?",[$id]);
+                foreach ($apuntes as $apunte) {
+                    DB::delete("DELETE FROM tbl_multimedia WHERE id = ?",[$apunte->id]);
+                    $pathPDF = 'public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido;
+                    $pathIMG = 'public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png';
+                    Storage::delete($pathPDF);
+                    Storage::delete($pathIMG);
+                }
+                $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
+                $newuser=$newuser[0];
+                $sub = "Tu cuenta ha sido eliminada 😭";
+                $msj = "Tu cuenta ha sido eliminada por un administrador, si quieres volver a acceder tendras que crearte una cuenta nueva";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($newuser->correo_usu)->send($enviar);
+                Storage::delete('public/uploads/configuration/user-'.$id.'.json');
                 DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
                 DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM tbl_estudios WHERE id_usu= ?",[$id]);
                 DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
@@ -284,15 +335,25 @@ class CRUDAdminController extends Controller
         public function eliminarCurso($id){
             try{
                 DB::beginTransaction();
-                $id_asignatura=DB::select("SELECT id FROM tbl_asignaturas WHERE id_curso= ?",[$id]); 
+                $id_asignatura=DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.id as id_asignatura,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
+                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                WHERE curso.id =  ?",[$id]);
+                $pathFolder = 'public/uploads/apuntes/'.$id_asignatura[0]->nombre_centro.'/'.$id_asignatura[0]->nombre_curso;
+                $allFiles = Storage::allFiles($pathFolder);
+                Storage::delete($allFiles);
                 foreach ($id_asignatura as $asignatura) { 
-                    $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id]);
+                    $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id_asignatura]);
                     foreach ($id_tema as $tema) {
                         DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
                         DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]);
                     }
-                    DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id]); 
+                    DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id_asignatura]); 
                     } 
+                DB::delete("DELETE FROM tbl_estudios WHERE id_curso= ?",[$id]);
                 DB::select("DELETE FROM tbl_cursos WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
@@ -305,10 +366,18 @@ class CRUDAdminController extends Controller
         public function eliminarAsignatura($id){
             try{
                 DB::beginTransaction();
-                $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$id]);
+                $id_tema = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
+                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                WHERE asig.id =  ?",[$id]);
+                $pathFolder = 'public/uploads/apuntes/'.$id_tema[0]->nombre_centro.'/'.$id_tema[0]->nombre_curso.'/'.$id_tema[0]->nombre_asignatura;
+                Storage::deleteDirectory($pathFolder);
                 foreach ($id_tema as $tema) {
-                    DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
-                    DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]); 
+                    DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id_tema]);
+                    DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id_tema]); 
                 } 
                 DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$id]);                
                 DB::commit();
@@ -335,10 +404,45 @@ class CRUDAdminController extends Controller
         public function eliminarApunte($id){
             try{
                 DB::beginTransaction();
-                DB::select("DELETE FROM tbl_denuncias WHERE id_contenido= ?",[$id]);
-                DB::select("DELETE FROM tbl_comentarios WHERE id_contenido= ?",[$id]);
-                DB::select("DELETE FROM tbl_historial WHERE id_contenido= ?",[$id]);
-                DB::select("DELETE FROM tbl_contenidos WHERE id= ?",[$id]);                
+                
+                $exitDenuncia =DB::select("SELECT * FROM tbl_denuncias WHERE id_contenido = ?",[$id]);
+                if (count($exitDenuncia) != 0) {
+                    DB::delete("DELETE FROM tbl_denuncias WHERE id_contenido = ?",[$id]);
+                }
+                $existComment = DB::SELECT("SELECT * FROM tbl_comentarios WHERE id_contenido = ?",[$id]);
+                if (count($existComment) != 0) {
+                    DB::delete("DELETE FROM tbl_comentarios WHERE id_contenido = ?",[$id]);
+                }
+                $existMultimedia = DB::select("SELECT * FROM tbl_multimedia WHERE id = ?",[$id]);
+                if (count($existMultimedia) != 0) {
+                    DB::delete("DELETE FROM tbl_multimedia WHERE id = ?",[$id]);
+                }
+                $existHistorial = DB::select("SELECT * FROM tbl_historial WHERE id_contenido = ?",[$id]);
+                if (count($existHistorial) != 0) {
+                    DB::delete("DELETE FROM tbl_historial WHERE id_contenido = ?",[$id]);
+                }
+                $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema FROM tbl_usuario usu 
+                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                WHERE apuntes.id =  ?",[$id]);
+                $pathPDF = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+                $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
+                Storage::delete($pathPDF);
+                Storage::delete($pathIMG);
+                
+                $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$apunte[0]->id_usu]);
+                $newuser=$newuser[0];
+                $sub = "Tu apunte fue eliminado de nuestra pagina 😥";
+                $msj = "Tu apunte fue '" .$apunte[0]->nombre_contenido."".$apunte[0]->extension_contenido. "' eliminado de nuestra pagina por un administrador";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($newuser->correo_usu)->send($enviar);
+                
+                DB::delete("DELETE FROM tbl_contenidos WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
             }catch(\Exception $e){
