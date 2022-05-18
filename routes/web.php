@@ -152,6 +152,8 @@ use App\Http\Livewire\Contacts;
 
     Route::delete('admin/historial/{id}',[CRUDAdminController::class,'eliminarHistorial']);
 
+    Route::delete('admin/centro/{id}',[CRUDAdminController::class,'eliminarCentro']);
+
     Route::delete('admin/cursos/{id}',[CRUDAdminController::class,'eliminarCurso']);
 
     Route::delete('admin/asignaturas/{id}',[CRUDAdminController::class,'eliminarAsignatura']);

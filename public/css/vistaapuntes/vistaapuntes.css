@@ -176,20 +176,6 @@
   }
 }
 
-.btn-glass {
-  margin: 10px 0px 0px 0px;
-  padding: 20px 75px;
-  font-size: 17px;
-  border: 1px solid rgba(77, 77, 77, 0.144);
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #ff8f0b, #00cf9a);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
 .btn-glass2 {
   margin: 15px 0px 0px 0px;
   padding: 15px 60px;
@@ -256,12 +242,6 @@ body {
   width: 100%;
   min-height: 100vh;
   position: relative;
-}
-
-.menu {
-  width: 100%;
-  padding: 20px 0px 90px 0px;
-  text-align: center;
 }
 
 .comentario {

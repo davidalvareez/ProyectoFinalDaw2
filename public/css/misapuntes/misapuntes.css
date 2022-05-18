@@ -257,20 +257,6 @@
   }
 }
 
-.btn-glass {
-  margin: 20px 0px 0px 0px;
-  padding: 10px 75px;
-  font-size: 15px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #ff8f0b, #00cf9a);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
 :root {
   --first-color: #19c673;
   --second-color: #05a357;
@@ -379,6 +365,51 @@ body {
   vertical-align: middle;
 }
 
+.table td,
+.table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  text-indent: initial;
+  border-spacing: 2px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+.btn-danger:hover {
+  background-color: #ad2a38;
+  border-color: #000000;
+}
+
 h1 {
   font-family: var(--font1);
   font-size: calc(48px + 1vw);
@@ -401,6 +432,22 @@ h4 {
   font-family: var(--font1);
   font-size: calc(18px + 0.1vw);
   font-weight: bold;
+}
+
+@media (min-width: 1200px) {
+  .misapuntes-page {
+    height: 100%;
+  }
+}
+
+.misapuntes-page main {
+  padding-top: calc(100px + 3vh) !important;
+}
+
+@media (min-width: 100vh) {
+  .misapuntes-page main {
+    height: 100vh;
+  }
 }
 
 .misapuntes-page main .region1 {

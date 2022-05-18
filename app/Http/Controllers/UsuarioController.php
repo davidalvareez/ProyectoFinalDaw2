@@ -449,12 +449,44 @@ class UsuarioController extends Controller
                 return response()->json(array("resultado"=>"IncorrectPassword"));
             }else{
                 try{
+                    //Cogemos si tiene alguno del sistema para no borrarlo.
+                        $userImage = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[$user->id]);
+                        $userImage = $userImage[0]->img_avatar;
+                        $avataresSistema = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[null]);
+                        $isAvatarSistema = false;
+                        foreach ($avataresSistema as $avatarSistema){
+                            if ($avatarSistema->img_avatar == $userImage) {
+                                $isAvatarSistema = true;
+                            }
+                        }
+                        //Comprobamos si es avatar del sistema
+                        if ($isAvatarSistema == false) {
+                            if (file_exists(storage_path('app/public/'.$userImage))) {
+                                Storage::delete('public/'.$userImage);
+                            }
+                        }
                     DB::beginTransaction();
+                    $apuntes = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema FROM tbl_usuario usu 
+                    INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                    INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                    INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                    INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                    INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                    WHERE apuntes.id_usu =  ?",[$user->id]);
+                    foreach ($apuntes as $apunte) {
+                        DB::delete("DELETE FROM tbl_multimedia WHERE id = ?",[$apunte->id]);
+                        $pathPDF = 'public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido;
+                        $pathIMG = 'public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png';
+                        Storage::delete($pathPDF);
+                        Storage::delete($pathIMG);
+                    }
+                    Storage::delete('public/uploads/configuration/user-'.$user->id.'.json');
                     DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$user->id,$user->id]);
                     DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$user->id]);
+                    DB::delete("DELETE FROM tbl_estudios WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$user->id]);
                     DB::commit();
                     $redirect = url('/');

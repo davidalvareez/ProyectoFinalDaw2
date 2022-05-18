@@ -10,22 +10,22 @@
     <title>Admin CPanel</title>
 </head>
 <body class="zonaadmin">
-    @include('template.menu') 
     <header></header>
     <main>
         <center>
         <div class="region region1">
-            <div class="menu">
-                <div class="content-menu">
+            <div class="menu-admin">
+                <div class="content-menu-admin">
                     <h1>Panel del administrador</h1>
                     {{-- <form action='{{url('logout')}}' method='get'>
                         <button class="btn btn-secondary">Logout</button>
                     </form> --}}
-                    <button class="boton-menu cgradient-1" onclick="showUsers();closeModal();return false">Users</button>
-                    <button class="boton-menu cgradient-1" onclick="showCentros();closeModal();return false">Centros</button>
-                    <button class="boton-menu cgradient-1" onclick="showApuntes();closeModal();return false">Apuntes</button>
-                    <button class="boton-menu cgradient-1" onclick="showDenuncias();closeModal();return false">Denuncias</button>
-                    <button class="boton-menu cgradient-1" onclick="showHistorial();closeModal();return false">Historial</button>
+                    <button class="btn-glass" onclick="showUsers();closeModal();return false">Users</button>
+                    <button class="btn-glass" onclick="showCentros();closeModal();return false">Centros</button>
+                    <button class="btn-glass" onclick="showApuntes();closeModal();return false">Apuntes</button>
+                    <button class="btn-glass" onclick="showDenuncias();closeModal();return false">Denuncias</button>
+                    <button class="btn-glass" onclick="showHistorial();closeModal();return false">Historial</button>
+                    <a href="{{url('logout')}}"><button class="btn-glass_rosa" return false">Cerrar Sesión</button></a>
                     <div id="message" style="color:green"></div>
 
                     <div class="filtrador">
@@ -48,8 +48,6 @@
                                 <div class="content-tablas">
                                     <div id="content">
                                     </div>
-                                    <div id="myModal" class="modal">
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +56,6 @@
             </div>
         </div>
     </main>
-    @include('template.footer')  
     <div class="background">
         <div class="container-bg">
             <div class="coso coso0">

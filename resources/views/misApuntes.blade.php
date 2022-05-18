@@ -1,9 +1,6 @@
 @include('template.header')
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{!! asset ('css/misapuntes/misapuntes.css')!!}">
     <script src="{!! asset('js/misApuntes/misApuntesAjax.js') !!}"></script>
     <title>Mis apuntes</title>
@@ -102,8 +99,8 @@
                             <div class="misapuntes-content-glassland">
                                 <table class="table" id="content">
                                     <tr>
-                                        <th style="text-align: center"><b>Documento</b></th>
-                                        <th style="text-align: center"><b>Fecha Publicacion</b></th>
+                                        <th style="text-align: center"><h4>Documento</h4></th>
+                                        <th style="text-align: center"><h4>Fecha Publicación</h4></th>
                                         <th></th>
                                     </tr>
                                     @foreach($select as $apuntes)
@@ -111,7 +108,7 @@
                                         <td>{{$apuntes->nombre_contenido}}{{$apuntes->extension_contenido}}</td>
                                         <td>{{$apuntes->fecha_publicacion_contenido}}</td>
                                         <td>
-                                            <button class="btn btn-danger" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>
+                                            <button class="btn-danger" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>
                                         </td>
                                     </tr>
                                     @endforeach
