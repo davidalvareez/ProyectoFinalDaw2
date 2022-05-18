@@ -142,15 +142,15 @@ function apuntesAjax() {
             let respuesta = JSON.parse(this.responseText);
             let recarga = "";
             recarga = `<tr>
-                <th scope="col">Documento</th>
-                <th scope="col">Fecha Publicacion</th>
+                <th style="text-align: center" scope="col">Documento</th>
+                <th style="text-align: center" scope="col">Fecha Publicación</th>
             </tr>`;
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += `<tr>
                 <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
                 <td>${respuesta[i].fecha_publicacion_contenido}</td>
                 <td>
-                    <button class="btn btn-light" type="submit" id="" onclick="eliminarApunte(${respuesta[i].id})">Eliminar</button>
+                    <button class="btn btn-danger" type="submit" id="" onclick="eliminarApunte(${respuesta[i].id})">Eliminar</button>
                 </td>
             </tr>`;
             }

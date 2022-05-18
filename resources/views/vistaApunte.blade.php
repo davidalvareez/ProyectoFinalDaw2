@@ -77,7 +77,7 @@
                                             <input type="hidden" name="id_contenido" value={{$apunte[0]->id}}>
 
                                             <div class="crear-coment">
-                                                <input class="btn-glass2" type="submit" value="Enviar">
+                                                <input class="btn-glass_negro" type="submit" value="Enviar">
                                             </div>
                                         </div>
                                     </form>
