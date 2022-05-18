@@ -287,6 +287,14 @@ class CRUDAdminController extends Controller
                     Storage::delete($pathPDF);
                     Storage::delete($pathIMG);
                 }
+                $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$id]);
+                $newuser=$newuser[0];
+                $sub = "Tu cuenta ha sido eliminada 😭";
+                $msj = "Tu cuenta ha sido eliminada por un administrador, si quieres volver a acceder tendras que crearte una cuenta nueva";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($newuser->correo_usu)->send($enviar);
                 Storage::delete('public/uploads/configuration/user-'.$id.'.json');
                 DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
                 DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
@@ -327,15 +335,25 @@ class CRUDAdminController extends Controller
         public function eliminarCurso($id){
             try{
                 DB::beginTransaction();
-                $id_asignatura=DB::select("SELECT id FROM tbl_asignaturas WHERE id_curso= ?",[$id]); 
+                $id_asignatura=DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.id as id_asignatura,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
+                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                WHERE curso.id =  ?",[$id]);
+                $pathFolder = 'public/uploads/apuntes/'.$id_asignatura[0]->nombre_centro.'/'.$id_asignatura[0]->nombre_curso;
+                $allFiles = Storage::allFiles($pathFolder);
+                Storage::delete($allFiles);
                 foreach ($id_asignatura as $asignatura) { 
-                    $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id]);
+                    $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id_asignatura]);
                     foreach ($id_tema as $tema) {
                         DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
                         DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]);
                     }
-                    DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id]); 
+                    DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id_asignatura]); 
                     } 
+                DB::delete("DELETE FROM tbl_estudios WHERE id_curso= ?",[$id]);
                 DB::select("DELETE FROM tbl_cursos WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
@@ -348,10 +366,18 @@ class CRUDAdminController extends Controller
         public function eliminarAsignatura($id){
             try{
                 DB::beginTransaction();
-                $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$id]);
+                $id_tema = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
+                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                WHERE asig.id =  ?",[$id]);
+                $pathFolder = 'public/uploads/apuntes/'.$id_tema[0]->nombre_centro.'/'.$id_tema[0]->nombre_curso.'/'.$id_tema[0]->nombre_asignatura;
+                Storage::deleteDirectory($pathFolder);
                 foreach ($id_tema as $tema) {
-                    DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
-                    DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]); 
+                    DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id_tema]);
+                    DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id_tema]); 
                 } 
                 DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$id]);                
                 DB::commit();
@@ -406,6 +432,16 @@ class CRUDAdminController extends Controller
                 $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
                 Storage::delete($pathPDF);
                 Storage::delete($pathIMG);
+                
+                $newuser = DB::select("SELECT * FROM tbl_usuario WHERE id = ?",[$apunte[0]->id_usu]);
+                $newuser=$newuser[0];
+                $sub = "Tu apunte fue eliminado de nuestra pagina 😥";
+                $msj = "Tu apunte fue '" .$apunte[0]->nombre_contenido."".$apunte[0]->extension_contenido. "' eliminado de nuestra pagina por un administrador";
+                $datos = array('message'=>$msj);
+                $enviar = new sendMail($datos);
+                $enviar->sub = $sub;
+                Mail::to($newuser->correo_usu)->send($enviar);
+                
                 DB::delete("DELETE FROM tbl_contenidos WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
