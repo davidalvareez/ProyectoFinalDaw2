@@ -11,8 +11,14 @@ class Contacts extends Component
 {
     public function render()
     {
-        return view('livewire.contacts',[
-            'contacts' => frinds::where("friend_id",auth()->id())->latest()->get()
-        ])->layout('layouts.main');
+        //Coger variable de sesion para contactos
+        if (session()->get("user")) {
+            $user = session()->get("user");
+            return view('livewire.contacts',[
+                'contacts' => frinds::where("friend_id",$user->id)->latest()->get()
+            ])->layout('layouts.main');
+        }else{
+            return redirect('/');
+        }
     }
 }

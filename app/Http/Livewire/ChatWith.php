@@ -18,46 +18,60 @@ class ChatWith extends Component
 
     public function send_message()
     {
-        $this->validate(['message' => "required"]);
+        if (session()->get("user")) {
+            $user = session()->get("user");
+            $this->validate(['message' => "required"]);
+            //Auth cambiar por variable de sesion de id de user logeado
+            chat::create([
+                'user_id' => $user->id,
+                'message' => $this->message,
+                'chat_id' => frinds::where(['user_id'=>$user->id, 'friend_id' =>$this->user->id])->first()->chat_id,
+                'friend_id' => $this->user->id
+            ]);
 
-
-        chat::create([
-            'user_id' => auth()->id(),
-            'message' => $this->message,
-            'chat_id' => frinds::where(['user_id'=>auth()->id(), 'friend_id' =>$this->user->id])->first()->chat_id,
-            'friend_id' => $this->user->id
-        ]);
-
-        $this->message='';
-        $this->render();
+            $this->message='';
+            $this->render();
+        }else{
+            return redirect('/');
+        }
     }
 
     public function mount($uuid)
     {
-        $this->uuid = $uuid;
-        $this->user = User::where('uuid',$uuid)->first();
+        if (session()->get('user')) {
+            $user = session()->get("user");
+            $this->uuid = $uuid;
+            $this->user = User::where('uuid',$uuid)->first();
 
+            //Auth cambiar por variable de sesion de id de user logeado
+            if (frinds::where(['user_id' => $user->id, 'friend_id' => $this->user->id])->count() === 0 || frinds::where(['user_id' => $this->user->id, 'friend_id' => $user->id])->count() === 0) {
+                $uuid = Str::uuid();
+                frinds::create([
+                    'user_id' => $user->id,
+                    'chat_id' => $uuid,
+                    'friend_id' => $this->user->id
+                ]);
 
-        if (frinds::where(['user_id' => auth()->id(), 'friend_id' => $this->user->id])->count() === 0 || frinds::where(['user_id' => $this->user->id, 'friend_id' => auth()->id()])->count() === 0) {
-            $uuid = Str::uuid();
-            frinds::create([
-                'user_id' => auth()->id(),
-                'chat_id' => $uuid,
-                'friend_id' => $this->user->id
-            ]);
-
-            frinds::create([
-                'user_id' => $this->user->id,
-                'chat_id' => $uuid,
-                'friend_id' => auth()->id()
-            ]);
+                frinds::create([
+                    'user_id' => $this->user->id,
+                    'chat_id' => $uuid,
+                    'friend_id' => $user->id
+                ]);
+            }
+        }else{
+            return redirect('/'); 
         }
     }
     public function render()
     {
-        return view('livewire.chat-with',[
-            'messages' => chat::where('chat_id',frinds::where(['user_id'=>auth()->id(), 'friend_id' =>$this->user->id])->first()->chat_id)->get()
-                    ])->layout('layouts.main');
+        if (session()->get('user')) {
+            $user = session()->get("user");
+            return view('livewire.chat-with',[
+                'messages' => chat::where('chat_id',frinds::where(['user_id'=>$user->id, 'friend_id' =>$this->user->id])->first()->chat_id)->get()
+                        ])->layout('layouts.main');
+        }else{
+            return redirect('/');
+        }
 
     }
 }

@@ -1,6 +1,6 @@
 <div class="chat-body">
     <div class="chat-box-header">
-        <img src="{{ asset($user->image) }}" class="employee" style="border-radius: 50%" alt="">
+        <img src="{{asset('storage').'/'.$user->image }}" class="employee" style="border-radius: 50%" alt="">
         <div class="employee-name">{{ $user->name }}</div>
         <div class="top-right-menu-icons">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -20,7 +20,7 @@
     <div class="chat-box-content" wire:poll.keep-alive>
         <div class="conversation-group" id="textContent">
             @forelse ($messages as $message)
-                @if ($message->friend_id == auth()->id())
+                @if ($message->friend_id == Session::get('user')->id)
                     <div class="message message-box recived">
                         <p>{{ $message->message }}</p>
                     </div>

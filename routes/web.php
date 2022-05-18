@@ -227,4 +227,4 @@ use App\Http\Livewire\Contacts;
 
 /*CHAT PRUEBA*/
     Route::get('notehub-chat',Contacts::class)->name('contacts');
-    Route::get('notehub-chat/{id}',ChatWith::class)->name('chat_with');
+    Route::get('notehub-chat/{uuid}',ChatWith::class)->name('chat_with');
