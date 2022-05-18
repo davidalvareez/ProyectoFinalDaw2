@@ -269,6 +269,28 @@ body {
     outline: none;
 }
 
+.swal2-popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 100%);
+    width: auto;
+    max-width: 100%;
+    padding: 0 0 1.25em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #545454;
+    font-family: inherit;
+    font-size: 1.75rem !important;
+}
+
+.input-editar-admin {
+    border: 1.2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 ///////////////////
 h1 {
     font-family: var(--font1);
@@ -355,14 +377,14 @@ h4 {
         }
         .region1 {
             margin: 50px 0px 0px 0px;
-            .menu {
+            .menu-admin {
                 margin: 0px 0px 44px 0px;
-                .content-menu {
+                .content-menu-admin {
                     .filtrador {
                         margin-top: 50px;
                         width: 50%;
                     }
-                    .boton-menu {
+                    .boton-menu-admin {
                         width: 25%;
                         height: 40px;
                         border-radius: 7px;
@@ -425,7 +447,7 @@ h4 {
                                 outline: none;
                             }
                             .boton-tabla {
-                                width: 6%;
+                                width: auto;
                                 height: 30px;
                                 border-radius: 7px;
                                 border-color: rgb(0, 0, 0);

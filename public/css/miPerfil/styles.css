@@ -256,7 +256,15 @@ body {
   font-family: var(--font1);
 }
 
-.darkmode a, .darkmode p, .darkmode h1, .darkmode h2, .darkmode h3, .darkmode h4, .darkmode h5, .darkmode h6, .darkmode button {
+.darkmode a,
+.darkmode p,
+.darkmode h1,
+.darkmode h2,
+.darkmode h3,
+.darkmode h4,
+.darkmode h5,
+.darkmode h6,
+.darkmode button {
   color: var(--white);
 }
 
@@ -949,6 +957,32 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+}
+
+.swal2-popup {
+  display: none;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -ms-grid-columns: minmax(0, 100%);
+      grid-template-columns: minmax(0, 100%);
+  width: 32em;
+  max-width: 100%;
+  padding: 0 0 1.25em;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #545454;
+  font-family: inherit;
+  font-size: 1.2rem;
+}
+
+.swal2-popup input {
+  border: 1.2px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 80%;
+  padding: 10px;
 }
 
 .cgradient-1 {

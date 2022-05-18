@@ -484,7 +484,11 @@ h4 {
 }
 
 .login-page {
-  overflow-y: hidden;
+  height: calc(100vh - 105px);
+}
+
+.login-page main {
+  height: 100vh !important;
 }
 
 .login-page main .region1 {
@@ -514,12 +518,6 @@ h4 {
 
 .login-page main .region1 .content-region .imagenrelleno {
   padding-left: 41%;
-}
-
-.registro-page {
-  background-image: url("../../media/loginregister/fondo3.png");
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .registro-page main .region1 {
