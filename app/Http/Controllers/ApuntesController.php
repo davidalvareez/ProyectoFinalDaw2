@@ -256,10 +256,24 @@ class ApuntesController extends Controller
                 INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
                 LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
                 WHERE apuntes.id =  ?",[$id]);
-                $pathPDF = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
-                $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
-                Storage::delete($pathPDF); 
-                Storage::delete($pathIMG);    
+                 //Validar si existe el apunte entre todo en caso que no es que esta en reciclaje
+                 if (count($apunte) == 0) {
+                    $apunte = DB::select("SELECT * FROM tbl_contenidos WHERE id = ?",[$id]);
+                    if ($apunte[0]->extension_contenido == ".pdf") {
+                        $pathIMG = 'public/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.".png";
+                        Storage::delete($pathIMG);
+                    }
+                    $pathPDF = 'public/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+                    Storage::delete($pathPDF);
+                //En caso contrario cogemos la ruta y la eliminamos
+                }else{
+                    if ($apunte[0]->extension_contenido == ".pdf") {
+                        $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
+                        Storage::delete($pathIMG);
+                    }
+                    $pathPDF = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+                    Storage::delete($pathPDF);
+                }    
                 DB::delete("DELETE FROM tbl_contenidos WHERE id = ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
