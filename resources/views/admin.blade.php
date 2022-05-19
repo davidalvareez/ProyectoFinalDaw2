@@ -25,7 +25,7 @@
                     <button class="btn-glass" onclick="showApuntes();closeModal();return false">Apuntes</button>
                     <button class="btn-glass" onclick="showDenuncias();closeModal();return false">Denuncias</button>
                     <button class="btn-glass" onclick="showHistorial();closeModal();return false">Historial</button>
-                    <a href="{{url('logout')}}"><button class="btn-glass_rosa" return false">Cerrar Sesión</button></a>
+                    <a href="{{url('logout')}}"><button class="btn-glass-rosa" return false">Cerrar Sesión</button></a>
                     <div id="message" style="color:green"></div>
 
                     <div class="filtrador">

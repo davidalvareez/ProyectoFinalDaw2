@@ -1,11 +1,4 @@
 @import '../base/base.scss';
-.flex {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-}
-
 .imgavatar {
     width: 100px;
     height: 100px;
@@ -44,18 +37,17 @@
 .zonaadmin {
     main {
         .region {
-            width: 90%;
+            width: 100%;
+            @include flex-cv($d: column);
             .glassland {
-                @extend .glass2;
-                .content-glassland {
-                    @extend .flex;
-                }
+                @extend .glass-admin;
+                .content-glassland {}
             }
         }
         .region1 {
             margin: 50px 0px 0px 0px;
             .menu-admin {
-                margin: 0px 0px 44px 0px;
+                @include flex-cv($d: column);
                 .content-menu-admin {
                     .filtrador {
                         margin-top: 50px;
@@ -91,21 +83,15 @@
                         margin-top: 10px;
                         outline: none;
                     }
-                    .cgradient-1 {
-                        background: linear-gradient(83deg, #ff8f0b, #00cf9a);
-                        background-size: 600% 600%;
-                        -webkit-animation: aniGrad 8s ease infinite;
-                        animation: aniGrad 8s ease infinite;
-                    }
                 }
             }
         }
         .region2 {
-            margin: 30px;
+            margin-top: 30px;
             .content-region {
                 .glassland {
                     .content-glassland {
-                        //@extend .flex;
+                        //@include flex-cv($d: column);
                         width: 100%;
                         .admin-content-glassland {
                             width: 90vw;

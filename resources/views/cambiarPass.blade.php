@@ -85,11 +85,7 @@
                                     <p class="errortext">{{$message}}</p>
                                     @enderror
                                 </div>
-                                <!-- <div class="alienarright">
-                                    <a href="">
-                                        <p>Contraseña olvidada?</p>
-                                    </a>
-                                </div> -->
+
                                 <input class="cambiarpass-btn-absglass" type="submit" value="Restablecer contraseña">
                                 {{-- <div class="">
                                     <div class="alienarleft">
