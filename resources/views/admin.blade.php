@@ -19,11 +19,11 @@
                     {{-- <form action='{{url('logout')}}' method='get'>
                         <button class="btn btn-secondary">Logout</button>
                     </form> --}}
-                    <button class="btn-glass" onclick="showUsers();closeModal();return false">Users</button>
-                    <button class="btn-glass" onclick="showCentros();closeModal();return false">Centros</button>
-                    <button class="btn-glass" onclick="showApuntes();closeModal();return false">Apuntes</button>
-                    <button class="btn-glass" onclick="showDenuncias();closeModal();return false">Denuncias</button>
-                    <button class="btn-glass" onclick="showHistorial();closeModal();return false">Historial</button>
+                    <button class="btn-glass" onclick="showUsers();return false">Users</button>
+                    <button class="btn-glass" onclick="showCentros();return false">Centros</button>
+                    <button class="btn-glass" onclick="showApuntes();return false">Apuntes</button>
+                    <button class="btn-glass" onclick="showDenuncias();return false">Denuncias</button>
+                    <button class="btn-glass" onclick="showHistorial();return false">Historial</button>
                     <a href="{{url('logout')}}"><button class="btn-glass_rosa" return false">Cerrar Sesión</button></a>
                     <div id="message" style="color:green"></div>
 

@@ -150,7 +150,6 @@ function showCentros() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
                 centros = respuesta;
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -220,7 +219,6 @@ function showCursos(idCentro) {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -290,7 +288,6 @@ function showAsignaturas(idCurso, idCentro) {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -358,7 +355,6 @@ function showTemas(idAsignatura, idCurso, idCentro) {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -799,59 +795,6 @@ function eliminarUsers(user_id) {
         */
     ajax.send(formData)
 }
-/* EliminarDenuncias */
-function eliminarDenuncias(denuncia_id) {
-    var message = document.getElementById('message');
-    /* console.log(denuncia_id);
-    return false; */
-
-    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
-
-    /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
-        
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
-    var token = document.getElementById('token').getAttribute("content");
-    var formData = new FormData();
-    formData.append('_token', token);
-    formData.append('_method', "DELETE");
-    /* Inicializar un objeto AJAX */
-    var ajax = llamadaAjax();
-    /*
-    ajax.open("method", "rutaURL", true);
-    GET  -> No envía parámetros
-    POST -> Sí envía parámetros
-    true -> asynchronous
-    */
-    ajax.open("POST", "admin/denuncias/" + denuncia_id, true);
-    ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && ajax.status == 200) {
-                var respuesta = JSON.parse(this.responseText);
-                if (respuesta.resultado == "OK") {
-                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
-                    //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    //message.innerHTML = '<p>Denuncia eliminado correctamente.</p>';
-                    showDenuncias();
-
-                } else {
-                    //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
-                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = respuesta.resultado;
-                    alertify.error("Ha habido un error");
-                    console.log(respuesta)
-                }
-            }
-        }
-        /*
-        send(string)->Sends the request to the server (used for POST)
-        */
-    ajax.send(formData)
-}
 /* EliminarHistorial */
 function eliminarHistorial(historial_id) {
     var message = document.getElementById('message');
@@ -945,7 +888,7 @@ function eliminarCentro(idCentro) {
                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
                     //message.innerHTML = '<p>Curso eliminado correctamente.</p>';
-                    showCursos(idCentro);
+                    showCentros();
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */

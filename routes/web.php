@@ -146,8 +146,6 @@ use App\Http\Controllers\moderadorController;
 
     Route::delete('admin/apuntes/{id}',[CRUDAdminController::class,'eliminarApunte']);
 
-    Route::delete('admin/denuncias/{id}',[CRUDAdminController::class,'eliminarDenuncia']);
-
     Route::delete('admin/historial/{id}',[CRUDAdminController::class,'eliminarHistorial']);
 
     Route::delete('admin/centro/{id}',[CRUDAdminController::class,'eliminarCentro']);
