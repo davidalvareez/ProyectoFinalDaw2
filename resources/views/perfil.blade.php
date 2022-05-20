@@ -110,9 +110,17 @@
                                             <div class="container-foto container-img">
                                                 <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
                                                 @if ($apunte->extension_contenido == ".pdf")
-                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                    @if ($apunte->id_tema != null)
+                                                        <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                    @else
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes_reciclados/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                    @endif
                                                 @else
-                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido}}" alt="Apuntes">
+                                                    @if ($apunte->id_tema != null)
+                                                        <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido}}" alt="Apuntes">
+                                                    @else
+                                                        <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido}}" alt="Apuntes">
+                                                    @endif
                                                 @endif
                                             </div>
                                         </div>
@@ -120,16 +128,39 @@
                                             <div class="name-content">
                                                 <h3 class="name-content_text"><span class="">{{$apunte->nombre_contenido}}{{$apunte->extension_contenido}}</span></h3>
                                             </div>
+                                            @if ($apunte->id_tema != null)
                                             <div class="centro info-centro">
                                                 <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">{{$apunte->nombre_centro}}</span></p>
                                             </div>
+                                            @endif
                                             <div class="id-content">
                                                 <small class="name-content_text"><span class="">#{{$apunte->id_content}}</span></small>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="reverse-card" style="background-image: url(../media/ejemploApuntes.jpg)">
+                                <?php
+                                  if ($apunte -> id_tema != null){
+                                      $nombre_centro = str_replace(" ","%20",$apunte->nombre_centro);
+                                      $nombre_curso = str_replace(" ","%20",$apunte->nombre_curso);
+                                      $nombre_asignatura = str_replace(" ","%20",$apunte->nombre_asignatura);
+                                      $nombre_tema = str_replace(" ","%20",$apunte->nombre_tema);
+                                  }
+                                    $nombre_contenido = str_replace(" ","%20",$apunte->nombre_contenido);
+                                ?>
+                                 @if ($apunte->extension_contenido == ".pdf")
+                                    @if ($apunte->id_tema != null)
+                                        <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
+                                    @else
+                                        <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.'.png'}})">
+                                    @endif
+                                @else
+                                    @if ($apunte->id_tema != null)
+                                        <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$apunte->extension_contenido}})">
+                                    @else
+                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.$apunte->extension_contenido}})">
+                                    @endif
+                                @endif
                                     <div class="container-reverse">
                                         <div class="top">
                                             <div class="user-info left-top">
@@ -165,6 +196,7 @@
                                                 <div class="name-content">
                                                     <h4 class="name-content_text"><span class="">{{$apunte->nombre_contenido}}{{$apunte->extension_contenido}}</span></h4>
                                                 </div>
+                                                @if ($apunte->id_tema != null)
                                                 <div class="school-content">
                                                     <p class="school-content_text"><span class="">{{$apunte->nombre_centro}}</span></p>
                                                 </div>
@@ -174,6 +206,7 @@
                                                 <div class="unit-content">
                                                     <p class="unit-content_text"><span class="">{{$apunte->nombre_tema }}</span></p>
                                                 </div>
+                                                @endif
                                             </div>
                                             <div class="buttons-actions">
                                                 <div class="download-button">

@@ -306,10 +306,10 @@ class UsuarioController extends Controller
                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
                 LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
                 LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro
                 WHERE users.nick_usu = ?
                 GROUP BY id_content",[$nick_usu]);
 
@@ -562,9 +562,23 @@ class UsuarioController extends Controller
                 LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                 INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
-                WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";                   
+                WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";
                 $filterProfe = DB::select($select);
             }
             return response()->json($filterProfe);
+        }
+
+        public function mostrarEstudios($id){
+            $listaEstudios = DB::select("SELECT * FROM tbl_usuario usuario INNER JOIN tbl_estudios estudios ON usuario.id = estudios.id_usu
+            INNER JOIN tbl_cursos cursos ON estudios.id_curso = cursos.id WHERE usuario.id = ?;",[$id]);
+            //return $listaEstudios;
+            return response()->json($listaEstudios);
+        }
+
+        public function mostrarCurriculum($id){
+            $Curriculum = DB::select("SELECT * FROM tbl_usuario usuario LEFT JOIN tbl_curriculum curriculum
+            ON usuario.id = curriculum.id_usu WHERE usuario.id_rol = ? AND usuario.id = ?;",[4, $id]);
+
+            return response()->json($Curriculum);
         }
 }

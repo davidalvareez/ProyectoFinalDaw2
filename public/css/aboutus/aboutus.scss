@@ -1,3 +1,4 @@
+@import '../base/base.scss';
 ///////////VARIABLES GLOBALES///////////////
 
 $padding: 15px;
@@ -9,31 +10,6 @@ $font1: Poppins;
 $grid-float-breakpoint: 1200px; //puntp de canvio en portatil pocho/tablet
 $movil: 800px;
 $mobil: 800px;
-
-///////////CLASES GLOBALES///////////
-.glass-5 {
-    backdrop-filter: blur(10px) saturate(105%);
-    -webkit-backdrop-filter: blur(13px) saturate(180%);
-    background-color: #a3a8b062;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
-}
-.glass {
-    background: rgba(255, 255, 255, 0.57);
-    backdrop-filter: blur(13px) saturate(105%);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.866);
-    transition: all 0.7s;
-}
-.flex-cv {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-}
-
 ///////////ESTILOS PAGINA///////////
 .about-us {
     main {

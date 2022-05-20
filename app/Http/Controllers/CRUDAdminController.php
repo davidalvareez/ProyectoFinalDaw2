@@ -24,46 +24,45 @@ class CRUDAdminController extends Controller
             return redirect('/');
         }
     /* MostrarUsuarios */
-        public function showUsers(){
+        public function showUsers(Request $request){
             if (session()->has('user')) {
                 $idUsuario = session()->get('user');
             }
-
             $users = DB::select("SELECT tbl_usuario.id, tbl_usuario.nick_usu, tbl_usuario.nombre_usu, tbl_usuario.apellido_usu, tbl_usuario.fecha_nac_usu,
             tbl_usuario.correo_usu, tbl_usuario.deshabilitado,tbl_centro.nombre_centro, tbl_rol.nombre_rol, tbl_niveles.nombre_nivel,tbl_avatar.img_avatar
             FROM tbl_usuario INNER JOIN tbl_rol ON tbl_usuario.id_rol = tbl_rol.id
             LEFT JOIN tbl_centro ON tbl_usuario.id_centro = tbl_centro.id
             LEFT JOIN tbl_niveles ON tbl_usuario.id_nivel = tbl_niveles.id
             LEFT JOIN tbl_avatar ON tbl_usuario.id = tbl_avatar.id_usu
-            WHERE NOT tbl_usuario.id = ? ",[$idUsuario->id]);
+            WHERE NOT tbl_usuario.id = ? AND nick_usu LIKE ?",[$idUsuario->id,'%'.$request["filter"].'%']);
             return response()->json($users);
         }
     /* MostrarCentros */     
-        public function showCentros(){
-            $centros = DB::select("SELECT * FROM tbl_centro");
+        public function showCentros(Request $request){
+            $centros = DB::select("SELECT * FROM tbl_centro WHERE nombre_centro LIKE ? OR ciudad_centro LIKE ?", ['%'.$request["filter"].'%','%'.$request["filter"].'%']);
             return response()->json($centros);
         }
     /* MostrarCursos */
-        public function showCursos($id){
+        public function showCursos(Request $request, $id){
             $cursos = DB::select("SELECT * FROM tbl_centro INNER JOIN tbl_cursos ON tbl_centro.id = tbl_cursos.id_centro
-            WHERE tbl_centro.id = ? ",[$id]);
-            return response()->json($cursos);
+            WHERE tbl_centro.id = ? AND nombre_curso LIKE ?",[$id,'%'.$request["filter"].'%']);
+            return response()->json($cursos);   
         }
     /* MostrarAsignaturas */
-        public function showAsignaturas($id){
+        public function showAsignaturas(Request $request, $id){
             $asignaturas = DB::select("SELECT * FROM tbl_cursos INNER JOIN tbl_asignaturas ON tbl_cursos.id = tbl_asignaturas.id_curso
-            WHERE tbl_cursos.id = ? ",[$id]);
+            WHERE tbl_cursos.id = ? AND nombre_asignatura LIKE ?",[$id,'%'.$request["filter"].'%']);
             return response()->json($asignaturas);
         }
     /* MostrarTemas */
-        public function showTemas($id){
+        public function showTemas(Request $request, $id){
             $temas = DB::select("SELECT * FROM tbl_asignaturas INNER JOIN tbl_temas ON tbl_asignaturas.id = tbl_temas.id_asignatura
-            WHERE tbl_asignaturas.id = ? ",[$id]);
+            WHERE tbl_asignaturas.id = ? AND nombre_tema LIKE ?",[$id,'%'.$request["filter"].'%']);
             return response()->json($temas);
         }
     /* MostrarApuntes */
-        public function showApuntes(){
-            $apuntes = DB::select("SELECT apuntes.*,usu.nombre_usu,usu.apellido_usu FROM tbl_contenidos apuntes INNER JOIN tbl_usuario usu ON usu.id = apuntes.id_usu");
+        public function showApuntes(Request $request){
+            $apuntes = DB::select("SELECT apuntes.*,usu.nombre_usu,usu.apellido_usu FROM tbl_contenidos apuntes INNER JOIN tbl_usuario usu ON usu.id = apuntes.id_usu WHERE nombre_contenido LIKE ?", ['%'.$request["filter"].'%']);
             return response()->json($apuntes);
         }
     /* MostrarDenuncias */

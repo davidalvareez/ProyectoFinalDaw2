@@ -16,20 +16,20 @@ class ApuntesController extends Controller
                 LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
                 LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro ";
+                LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro ";
 
                 $sqlpopular = "SELECT content.id as id_content,content.*,user.nick_usu,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema FROM tbl_contenidos content
                 INNER JOIN tbl_usuario user ON content.id_usu = user.id
                 LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
                 LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
-                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro ";
+                LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro ";
                 //Si tiene fichero configuración se filtrara de una manera o de otra, o si en su configuración es nulo
                 if (file_exists(storage_path('app/public/uploads/configuration/user-'.$user->id.'.json'))) {
                     //Si existe directamente cogemos el fichero y miramos si el campo esta nulo
@@ -72,10 +72,10 @@ class ApuntesController extends Controller
                                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
                                 LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
                                 LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-                                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                                LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                                LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                                LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                                LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro
                                 GROUP BY content.id");
             }else{
                 $id = $datos["filter"][0];
@@ -86,25 +86,25 @@ class ApuntesController extends Controller
                                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
                                 LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
                                 LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-                                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                                LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                                LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                                LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                                LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro
                                 WHERE content.id = ? AND (users.id = ? OR NOT users.id = ?)
                                 GROUP BY content.id",[$datos["filter"],$user->id,$user->id]);
                 }else{
                     $filter=DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
                     FROM tbl_contenidos content
-                                INNER JOIN tbl_usuario users ON content.id_usu = users.id
-                                LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
-                                LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
-                                LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-                                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
-                                WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR content.id = ?) AND (users.id = ? OR NOT users.id = ?)
-                                GROUP BY content.id",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$datos["filter"],$user->id,$user->id]);
+                    INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                    LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                    LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                    LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                    LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                    LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                    LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                    LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro
+                    WHERE (centro.nombre_centro LIKE ? OR curso.nombre_curso LIKE ? OR asignaturas.nombre_asignatura LIKE ? OR content.id = ?) AND (users.id = ? OR NOT users.id = ?)
+                    GROUP BY content.id",['%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%',$datos["filter"],$user->id,$user->id]);
                 }
             }
             return response()->json($filter);
@@ -119,10 +119,10 @@ class ApuntesController extends Controller
             LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
             LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
             LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-            INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-            INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-            INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-            INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+            LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+            LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+            LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+            LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro
             WHERE (NOT users.id= {$user->id} OR users.id = {$user->id}) ";
             if($datos["centros"] != null){
                 $query .= "AND centro.nombre_centro LIKE \"%".$datos["centros"]."%\" ";
@@ -394,15 +394,23 @@ class ApuntesController extends Controller
     //Pagina apunte
         public function apuntes($id){
             if (session()->get('user')) {
-                $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema,avatar.img_avatar FROM tbl_usuario usu 
-                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
-                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
-                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
-                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
-                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
-                WHERE apuntes.id =  ?",[$id]);
-                $path = asset('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+                $apunte = DB::select("SELECT content.*,users.nick_usu,avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema 
+                FROM tbl_contenidos content
+                            INNER JOIN tbl_usuario users ON content.id_usu = users.id
+                            LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
+                            LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
+                            LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
+                            LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                            LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                            LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                            LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro
+                            WHERE content.id = ?
+                            GROUP BY content.id",[$id]);
+                if ($apunte[0]->id_tema != null) {
+                    $path = asset('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+                }else{
+                    $path = asset('storage/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+                }
                 //return $path;
                 $comentarios = DB::select("SELECT comment.*,user.nick_usu,avatar.img_avatar FROM tbl_comentarios comment
                 INNER JOIN tbl_usuario user ON comment.id_usu = user.id
@@ -426,7 +434,12 @@ class ApuntesController extends Controller
                     INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
                     LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
                     WHERE apuntes.id =  ?",[$datos["id"]]);
-                    $path = public_path('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+                    if (count($apunte) == 0) {
+                        $apunte = DB::select("SELECT * FROM tbl_contenidos WHERE id = ?",[$datos["id"]]);
+                        $path = public_path('storage/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+                    }else{
+                        $path = public_path('storage/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido);
+                    }
                     $existDownload = DB::select("SELECT * FROM tbl_historial WHERE id_contenido = ? AND id_usu = ?",[$datos["id"],$user->id]);
                     if (file_exists($path)) {
                         if (count($existDownload) == 0) {
