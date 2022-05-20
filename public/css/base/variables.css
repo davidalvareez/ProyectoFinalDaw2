@@ -6,7 +6,14 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.glass {
+.glass-admin {
+  backdrop-filter: blur(300px) saturate(50%);
+  -webkit-backdrop-filter: blur(13px) saturate(180%);
+  background-color: #a3a8b062;
+  border-radius: 12px;
+}
+
+.glass-5 {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -16,27 +23,20 @@
   transition: all 0.7s;
 }
 
-.flex-cv {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  justify-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-}
-
 .allwh {
   height: 100%;
   width: 100%;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
 }
 /*# sourceMappingURL=variables.css.map */

@@ -37,6 +37,7 @@ $mobil: 600px;
     --svgColor2: #ffffff;
     --svgColor1a: #fc2e76;
     --svgColor2a: #ffffff;
+    --svgColor3: #b82055;
     ///Toogle Switch variables
     /** light side **/
     --blue-background: #C2E9F6;
@@ -57,6 +58,7 @@ $mobil: 600px;
     --font1: Poppins;
     --white: #ffffff; //blanco
     --black: #000000; //negro
+    --black-low: #2c2c2c; //negro claro
     --grey: #eee;
     --letter-grey: #797c7e;
     --font1: Poppins;
@@ -110,36 +112,66 @@ h4 {
     color: var(--white);
     font-size: calc(13px + 0.2vw);
     padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
+    cursor: pointer;
+    &:hover {
+        background: var(--svgColor1a);
+    }
     &_b {
         background: var(--svgColor1a);
     }
 }
 
-.btn-glass_negro {
+.btn-glass-grande {
+    background: var(--svgColor1);
+    padding: calc(7px + 0.75vh) calc(10px + 0.9vw);
+    width: 100%;
+    float: left;
+    border: 0;
+    text-decoration: none;
+    border-radius: calc(-90px + 5vw);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    color: var(--white);
+    font-size: calc(13px + 0.2vw);
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s;
+    &:hover {
+        background: var(--svgColor1a);
+    }
+    &_b {
+        background: var(--svgColor1a);
+        &:hover {
+            background: var(--black);
+        }
+    }
+}
+
+.btn-glass-negro {
     background: var(--black);
     border-radius: calc(25px + 5vw);
     color: var(--white);
     font-size: calc(13px + 0.2vw);
     padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
     margin-top: 20px;
+    cursor: pointer;
+    &:hover {
+        background: var(--black-low);
+    }
     &_b {}
 }
 
-.btn-glass_rosa {
+.btn-glass-rosa {
     background: var(--svgColor1a);
     border-radius: calc(25px + 5vw);
     color: var(--white);
     font-size: calc(13px + 0.2vw);
     padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
     margin-top: 20px;
-}
-
-.glass-2 {
-    backdrop-filter: blur(10px) saturate(105%);
-    -webkit-backdrop-filter: blur(13px) saturate(180%);
-    background-color: #a3a8b062;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    cursor: pointer;
+    &:hover {
+        background: var(--svgColor3);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

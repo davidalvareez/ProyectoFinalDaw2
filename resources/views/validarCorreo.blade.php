@@ -61,6 +61,7 @@
                                         <p>Contraseña olvidada?</p>
                                     </a>
                                 </div> -->
+                                <br>
                                 <input class="validarcorreo-btn-absglass" type="submit" value="VALIDAR">
                                 <div class="">
                                     <div class="alienarleft">

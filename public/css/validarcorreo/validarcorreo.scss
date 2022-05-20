@@ -22,7 +22,7 @@
 
 .inputbtn {
     box-sizing: border-box;
-    padding: 6px 30px 6px 10px;
+    padding: 10px 30px 10px 10px;
     width: 100%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -110,13 +110,13 @@
 
 .validarcorreo-page {
     main {
-        //@extend .flex;
+        //@include flex-cv($d: column);
         height: calc(100vh - 105px);
         .region {
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
                 .content-glassland {
-                    @extend .flex;
+                    @include flex-cv($d: column);
                 }
             }
         }
@@ -143,7 +143,7 @@
                                 }
                             }
                             .validarcorreo-btn-absglass {
-                                @extend .glassbtn;
+                                @extend .btn-glass-grande;
                             }
                         }
                     }

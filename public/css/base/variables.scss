@@ -6,30 +6,38 @@
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
 }
-.glass {
+
+.glass-admin {
+    backdrop-filter: blur(300px) saturate(50%);
+    -webkit-backdrop-filter: blur(13px) saturate(180%);
+    background-color: #a3a8b062;
+    border-radius: 12px;
+}
+
+.glass-5 {
     background: rgba(255, 255, 255, 0.57);
     backdrop-filter: blur(13px) saturate(105%);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.866);
     transition: all 0.7s;
 }
-.flex-cv {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-}
 .allwh {
     height: 100%;
     width: 100%;
 }
-@mixin flex-cv($d: row, $w: wrap){
+
+@mixin flex-cv($d: row, $w: wrap) {
     display: flex;
     justify-content: center;
     justify-items: center;
     align-content: center;
     align-items: center;
     flex-flow: $d $w;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-align: center;
 }
