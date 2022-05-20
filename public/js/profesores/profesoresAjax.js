@@ -107,3 +107,55 @@ function advancedFilterProfesores() {
         */
     ajax.send(formData)
 }
+
+function mostrarEstudios(id) {
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    var ajax = llamadaAjax();
+    ajax.open("POST", "profesor/mostrarEstudios/" + id, true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            /* Crear la estructura html que se devolverá dentro de una variable recarga*/
+            var recarga = "";
+            recarga += "<ul>";
+            for (let i = 0; i < respuesta.length; i++) {
+                recarga += `<li>${respuesta[i].nombre_curso}</li>`
+            }
+            recarga += "</ul>";
+            swal({
+                title: "Lista De Estudios",
+                html: recarga,
+                icon: "info"
+            });
+        }
+        ajax.send(formData)
+    }
+}
+
+function mostrarCurriculum(id) {
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'POST');
+    var ajax = llamadaAjax();
+    ajax.open("POST", "profesor/mostrarCurriculum/" + id, true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            /* Crear la estructura html que se devolverá dentro de una variable recarga*/
+            var recarga = "";
+            recarga += "<ul>";
+            for (let i = 0; i < respuesta.length; i++) {
+                recarga += `<li>${respuesta[i].nombre_curriculum}</li>`
+            }
+            recarga += "</ul>";
+            swal({
+                title: `Curriculum de  ${respuesta[0].nick_usu}`,
+                html: recarga,
+                icon: "info"
+            });
+        }
+        ajax.send(formData)
+    }
+}

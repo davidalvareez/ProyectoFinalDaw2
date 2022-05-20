@@ -49,6 +49,8 @@
                     <td>{{$Resultados->id}}</td>
                     <td><img src="{{asset('storage').'/'.$Resultados->img_avatar}}" width="50"></td>
                     <td>{{$Resultados->nombre_usu}} {{$Resultados->apellido_usu}}</td>
+                    <td><button class="boton_modificar" id="" name="" onclick="mostrarEstudios({{$Resultados->id}}); return false;"></button>Mostrar Estudios</td>
+                    <td><button class="boton_modificar" id="" name="" onclick="mostrarCurriculum({{$Resultados->id}}); return false;"></button>Mostrar Curriculum</td>
                     <td><form  action="{{url('')}}" method="GET">
                         <button class="boton_modificar" type="submit" id="">Contactar</button>
                     </form></td>

@@ -562,9 +562,23 @@ class UsuarioController extends Controller
                 LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                 INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
-                WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";                   
+                WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";
                 $filterProfe = DB::select($select);
             }
             return response()->json($filterProfe);
+        }
+
+        public function mostrarEstudios($id){
+            $listaEstudios = DB::select("SELECT * FROM tbl_usuario usuario INNER JOIN tbl_estudios estudios ON usuario.id = estudios.id_usu
+            INNER JOIN tbl_cursos cursos ON estudios.id_curso = cursos.id WHERE usuario.id = ?;"[$id]);
+
+            return response()->json($listaEstudios);
+        }
+
+        public function mostrarCurriculum($id){
+            $Curriculum = DB::select("SELECT * FROM tbl_usuario usuario LEFT JOIN tbl_curriculum curriculum
+            ON usuario.id = curriculum.id_usu WHERE usuario.id_rol = ? AND usuario.id = ?;",[4, $id]);
+
+            return response()->json($Curriculum);
         }
 }
