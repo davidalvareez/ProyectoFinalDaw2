@@ -1,6 +1,7 @@
 window.onload = function() {
     content = document.getElementById('content');
     token = document.getElementById('token').getAttribute("content")
+    input_container = document.getElementById("filter");
     //widthpantalla = window.innerWidth;
 }
 
@@ -23,6 +24,36 @@ function llamadaAjax() {
 
 //Mostrar
 /*Mostrar usuarios*/
+function getInputUsers() {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por nickname..." aria-label="Search" onkeyup="showUsers(); return false;"/>`
+    input_container.innerHTML = input;
+}
+
+function getInputCentros() {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por nombre de centro o ciudad..." aria-label="Search" onkeyup="showCentros(); return false;"/>`
+    input_container.innerHTML = input;
+}
+
+function getInputApuntes() {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por apunte..." aria-label="Search" onkeyup="showApuntes(); return false;"/>`
+    input_container.innerHTML = input;
+}
+
+function getInputCursos(idCentro) {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por curso..." aria-label="Search" onkeyup="showCursos(${idCentro}); return false;"/>`
+    input_container.innerHTML = input;
+}
+
+function getInputAsignatura(idCentro, idCurso) {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por asignatura..." aria-label="Search" onkeyup="showAsignaturas(${idCentro},${idCurso}); return false;"/>`
+    input_container.innerHTML = input;
+}
+
+function getInputTema(idCentro, idCurso, idAsignatura) {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por asignatura..." aria-label="Search" onkeyup="showTemas(${idCentro},${idCurso},${idAsignatura}); return false;"/>`
+    input_container.innerHTML = input;
+}
+
 function showUsers() {
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
@@ -35,9 +66,11 @@ function showUsers() {
         formData.append('_token', token);
         formData.append('clave', valor);
         */
+    console.log(document.getElementById('search').value);
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
+    formData.append('filter', document.getElementById('search').value);
     var ajax = llamadaAjax();
     /*
     ajax.open("method", "rutaURL", true);
@@ -45,7 +78,7 @@ function showUsers() {
     POST -> Sí envía parámetros
     true -> asynchronous
     */
-    
+
     ajax.open("POST", "admin/users", true);
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
@@ -55,7 +88,7 @@ function showUsers() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 //Encabezado
                 let recarga = ``;
-                    recarga+=`<div class="">
+                recarga += `<div class="">
                     <div class="table-responsive">             
                     <table class="table table-striped">
                     <th scope="col">#</th>
@@ -71,8 +104,8 @@ function showUsers() {
                     <th scope="col">Eliminar</th>
                     <tr>`;
                 //Cuerpoelse
-                    for (let i = 0; i < respuesta.length; i++) {
-                        recarga += `<tr>
+                for (let i = 0; i < respuesta.length; i++) {
+                    recarga += `<tr>
                         <td scope="row"><b>${respuesta[i].id}</b></td>
                         <td>${respuesta[i].nick_usu}</td>
                         <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
@@ -89,8 +122,8 @@ function showUsers() {
                         <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalUsers(${respuesta[i].id});return false;">Eliminar</button>
                         </td>
                         </tr>`
-                    }
-                    recarga += `</table>
+                }
+                recarga += `</table>
                     </div>
                     </div>`;
                 content.innerHTML = recarga;
@@ -119,6 +152,7 @@ function showCentros() {
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
+    formData.append('filter', document.getElementById('search').value);
     var ajax = llamadaAjax();
     /*
     ajax.open("method", "rutaURL", true);
@@ -154,7 +188,7 @@ function showCentros() {
                         <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
                         </td>
                         <td>
-                        <button class= "btn btn-warning" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
+                        <button class= "btn btn-warning" type="submit" value="Delete" onclick="getInputCursos(${respuesta[i].id});showCursos(${respuesta[i].id});return false;">Ver cursos</button>
                         </td>
                         <td>
                         <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCentros(${respuesta[i].id});return false;">Eliminar</button>
@@ -191,6 +225,7 @@ function showCursos(idCentro) {
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'GET');
+    formData.append('filter', document.getElementById('search').value);
     var ajax = llamadaAjax();
     /*
     ajax.open("method", "rutaURL", true);
@@ -229,7 +264,7 @@ function showCursos(idCentro) {
                              <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCursos(${respuesta[i].id},${idCentro});return false;">Eliminar</button>
                              </td>
                              <td>
-                             <button class= "btn btn-warning" type="submit" value="Delete" onclick="showAsignaturas(${respuesta[i].id}, ${idCentro});return false;">Ver asignaturas</button>
+                             <button class= "btn btn-warning" type="submit" value="Delete" onclick="getInputAsignatura(${respuesta[i].id}, ${idCentro});showAsignaturas(${respuesta[i].id}, ${idCentro});return false;">Ver asignaturas</button>
                              </td>
                              </tr>`
                 }
@@ -262,6 +297,7 @@ function showAsignaturas(idCurso, idCentro) {
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'GET');
+    formData.append('filter', document.getElementById('search').value);
     var ajax = llamadaAjax();
     /*
     ajax.open("method", "rutaURL", true);
@@ -296,7 +332,7 @@ function showAsignaturas(idCurso, idCentro) {
                                  <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalAsignaturas(${respuesta[i].id},${idCurso},${idCentro});return false;">Eliminar</button>
                                  </td>
                                  <td>
-                                 <button class= "btn btn-warning" type="submit" value="Delete" onclick="showTemas(${respuesta[i].id}, ${idCurso}, ${idCentro} );return false;">Ver temas</button>
+                                 <button class= "btn btn-warning" type="submit" value="Delete" onclick="getInputTema(${respuesta[i].id}, ${idCurso}, ${idCentro});showTemas(${respuesta[i].id}, ${idCurso}, ${idCentro} );return false;">Ver temas</button>
                                  </td>
                                  </tr>`
                 }
@@ -331,6 +367,7 @@ function showTemas(idAsignatura, idCurso, idCentro) {
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'GET');
+    formData.append('filter', document.getElementById('search').value);
     var ajax = llamadaAjax();
     /*
     ajax.open("method", "rutaURL", true);
@@ -397,6 +434,7 @@ function showApuntes() {
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
+    formData.append('filter', document.getElementById('search').value);
     var ajax = llamadaAjax();
     /*
     ajax.open("method", "rutaURL", true);
