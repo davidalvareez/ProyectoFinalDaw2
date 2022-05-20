@@ -6,6 +6,35 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
+.glass, .modal-content2 {
+  background: rgba(255, 255, 255, 0.57);
+  -webkit-backdrop-filter: blur(13px) saturate(105%);
+          backdrop-filter: blur(13px) saturate(105%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.866);
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+}
+
+.flex-cv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
 .allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
   height: 100%;
   width: 100%;
@@ -944,29 +973,6 @@ body {
   background-image: url("./img/fondoisaac.png");
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.btn-glass {
-  padding: 10px 75px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #ff8f0b, #00cf9a);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-  position: relative;
-}
-
-.glass, .modal-content2 {
-  backdrop-filter: blur(10px) saturate(105%);
-  -webkit-backdrop-filter: blur(13px) saturate(180%);
-  background-color: #a3a8b062;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 /* The Modal (background) */

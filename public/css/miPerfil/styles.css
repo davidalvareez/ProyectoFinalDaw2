@@ -6,6 +6,35 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
+.glass, main .region-perfil .content-region .region-header, main .region-perfil .content-region .region-menu, main .region-perfil .content-region .region-avatar, main .region-perfil .content-region .region-subir-apuntes, main .region-perfil .content-region .region-baja, main .region-perfil .content-region .region-mis-apuntes, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar {
+  background: rgba(255, 255, 255, 0.57);
+  -webkit-backdrop-filter: blur(13px) saturate(105%);
+          backdrop-filter: blur(13px) saturate(105%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.866);
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+}
+
+.flex-cv, .modal .modal-content .avatar-content, .modal .modal-content-avatar .avatar-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
 .allwh, .card > .container, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container, .card > .container .front-card, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .front-card, .card > .container .front-card .container-front, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .front-card .container-front, .card > .container .reverse-card, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .reverse-card, .card > .container .reverse-card .container-reverse, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .reverse-card .container-reverse {
   height: 100%;
   width: 100%;

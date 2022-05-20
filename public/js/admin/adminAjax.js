@@ -1,6 +1,7 @@
 window.onload = function() {
     content = document.getElementById('content');
     token = document.getElementById('token').getAttribute("content")
+    widthpantalla = window.innerWidth;
 }
 
 function llamadaAjax() {
@@ -44,7 +45,7 @@ function showUsers() {
     POST -> Sí envía parámetros
     true -> asynchronous
     */
-    var widthpantalla = window.innerWidth;
+    
     ajax.open("POST", "admin/users", true);
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
@@ -52,6 +53,7 @@ function showUsers() {
                 /* console.log(respuesta);
                 return false; */
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
+                //Encabezado
                 if (widthpantalla < 900) {
                     var recarga = '';
                     recarga += `<div class="">
@@ -61,6 +63,24 @@ function showUsers() {
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                     </tr>`;
+                }else{
+                    recarga+=`<div class="">
+                    <table class="table table-striped">
+                    <th scope="col">#</th>
+                    <th scope="col">Nickname</th>
+                    <th scope="col">Nombre y Apellido</th>
+                    <th scope="col">Fecha nacimiento</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Fecha habilitado</th>
+                    <th scope="col">Centro de estudio</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Imagen Avatar</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                    <tr>`;
+                }
+                //Cuerpo
+                if (widthpantalla < 900) {
                     for (let i = 0; i < respuesta.length; i++) {
                         recarga += `<tr>
                         <td>${respuesta[i].correo_usu}</td>
@@ -72,24 +92,7 @@ function showUsers() {
                         </td>
                         </tr>`
                     }
-                    recarga += `</table>
-                    </div>`;
-                } else {
-                    var recarga = '';
-                    recarga += `<div class="">
-                    <table class="table table-striped">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nickname</th>
-                    <th scope="col">Nombre y Apellido</th>
-                    <th scope="col">Fecha nacimiento</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Fecha habilitado</th>
-                    <th scope="col">Centro de estudio</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Imagen Avatar</th>
-                    <th scope="col" colspan="3">Acciones</th>
-                    </tr>`;
+                }else{
                     for (let i = 0; i < respuesta.length; i++) {
                         recarga += `<tr>
                         <td scope="row"><b>${respuesta[i].id}</b></td>
@@ -109,9 +112,9 @@ function showUsers() {
                         </td>
                         </tr>`
                     }
+                }
                     recarga += `</table>
                     </div>`;
-                }
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
