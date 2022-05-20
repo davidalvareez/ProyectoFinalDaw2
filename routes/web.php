@@ -206,6 +206,10 @@ use App\Http\Livewire\Contacts;
 
     Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);
 
+    Route::get('profesor/mostrarEstudios/id',[UsuarioController::class,'mostrarEstudios']);
+
+    Route::get('profesor/mostrarEstudios/id',[UsuarioController::class,'']);
+
 //Moderador
 //Mostrar
     Route::get('moderador',[moderadorController::class,'moderadorView']);
@@ -227,4 +231,5 @@ use App\Http\Livewire\Contacts;
 
 /*CHAT PRUEBA*/
     Route::get('notehub-chat',Contacts::class)->name('contacts');
+
     Route::get('notehub-chat/{uuid}',ChatWith::class)->name('chat_with');
