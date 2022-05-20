@@ -174,18 +174,19 @@ class tbl_temasSeeder extends Seeder
             'id_asignatura' => 23
         ]);
         /*-------------------------- RAUL SANTACRUZ ----------------*/
+        //Asignatura 24
         //ID 28
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Farmacología',
             'id_asignatura' => 24
         ]);
-
+        //Asignatura 25
         //ID 29
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Inmunología',
             'id_asignatura' => 25
         ]);
-
+        //Asignatura 26
         //ID 30
         DB::table('tbl_temas')->insert([
             'nombre_tema' => 'Microbiología',

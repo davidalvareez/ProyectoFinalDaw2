@@ -6,6 +6,8 @@ use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CRUDAdminController;
 use App\Http\Controllers\moderadorController;
+use App\Http\Livewire\ChatWith;
+use App\Http\Livewire\Contacts;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,9 +148,9 @@ use App\Http\Controllers\moderadorController;
 
     Route::delete('admin/apuntes/{id}',[CRUDAdminController::class,'eliminarApunte']);
 
-    Route::delete('admin/denuncias/{id}',[CRUDAdminController::class,'eliminarDenuncia']);
-
     Route::delete('admin/historial/{id}',[CRUDAdminController::class,'eliminarHistorial']);
+
+    Route::delete('admin/centro/{id}',[CRUDAdminController::class,'eliminarCentro']);
 
     Route::delete('admin/cursos/{id}',[CRUDAdminController::class,'eliminarCurso']);
 
@@ -222,3 +224,7 @@ use App\Http\Controllers\moderadorController;
     Route::delete('moderador/banearUser',[moderadorController::class,'banearUsuario']);
 
     Route::delete('moderador/quitardenuncia',[moderadorController::class,'quitardenuncia']);
+
+/*CHAT PRUEBA*/
+    Route::get('notehub-chat',Contacts::class)->name('contacts');
+    Route::get('notehub-chat/{uuid}',ChatWith::class)->name('chat_with');

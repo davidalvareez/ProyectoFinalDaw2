@@ -150,7 +150,6 @@ function showCentros() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
                 centros = respuesta;
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -165,21 +164,22 @@ function showCentros() {
                     </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                         <td scope="row"><b>${respuesta[i].id}</b></td>
-                         <td>${respuesta[i].nombre_centro}</td>
-                         <td>${respuesta[i].com_auto_centro}, ${respuesta[i].ciudad_centro}</td>
-                         <td>${respuesta[i].direccion_centro}</td>
-                         <td>
-                         <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
-                         </td>
-                         <td>
-                         <button class= "btn btn-warning" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
-                         </td>
-                         </tr>`
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                        <td>${respuesta[i].nombre_centro}</td>
+                        <td>${respuesta[i].com_auto_centro}, ${respuesta[i].ciudad_centro}</td>
+                        <td>${respuesta[i].direccion_centro}</td>
+                        <td>
+                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCentro(${respuesta[i].id},'${respuesta[i].nombre_centro}','${respuesta[i].pais_centro}','${respuesta[i].com_auto_centro}','${respuesta[i].ciudad_centro}','${respuesta[i].direccion_centro}');return false;">Editar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-warning" type="submit" value="Delete" onclick="showCursos(${respuesta[i].id});return false;">Ver cursos</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCentros(${respuesta[i].id});return false;">Eliminar</button>
+                        </td>
+                        </tr>`
                 }
-                /* <td>
-                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCentros(${respuesta[i].id});return false;">Eliminar</button>
-                 </td> */
+
                 recarga += `</table>
                     </div>`;
                 content.innerHTML = recarga;
@@ -219,7 +219,6 @@ function showCursos(idCentro) {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -289,7 +288,6 @@ function showAsignaturas(idCurso, idCentro) {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -357,7 +355,6 @@ function showTemas(idAsignatura, idCurso, idCentro) {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
@@ -371,15 +368,15 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                                 </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row"><b>${respuesta[i].id}</b></td>
-                                     <td>${respuesta[i].nombre_tema}</td>
-                                     <td>
-                                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
-                                     </td>
-                                     <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
-                                     </td>
-                                     </tr>`
+                                    <td scope="row"><b>${respuesta[i].id}</b></td>
+                                    <td>${respuesta[i].nombre_tema}</td>
+                                    <td>
+                                    <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
+                                    </td>
+                                    <td>
+                                    <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
+                                    </td>
+                                    </tr>`
                 }
                 recarga += `</table>
                                 </div>`;
@@ -481,40 +478,33 @@ function showDenuncias() {
     POST -> Sí envía parámetros
     true -> asynchronous
     */
-    ajax.open("POST", "admin/denuncias", true);
+    ajax.open("POST", "moderador/denuncias", true);
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
-                var recarga = '';
-                recarga += `<div class="">
-                                <table class="table table-striped">
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Acusado</th>
-                                <th scope="col">Demandante</th>
-                                <th scope="col" colspan="2">Acciones</th>
-                                </tr>`;
+                recarga = "";
+                recarga += `<table class="table table-striped">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Acusado</th>
+                <th scope="col">Demandante</th>
+                <th scope="col" colspan="2">Acciones</th>
+            </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                                     <td scope="row"><b>${respuesta[i].id}</b></td>
-                                     <td>${respuesta[i].tipus_denuncia}</td>
-                                     <td>${respuesta[i].desc_denuncia}</td>
-                                     <td>${respuesta[i].acusado}</td>
-                                     <td>${respuesta[i].demandante}</td>
-
-                                     <td>
-                                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Opciones</button>
-                                     </td>
-                                     <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarDenuncias(${respuesta[i].id});return false;">Eliminar</button>
-                                     </td>
-                                     </tr>`
+                    recarga += ` <tr>
+                <td scope="row"><b>${respuesta[i].id}</b></td>
+                <td>${respuesta[i].tipus_denuncia}</td>
+                <td>${respuesta[i].desc_denuncia}</td>
+                <td>${respuesta[i].acusado}</td>
+                <td>${respuesta[i].demandante}</td>
+                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesDenuncia(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
+                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarDenuncia(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
+            </tr>`;
                 }
-                recarga += `</table>
-                                </div>`;
+                recarga += `</table>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -525,6 +515,169 @@ function showDenuncias() {
         */
     ajax.send(formData)
 }
+
+function opcionesDenuncia(id_denuncia, acusado) {
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'DELETE');
+    formData.append('id_denuncia', id_denuncia);
+    formData.append('nick_usu', acusado);
+    let ajax = llamadaAjax();
+    Swal.fire({
+        title: "Opciones denuncia",
+        text: "¿Que deseas hacer?",
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: "Eliminar contenido",
+        denyButtonText: "Banear usuario",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        //Elimina el contenido despues del ajax ejecutamos el swal
+        if (result.isConfirmed) {
+            ajax.open("POST", "moderador/eliminarcontent", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "OK") {
+                        alertify.success("Contenido eliminado correctamente");
+                        //Preguntamos si tambien quiere banear al usuario
+                        Swal.fire({
+                            title: "Opciones denuncia",
+                            text: "¿Deseas tambien denunciar al usuario?",
+                            showCancelButton: true,
+                            confirmButtonText: "Banear usuario",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                            //Si quiere denunciar al usuario le mostramos un input en formato fecha ya que cogemos la hora actual del sistema
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: "Opciones denuncia",
+                                    text: "¿Hasta que día desea banearlo?",
+                                    html: `<input type="date" id="fecha_denuncia"/>`,
+                                    showCancelButton: true,
+                                    confirmButtonText: "Enviar",
+                                    cancelButtonText: "Cancelar",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                                        formData.append("fecha_denuncia", fechaDenuncia);
+                                        ajax.open("POST", "moderador/banearUser", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                let respuesta = JSON.parse(this.responseText);
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Baneo realizado correctamente");
+                                                    showDenuncias();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    }
+                                });
+                            } else if (result.isDismissed) {
+                                showDenuncias();
+                            }
+                        });
+                    } else {
+                        console.log(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+            //Decide banear
+        } else if (result.isDenied) {
+            Swal.fire({
+                title: "Opciones denuncia",
+                text: "¿Hasta que día desea banearlo?",
+                html: `<input type="date" id="fecha_denuncia"/>`,
+                showCancelButton: true,
+                confirmButtonText: "Enviar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Ejecutamos ajax para banear
+                    fechaDenuncia = document.getElementById("fecha_denuncia").value;
+                    formData.append("fecha_denuncia", fechaDenuncia);
+                    ajax.open("POST", "moderador/banearUser", true);
+                    ajax.onreadystatechange = function() {
+                        if (ajax.readyState == 4 && ajax.status == 200) {
+                            let respuesta = JSON.parse(this.responseText);
+                            if (respuesta.resultado == "OK") {
+                                alertify.success("Baneo realizado correctamente");
+                                //Preguntamos si tambien quiere eliminar el contenido
+                                Swal.fire({
+                                    title: "Opciones denuncia",
+                                    text: "¿Deseas tambien eliminar el contenido?",
+                                    showCancelButton: true,
+                                    confirmButtonText: "Eliminar contenido",
+                                    cancelButtonText: "Cancelar"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        ajax.open("POST", "moderador/eliminarcontent", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("Contenido eliminado correctamente");
+                                                    showDenuncias();
+                                                }
+                                            } else {
+                                                console.log(respuesta.resultado);
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    } else if (result.isDismissed) {
+                                        ajax.open("POST", "moderador/quitardenuncia", true);
+                                        ajax.onreadystatechange = function() {
+                                            if (ajax.readyState == 4 && ajax.status == 200) {
+                                                if (respuesta.resultado == "OK") {
+                                                    alertify.success("La denuncia se ha quitado");
+                                                    showDenuncias();
+                                                } else {
+                                                    console.log(respuesta.resultado);
+                                                }
+                                            }
+                                        }
+                                        ajax.send(formData);
+                                    }
+                                });
+                            } else {
+                                console.log(respuesta.resultado);
+                            }
+                        }
+                    }
+                    ajax.send(formData);
+                    //En caso que cancele ya una vez baneado eliminamos tambien la denuncia
+                }
+            });
+        }
+    });
+}
+
+function eliminarDenuncia(id_denuncia, demandante) {
+    let token = document.getElementById('token').getAttribute("content");
+    let formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', 'DELETE');
+    formData.append('id_denuncia', id_denuncia);
+    formData.append('nick_usu', demandante);
+    let ajax = llamadaAjax();
+    ajax.open("POST", "moderador/eliminar", true);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var respuesta = JSON.parse(this.responseText);
+            if (respuesta.resultado == "OK") {
+                alertify.success("Denuncia eliminada correctamente");
+                showDenuncias();
+            } else {
+                console.log(respuesta.resultado);
+            }
+        }
+    }
+    ajax.send(formData);
+}
 /*Mostrar historial*/
 function showHistorial() {
     var message = document.getElementById('message');
@@ -533,8 +686,8 @@ function showHistorial() {
     /* 
             Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
             var token = document.getElementById('token').getAttribute("content");
-    
-    
+        
+        
             Usar el objeto FormData para guardar los parámetros que se enviarán:
             var formData = new FormData();
             formData.append('_token', token);
@@ -557,28 +710,28 @@ function showHistorial() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
-                                <table class="table table-striped">
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre Apuntes</th>
-                                <th scope="col">Nombre Usuario</th>
-                                <th scope="col" colspan="2">Acciones</th>
-                                </tr>`;
+                                    <table class="table table-striped">
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre Apuntes</th>
+                                    <th scope="col">Nombre Usuario</th>
+                                    <th scope="col" colspan="2">Acciones</th>
+                                    </tr>`;
                 for (let i = 0; i < respuesta.length; i++) {
                     recarga += `<tr>
-                                     <td scope="row"><b>${respuesta[i].id}</b></td>
-                                     <td>${respuesta[i].nombre_contenido}</td>
-                                     <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                                     <td>
-                                     <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
-                                     </td>
-                                     <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarHistorial(${respuesta[i].id});return false;">Eliminar</button>
-                                     </td>
-                                     </tr>`
+                                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                                        <td>${respuesta[i].nombre_contenido}</td>
+                                        <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
+                                        <td>
+                                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
+                                        </td>
+                                        <td>
+                                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarHistorial(${respuesta[i].id});return false;">Eliminar</button>
+                                        </td>
+                                        </tr>`
                 }
                 recarga += `</table>
-                                </div>`;
+                                    </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -642,59 +795,6 @@ function eliminarUsers(user_id) {
         */
     ajax.send(formData)
 }
-/* EliminarDenuncias */
-function eliminarDenuncias(denuncia_id) {
-    var message = document.getElementById('message');
-    /* console.log(denuncia_id);
-    return false; */
-
-    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
-
-    /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
-        
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
-    var token = document.getElementById('token').getAttribute("content");
-    var formData = new FormData();
-    formData.append('_token', token);
-    formData.append('_method', "DELETE");
-    /* Inicializar un objeto AJAX */
-    var ajax = llamadaAjax();
-    /*
-    ajax.open("method", "rutaURL", true);
-    GET  -> No envía parámetros
-    POST -> Sí envía parámetros
-    true -> asynchronous
-    */
-    ajax.open("POST", "admin/denuncias/" + denuncia_id, true);
-    ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && ajax.status == 200) {
-                var respuesta = JSON.parse(this.responseText);
-                if (respuesta.resultado == "OK") {
-                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
-                    //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    //message.innerHTML = '<p>Denuncia eliminado correctamente.</p>';
-                    showDenuncias();
-
-                } else {
-                    //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
-                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
-                    message.innerHTML = respuesta.resultado;
-                    alertify.error("Ha habido un error");
-                    console.log(respuesta)
-                }
-            }
-        }
-        /*
-        send(string)->Sends the request to the server (used for POST)
-        */
-    ajax.send(formData)
-}
 /* EliminarHistorial */
 function eliminarHistorial(historial_id) {
     var message = document.getElementById('message');
@@ -734,6 +834,61 @@ function eliminarHistorial(historial_id) {
                     //message.innerHTML = '<p>Historial eliminado correctamente.</p>';
                     showHistorial();
 
+                } else {
+                    //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    message.innerHTML = respuesta.resultado;
+                    alertify.error("Ha habido un error");
+                    console.log(respuesta)
+                }
+            }
+        }
+        /*
+        send(string)->Sends the request to the server (used for POST)
+        */
+    ajax.send(formData)
+}
+/* EliminaCursos */
+function eliminarCentro(idCentro) {
+    var message = document.getElementById('message');
+    /* console.log(curso_id);
+    console.log(idCentro);
+    return false; */
+
+    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
+
+    /* 
+            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+            var token = document.getElementById('token').getAttribute("content");
+        
+            Usar el objeto FormData para guardar los parámetros que se enviarán:
+            var formData = new FormData();
+            formData.append('_token', token);
+            formData.append('clave', valor);
+            */
+    var token = document.getElementById('token').getAttribute("content");
+    var formData = new FormData();
+    formData.append('_token', token);
+    formData.append('_method', "DELETE");
+    /* Inicializar un objeto AJAX */
+    var ajax = llamadaAjax();
+    /*
+    ajax.open("method", "rutaURL", true);
+    GET  -> No envía parámetros
+    POST -> Sí envía parámetros
+    true -> asynchronous
+    */
+    ajax.open("POST", "admin/centro/" + idCentro, true);
+    ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                var respuesta = JSON.parse(this.responseText);
+                /* console.log(respuesta);
+                return false */
+                if (respuesta.resultado == "OK") {
+                    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                    //    /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                    //message.innerHTML = '<p>Curso eliminado correctamente.</p>';
+                    showCentros();
                 } else {
                     //    /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -910,20 +1065,6 @@ function eliminarTemas(tema_id, idAsignatura, idCurso, idCentro) {
 /* EliminarApuntes */
 function eliminarApuntes(apunte_id) {
     var message = document.getElementById('message');
-    /* console.log(apunte_id);
-    return false; */
-
-    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
-
-    /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
-        
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
     var token = document.getElementById('token').getAttribute("content");
     var formData = new FormData();
     formData.append('_token', token);
@@ -963,7 +1104,7 @@ function eliminarApuntes(apunte_id) {
 
 //SweetAlerts
 /*Cerrar ModalBox*/
-/* function swalCentros(id) {
+function swalCentros(id) {
     swal({
             title: "Estas seguro de eliminar este centro?",
             text: "Una vez eliminado, no podras recuperar este centro!",
@@ -980,7 +1121,7 @@ function eliminarApuntes(apunte_id) {
                 eliminarCentro(id);
             }
         });
-} */
+}
 
 function swalCursos(id, idCentro) {
     swal({

@@ -21,7 +21,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Santacruz Cela',
             'fecha_nac_usu' => '2001-12-16',
             'correo_usu' => 'raul@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '1'
         ]);
@@ -33,7 +33,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Ortiz González',
             'fecha_nac_usu' => '2002-12-17',
             'correo_usu' => 'marc@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '1'
         ]);
@@ -45,7 +45,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Gras Garrido',
             'fecha_nac_usu' => '2001-11-05',
             'correo_usu' => 'miguel@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '1'
         ]);
@@ -57,7 +57,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Alvarez Rodriguez',
             'fecha_nac_usu' => '2001-04-08',
             'correo_usu' => 'david@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '1'
         ]);
@@ -69,7 +69,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Gómez Gallego',
             'fecha_nac_usu' => '2001-09-29',
             'correo_usu' => 'xavi@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '1'
         ]);
@@ -80,7 +80,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Ortiz Moncusí',
             'fecha_nac_usu' => '2001-05-11',
             'correo_usu' => 'isaac@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '2'
         ]);
@@ -91,8 +91,8 @@ class tbl_usuariosSeeder extends Seeder
             'nombre_usu' => 'Andreea',
             'apellido_usu' => 'Cerchia',
             'fecha_nac_usu' => '2001-04-24',
-            'correo_usu' => 'andreagb24@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'correo_usu' => 'andreagb199@gmail.com',
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_centro' => 1,
             'id_rol' => '3',
@@ -104,7 +104,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Redondo Dominguez',
             'fecha_nac_usu' => '2001-05-18',
             'correo_usu' => 'anaisredondo@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_centro' => 3,
             'id_rol' => '3'
@@ -116,7 +116,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'San Nicolas',
             'fecha_nac_usu' => '2001-11-25',
             'correo_usu' => 'jordiSanNicolas@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_centro' => 2,
             'id_rol' => '3'
@@ -128,7 +128,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Subirats',
             'fecha_nac_usu' => '2002-11-29',
             'correo_usu' => 'albasubirats@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_centro' => 4,
             'id_rol' => '3'
@@ -141,7 +141,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Sanchez',
             'fecha_nac_usu' => '2001-08-16',
             'correo_usu' => 'lydiasanchez@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_centro' => 5,
             'id_rol' => '3'
@@ -153,7 +153,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Dona',
             'fecha_nac_usu' => '2001-12-23',
             'correo_usu' => 'lorenadona@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_centro' => 2,
             'id_rol' => '3'
@@ -166,7 +166,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'España',
             'fecha_nac_usu' => '2001-09-16',
             'correo_usu' => 'albaespana@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_centro' => 6,
             'id_rol' => '3'
@@ -182,7 +182,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'De Michele',
             'fecha_nac_usu' => '1985-09-16',
             'correo_usu' => 'tomasmichele@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '4'
         ]);
@@ -194,7 +194,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Crotal',
             'fecha_nac_usu' => '1985-10-16',
             'correo_usu' => 'dolorescrotal@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '4'
         ]);
@@ -206,7 +206,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Cabuela',
             'fecha_nac_usu' => '1985-11-16',
             'correo_usu' => 'kerrycabuela@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '4'
         ]);
@@ -218,7 +218,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Ricon',
             'fecha_nac_usu' => '1985-12-16',
             'correo_usu' => 'ismaricon@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '4'
         ]);
@@ -230,7 +230,7 @@ class tbl_usuariosSeeder extends Seeder
             'apellido_usu' => 'Neduro',
             'fecha_nac_usu' => '1985-08-16',
             'correo_usu' => 'felipeneduro@gmail.com',
-            'contra_usu' => MD5('1234'),
+            'contra_usu' => hash('sha256','1234'),
             'validado' => true,
             'id_rol' => '4'
         ]);

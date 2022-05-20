@@ -30,8 +30,8 @@ class UsuarioController extends Controller
     //Funciones de hacer login y registro
         public function login(LoginValidation $request){
             $datos=$request->except("_token");
-            //Contraseña convertida a md5
-            $password = md5($datos["contra_usu"]);
+            //Contraseña convertida a bcrypt
+            $password = hash('sha256',$datos["contra_usu"]);
             //Sentencia que exista el usuario
             try {
                 $user = DB::select("SELECT * FROM tbl_usuario WHERE (correo_usu = ? or nick_usu = ?) AND contra_usu = ?",[$datos["correo_nick"],$datos["correo_nick"],$password]);
@@ -89,9 +89,9 @@ class UsuarioController extends Controller
 
         public function register(RegisterValidation $request){
             $datos=$request->except("_token");
-            //Contraseña convertida a md5
+            //Contraseña convertida a bcrypt
             /* return $datos; */
-            $password = md5($datos["contra_usu"]);
+            $password = hash('sha256',$datos["contra_usu"]);
             if ($request->hasFile('img_avatar_usu2')) {
                 $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
                 /* return $file; */
@@ -139,9 +139,9 @@ class UsuarioController extends Controller
 
         public function registerProfe(RegisterProfeValidation $request){
             $datos=$request->except("_token");
-            //Contraseña convertida a md5
+            //Contraseña convertida a bcrypt
             /* return $datos; */
-            $password = md5($datos["contra_profe"]);
+            $password = hash('sha256',$datos["contra_profe"]);
             if ($request->hasFile('img_avatar_usu2')) {
                 $file = $request->file('img_avatar_usu2')->store('uploads/avatar','public');
                 /* return $file; */
@@ -258,7 +258,7 @@ class UsuarioController extends Controller
                 return view("cambiarPass",compact("user_notfound"));
             }else{
                 $user = $user[0];
-                $password_encrypt = md5($datos["contra_usu"]);
+                $password_encrypt = hash('sha256',$datos["contra_usu"]);
                 if ($user->contra_usu == $password_encrypt) {
                     $samepassword = true;
                     return view("cambiarPass",compact("samepassword"));
@@ -363,7 +363,7 @@ class UsuarioController extends Controller
                 if($request['contra_usu'] == NULL){
                     DB::update("UPDATE tbl_usuario SET nick_usu = ?, nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, id_centro = ?  WHERE id = ?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],$idCentro[0]->id,$user->id]);
                 }else{
-                    DB::update("UPDATE tbl_usuario SET SET nick_usu = ?, nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, contra_usu = ?, id_centro=?  WHERE id = ?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],md5($request["contra_usu"]),$idCentro[0]->id,$user->id]);
+                    DB::update("UPDATE tbl_usuario SET SET nick_usu = ?, nombre_usu = ?, apellido_usu = ?, fecha_nac_usu = ?, correo_usu = ?, contra_usu = ?, id_centro=?  WHERE id = ?",[$request["nick_usu"],$request["nombre_usu"],$request["apellido_usu"],$request["fecha_nac_usu"],$request["correo_usu"],hash('sha256',$request["contra_usu"]),$idCentro[0]->id,$user->id]);
                 }
                 $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
                 INNER JOIN tbl_centro centro ON centro.id = user.id_centro
@@ -443,18 +443,50 @@ class UsuarioController extends Controller
         public function DarseDeBaja(Request $request){
             $user= session()->get('user');
             $datos = $request->except("_token","_method");
-            $password_encrypt = md5($datos["contra_usu"]);
+            $password_encrypt = hash('sha256',$datos["contra_usu"]);
             $correctPassword = DB::select("SELECT * FROM tbl_usuario WHERE contra_usu = ? AND id = ?",[$password_encrypt,$user->id]);
             if (count($correctPassword) == 0) {
                 return response()->json(array("resultado"=>"IncorrectPassword"));
             }else{
                 try{
+                    //Cogemos si tiene alguno del sistema para no borrarlo.
+                        $userImage = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[$user->id]);
+                        $userImage = $userImage[0]->img_avatar;
+                        $avataresSistema = DB::select("SELECT * FROM tbl_avatar WHERE id_usu = ?",[null]);
+                        $isAvatarSistema = false;
+                        foreach ($avataresSistema as $avatarSistema){
+                            if ($avatarSistema->img_avatar == $userImage) {
+                                $isAvatarSistema = true;
+                            }
+                        }
+                        //Comprobamos si es avatar del sistema
+                        if ($isAvatarSistema == false) {
+                            if (file_exists(storage_path('app/public/'.$userImage))) {
+                                Storage::delete('public/'.$userImage);
+                            }
+                        }
                     DB::beginTransaction();
+                    $apuntes = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema FROM tbl_usuario usu 
+                    INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
+                    INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
+                    INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
+                    INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
+                    INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                    WHERE apuntes.id_usu =  ?",[$user->id]);
+                    foreach ($apuntes as $apunte) {
+                        DB::delete("DELETE FROM tbl_multimedia WHERE id = ?",[$apunte->id]);
+                        $pathPDF = 'public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido;
+                        $pathIMG = 'public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.'.png';
+                        Storage::delete($pathPDF);
+                        Storage::delete($pathIMG);
+                    }
+                    Storage::delete('public/uploads/configuration/user-'.$user->id.'.json');
                     DB::delete("DELETE FROM tbl_denuncias WHERE id_demandante= ? or id_acusado = ?",[$user->id,$user->id]);
                     DB::delete("DELETE FROM tbl_comentarios WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_historial WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$user->id]);
+                    DB::delete("DELETE FROM tbl_estudios WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$user->id]);
                     DB::commit();
                     $redirect = url('/');

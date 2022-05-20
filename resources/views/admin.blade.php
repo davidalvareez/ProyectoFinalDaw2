@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../public/js/registro/registro.js"></script>
     <script src="{!! asset('js/admin/adminAjax.js') !!}"></script>
     <title>Admin CPanel</title>
 </head>
@@ -20,11 +19,11 @@
                     {{-- <form action='{{url('logout')}}' method='get'>
                         <button class="btn btn-secondary">Logout</button>
                     </form> --}}
-                    <button class="btn-glass" onclick="showUsers();closeModal();return false">Users</button>
-                    <button class="btn-glass" onclick="showCentros();closeModal();return false">Centros</button>
-                    <button class="btn-glass" onclick="showApuntes();closeModal();return false">Apuntes</button>
-                    <button class="btn-glass" onclick="showDenuncias();closeModal();return false">Denuncias</button>
-                    <button class="btn-glass" onclick="showHistorial();closeModal();return false">Historial</button>
+                    <button class="btn-glass" onclick="showUsers();return false">Users</button>
+                    <button class="btn-glass" onclick="showCentros();return false">Centros</button>
+                    <button class="btn-glass" onclick="showApuntes();return false">Apuntes</button>
+                    <button class="btn-glass" onclick="showDenuncias();return false">Denuncias</button>
+                    <button class="btn-glass" onclick="showHistorial();return false">Historial</button>
                     <a href="{{url('logout')}}"><button class="btn-glass-rosa" return false">Cerrar Sesión</button></a>
                     <div id="message" style="color:green"></div>
 
