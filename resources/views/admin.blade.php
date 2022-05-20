@@ -19,9 +19,9 @@
                     {{-- <form action='{{url('logout')}}' method='get'>
                         <button class="btn btn-secondary">Logout</button>
                     </form> --}}
-                    <button class="btn-glass" onclick="showUsers();return false">Users</button>
-                    <button class="btn-glass" onclick="showCentros();return false">Centros</button>
-                    <button class="btn-glass" onclick="showApuntes();return false">Apuntes</button>
+                    <button class="btn-glass" onclick="getInputUsers();showUsers();return false">Users</button>
+                    <button class="btn-glass" onclick="getInputCentros();showCentros();return false">Centros</button>
+                    <button class="btn-glass" onclick="getInputApuntes();showApuntes();return false">Apuntes</button>
                     <button class="btn-glass" onclick="showDenuncias();return false">Denuncias</button>
                     <button class="btn-glass" onclick="showHistorial();return false">Historial</button>
                     <a href="{{url('logout')}}"><button class="btn-glass_rosa" return false">Cerrar Sesión</button></a>
@@ -30,9 +30,9 @@
                     <div class="filtrador">
                         <form method="post" onsubmit="filtro();return false;">
                             <input type="hidden" name="_method" value="POST" id="postFiltro">
-                            <div class="form-outline">
-                               <input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por titulo..." aria-label="Search" onkeyup="filtro(); return false;"/>
-                            </div>
+                            <div class="form-outline" id="filter">
+{{--                                <input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por titulo..." aria-label="Search" onkeyup="filtro(); return false;"/>
+ --}}                            </div>
                          </form>
                     </div>
                 </div>
