@@ -118,20 +118,19 @@ td {
         }
         .region {
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
                 .content-glassland {
                     @extend .flex;
                 }
             }
         }
         .region1 {
-            padding-left: 90px;
             margin-bottom: 60px;
-            @extend .flex;
+            @include flex-cv($d: column);
             .content-region {
                 .glassland {
                     .content-glassland {
-                        //@extend .flex;
+                        //@include flex-cv($d: column);
                         .misapuntes-content-glassland {
                             width: 90vw;
                             padding: 2%;
@@ -141,13 +140,12 @@ td {
             }
         }
         .region2 {
-            padding-left: 90px;
             margin-bottom: 60px;
-            @extend .flex;
+            @include flex-cv($d: column);
             .content-region {
                 .glassland {
                     .content-glassland {
-                        //@extend .flex;
+                        //@include flex-cv($d: column);
                         width: 100%;
                         .misapuntes-content-glassland {
                             width: 90vw;

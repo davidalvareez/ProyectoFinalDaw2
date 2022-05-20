@@ -36,7 +36,7 @@ textarea {
             margin: 2% 0% 0% 0%;
             width: 100%;
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
                 .content-glassland {
                     @extend .flex;
                 }
@@ -83,13 +83,12 @@ textarea {
             }
         }
         .region2 {
-            padding: 0px 0px 60px 90px;
-            width: 90%;
+            padding-bottom: 60px;
             @extend .flex;
             .content-region {
+                @include flex-cv($d: column);
                 .glassland {
                     .content-glassland {
-                        //@extend .flex;
                         .crearcomentario-content-glassland {
                             width: 80vw;
                             padding: 20px;

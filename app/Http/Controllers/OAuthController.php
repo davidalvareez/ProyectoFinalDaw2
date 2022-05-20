@@ -119,7 +119,7 @@ class OAuthController extends Controller
         }
         public function oauthRegisterAlumno(RegisterUserOAuth $request) {
             $datos=$request->except("_token");
-            $password = md5($datos["contra_usu"]);
+            $password = hash('sha256',$datos["contra_usu"]);
             try {
                 $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
                 DB::update("UPDATE tbl_usuario SET fecha_nac_usu = ?,contra_usu = ?,validado = ?,id_rol = ?, id_centro = ? WHERE id = ?",[$datos["fecha_nac_usu"],$password,true,$datos["id_rol"],$id_centro[0]->id,$datos["id"]]);
@@ -144,7 +144,7 @@ class OAuthController extends Controller
 
         public function oauthRegisterProfesor(RegisterProfeOAuth $request) {
             $datos=$request->except("_token");
-            $password = md5($datos["contra_profe"]);
+            $password = hash('sha256',$datos["contra_profe"]);
             try {
                 if ($datos["centro"] == null) {
                     $id_centro = null;

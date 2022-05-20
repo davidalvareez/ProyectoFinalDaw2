@@ -17,7 +17,7 @@
         .region {
             width: 90%;
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
                 .content-glassland {
                     @extend .flex;
                 }
@@ -76,7 +76,7 @@
             .content-region {
                 .glassland {
                     .content-glassland {
-                        //@extend .flex;
+                        //@include flex-cv($d: column);
                         width: 100%;
                         .admin-content-glassland {
                             width: 90vw;

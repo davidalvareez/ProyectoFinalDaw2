@@ -206,10 +206,10 @@
     //overflow-y: hidden;
     main {
         height: 100vh !important;
-        //@extend .flex;
+        //@include flex-cv($d: column);
         .region {
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
                 .content-glassland {
                     @extend .flex;
                 }
@@ -231,7 +231,7 @@
                                 }
                             }
                             .login-btn-absglass {
-                                @extend .glassbtn;
+                                @extend .btn-glass-grande;
                             }
                         }
                     }
@@ -248,12 +248,12 @@
 .registro-page {
     //overflow-y: hidden;
     main {
-        //@extend .flex;
+        //@include flex-cv($d: column);
         .region {
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
                 .content-glassland {
-                    @extend .flex;
+                    @include flex-cv($d: column);
                 }
             }
         }
@@ -268,7 +268,7 @@
                             width: 80%;
                             padding: 2% 0% 2% 10%;
                             .login-btn-absglass {
-                                @extend .glassbtn;
+                                @extend .btn-glass-grande;
                             }
                         }
                     }
