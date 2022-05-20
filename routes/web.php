@@ -206,9 +206,9 @@ use App\Http\Livewire\Contacts;
 
     Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);
 
-    Route::get('profesor/mostrarEstudios/id',[UsuarioController::class,'mostrarEstudios']);
+    Route::get('profesor/mostrarEstudios/{id}',[UsuarioController::class,'mostrarEstudios']);
 
-    Route::get('profesor/mostrarCurriculum/id',[UsuarioController::class,'mostrarCurriculum']);
+    Route::get('profesor/mostrarCurriculum/{id}',[UsuarioController::class,'mostrarCurriculum']);
 
 //Moderador
 //Mostrar
