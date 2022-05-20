@@ -570,8 +570,8 @@ class UsuarioController extends Controller
 
         public function mostrarEstudios($id){
             $listaEstudios = DB::select("SELECT * FROM tbl_usuario usuario INNER JOIN tbl_estudios estudios ON usuario.id = estudios.id_usu
-            INNER JOIN tbl_cursos cursos ON estudios.id_curso = cursos.id WHERE usuario.id = ?;"[$id]);
-
+            INNER JOIN tbl_cursos cursos ON estudios.id_curso = cursos.id WHERE usuario.id = ?;",[$id]);
+            //return $listaEstudios;
             return response()->json($listaEstudios);
         }
 

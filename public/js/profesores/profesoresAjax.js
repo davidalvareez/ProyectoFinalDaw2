@@ -109,6 +109,7 @@ function advancedFilterProfesores() {
 }
 
 function mostrarEstudios(id) {
+    //alert("Hola");
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
@@ -118,6 +119,7 @@ function mostrarEstudios(id) {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             /* Crear la estructura html que se devolverá dentro de una variable recarga*/
+            console.log(respuesta);
             var recarga = "";
             recarga += "<ul>";
             for (let i = 0; i < respuesta.length; i++) {
@@ -143,6 +145,7 @@ function mostrarCurriculum(id) {
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
+            console.log(respuesta);
             /* Crear la estructura html que se devolverá dentro de una variable recarga*/
             var recarga = "";
             for (let i = 0; i < respuesta.length; i++) {
