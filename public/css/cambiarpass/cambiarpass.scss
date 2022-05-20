@@ -1,28 +1,7 @@
 @import '../base/base.scss';
-.glassbtn {
-    padding: 10px 10px 10px 10px;
-    width: 100%;
-    float: left;
-    border: 0;
-    text-decoration: none;
-    border-radius: 6px;
-    background-color: #12993ccc;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(30px);
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.glassbtn:hover {
-    background-color: #0e7a30cc;
-}
-
 .inputbtn {
     box-sizing: border-box;
-    padding: 6px 30px 6px 10px;
+    padding: 10px 30px 10px 10px;
     width: 100%;
     border: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -84,7 +63,7 @@
 
 .cambiarpass-page {
     main {
-        //@extend .flex;
+        //@include flex-cv($d: column);
         height: calc(100vh - 105px);
         @media(min-width: $grid-float-breakpoint) {
             height: 100%;
@@ -93,7 +72,7 @@
             .glassland {
                 @extend .glass-2;
                 .content-glassland {
-                    @extend .flex;
+                    @include flex-cv($d: column);
                 }
             }
         }
@@ -120,7 +99,7 @@
                                 }
                             }
                             .cambiarpass-btn-absglass {
-                                @extend .glassbtn;
+                                @extend .btn-glass-grande;
                             }
                         }
                     }

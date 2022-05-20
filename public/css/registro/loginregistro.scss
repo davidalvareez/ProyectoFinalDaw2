@@ -230,14 +230,14 @@
 
 .login-page {
     main {
-        //@extend .flex;
+        //@include flex-cv($d: column);
         // height: calc(100vh - 105px);
         @media(max-width: $grid-float-breakpoint) {
             height: 100%;
         }
         .region {
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
             }
         }
         .region1 {
@@ -245,7 +245,7 @@
                 padding: 5% 0% 5% 10%;
             }
             .content-region {
-                @extend .flex;
+                @include flex-cv($d: row);
                 justify-content: space-around;
                 @media(max-width: $grid-float-breakpoint) {
                     flex-flow: column;
@@ -263,7 +263,7 @@
                                 }
                             }
                             .login-btn-absglass {
-                                @extend .glassbtn;
+                                @extend .btn-glass-grande;
                             }
                         }
                     }
@@ -292,13 +292,13 @@
 .registro-page {
     //overflow-y: hidden;
     main {
-        //@extend .flex;
+        //@include flex-cv($d: column);
         //height: calc(100vh - 105px);
         .region {
             .glassland {
-                @extend .glass2;
+                @extend .glass-2;
                 .content-glassland {
-                    @extend .flex;
+                    @include flex-cv($d: column);
                 }
             }
         }
@@ -320,7 +320,7 @@
                         .registro-content-glassland {
                             padding: calc(20px + 0.5vh) calc(15px + 1vw);
                             .login-btn-absglass {
-                                @extend .glassbtn;
+                                @extend .btn-glass-grande;
                             }
                         }
                     }
