@@ -59,9 +59,17 @@
                                         <div class="container-foto container-img">
                                             <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
                                             @if ($recentnotes->extension_contenido == ".pdf")
-                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @if ($recentnotes->id_tema != null)
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @else
+                                                <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes_reciclados/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @endif
                                             @else
-                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                                @if ($recentnotes->id_tema != null)
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$recentnotes->nombre_centro.'/'.$recentnotes->nombre_curso.'/'.$recentnotes->nombre_asignatura.'/'.$recentnotes->nombre_tema.'/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                                @else
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes_reciclados/'.$recentnotes->nombre_contenido.$recentnotes->extension_contenido}}" alt="Apuntes">
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
@@ -69,9 +77,11 @@
                                         <div class="name-content">
                                             <h3 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</span></h3>
                                         </div>
+                                        @if ($recentnotes->id_tema != null)
                                         <div class="centro info-centro">
                                             <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">{{$recentnotes->nombre_centro}}</span></p>
                                         </div>
+                                        @endif
                                         <div class="id-content">
                                             <small class="name-content_text"><span class="">#{{$recentnotes->id_content}}</span></small>
                                         </div>
@@ -79,19 +89,28 @@
                                 </div>
                             </div>
                             <?php
+                            if ($recentnotes -> id_tema != null){
                                 $nombre_centro = str_replace(" ","%20",$recentnotes->nombre_centro);
                                 $nombre_curso = str_replace(" ","%20",$recentnotes->nombre_curso);
                                 $nombre_asignatura = str_replace(" ","%20",$recentnotes->nombre_asignatura);
                                 $nombre_tema = str_replace(" ","%20",$recentnotes->nombre_tema);
+                            }
                                 $nombre_contenido = str_replace(" ","%20",$recentnotes->nombre_contenido);
                             ?>
                             @if ($recentnotes->extension_contenido == ".pdf")
-                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
+                                @if ($recentnotes->id_tema != null)
+                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
+                                @else
+                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.'.png'}})">
+                                @endif
                             @else
-                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$recentnotes->extension_contenido}})">
+                                @if ($recentnotes->id_tema != null)
+                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$recentnotes->extension_contenido}})">
+                                @else
+                                <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.$recentnotes->extension_contenido}})">
+                                @endif
                             @endif
                                 <div class="container-reverse">
-
                                     <div class="top">
                                         <div class="user-info left-top">
                                             <div class="container-info">
@@ -126,6 +145,7 @@
                                             <div class="name-content">
                                                 <h4 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</span></h4>
                                             </div>
+                                            @if ($recentnotes->id_tema != null)
                                             <div class="school-content">
                                                 <p class="school-content_text"><span class="">{{$recentnotes->nombre_centro}}</span></p>
                                             </div>
@@ -135,6 +155,7 @@
                                             <div class="unit-content">
                                                 <p class="unit-content_text"><span class="">{{$recentnotes->nombre_tema }}</span></p>
                                             </div>
+                                            @endif
                                         </div>
                                         <div class="buttons-actions">
                                             <div class="download-button">
@@ -173,9 +194,17 @@
                                         <div class="container-foto container-img">
                                             <!-- foto de los apuntes. En el atributo alt hace falta poner el titulo de los apuntes -->
                                             @if ($popularnotes->extension_contenido == ".pdf")
-                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$popularnotes->nombre_centro.'/'.$popularnotes->nombre_curso.'/'.$popularnotes->nombre_asignatura.'/'.$popularnotes->nombre_tema.'/'.$popularnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @if ($popularnotes->id_tema != null)
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$popularnotes->nombre_centro.'/'.$popularnotes->nombre_curso.'/'.$popularnotes->nombre_asignatura.'/'.$popularnotes->nombre_tema.'/'.$popularnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @else
+                                                <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes_reciclados/'.$popularnotes->nombre_tema.'/'.$popularnotes->nombre_contenido.'.png'}}" alt="Apuntes">
+                                                @endif
                                             @else
-                                            <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$popularnotes->nombre_centro.'/'.$popularnotes->nombre_curso.'/'.$popularnotes->nombre_asignatura.'/'.$popularnotes->nombre_tema.'/'.$popularnotes->nombre_contenido.$popularnotes->extension_contenido}}" alt="Apuntes">
+                                                @if ($popularnotes->id_tema != null)
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes/'.$popularnotes->nombre_centro.'/'.$popularnotes->nombre_curso.'/'.$popularnotes->nombre_asignatura.'/'.$popularnotes->nombre_tema.'/'.$popularnotes->nombre_contenido.$popularnotes->extension_contenido}}" alt="Apuntes">
+                                                @else
+                                                    <img class="img foto prev-apunt" src="{{asset('storage').'/uploads/apuntes_reciclados/'.$popularnotes->nombre_contenido.$popularnotes->extension_contenido}}" alt="Apuntes">
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
@@ -183,9 +212,11 @@
                                         <div class="name-content">
                                             <h3 class="name-content_text"><span class="">{{$popularnotes->nombre_contenido}}{{$popularnotes->extension_contenido}}</span></h3>
                                         </div>
+                                        @if ($popularnotes->id_tema != null)
                                         <div class="centro info-centro">
                                             <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">{{$popularnotes->nombre_centro}}</span></p>
                                         </div>
+                                        @endif
                                         <div class="id-content">
                                             <small class="name-content_text"><span class="">#{{$popularnotes->id_content}}</span></small>
                                         </div>
@@ -193,16 +224,26 @@
                                 </div>
                             </div>
                             <?php
+                            if ($popularnotes->id_tema != null) {
                                 $nombre_centro = str_replace(" ","%20",$popularnotes->nombre_centro);
                                 $nombre_curso = str_replace(" ","%20",$popularnotes->nombre_curso);
                                 $nombre_asignatura = str_replace(" ","%20",$popularnotes->nombre_asignatura);
                                 $nombre_tema = str_replace(" ","%20",$popularnotes->nombre_tema);
+                            }
                                 $nombre_contenido = str_replace(" ","%20",$popularnotes->nombre_contenido);
                             ?>
                             @if ($popularnotes->extension_contenido == ".pdf")
-                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
+                                @if ($popularnotes->id_tema != null)
+                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
+                                @else
+                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.'.png'}})">
+                                @endif
                             @else
-                            <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$popularnotes->extension_contenido}})">
+                                @if ($popularnotes->id_tema != null)
+                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$popularnotes->extension_contenido}})">
+                                @else
+                                <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.$popularnotes->extension_contenido}})">
+                                @endif
                             @endif
                                 <div class="container-reverse">
 
@@ -240,6 +281,7 @@
                                             <div class="name-content">
                                                 <h4 class="name-content_text"><span class="">{{$popularnotes->nombre_contenido}}{{$popularnotes->extension_contenido}}</span></h4>
                                             </div>
+                                            @if ($popularnotes->id_tema != null)
                                             <div class="school-content">
                                                 <p class="school-content_text"><span class="">{{$popularnotes->nombre_centro}}</span></p>
                                             </div>
@@ -249,6 +291,7 @@
                                             <div class="unit-content">
                                                 <p class="unit-content_text"><span class="">{{$popularnotes->nombre_tema }}</span></p>
                                             </div>
+                                            @endif
                                         </div>
                                         <div class="buttons-actions">
                                             <div class="download-button">
