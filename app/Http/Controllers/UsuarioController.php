@@ -574,4 +574,11 @@ class UsuarioController extends Controller
 
             return response()->json($listaEstudios);
         }
+
+        public function mostrarCurriculum($id){
+            $Curriculum = DB::select("SELECT * FROM tbl_usuario usuario LEFT JOIN tbl_curriculum curriculum
+            ON usuario.id = curriculum.id_usu WHERE usuario.id_rol = ? AND usuario.id = ?;",[4, $id]);
+
+            return response()->json($Curriculum);
+        }
 }

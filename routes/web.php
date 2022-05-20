@@ -208,7 +208,7 @@ use App\Http\Livewire\Contacts;
 
     Route::get('profesor/mostrarEstudios/id',[UsuarioController::class,'mostrarEstudios']);
 
-    Route::get('profesor/mostrarEstudios/id',[UsuarioController::class,'']);
+    Route::get('profesor/mostrarCurriculum/id',[UsuarioController::class,'mostrarCurriculum']);
 
 //Moderador
 //Mostrar
