@@ -145,9 +145,8 @@ function mostrarCurriculum(id) {
             var respuesta = JSON.parse(this.responseText);
             /* Crear la estructura html que se devolverá dentro de una variable recarga*/
             var recarga = "";
-            recarga += "<ul>";
             for (let i = 0; i < respuesta.length; i++) {
-                recarga += `<li>${respuesta[i].nombre_curriculum}</li>`
+                recarga += `<iframe id="framePDF" src="${respuesta[i].nombre_curriculum}#toolbar=0" type="application/pdf"></iframe>`;
             }
             recarga += "</ul>";
             swal({
