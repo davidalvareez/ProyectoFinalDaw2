@@ -1,7 +1,7 @@
 window.onload = function() {
     content = document.getElementById('content');
     token = document.getElementById('token').getAttribute("content")
-    widthpantalla = window.innerWidth;
+    //widthpantalla = window.innerWidth;
 }
 
 function llamadaAjax() {
@@ -54,17 +54,9 @@ function showUsers() {
                 return false; */
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 //Encabezado
-                if (widthpantalla < 900) {
-                    var recarga = '';
-                    recarga += `<div class="">
-                    <table class="table table-striped">
-                    <tr>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                    </tr>`;
-                }else{
+                let recarga = ``;
                     recarga+=`<div class="">
+                    <div class="table-responsive">             
                     <table class="table table-striped">
                     <th scope="col">#</th>
                     <th scope="col">Nickname</th>
@@ -78,21 +70,7 @@ function showUsers() {
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                     <tr>`;
-                }
-                //Cuerpo
-                if (widthpantalla < 900) {
-                    for (let i = 0; i < respuesta.length; i++) {
-                        recarga += `<tr>
-                        <td>${respuesta[i].correo_usu}</td>
-                        <td>
-                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxUser(${respuesta[i].id},'${respuesta[i].nombre_usu}','${respuesta[i].apellido_usu}','${respuesta[i].nick_usu}','${respuesta[i].fecha_nac_usu}','${respuesta[i].correo_usu}','${respuesta[i].deshabilitado}','${respuesta[i].tmpdeshabilitado}','${respuesta[i].nombre_rol}');return false;">Modificar</button>
-                        </td>
-                        <td>
-                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalUsers(${respuesta[i].id});return false;">Eliminar</button>
-                        </td>
-                        </tr>`
-                    }
-                }else{
+                //Cuerpoelse
                     for (let i = 0; i < respuesta.length; i++) {
                         recarga += `<tr>
                         <td scope="row"><b>${respuesta[i].id}</b></td>
@@ -112,8 +90,8 @@ function showUsers() {
                         </td>
                         </tr>`
                     }
-                }
                     recarga += `</table>
+                    </div>
                     </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
@@ -157,6 +135,7 @@ function showCentros() {
                 var recarga = '';
                 recarga += `<div class="">
                 <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearCentro();">Crear</button>
+                <div class="table-responsive">    
                     <table class="table table-striped">
                     <tr>
                     <th scope="col">#</th>
@@ -184,7 +163,8 @@ function showCentros() {
                 }
 
                 recarga += `</table>
-                    </div>`;
+                    </div>
+                </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -227,6 +207,7 @@ function showCursos(idCentro) {
                 recarga += `<div class="">
                 <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearCurso(${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showCentros();">Voler a centros</button>
+                <div class="table-responsive">     
                     <table class="table table-striped">
                         <tr>
                         <th scope="col">#</th>
@@ -253,7 +234,8 @@ function showCursos(idCentro) {
                              </tr>`
                 }
                 recarga += `</table>
-                        </div>`;
+                        </div>
+                    </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -296,7 +278,8 @@ function showAsignaturas(idCurso, idCentro) {
                 recarga += `<div class="">
                 <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearAsignatura(${idCurso},${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showCursos(${idCentro});">Voler a Cursos</button>
-                            <table class="table table-striped">
+                <div class="table-responsive">             
+                    <table class="table table-striped">
                             <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
@@ -318,7 +301,8 @@ function showAsignaturas(idCurso, idCentro) {
                                  </tr>`
                 }
                 recarga += `</table>
-                            </div>`;
+                            </div>
+                        </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -363,7 +347,8 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                 recarga += `<div class="">
                 <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearTema(${idAsignatura},${idCurso},${idCentro});">Crear</button>
                 <button class="boton-volver" type="submit" value="Edit" onclick="showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
-                                <table class="table table-striped">
+                <div class="table-responsive">                             
+                    <table class="table table-striped">
                                 <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre tema</th>
@@ -382,7 +367,8 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                                     </tr>`
                 }
                 recarga += `</table>
-                                </div>`;
+                                </div>
+                            </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -425,6 +411,7 @@ function showApuntes() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
+                                <div class="table-responsive">             
                                 <table class="table table-striped">
                                 <tr>
                                 <th scope="col">#</th>
@@ -445,7 +432,8 @@ function showApuntes() {
                                      </tr>`
                 }
                 recarga += `</table>
-                                </div>`;
+                                </div>
+                            </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -487,7 +475,8 @@ function showDenuncias() {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 recarga = "";
-                recarga += `<table class="table table-striped">
+                recarga += `<div class="table-responsive">             
+                <table class="table table-striped">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tipo</th>
@@ -507,7 +496,8 @@ function showDenuncias() {
                 <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarDenuncia(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
             </tr>`;
                 }
-                recarga += `</table>`;
+                recarga += `</table>
+                </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -713,6 +703,7 @@ function showHistorial() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="">
+                                <div class="table-responsive">             
                                     <table class="table table-striped">
                                     <tr>
                                     <th scope="col">#</th>
@@ -734,6 +725,7 @@ function showHistorial() {
                                         </tr>`
                 }
                 recarga += `</table>
+                                    </div>
                                     </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/

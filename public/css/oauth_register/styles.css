@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse {
-=======
 .glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse, .modal-content2 {
->>>>>>> main
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -10,9 +6,6 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-<<<<<<< HEAD
-.glass, .modal-content2 {
-=======
 .glass-admin {
   backdrop-filter: blur(300px) saturate(50%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
@@ -21,7 +14,6 @@
 }
 
 .glass-5 {
->>>>>>> main
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -31,30 +23,6 @@
   transition: all 0.7s;
 }
 
-<<<<<<< HEAD
-.flex-cv {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  justify-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-}
-
-.allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
-  height: 100%;
-  width: 100%;
-=======
 .allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
   height: 100%;
   width: 100%;
@@ -70,7 +38,6 @@
   -ms-flex-line-pack: center;
       align-content: center;
   text-align: center;
->>>>>>> main
 }
 
 @font-face {
@@ -215,10 +182,7 @@
   --svgColor2: #ffffff;
   --svgColor1a: #fc2e76;
   --svgColor2a: #ffffff;
-<<<<<<< HEAD
-=======
   --svgColor3: #b82055;
->>>>>>> main
   /** light side **/
   --blue-background: #C2E9F6;
   --blue-border: #72cce3;
@@ -238,10 +202,7 @@
   --font1: Poppins;
   --white: #ffffff;
   --black: #000000;
-<<<<<<< HEAD
-=======
   --black-low: #2c2c2c;
->>>>>>> main
   --grey: #eee;
   --letter-grey: #797c7e;
   --font1: Poppins;
@@ -294,23 +255,17 @@ h4 {
   color: var(--white);
   font-size: calc(13px + 0.2vw);
   padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
-<<<<<<< HEAD
-=======
   cursor: pointer;
 }
 
 .btn-glass:hover {
   background: var(--svgColor1a);
->>>>>>> main
 }
 
 .btn-glass_b {
   background: var(--svgColor1a);
 }
 
-<<<<<<< HEAD
-.btn-glass_negro {
-=======
 .btn-glass-grande {
   background: var(--svgColor1);
   padding: calc(7px + 0.75vh) calc(10px + 0.9vw);
@@ -343,18 +298,12 @@ h4 {
 }
 
 .btn-glass-negro {
->>>>>>> main
   background: var(--black);
   border-radius: calc(25px + 5vw);
   color: var(--white);
   font-size: calc(13px + 0.2vw);
   padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
   margin-top: 20px;
-<<<<<<< HEAD
-}
-
-.btn-glass_rosa {
-=======
   cursor: pointer;
 }
 
@@ -363,29 +312,17 @@ h4 {
 }
 
 .btn-glass-rosa {
->>>>>>> main
   background: var(--svgColor1a);
   border-radius: calc(25px + 5vw);
   color: var(--white);
   font-size: calc(13px + 0.2vw);
   padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
   margin-top: 20px;
-<<<<<<< HEAD
-}
-
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse {
-  backdrop-filter: blur(10px) saturate(105%);
-  -webkit-backdrop-filter: blur(13px) saturate(180%);
-  background-color: #a3a8b062;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
-=======
   cursor: pointer;
 }
 
 .btn-glass-rosa:hover {
   background: var(--svgColor3);
->>>>>>> main
 }
 
 * {
