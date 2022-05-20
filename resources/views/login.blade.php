@@ -89,9 +89,9 @@
                                     </div>
                                     <div>
                                         <div class="botones-redes">
-                                            <a onclick="{{url('login-facebook')}}"><img src="{!! asset ('media/loginregister/facebook.png') !!}" alt="facebook" class="icono-socialmedia"></a>
-                                            <a onclick="{{url('login-twitter')}}"><img src="{!! asset ('media/loginregister/twitter.png') !!}" alt="twitter" class="icono-socialmedia"></a>
-                                            <a onclick="{{url('login-google')}}"><img src="{!! asset ('media/loginregister/google.png') !!}" alt="google" class="icono-socialmedia"></a>
+                                            <a onclick="window.location.href='{{url('login-facebook')}}'"><img src="{!! asset ('media/loginregister/facebook.png') !!}" alt="facebook" class="icono-socialmedia"></a>
+                                            <a onclick="window.location.href='{{url('login-twitter')}}'"><img src="{!! asset ('media/loginregister/twitter.png') !!}" alt="twitter" class="icono-socialmedia"></a>
+                                            <a onclick="window.location.href='{{url('login-google')}}'"><img src="{!! asset ('media/loginregister/google.png') !!}" alt="google" class="icono-socialmedia"></a>
                                         </div>
                                     </div>
                                 </div>

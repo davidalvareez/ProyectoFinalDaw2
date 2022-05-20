@@ -306,10 +306,10 @@ class UsuarioController extends Controller
                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
                 LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
                 LEFT JOIN tbl_historial hist ON hist.id_contenido = content.id
-                INNER JOIN tbl_temas temas ON temas.id = content.id_tema
-                INNER JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
-                INNER JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
-                INNER JOIN tbl_centro centro ON centro.id = curso.id_centro
+                LEFT JOIN tbl_temas temas ON temas.id = content.id_tema
+                LEFT JOIN tbl_asignaturas asignaturas ON asignaturas.id = temas.id_asignatura
+                LEFT JOIN tbl_cursos curso ON curso.id = asignaturas.id_curso
+                LEFT JOIN tbl_centro centro ON centro.id = curso.id_centro
                 WHERE users.nick_usu = ?
                 GROUP BY id_content",[$nick_usu]);
 

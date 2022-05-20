@@ -46,6 +46,7 @@ function multiplyFilter() {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
+                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 recarga += `<div class="title">
@@ -56,11 +57,15 @@ function multiplyFilter() {
                     <div class="resultados">
                         <div class="owl-carousel owl-carousel-3">`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    let nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
-                    let nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
-                    let nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
-                    let nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
-                    let nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
+                    if (respuesta[i].id_tema != null) {
+                        nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
+                        nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
+                        nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
+                        nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
+                        nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
+                    } else {
+                        nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
+                    }
                     recarga += `<div class="card resultado card-resultado">
                                 <div class="container">
                                     <div class="front-card">
@@ -68,29 +73,47 @@ function multiplyFilter() {
                                             <div class="foto img img-apuntes">
                                                 <div class="container-foto container-img">`
                     if (respuesta[i].extension_contenido == ".pdf") {
-                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                        } else {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes_reciclados/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                        }
                     } else {
-                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}" alt="Apuntes">`
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}" alt="Apuntes">`
+                        } else {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes_reciclados/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                        }
                     }
                     recarga += `</div>
                                             </div>
                                             <div class="header-apuntes">
                                                 <div class="name-content">
                                                     <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h3>
-                                                </div>
-                                                <div class="centro info-centro">
-                                                    <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">${respuesta[i].nombre_centro}</span></p>
-                                                </div>
-                                                <div class="id-content">
+                                                </div>`
+                    if (respuesta[i].nombre_centro != null) {
+                        recarga += `<div class="centro info-centro">
+                                                        <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">${respuesta[i].nombre_centro}</span></p>
+                                                    </div>`
+                    }
+                    recarga += ` <div class="id-content">
                                                     <small class="name-content_text"><span class="">#${respuesta[i].id_content}</span></small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>`
                     if (respuesta[i].extension_contenido == ".pdf") {
-                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
+                        } else {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}.png)">`
+                        }
                     } else {
-                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                        } else {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                        }
                     }
                     recarga += `<div class="container-reverse">
                                             <div class="top">
@@ -126,16 +149,19 @@ function multiplyFilter() {
                                                 <div class="content-info">
                                                     <div class="name-content">
                                                         <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h4>
-                                                    </div>
-                                                    <div class="school-content">
-                                                        <p class="school-content_text"><span class="">${respuesta[i].nombre_centro}</span></p>
-                                                    </div>
-                                                    <div class="class-content">
-                                                        <p class="class-content_text"><span class="">${respuesta[i].nombre_asignatura}</span></p>
-                                                    </div>
-                                                    <div class="unit-content">
-                                                        <p class="unit-content_text"><span class="">${respuesta[i].nombre_tema}</span></p>
-                                                    </div>
+                                                    </div>`
+                    if (respuesta[i].id_tema != null) {
+                        recarga += `<div class="school-content">
+                                        <p class="school-content_text"><span class="">${respuesta[i].nombre_centro}</span></p>
+                                    </div>
+                                    <div class="class-content">
+                                        <p class="class-content_text"><span class="">${respuesta[i].nombre_asignatura}</span></p>
+                                    </div>
+                                    <div class="unit-content">
+                                        <p class="unit-content_text"><span class="">${respuesta[i].nombre_tema}</span></p>
+                                    </div>`;
+                    }
+                    recarga += `
                                                 </div>
                                                 <div class="buttons-actions">
                                                     <div class="download-button">
@@ -219,108 +245,130 @@ function busquedaAvanzada() {
                                     <div class="resultados">
                                         <div class="owl-carousel owl-carousel-3">`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    let nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
-                    let nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
-                    let nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
-                    let nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
-                    let nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
-                    recarga += `<div class="card resultado card-resultado">
-                                                    <div class="container">
-                                                        <div class="front-card">
-                                                            <div class="container-front">
-                                                                <div class="foto img img-apuntes">
-                                                                    <div class="container-foto container-img">`
-                    if (respuesta[i].extension_contenido == ".pdf") {
-                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                    if (respuesta[i].id_tema != null) {
+                        nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
+                        nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
+                        nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
+                        nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
+                        nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
                     } else {
-                        recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}" alt="Apuntes">`
+                        nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
                     }
-
-                    recarga += `</div>
-                                                                </div>
-                                                                <div class="header-apuntes">
-                                                                    <div class="name-content">
-                                                                        <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h3>
-                                                                    </div>
-                                                                    <div class="centro info-centro">
-                                                                        <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">${respuesta[i].nombre_centro}</span></p>
-                                                                    </div>
-                                                                    <div class="id-content">
-                                                                        <small class="name-content_text"><span class="">#${respuesta[i].id_content}</span></small>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>`
+                    recarga += `<div class="card resultado card-resultado">
+                                                        <div class="container">
+                                                            <div class="front-card">
+                                                                <div class="container-front">
+                                                                    <div class="foto img img-apuntes">
+                                                                        <div class="container-foto container-img">`
                     if (respuesta[i].extension_contenido == ".pdf") {
-                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                        } else {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes_reciclados/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                        }
                     } else {
-                        recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes/${respuesta[i].nombre_centro}/${respuesta[i].nombre_curso}/${respuesta[i].nombre_asignatura}/${respuesta[i].nombre_tema}/${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}" alt="Apuntes">`
+                        } else {
+                            recarga += `<img class="img foto prev-apunt" src="storage/uploads/apuntes_reciclados/${respuesta[i].nombre_contenido}.png" alt="Apuntes">`
+                        }
+                    }
+                    recarga += `</div>
+                                                                    </div>
+                                                                    <div class="header-apuntes">
+                                                                        <div class="name-content">
+                                                                            <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h3>
+                                                                        </div>`
+                    if (respuesta[i].nombre_centro != null) {
+                        recarga += `<div class="centro info-centro">
+                                                                                <p><span class="icon-centro"><i class="fa-duotone fa-school"></i></span> <span class="centro">${respuesta[i].nombre_centro}</span></p>
+                                                                            </div>`
+                    }
+                    recarga += ` <div class="id-content">
+                                                                            <small class="name-content_text"><span class="">#${respuesta[i].id_content}</span></small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>`
+                    if (respuesta[i].extension_contenido == ".pdf") {
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
+                        } else {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}.png)">`
+                        }
+                    } else {
+                        if (respuesta[i].id_tema != null) {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                        } else {
+                            recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}${respuesta[i].extension_contenido})">`
+                        }
                     }
                     recarga += `<div class="container-reverse">
-                                                                <div class="top">
-                                                                    <div class="user-info left-top">
-                                                                        <div class="container-info">
-                                                                            <div class="avatar-user user-img">
-                                                                                <div class="filter">
-                                                                                    <img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="container-text">
-                                                                                <div class="username">
-                                                                                    <p><span onclick="window.location.href='perfil/${respuesta[i].nick_usu}'">${respuesta[i].nick_usu}</span></p>
-                                                                                </div>
-                                                                                <div class="column-2">
-                                                                                    <div class="stars">
-                                                                                        <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
-                                                                                    </div>
-                                                                                    <div class="down info-stats">
-                                                                                        <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">${respuesta[i].descargas}</span></p>
+                                                                    <div class="top">
+                                                                        <div class="user-info left-top">
+                                                                            <div class="container-info">
+                                                                                <div class="avatar-user user-img">
+                                                                                    <div class="filter">
+                                                                                        <img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="container-text">
+                                                                                    <div class="username">
+                                                                                        <p><span onclick="window.location.href='perfil/${respuesta[i].nick_usu}'">${respuesta[i].nick_usu}</span></p>
+                                                                                    </div>
+                                                                                    <div class="column-2">
+                                                                                        <div class="stars">
+                                                                                            <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
+                                                                                        </div>
+                                                                                        <div class="down info-stats">
+                                                                                            <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">${respuesta[i].descargas}</span></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="date-info left-right">
-                                                                            <div class="date">
-                                                                                <p><span class="icon-date"><i class="fa-duotone fa-calendar-days"></i></span> <span class="date-text">${respuesta[i].fecha_publicacion_contenido}</span></p>
+                                                                            <div class="date-info left-right">
+                                                                                <div class="date">
+                                                                                    <p><span class="icon-date"><i class="fa-duotone fa-calendar-days"></i></span> <span class="date-text">${respuesta[i].fecha_publicacion_contenido}</span></p>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="bottom">
-                                                                    <div class="content-info">
-                                                                        <div class="name-content">
-                                                                            <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h4>
+                                                                    <div class="bottom">
+                                                                        <div class="content-info">
+                                                                            <div class="name-content">
+                                                                                <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h4>
+                                                                            </div>`
+                    if (respuesta[i].id_tema != null) {
+                        recarga += `<div class="school-content">
+                                                                <p class="school-content_text"><span class="">${respuesta[i].nombre_centro}</span></p>
+                                                            </div>
+                                                            <div class="class-content">
+                                                                <p class="class-content_text"><span class="">${respuesta[i].nombre_asignatura}</span></p>
+                                                            </div>
+                                                            <div class="unit-content">
+                                                                <p class="unit-content_text"><span class="">${respuesta[i].nombre_tema}</span></p>
+                                                            </div>`;
+                    }
+                    recarga += `
                                                                         </div>
-                                                                        <div class="school-content">
-                                                                            <p class="school-content_text"><span class="">${respuesta[i].nombre_centro}</span></p>
-                                                                        </div>
-                                                                        <div class="class-content">
-                                                                            <p class="class-content_text"><span class="">${respuesta[i].nombre_asignatura}</span></p>
-                                                                        </div>
-                                                                        <div class="unit-content">
-                                                                            <p class="unit-content_text"><span class="">${respuesta[i].nombre_tema}</span></p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="buttons-actions">
-                                                                        <div class="download-button">
-                                                                            <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
-                                                                        </div>
-                                                                        <div class="go-button">
-                                                                            <button><a href="apuntes/${respuesta[i].id_content}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
+                                                                        <div class="buttons-actions">
+                                                                            <div class="download-button">
+                                                                                <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
+                                                                            </div>
+                                                                            <div class="go-button">
+                                                                                <button><a href="apuntes/${respuesta[i].id_content}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            `;
+                                                    </div>`;
                 }
-                recarga += `
+                recarga += `</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>`;
+                                    </div>`;
                 content.innerHTML = recarga;
                 $('.owl-carousel-3').owlCarousel({
                         loop: false,
