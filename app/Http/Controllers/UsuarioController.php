@@ -328,8 +328,10 @@ class UsuarioController extends Controller
                 GROUP BY content.id ORDER BY descargas DESC LIMIT 1",[$nick_usu]);
 
                 $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
+                
+                $curriculum = DB::select("SELECT nombre_curriculum FROM tbl_curriculum LEFT JOIN tbl_usuario ON tbl_curriculum.id_usu = tbl_usuario.id WHERE tbl_usuario.nick_usu = ?",[$nick_usu]);
 
-                return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado','apunteDescargas'));
+                return view('perfil',compact('perfilUser','apuntesUser', 'avatares','apunteDestacado','apunteDescargas','curriculum'));
             }else{
                 return redirect('/');
             }
@@ -497,15 +499,47 @@ class UsuarioController extends Controller
                 }
             }
         }
+        public function uploadCV(Request $request){
+            $user = session()->get("user");
+            try {
+                $path_folder = 'uploads/curriculum/';
+                $filecur = $request->file('fileupload');
+                $fileNameCV = $filecur->getClientOriginalName();
+                $arrayFileName = explode('.',$fileNameCV);
+                $extensionFile = $arrayFileName[1];
+                if ($extensionFile != "pdf") {
+                    return response()->json(array('resultado'=>'failExtension'));
+                }
+                $fileName = $user->nombre_usu.$user->apellido_usu.'_'.$user->id.'_CV.pdf';
+                $nomcur= $path_folder.$fileName;
+                DB::beginTransaction();
+                $existCV = DB::select("SELECT * FROM tbl_curriculum WHERE id_usu = ?",[$user->id]);
+                if (count($existCV) == 0) {
+                    DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum,id_usu) VALUES (?,?)",[$nomcur,$user->id]);
+                }else{
+                    if (file_exists(storage_path('app/public/'.$existCV[0]->nombre_curriculum))) {
+                        Storage::delete("public/".$existCV[0]->nombre_curriculum);
+                    }
+                    DB::update("UPDATE tbl_curriculum SET nombre_curriculum = ? WHERE id_usu = ?",[$nomcur,$user->id]);
+                }
+                $filecur->storeAs('public/'.$path_folder,$fileName);
+                DB::commit();
+                return response()->json(array('resultado'=>'OK'));
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return response()->json(array('resultado'=>'NOK: '.$e->getMessage()));
+            }
+        }
     /*Profesores*/
         public function MostrarProfesores(){
             //Todos los profes
             $MostrarProfesores = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
             avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-            cursos.id_centro FROM tbl_usuario user
+            cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
             LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
             INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
             INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+            LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
             WHERE user.id_rol = ?",[4]);
             //Todos los cursos
             $allCursos = DB::select("SELECT * FROM tbl_cursos GROUP BY nombre_curso ORDER BY id ASC");
@@ -517,28 +551,31 @@ class UsuarioController extends Controller
             if ($datos["filter"] == "") {
                 $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                 avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-                cursos.id_centro FROM tbl_usuario user
+                cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                 LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                 INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
                 WHERE user.id_rol = ?",[4]);
             }else{
                 $id = $datos["filter"][0];
                 if (is_numeric($id)) {
                     $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                     avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-                    cursos.id_centro FROM tbl_usuario user
+                    cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                     LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                     INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                     INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                    LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
                     WHERE user.id_rol = ? AND user.id = ?",[4,$datos["filter"]]);
                 }else{
                     $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                     avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-                    cursos.id_centro FROM tbl_usuario user
+                    cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                     LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                     INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                     INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                    LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
                     WHERE user.id_rol = ? AND (user.nick_usu LIKE ? OR user.nombre_usu LIKE ? OR cursos.nombre_curso LIKE ?)",[4,'%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%']);
                 }
             }
@@ -549,19 +586,21 @@ class UsuarioController extends Controller
             if ($datos["cursos"] == null) {
                 $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                     avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-                    cursos.id_centro FROM tbl_usuario user
+                    cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                     LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                     INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                     INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                    LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
                     WHERE user.id_rol = ?",[4]);
             }else{
                 $cursos = $datos["cursos"];
                 $select = "SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                 avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-                cursos.id_centro FROM tbl_usuario user
+                cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                 LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                 INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
                 WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";
                 $filterProfe = DB::select($select);
             }
@@ -578,7 +617,6 @@ class UsuarioController extends Controller
         public function mostrarCurriculum($id){
             $Curriculum = DB::select("SELECT * FROM tbl_usuario usuario LEFT JOIN tbl_curriculum curriculum
             ON usuario.id = curriculum.id_usu WHERE usuario.id_rol = ? AND usuario.id = ?;",[4, $id]);
-
             return response()->json($Curriculum);
         }
 }

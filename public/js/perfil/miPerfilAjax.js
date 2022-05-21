@@ -278,3 +278,71 @@ function darsedeBaja() {
         }
     });
 }
+
+function insertCurriculum() {
+    Swal.fire({
+        title: 'Inserta curriculum',
+        showCancelButton: true,
+        confirmButtonText: 'Subir curriculum',
+        cancelButtonText: 'Cancelar',
+        input: 'file',
+    }).then((file) => {
+        if (file.value) {
+            let token = document.getElementById('token').getAttribute("content");
+            let formData = new FormData();
+            formData.append('_token', token);
+            formData.append('_method', 'POST');
+            formData.append("fileupload", file.value);
+            let ajax = llamadaAjax();
+            ajax.open("POST", "uploadCV", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "OK") {
+                        alertify.success("Curriculum insertado correctamente");
+                    } else {
+                        alertify.error(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+        }
+    })
+}
+
+function updateCurriculum() {
+    Swal.fire({
+        title: 'Actualiza curriculum',
+        showCancelButton: true,
+        confirmButtonText: 'Subir curriculum',
+        cancelButtonText: 'Cancelar',
+        input: 'file',
+    }).then((file) => {
+        if (file.value) {
+            let token = document.getElementById('token').getAttribute("content");
+            let formData = new FormData();
+            formData.append('_token', token);
+            formData.append('_method', 'POST');
+            formData.append("fileupload", file.value);
+            let ajax = llamadaAjax();
+            ajax.open("POST", "uploadCV", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    if (respuesta.resultado == "OK") {
+                        alertify.success("Curriculum actualizado correctamente");
+                    } else if (respuesta.resultado == "failExtension") {
+                        alertify.error("Tienes que subir un archivo PDF");
+                    } else {
+                        alertify.error(respuesta.resultado);
+                    }
+                }
+            }
+            ajax.send(formData);
+        }
+    })
+}
+
+function getConfigEstudios() {
+
+}

@@ -82,6 +82,8 @@ use App\Http\Livewire\Contacts;
 
     Route::delete('perfil/darseDeBaja',[UsuarioController::class,'DarseDeBaja']);
 
+    Route::post('perfil/uploadCV',[UsuarioController::class,'uploadCV']);
+
 //Mis apuntes
     Route::get('mis-apuntes',[ApuntesController::class,'misApuntes']);
 
@@ -206,9 +208,9 @@ use App\Http\Livewire\Contacts;
 
     Route::post('profesores/advancedfilter',[UsuarioController::class,'advancedFilterProfesores']);
 
-    Route::get('profesor/mostrarEstudios/{id}',[UsuarioController::class,'mostrarEstudios']);
+    Route::post('profesores/mostrarEstudios/{id}',[UsuarioController::class,'mostrarEstudios']);
 
-    Route::get('profesor/mostrarCurriculum/{id}',[UsuarioController::class,'mostrarCurriculum']);
+    Route::post('profesores/mostrarCurriculum/{id}',[UsuarioController::class,'mostrarCurriculum']);
 
 //Moderador
 //Mostrar

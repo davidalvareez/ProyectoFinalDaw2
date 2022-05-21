@@ -49,8 +49,12 @@
                     <td>{{$Resultados->id}}</td>
                     <td><img src="{{asset('storage').'/'.$Resultados->img_avatar}}" width="50"></td>
                     <td>{{$Resultados->nombre_usu}} {{$Resultados->apellido_usu}}</td>
-                    <td><button class="boton_modificar" type="submit" id="" onclick="mostrarEstudios({{$Resultados->id}}); return false;">Mostrar Estudios</button></td>
-                    <td><button class="boton_modificar" type="submit" id="" onclick="mostrarCurriculum({{$Resultados->id}}); return false;">Mostrar Curriculum</button></td>
+                    <td><button class="boton_modificar" type="submit" onclick="mostrarEstudios({{$Resultados->id}});">Mostrar Estudios</button></td>
+                    @if ($Resultados->nombre_curriculum != null)
+                    <td><button class="boton_modificar" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar Curriculum</button></td>
+                    @else
+                    <td><p>No tiene curriculum</p></td>
+                    @endif
                     <td><form  action="{{url('')}}" method="GET">
                         <button class="boton_modificar" type="submit" id="">Contactar</button>
                     </form></td>
