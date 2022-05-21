@@ -17,6 +17,14 @@
                         @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                         <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('misApuntes')}}'">Mis apuntes</button>
                         <button class="btn-glass btn-glass_b" onclick="getConfigUser();">Preferencias</button>
+                          @if ($perfilUser[0]->id_rol == 4)
+                          <button class="btn-glass btn-glass_b" onclick="getConfigEstudios();">Estudios</button>
+                            @if (count($curriculum) != 0)
+                              <button class="btn-glass btn-glass_b" onclick="updateCurriculum();">Curriculum</button>
+                            @else
+                              <button class="btn-glass btn-glass_b" onclick="insertCurriculum();">Curriculum</button>
+                            @endif
+                          @endif
                         @endif
                         <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('logout')}}'">Cerrar sesion</button>
                     </div>
@@ -45,8 +53,10 @@
                             <div class="content-foto">
                                 <div class="content-img">
                                     <img id ="imgAvatar" class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
-                                    <a class="add-button" onclick="modalbox();return false;"><span class="fa-solid fa-pencil"></span></a>
-                                </div>
+                                    @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
+                                      <a class="add-button" onclick="modalbox();return false;"><span class="fa-solid fa-pencil"></span></a>
+                                    @endif
+                                  </div>
                                 <h2 class="user-nickname" id="NickName">{{$perfilUser[0]->nick_usu}}</h2>
                             </div>
                         </div>

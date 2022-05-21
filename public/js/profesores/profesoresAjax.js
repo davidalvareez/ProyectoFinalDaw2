@@ -46,7 +46,11 @@ function multiplyFilter() {
                     <td>${respuesta[i].id}</td>
                     <td><img src="storage/${respuesta[i].img_avatar}" width="50"></td>
                     <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                    <td><form  action="" method="GET">
+                    <td><button class="boton_modificar" type="submit" onclick="mostrarEstudios(${respuesta[i].id});">Mostrar Estudios</button></td>;`
+                    if (respuesta[i].nombre_curriculum != null) {
+                        recarga += `<td><button class="boton_modificar" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar Curriculum</button></td>`;
+                    }
+                    recarga += `<td><form  action="" method="GET">
                         <button class="boton_modificar" type="submit" id="">Contactar</button>
                     </form></td>
                 </tr>`;
@@ -93,7 +97,11 @@ function advancedFilterProfesores() {
                     <td>${respuesta[i].id}</td>
                     <td><img src="storage/${respuesta[i].img_avatar}" width="50"></td>
                     <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                    <td><form  action="" method="GET">
+                    <td><button class="boton_modificar" type="submit" onclick="mostrarEstudios(${respuesta[i].id});">Mostrar Estudios</button></td>;`
+                    if (respuesta[i].nombre_curriculum != null) {
+                        recarga += `<td><button class="boton_modificar" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar Curriculum</button></td>`;
+                    }
+                    recarga += `<td><form  action="" method="GET">
                         <button class="boton_modificar" type="submit" id="">Contactar</button>
                     </form></td>
                 </tr>`;
@@ -109,31 +117,29 @@ function advancedFilterProfesores() {
 }
 
 function mostrarEstudios(id) {
-    //alert("Hola");
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
     var ajax = llamadaAjax();
-    ajax.open("POST", "profesor/mostrarEstudios/" + id, true);
+    ajax.open("POST", "profesores/mostrarEstudios/" + id, true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             /* Crear la estructura html que se devolverá dentro de una variable recarga*/
-            console.log(respuesta);
             var recarga = "";
             recarga += "<ul>";
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += `<li>${respuesta[i].nombre_curso}</li>`
             }
             recarga += "</ul>";
-            swal({
-                title: "Lista De Estudios",
+            swal.fire({
+                title: "Lista de estudios",
                 html: recarga,
                 icon: "info"
             });
         }
-        ajax.send(formData)
     }
+    ajax.send(formData)
 }
 
 function mostrarCurriculum(id) {
@@ -141,23 +147,21 @@ function mostrarCurriculum(id) {
     formData.append('_token', token);
     formData.append('_method', 'POST');
     var ajax = llamadaAjax();
-    ajax.open("POST", "profesor/mostrarCurriculum/" + id, true);
+    ajax.open("POST", "profesores/mostrarCurriculum/" + id, true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
-            console.log(respuesta);
             /* Crear la estructura html que se devolverá dentro de una variable recarga*/
             var recarga = "";
             for (let i = 0; i < respuesta.length; i++) {
-                recarga += `<iframe id="framePDF" src="${respuesta[i].nombre_curriculum}#toolbar=0" type="application/pdf"></iframe>`;
+                recarga += `<iframe id="framePDF" src="storage/${respuesta[i].nombre_curriculum}" type="application/pdf"></iframe>`;
             }
-            recarga += "</ul>";
-            swal({
+            swal.fire({
                 title: `Curriculum de  ${respuesta[0].nick_usu}`,
                 html: recarga,
                 icon: "info"
             });
         }
-        ajax.send(formData)
     }
+    ajax.send(formData)
 }

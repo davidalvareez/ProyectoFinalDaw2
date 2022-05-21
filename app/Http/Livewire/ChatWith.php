@@ -69,9 +69,6 @@ class ChatWith extends Component
             return view('livewire.chat-with',[
                 'messages' => chat::where('chat_id',frinds::where(['user_id'=>$user->id, 'friend_id' =>$this->user->id])->first()->chat_id)->get()
                         ])->layout('layouts.main');
-        }else{
-            return redirect('/');
         }
-
     }
 }
