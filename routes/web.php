@@ -84,6 +84,12 @@ use App\Http\Livewire\Contacts;
 
     Route::post('perfil/uploadCV',[UsuarioController::class,'uploadCV']);
 
+    Route::post('perfil/showStudies',[UsuarioController::class,'showStudies']);
+
+    Route::post('perfil/addStudies',[UsuarioController::class,'addStudies']);
+
+    Route::delete('perfil/deleteStudies',[UsuarioController::class,'deleteStudies']);
+
 //Mis apuntes
     Route::get('mis-apuntes',[ApuntesController::class,'misApuntes']);
 

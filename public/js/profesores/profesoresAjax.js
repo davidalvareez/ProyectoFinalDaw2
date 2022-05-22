@@ -101,9 +101,7 @@ function advancedFilterProfesores() {
                     if (respuesta[i].nombre_curriculum != null) {
                         recarga += `<td><button class="boton_modificar" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar Curriculum</button></td>`;
                     }
-                    recarga += `<td><form  action="" method="GET">
-                        <button class="boton_modificar" type="submit" id="">Contactar</button>
-                    </form></td>
+                    recarga += `<td><button onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'" class="boton_modificar" type="submit" id="">Contactar</button></td>
                 </tr>`;
                 }
                 recarga += `</table>`;

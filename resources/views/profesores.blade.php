@@ -55,9 +55,7 @@
                     @else
                     <td><p>No tiene curriculum</p></td>
                     @endif
-                    <td><form  action="{{url('')}}" method="GET">
-                        <button class="boton_modificar" type="submit" id="">Contactar</button>
-                    </form></td>
+                    <td><button onclick="window.location.href = '{{ url('notehub-chat/'.$Resultados->uuid)}}'" class="boton_modificar" type="submit" id="">Contactar</button></td>
                 </tr>
                 @endforeach
             </table>
