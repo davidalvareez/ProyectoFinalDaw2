@@ -14,8 +14,9 @@ class Contacts extends Component
         //Coger variable de sesion para contactos
         if (session()->get("user")) {
             $user = session()->get("user");
+            $contact = frinds::where("friend_id",$user->id)->latest()->get();
             return view('livewire.contacts',[
-                'contacts' => frinds::where("friend_id",$user->id)->latest()->get()
+                'contacts' => $contact
             ])->layout('layouts.main');
         }else{
             return redirect('/');

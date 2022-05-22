@@ -6,6 +6,7 @@ use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CRUDAdminController;
 use App\Http\Controllers\moderadorController;
+use App\Http\Controllers\ChatController;
 use App\Http\Livewire\ChatWith;
 use App\Http\Livewire\Contacts;
 
@@ -241,3 +242,5 @@ use App\Http\Livewire\Contacts;
     Route::get('notehub-chat',Contacts::class)->name('contacts');
 
     Route::get('notehub-chat/{uuid}',ChatWith::class)->name('chat_with');
+
+    Route::post('notehub-chat/deleteChat',[ChatController::class,'deleteChat']);

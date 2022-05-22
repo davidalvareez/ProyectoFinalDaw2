@@ -19,12 +19,13 @@
                         <div class="contact">
                             <img class="contact_image" src="{{asset('storage').'/'.$user->user->image }}" alt="" />
                             <p class="contact_name">{{ $user->user->name }}</p>
+                            <!--Mostrar hora del ultimo mensaje, mostra el mensaje de quien fue para mostrar una cosa o otra-->
                             <div class="contact_last_chat_time">{{ $user->created_at->format('H:m') }}</div>
                         </div>
                     </a>
                 @endif
             @empty
-                <center>no data found</center>
+                <center>No hay ningun chat</center>
             @endforelse
         </div>
     </div>
