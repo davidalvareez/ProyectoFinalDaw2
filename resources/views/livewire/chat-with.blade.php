@@ -1,8 +1,8 @@
 <div class="chat-body">
     <div class="chat-box-header2">
-        <img src="{{asset('storage').'/'.$user->image }}" class="employee2" style="border-radius: 50%" alt="">
-        <div class="employee-name">{{ $user->name }}</div>
-        <div class="top-right-menu-icons">
+        <img onclick="window.location.href='{{url('perfil/'.$user->name)}}'" src="{{asset('storage').'/'.$user->image }}" class="employee2" style="border-radius: 50%" alt="">
+        <div onclick="window.location.href='{{url('perfil/'.$user->name)}}'" class="employee-name">{{ $user->name }}</div>
+        <div class="top-right-menu-icons" onclick="closeChat({{$user->id}});">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path
                     d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z" />
@@ -31,7 +31,7 @@
                 @endif
             @empty
                 <div class="message message-box recived">
-                    <p>Say Hi to {{ $user->name }}</p>
+                    <p>Di hola a {{ $user->name }}</p>
                 </div>
             @endforelse
             <br>
