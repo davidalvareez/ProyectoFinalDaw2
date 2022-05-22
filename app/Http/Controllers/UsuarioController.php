@@ -292,12 +292,13 @@ class UsuarioController extends Controller
         public function perfil($nick_usu){
             if (session()->get("user")) {
                 //return $nick_usu;
-                $perfilUser = DB::select("SELECT user.*,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
+                $perfilUser = DB::select("SELECT user.*,users.uuid,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
                 LEFT JOIN tbl_centro centro ON user.id_centro = centro.id
                 LEFT JOIN tbl_contenidos content ON content.id_usu = user.id
                 LEFT JOIN tbl_comentarios coment ON coment.id_contenido = content.id
                 LEFT JOIN tbl_historial hist ON hist.id_usu = user.id
+                JOIN users ON users.id = user.id
                 WHERE user.nick_usu = ?",[$nick_usu]);
 
                 $apuntesUser = DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
@@ -341,7 +342,7 @@ class UsuarioController extends Controller
             if (session()->get('user')) {
                 $user = session()->get('user');
                 $dataUser = DB::select("SELECT user.*,centro.nombre_centro FROM tbl_usuario user
-                INNER JOIN tbl_centro centro ON centro.id = user.id_centro
+                LEFT JOIN tbl_centro centro ON centro.id = user.id_centro
                 WHERE user.id = ?",[$user->id]);
                 $centros = DB::select("SELECT * FROM tbl_centro");
                 return response()->json(array("user"=>$dataUser,"centros"=>$centros));
@@ -533,13 +534,14 @@ class UsuarioController extends Controller
     /*Profesores*/
         public function MostrarProfesores(){
             //Todos los profes
-            $MostrarProfesores = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+            $MostrarProfesores = DB::select("SELECT user.*,users.uuid,estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
             avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
             cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
             LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
             INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
             INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
             LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
+            JOIN users ON users.id = user.id
             WHERE user.id_rol = ?",[4]);
             //Todos los cursos
             $allCursos = DB::select("SELECT * FROM tbl_cursos GROUP BY nombre_curso ORDER BY id ASC");
@@ -549,33 +551,36 @@ class UsuarioController extends Controller
         public function multiplyFilterProfesores(Request $request){
             $datos = $request->except("_token","_method");
             if ($datos["filter"] == "") {
-                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                $filterProfe = DB::select("SELECT user.*,users.uuid, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                 avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
                 cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                 LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                 INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
                 LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
+                JOIN users ON users.id = user.id
                 WHERE user.id_rol = ?",[4]);
             }else{
                 $id = $datos["filter"][0];
                 if (is_numeric($id)) {
-                    $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                    $filterProfe = DB::select("SELECT user.*,users.uuid, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                     avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
                     cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                     LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                     INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                     INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
                     LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
+                    JOIN users ON users.id = user.id
                     WHERE user.id_rol = ? AND user.id = ?",[4,$datos["filter"]]);
                 }else{
-                    $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                    $filterProfe = DB::select("SELECT user.*,users.uuid, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                     avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
                     cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                     LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                     INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                     INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
                     LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
+                    JOIN users ON users.id = user.id
                     WHERE user.id_rol = ? AND (user.nick_usu LIKE ? OR user.nombre_usu LIKE ? OR cursos.nombre_curso LIKE ?)",[4,'%'.$datos["filter"].'%','%'.$datos["filter"].'%','%'.$datos["filter"].'%']);
                 }
             }
@@ -584,23 +589,25 @@ class UsuarioController extends Controller
         public function advancedFilterProfesores(Request $request){
             $datos = $request->except("_token","_method");
             if ($datos["cursos"] == null) {
-                $filterProfe = DB::select("SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                $filterProfe = DB::select("SELECT user.*,users.uuid, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                     avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
                     cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                     LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                     INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                     INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
                     LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
+                    JOIN users ON users.id = user.id
                     WHERE user.id_rol = ?",[4]);
             }else{
                 $cursos = $datos["cursos"];
-                $select = "SELECT user.*, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                $select = "SELECT user.*,users.uuid, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                 avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
                 cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
                 LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
                 INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
                 LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
+                JOIN users ON users.id = user.id
                 WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";
                 $filterProfe = DB::select($select);
             }
@@ -618,5 +625,73 @@ class UsuarioController extends Controller
             $Curriculum = DB::select("SELECT * FROM tbl_usuario usuario LEFT JOIN tbl_curriculum curriculum
             ON usuario.id = curriculum.id_usu WHERE usuario.id_rol = ? AND usuario.id = ?;",[4, $id]);
             return response()->json($Curriculum);
+        }
+
+        public function showStudies(Request $request){
+            $datos = $request->except("_token","_method");
+            $user = session()->get('user');
+            if ($datos["add_delete_study"] == "true") {
+                //Mostrar los que no tiene para asignar
+                $cursosuser = DB::select("SELECT * from tbl_estudios estudios 
+                INNER JOIN tbl_cursos cursos ON estudios.id_curso = cursos.id
+                WHERE estudios.id_usu = ?;",[$user->id]);
+                $arrayIdCurso = [];
+                foreach ($cursosuser as $curso){
+                    array_push($arrayIdCurso,$curso->id);
+                }
+                $stringIdCurso = implode(',',$arrayIdCurso);
+                $query = "SELECT * FROM tbl_cursos 
+                WHERE id NOT IN ({$stringIdCurso})
+                GROUP BY nombre_curso
+                ORDER BY id ASC";
+                $studies = DB::select($query);
+            }else{
+                //Mostrar los que tiene asignados para eliminar
+                $studies = DB::select("SELECT * from tbl_estudios estudios 
+                INNER JOIN tbl_cursos cursos ON estudios.id_curso = cursos.id
+                WHERE estudios.id_usu = ?",[$user->id]);
+            }
+            return response()->json($studies);
+        }
+        public function addStudies(Request $request){
+            $datos = $request->except("_token","_method");
+            $user = session()->get('user');
+            if ($datos["cursos"] == null) {
+                return response()->json(array('resultado'=>'nullCursos'));
+             }else{
+                 $arrayCursos = explode(',',$datos["cursos"]);
+                 try {
+                     DB::beginTransaction();
+                     for ($i=0; $i < count($arrayCursos); $i++) { 
+                         DB::insert("INSERT INTO tbl_estudios (id_usu,id_curso) VALUES (?,?)",[$user->id,$arrayCursos[$i]]);
+                     }
+                     DB::commit();
+                     return response()->json(array('resultado'=>'OK'));
+                 } catch (\Exception $e) {
+                     DB::rollBack();
+                    return response()->json(array('resultado'=>'NOK: '.$e->getMessage()));
+                 }
+             }
+        }
+        public function deleteStudies(Request $request){
+            $datos = $request->except("_token","_method");
+            $user = session()->get('user');
+            if ($datos["cursos"] == null) {
+               return response()->json(array('resultado'=>'nullCursos'));
+            }else{
+                $arrayCursos = explode(',',$datos["cursos"]);
+                 try {
+                     DB::beginTransaction();
+                     for ($i=0; $i < count($arrayCursos); $i++) { 
+                         DB::delete("DELETE FROM tbl_estudios WHERE id_usu = ? AND id_curso = ?",[$user->id,$arrayCursos[$i]]);
+                     }
+                     DB::commit();
+                     return response()->json(array('resultado'=>'OK'));
+                 } catch (\Exception $e) {
+                     DB::rollBack();
+                    return response()->json(array('resultado'=>'NOK: '.$e->getMessage()));
+                 }
+            }
+            return response()->json($datos);
         }
 }

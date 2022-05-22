@@ -344,5 +344,133 @@ function updateCurriculum() {
 }
 
 function getConfigEstudios() {
-
+    Swal.fire({
+        title: "Opciones estudios",
+        text: "¿Que deseas hacer?",
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: "Agregar estudios",
+        denyButtonText: "Quitar estudios",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            //Mostramos los estudios que puede añadir
+            let token = document.getElementById('token').getAttribute("content");
+            let formData = new FormData();
+            formData.append('_token', token);
+            formData.append('_method', 'POST');
+            formData.append("add_delete_study", true);
+            let ajax = llamadaAjax();
+            ajax.open("POST", "showStudies", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    recarga = '';
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<div>
+                        <input type="checkbox" name="cursos" value="${respuesta[i].id}">
+                        <label name="${respuesta[i].nombre_curso}">${respuesta[i].nombre_curso}</label>
+                        </div>`;
+                    }
+                    Swal.fire({
+                        title: "Agregar estudios",
+                        html: recarga,
+                        showCancelButton: true,
+                        confirmButtonText: "Agregar",
+                        cancelButtonText: "Cancelar"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let token = document.getElementById('token').getAttribute("content");
+                            let formData = new FormData();
+                            let cursos = document.getElementsByName("cursos");
+                            let arrayCursosChecked = [];
+                            for (let i = 0; i < cursos.length; i++) {
+                                if (cursos[i].checked) {
+                                    arrayCursosChecked.push(cursos[i].value);
+                                }
+                            }
+                            formData.append('_token', token);
+                            formData.append('_method', 'POST');
+                            formData.append("cursos", arrayCursosChecked);
+                            let ajax = llamadaAjax();
+                            ajax.open("POST", "addStudies", true);
+                            ajax.onreadystatechange = function() {
+                                if (ajax.readyState == 4 && ajax.status == 200) {
+                                    let respuesta = JSON.parse(this.responseText);
+                                    if (respuesta.resultado == "OK") {
+                                        alertify.success("Estudios agregados correctamente");
+                                    } else if (respuesta.resultado == "nullCursos") {
+                                        alertify.error("Tienes que seleccionar curso");
+                                    } else {
+                                        alertify.error("Ha ocurrido un error");
+                                    }
+                                }
+                            }
+                            ajax.send(formData)
+                        }
+                    });
+                }
+            }
+            ajax.send(formData);
+        } else if (result.isDenied) {
+            //Mostramos los estudios que tiene asignados para eliminar
+            let token = document.getElementById('token').getAttribute("content");
+            let formData = new FormData();
+            formData.append('_token', token);
+            formData.append('_method', 'POST');
+            formData.append("add_delete_study", false);
+            let ajax = llamadaAjax();
+            ajax.open("POST", "showStudies", true);
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    let respuesta = JSON.parse(this.responseText);
+                    recarga = '';
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<div>
+                        <input type="checkbox" name="cursos" value="${respuesta[i].id}">
+                        <label name="${respuesta[i].nombre_curso}">${respuesta[i].nombre_curso}</label>
+                        </div>`;
+                    }
+                    Swal.fire({
+                        title: "Eliminar estudios",
+                        html: recarga,
+                        showCancelButton: true,
+                        confirmButtonText: "Eliminar",
+                        cancelButtonText: "Cancelar"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let token = document.getElementById('token').getAttribute("content");
+                            let formData = new FormData();
+                            let cursos = document.getElementsByName("cursos");
+                            let arrayCursosChecked = [];
+                            for (let i = 0; i < cursos.length; i++) {
+                                if (cursos[i].checked) {
+                                    arrayCursosChecked.push(cursos[i].value);
+                                }
+                            }
+                            formData.append('_token', token);
+                            formData.append('_method', 'DELETE');
+                            formData.append("cursos", arrayCursosChecked);
+                            let ajax = llamadaAjax();
+                            ajax.open("POST", "deleteStudies", true);
+                            ajax.onreadystatechange = function() {
+                                if (ajax.readyState == 4 && ajax.status == 200) {
+                                    let respuesta = JSON.parse(this.responseText);
+                                    if (respuesta.resultado == "OK") {
+                                        alertify.success("Estudios eliminados correctamente");
+                                    } else if (respuesta.resultado == "nullCursos") {
+                                        alertify.error("Tienes que seleccionar curso");
+                                    } else {
+                                        alertify.error("Ha ocurrido un error");
+                                    }
+                                }
+                            }
+                            ajax.send(formData)
+                        }
+                    });
+                }
+            }
+            ajax.send(formData);
+        }
+    })
 }
