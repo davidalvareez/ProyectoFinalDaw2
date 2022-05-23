@@ -334,29 +334,29 @@ class CRUDAdminController extends Controller
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
                 }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
-                if ($id_curso != 0) {
+                if ($id_curso != null) {
                     foreach ($id_curso as $apunte){
                         if ($apunte->extension_contenido == ".pdf") {
                             Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
                         }
                         Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
-                }
                 //Eliminamos la carpeta
-                $pathFolder = 'public/uploads/apuntes/'.$id_curso[0]->nombre_centro;
-                Storage::deleteDirectory($pathFolder);
-                foreach ($id_curso as $curso){
-                    $id_asignatura = DB::select("SELECT id FROM tbl_asignaturas WHERE id_curso= ?",[$curso->id_curso]);
-                    foreach ($id_asignatura as $asignatura) { 
-                        $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id]);
-                        foreach ($id_tema as $tema) {
-                            DB::update("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
-                            DB::delete("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]);
-                        }
-                        DB::delete("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id]); 
-                    } 
-                    DB::delete("DELETE FROM tbl_estudios WHERE id_curso= ?",[$curso->id_curso]);
-                    DB::delete("DELETE FROM tbl_cursos WHERE id= ?",[$curso->id_curso]);
+                    $pathFolder = 'public/uploads/apuntes/'.$id_curso[0]->nombre_centro;
+                    Storage::deleteDirectory($pathFolder);
+                    foreach ($id_curso as $curso){
+                        $id_asignatura = DB::select("SELECT id FROM tbl_asignaturas WHERE id_curso= ?",[$curso->id_curso]);
+                        foreach ($id_asignatura as $asignatura) { 
+                            $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id]);
+                            foreach ($id_tema as $tema) {
+                                DB::update("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
+                                DB::delete("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]);
+                            }
+                            DB::delete("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id]); 
+                        } 
+                        DB::delete("DELETE FROM tbl_estudios WHERE id_curso= ?",[$curso->id_curso]);
+                        DB::delete("DELETE FROM tbl_cursos WHERE id= ?",[$curso->id_curso]);
+                    }
                 }
                 DB::update("UPDATE tbl_usuario SET id_centro = NULL WHERE id_centro = ?",[$id]); 
                 DB::delete("DELETE FROM tbl_centro WHERE id = ?",[$id]);
@@ -383,26 +383,26 @@ class CRUDAdminController extends Controller
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
                 }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
-                if ($id_asignatura != 0) {
+                if ($id_asignatura != null) {
                     foreach ($id_asignatura as $apunte){
                         if ($apunte->extension_contenido == ".pdf") {
                             Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
                         }
                         Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
+                    //Eliminamos la carpeta
+                    $pathFolder = 'public/uploads/apuntes/'.$id_asignatura[0]->nombre_centro.'/'.$id_asignatura[0]->nombre_curso;
+                    Storage::deleteDirectory($pathFolder);
+                    foreach ($id_asignatura as $asignatura) { 
+                        $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id_asignatura]);
+                        foreach ($id_tema as $tema) {
+                            DB::update("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
+                            DB::delete("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]);
+                        }
+                        DB::delete("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id_asignatura]); 
+                    } 
                 }
                 
-                //Eliminamos la carpeta
-                $pathFolder = 'public/uploads/apuntes/'.$id_asignatura[0]->nombre_centro.'/'.$id_asignatura[0]->nombre_curso;
-                Storage::deleteDirectory($pathFolder);
-                foreach ($id_asignatura as $asignatura) { 
-                    $id_tema=DB::select("SELECT id FROM tbl_temas WHERE id_asignatura= ?",[$asignatura->id_asignatura]);
-                    foreach ($id_tema as $tema) {
-                        DB::update("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id]);
-                        DB::delete("DELETE FROM tbl_temas WHERE id= ?",[$tema->id]);
-                    }
-                    DB::delete("DELETE FROM tbl_asignaturas WHERE id= ?",[$asignatura->id_asignatura]); 
-                } 
                 DB::delete("DELETE FROM tbl_estudios WHERE id_curso= ?",[$id]);
                 DB::delete("DELETE FROM tbl_cursos WHERE id= ?",[$id]);
                 DB::commit();
@@ -428,19 +428,21 @@ class CRUDAdminController extends Controller
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
                 }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
-                foreach ($id_tema as $apunte){
-                    if ($apunte->extension_contenido == ".pdf") {
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                if ($id_tema != null) {
+                    foreach ($id_tema as $apunte){
+                        if ($apunte->extension_contenido == ".pdf") {
+                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        }
+                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
-                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
+                    //Eliminamos la carpeta
+                    $pathFolder = 'public/uploads/apuntes/'.$id_tema[0]->nombre_centro.'/'.$id_tema[0]->nombre_curso.'/'.$id_tema[0]->nombre_asignatura;
+                    Storage::deleteDirectory($pathFolder);
+                    foreach ($id_tema as $tema) {
+                        DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id_tema]);
+                        DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id_tema]); 
+                    } 
                 }
-                //Eliminamos la carpeta
-                $pathFolder = 'public/uploads/apuntes/'.$id_tema[0]->nombre_centro.'/'.$id_tema[0]->nombre_curso.'/'.$id_tema[0]->nombre_asignatura;
-                Storage::deleteDirectory($pathFolder);
-                foreach ($id_tema as $tema) {
-                    DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$tema->id_tema]);
-                    DB::select("DELETE FROM tbl_temas WHERE id= ?",[$tema->id_tema]); 
-                } 
                 DB::select("DELETE FROM tbl_asignaturas WHERE id= ?",[$id]);                
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));
@@ -465,15 +467,17 @@ class CRUDAdminController extends Controller
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
                 }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
-                foreach ($apuntes as $apunte){
-                    if ($apunte->extension_contenido == ".pdf") {
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
-                    }
-                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
+                if ($apuntes != null) {
+                    foreach ($apuntes as $apunte){
+                        if ($apunte->extension_contenido == ".pdf") {
+                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        }
+                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
+                    }   
+                    //Eliminamos la carpeta
+                    $pathFolder = 'public/uploads/apuntes/'.$apuntes[0]->nombre_centro.'/'.$apuntes[0]->nombre_curso.'/'.$apuntes[0]->nombre_asignatura;
+                    Storage::deleteDirectory($pathFolder);
                 }
-                //Eliminamos la carpeta
-                $pathFolder = 'public/uploads/apuntes/'.$apuntes[0]->nombre_centro.'/'.$apuntes[0]->nombre_curso.'/'.$apuntes[0]->nombre_asignatura;
-                Storage::deleteDirectory($pathFolder);
                 DB::select("UPDATE tbl_contenidos SET id_tema = NULL WHERE tbl_contenidos.id_tema = ?",[$id]); 
                 DB::select("DELETE FROM tbl_temas WHERE id= ?",[$id]);   
                 DB::commit();
