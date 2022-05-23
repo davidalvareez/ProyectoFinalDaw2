@@ -22,8 +22,8 @@
                     <button class="btn-glass" onclick="getInputUsers();showUsers();return false">Users</button>
                     <button class="btn-glass" onclick="getInputCentros();showCentros();return false">Centros</button>
                     <button class="btn-glass" onclick="getInputApuntes();showApuntes();return false">Apuntes</button>
-                    <button class="btn-glass" onclick="showDenuncias();return false">Denuncias</button>
-                    <button class="btn-glass" onclick="showHistorial();return false">Historial</button>
+                    <button class="btn-glass" onclick="getInputDenuncias();showDenuncias();return false">Denuncias</button>
+                    <button class="btn-glass" onclick="getInputHistorial();showHistorial();return false">Historial</button>
                     <a href="{{url('logout')}}"><button class="btn-glass-rosa" return false">Cerrar Sesión</button></a>
                     <div id="message" style="color:green"></div>
 
