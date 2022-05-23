@@ -19,21 +19,36 @@
     </div>
     <div class="chat-box-content" wire:poll.keep-alive>
         <div class="conversation-group" id="textContent">
-            @forelse ($messages as $message)
-                @if ($message->friend_id == Session::get('user')->id)
+            @if(isset($messages))
+                @forelse ($messages as $message)
+                    @if ($message->friend_id == Session::get('user')->id)
+                        <div class="message message-box recived">
+                            <p>{{ $message->message }}</p>
+                        </div>
+                    @else
+                        <div class="message message-box send">
+                            <p>{{ $message->message }}</p>
+                        </div>
+                    @endif
+                @empty
                     <div class="message message-box recived">
-                        <p>{{ $message->message }}</p>
+                        <p>Di hola a {{ $user->name }}</p>
                     </div>
-                @else
-                    <div class="message message-box send">
-                        <p>{{ $message->message }}</p>
-                    </div>
-                @endif
-            @empty
-                <div class="message message-box recived">
-                    <p>Di hola a {{ $user->name }}</p>
-                </div>
-            @endforelse
+                @endforelse
+            @else
+            <script type="text/javascript">
+                Swal.fire({
+                    title: "El usuario ha decidido borrar la conversacion",
+                    icon: "error",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                }).then(function() {
+                    window.location.href = '../notehub-chat';
+                });
+            </script>
+            @endif
             <br>
             <br>
             <br>
