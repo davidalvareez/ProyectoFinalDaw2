@@ -334,11 +334,13 @@ class CRUDAdminController extends Controller
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
                 }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
-                foreach ($id_curso as $apunte){
-                    if ($apunte->extension_contenido == ".pdf") {
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                if ($id_curso != 0) {
+                    foreach ($id_curso as $apunte){
+                        if ($apunte->extension_contenido == ".pdf") {
+                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        }
+                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
-                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                 }
                 //Eliminamos la carpeta
                 $pathFolder = 'public/uploads/apuntes/'.$id_curso[0]->nombre_centro;
@@ -381,12 +383,15 @@ class CRUDAdminController extends Controller
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
                 }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
-                foreach ($id_asignatura as $apunte){
-                    if ($apunte->extension_contenido == ".pdf") {
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                if ($id_asignatura != 0) {
+                    foreach ($id_asignatura as $apunte){
+                        if ($apunte->extension_contenido == ".pdf") {
+                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        }
+                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
-                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                 }
+                
                 //Eliminamos la carpeta
                 $pathFolder = 'public/uploads/apuntes/'.$id_asignatura[0]->nombre_centro.'/'.$id_asignatura[0]->nombre_curso;
                 Storage::deleteDirectory($pathFolder);
