@@ -38,7 +38,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/copy/copy-dynamic-premium.png" width="90px" height="90px">
                             </div>
-                            <button class="crearcuenta-btn-absglass" onclick="window.location.href='{{url('register')}}'">Crear cuenta</button>
+                            <button class="crearcuenta-btn-absglass btn-glass" onclick="window.location.href='{{url('register')}}'">Crear cuenta</button>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/computer/computer-dynamic-color.png" width="90px" height="90px">
                             </div>
-                            <button class="iniciarsesion-btn-absglass" onclick="window.location.href='{{url('login')}}'">Iniciar sesión</button>
+                            <button class="iniciarsesion-btn-absglass btn-glass" onclick="window.location.href='{{url('login')}}'">Iniciar sesión</button>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/folder-new/new-folder-dynamic-color.png" width="90px" height="90px">
                             </div>
-                            <button class="subirapuntes-btn-absglass" onclick="window.location.href='{{url('misApuntes')}}'">Subir archivos</button>
+                            <button class="subirapuntes-btn-absglass btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Subir archivos</button>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/zoom/zoom-dynamic-color.png" width="90px" height="90px">
                             </div>
-                            <button class="sabermas-btn-absglass" onclick="window.location.href='{{url('aboutus')}}'">Mas información</button>
+                            <button class="sabermas-btn-absglass btn-glass" onclick="window.location.href='{{url('aboutus')}}'">Mas información</button>
                         </div>
                     </div>
                 </div>
