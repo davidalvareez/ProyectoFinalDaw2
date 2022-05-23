@@ -15,7 +15,6 @@ class ChatWith extends Component
     public $user;
     public $message;
 
-
     public function send_message()
     {
         if (session()->get("user")) {
@@ -66,9 +65,13 @@ class ChatWith extends Component
     {
         if (session()->get('user')) {
             $user = session()->get("user");
-            return view('livewire.chat-with',[
-                'messages' => chat::where('chat_id',frinds::where(['user_id'=>$user->id, 'friend_id' =>$this->user->id])->first()->chat_id)->get()
-                        ])->layout('layouts.main');
+            try {
+                return view('livewire.chat-with',[
+                    'messages' => chat::where('chat_id',frinds::where(['user_id'=>$user->id, 'friend_id' =>$this->user->id])->first()->chat_id)->get()
+                            ])->layout('layouts.main');
+            } catch (\Exception $e) {
+                return view('livewire.chat-with')->layout('layouts.main');
+            }
         }
     }
 }
