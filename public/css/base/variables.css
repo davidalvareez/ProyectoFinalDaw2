@@ -13,7 +13,7 @@
   border-radius: 12px;
 }
 
-.glass-5 {
+.glass-5, .glass-saturate {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -21,6 +21,10 @@
   border: 1px solid rgba(255, 255, 255, 0.866);
   -webkit-transition: all 0.7s;
   transition: all 0.7s;
+}
+
+.glass-saturate {
+  background: rgba(255, 255, 255, 0.87) !important;
 }
 
 .allwh {

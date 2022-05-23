@@ -1,4 +1,4 @@
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse {
+.glass-2, .glass-saturate, .card > .container .reverse-card .container-reverse, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -21,6 +21,11 @@
   border: 1px solid rgba(255, 255, 255, 0.866);
   -webkit-transition: all 0.7s;
   transition: all 0.7s;
+}
+
+.glass-saturate, .card > .container .reverse-card .container-reverse {
+  -webkit-backdrop-filter: blur(13px) saturate(205%);
+          backdrop-filter: blur(13px) saturate(205%);
 }
 
 .allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
@@ -940,6 +945,10 @@ main {
 
 .card > .container .reverse-card .container-reverse > .top .user-info .container-info .avatar-user {
   font-size: 50px;
+}
+
+.card > .container .reverse-card .container-reverse > .top .user-info .container-info .container-text {
+  padding-left: 5px;
 }
 
 .card > .container .reverse-card .container-reverse > .top .user-info .date-info {

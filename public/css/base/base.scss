@@ -649,7 +649,7 @@ main {
             display: none;
             .container-reverse {
                 @extend .allwh;
-                @extend .glass-2;
+                @extend .glass-saturate;
                 border-radius: 0;
                 >.top {
                     height: 35%;
@@ -669,6 +669,7 @@ main {
                                 }
                             }
                             .container-text {
+                                padding-left: 5px;
                                 .username {
                                     p {}
                                 }
