@@ -81,7 +81,7 @@
                                     </a>
                                 </div>
                                 <div class="boton-entrar">
-                                    <input class="login-btn-absglass" type="submit" value="ENTRAR">
+                                    <input class="btn-glass-grande" type="submit" value="ENTRAR">
                                 </div>
                                 <div class="redes-sociales">
                                     <div>

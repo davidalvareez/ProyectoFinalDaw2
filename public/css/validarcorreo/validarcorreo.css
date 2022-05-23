@@ -266,7 +266,11 @@ h4 {
   background: var(--svgColor1a);
 }
 
-.btn-glass-grande, .validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .validarcorreo-btn-absglass {
+.btn-glass_b:hover {
+  background: var(--svgColor1);
+}
+
+.btn-glass-grande {
   background: var(--svgColor1);
   padding: calc(7px + 0.75vh) calc(10px + 0.9vw);
   width: 100%;
@@ -285,7 +289,7 @@ h4 {
   transition: all 0.4s;
 }
 
-.btn-glass-grande:hover, .validarcorreo-page main .region1 .content-region .glassland .content-glassland .validarcorreo-content-glassland .validarcorreo-btn-absglass:hover {
+.btn-glass-grande:hover {
   background: var(--svgColor1a);
 }
 
@@ -294,7 +298,7 @@ h4 {
 }
 
 .btn-glass-grande_b:hover {
-  background: var(--black);
+  background: var(--svgColor1);
 }
 
 .btn-glass-negro {
@@ -384,8 +388,20 @@ body {
   color: var(--white);
 }
 
-.darkmode .btn-glass_b {
-  background: var(--svgColor2a);
+.darkmode .btn-glass {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass:hover {
+  background: var(--svgColor2);
+}
+
+.darkmode .btn-glass-grande {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass-grande:hover {
+  background: var(--svgColor2);
 }
 
 main {

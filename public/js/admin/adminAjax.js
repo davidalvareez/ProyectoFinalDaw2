@@ -50,7 +50,17 @@ function getInputAsignatura(idCentro, idCurso) {
 }
 
 function getInputTema(idCentro, idCurso, idAsignatura) {
-    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por asignatura..." aria-label="Search" onkeyup="showTemas(${idCentro},${idCurso},${idAsignatura}); return false;"/>`
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por tema..." aria-label="Search" onkeyup="showTemas(${idCentro},${idCurso},${idAsignatura}); return false;"/>`
+    input_container.innerHTML = input;
+}
+
+function getInputDenuncias() {
+    let input = `<div style="padding: 17px"></div>`
+    input_container.innerHTML = input;
+}
+
+function getInputHistorial() {
+    let input = `<div style="padding: 17px"></div>`
     input_container.innerHTML = input;
 }
 
@@ -83,8 +93,7 @@ function showUsers() {
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
-                /* console.log(respuesta);
-                return false; */
+                console.log(respuesta);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 //Encabezado
                 let recarga = ``;
@@ -104,28 +113,32 @@ function showUsers() {
                     <th scope="col">Eliminar</th>
                     <tr>`;
                 //Cuerpoelse
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                        <td scope="row"><b>${respuesta[i].id}</b></td>
-                        <td>${respuesta[i].nick_usu}</td>
-                        <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                        <td>${respuesta[i].fecha_nac_usu}</td>
-                        <td>${respuesta[i].correo_usu}</td>
-                        <td>${respuesta[i].deshabilitado}</td>
-                        <td>${respuesta[i].nombre_centro}</td>
-                        <td>${respuesta[i].nombre_rol}</td>
-                        <td><img class="imgavatar" src="storage/${respuesta[i].img_avatar}"></td>
-                        <td>
-                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxUser(${respuesta[i].id},'${respuesta[i].nombre_usu}','${respuesta[i].apellido_usu}','${respuesta[i].nick_usu}','${respuesta[i].fecha_nac_usu}','${respuesta[i].correo_usu}','${respuesta[i].deshabilitado}','${respuesta[i].tmpdeshabilitado}','${respuesta[i].nombre_rol}');return false;">Modificar</button>
-                        </td>
-                        <td>
-                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalUsers(${respuesta[i].id});return false;">Eliminar</button>
-                        </td>
-                        </tr>`
+                if (respuesta.lenth = 0) {
+                    recarga += `No se han encontrado registros...`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<tr>
+                            <td scope="row"><b>${respuesta[i].id}</b></td>
+                            <td>${respuesta[i].nick_usu}</td>
+                            <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
+                            <td>${respuesta[i].fecha_nac_usu}</td>
+                            <td>${respuesta[i].correo_usu}</td>
+                            <td>${respuesta[i].deshabilitado}</td>
+                            <td>${respuesta[i].nombre_centro}</td>
+                            <td>${respuesta[i].nombre_rol}</td>
+                            <td><img class="imgavatar" src="storage/${respuesta[i].img_avatar}"></td>
+                            <td>
+                            <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxUser(${respuesta[i].id},'${respuesta[i].nombre_usu}','${respuesta[i].apellido_usu}','${respuesta[i].nick_usu}','${respuesta[i].fecha_nac_usu}','${respuesta[i].correo_usu}','${respuesta[i].deshabilitado}','${respuesta[i].tmpdeshabilitado}','${respuesta[i].nombre_rol}');return false;">Modificar</button>
+                            </td>
+                            <td>
+                            <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalUsers(${respuesta[i].id});return false;">Eliminar</button>
+                            </td>
+                            </tr>`
+                    }
+                    recarga += `</table>
+                        </div>
+                        </div>`;
                 }
-                recarga += `</table>
-                    </div>
-                    </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -178,8 +191,11 @@ function showCentros() {
                     <th scope="col">Direccion</th>
                     <th scope="col" colspan="3">Acciones</th>
                     </tr>`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<tr>
                         <td scope="row"><b>${respuesta[i].id}</b></td>
                         <td>${respuesta[i].nombre_centro}</td>
                         <td>${respuesta[i].com_auto_centro}, ${respuesta[i].ciudad_centro}</td>
@@ -194,11 +210,11 @@ function showCentros() {
                         <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCentros(${respuesta[i].id});return false;">Eliminar</button>
                         </td>
                         </tr>`
+                    }
+                    recarga += `</table>
+                        </div>
+                        </div>`;
                 }
-
-                recarga += `</table>
-                    </div>
-                </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -213,15 +229,15 @@ function showCentros() {
 function showCursos(idCentro) {
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
-        Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-        var token = document.getElementById('token').getAttribute("content");
+            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+            var token = document.getElementById('token').getAttribute("content");
     
     
-        Usar el objeto FormData para guardar los parámetros que se enviarán:
-        var formData = new FormData();
-        formData.append('_token', token);
-        formData.append('clave', valor);
-        */
+            Usar el objeto FormData para guardar los parámetros que se enviarán:
+            var formData = new FormData();
+            formData.append('_token', token);
+            formData.append('clave', valor);
+            */
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'GET');
@@ -251,26 +267,30 @@ function showCursos(idCentro) {
                         <th scope="col">Tipo</th>
                         <th scope="col" colspan="3">Acciones</th>
                         </tr>`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                             <td scope="row"><b>${respuesta[i].id}</b></td>
-                             <td>${respuesta[i].nombre_curso}</td>
-                             <td>${respuesta[i].nombre_corto_curso}</td>
-                             <td>${respuesta[i].tipo_curso}</td>
-                             <td>
-                             <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCurso(${idCentro},${respuesta[i].id},'${respuesta[i].nombre_curso}','${respuesta[i].nombre_corto_curso}','${respuesta[i].tipo_curso}');return false;">Editar</button>
-                             </td>
-                             <td>
-                             <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCursos(${respuesta[i].id},${idCentro});return false;">Eliminar</button>
-                             </td>
-                             <td>
-                             <button class= "btn btn-warning" type="submit" value="Delete" onclick="getInputAsignatura(${respuesta[i].id}, ${idCentro});showAsignaturas(${respuesta[i].id}, ${idCentro});return false;">Ver asignaturas</button>
-                             </td>
-                             </tr>`
-                }
-                recarga += `</table>
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<tr>
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                        <td>${respuesta[i].nombre_curso}</td>
+                        <td>${respuesta[i].nombre_corto_curso}</td>
+                        <td>${respuesta[i].tipo_curso}</td>
+                        <td>
+                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxCurso(${idCentro},${respuesta[i].id},'${respuesta[i].nombre_curso}','${respuesta[i].nombre_corto_curso}','${respuesta[i].tipo_curso}');return false;">Editar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalCursos(${respuesta[i].id},${idCentro});return false;">Eliminar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-warning" type="submit" value="Delete" onclick="getInputAsignatura(${respuesta[i].id}, ${idCentro});showAsignaturas(${respuesta[i].id}, ${idCentro});return false;">Ver asignaturas</button>
+                        </td>
+                        </tr>`
+                    }
+                    recarga += `</table>
                         </div>
-                    </div>`;
+                        </div>`;
+                }
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -285,15 +305,15 @@ function showCursos(idCentro) {
 function showAsignaturas(idCurso, idCentro) {
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
-        Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-        var token = document.getElementById('token').getAttribute("content");
+            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+            var token = document.getElementById('token').getAttribute("content");
     
     
-        Usar el objeto FormData para guardar los parámetros que se enviarán:
-        var formData = new FormData();
-        formData.append('_token', token);
-        formData.append('clave', valor);
-        */
+            Usar el objeto FormData para guardar los parámetros que se enviarán:
+            var formData = new FormData();
+            formData.append('_token', token);
+            formData.append('clave', valor);
+            */
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'GET');
@@ -321,24 +341,28 @@ function showAsignaturas(idCurso, idCentro) {
                             <th scope="col">Nombre</th>
                             <th scope="col" colspan="3">Acciones</th>
                             </tr>`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                                 <td scope="row"><b>${respuesta[i].id}</b></td>
-                                 <td>${respuesta[i].nombre_asignatura}</td>
-                                 <td>
-                                 <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxAsignatura(${idCentro},${idCurso},${respuesta[i].id},'${respuesta[i].nombre_asignatura}','${respuesta[i].id_curso}');return false;">Editar</button>
-                                 </td>
-                                 <td>
-                                 <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalAsignaturas(${respuesta[i].id},${idCurso},${idCentro});return false;">Eliminar</button>
-                                 </td>
-                                 <td>
-                                 <button class= "btn btn-warning" type="submit" value="Delete" onclick="getInputTema(${respuesta[i].id}, ${idCurso}, ${idCentro});showTemas(${respuesta[i].id}, ${idCurso}, ${idCentro} );return false;">Ver temas</button>
-                                 </td>
-                                 </tr>`
-                }
-                recarga += `</table>
-                            </div>
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<tr>
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                        <td>${respuesta[i].nombre_asignatura}</td>
+                        <td>
+                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxAsignatura(${idCentro},${idCurso},${respuesta[i].id},'${respuesta[i].nombre_asignatura}','${respuesta[i].id_curso}');return false;">Editar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalAsignaturas(${respuesta[i].id},${idCurso},${idCentro});return false;">Eliminar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-warning" type="submit" value="Delete" onclick="getInputTema(${respuesta[i].id}, ${idCurso}, ${idCentro});showTemas(${respuesta[i].id}, ${idCurso}, ${idCentro} );return false;">Ver temas</button>
+                        </td>
+                        </tr>`
+                    }
+                    recarga += `</table>
+                        </div>
                         </div>`;
+                }
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -355,15 +379,15 @@ function showTemas(idAsignatura, idCurso, idCentro) {
     message.innerHTML = '';
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
-        Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-        var token = document.getElementById('token').getAttribute("content");
+            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+            var token = document.getElementById('token').getAttribute("content");
     
     
-        Usar el objeto FormData para guardar los parámetros que se enviarán:
-        var formData = new FormData();
-        formData.append('_token', token);
-        formData.append('clave', valor);
-        */
+            Usar el objeto FormData para guardar los parámetros que se enviarán:
+            var formData = new FormData();
+            formData.append('_token', token);
+            formData.append('clave', valor);
+            */
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'GET');
@@ -391,21 +415,25 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                                 <th scope="col">Nombre tema</th>
                                 <th scope="col" colspan="3">Acciones</th>
                                 </tr>`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                                    <td scope="row"><b>${respuesta[i].id}</b></td>
-                                    <td>${respuesta[i].nombre_tema}</td>
-                                    <td>
-                                    <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
-                                    </td>
-                                    <td>
-                                    <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
-                                    </td>
-                                    </tr>`
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<tr>
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                        <td>${respuesta[i].nombre_tema}</td>
+                        <td>
+                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalboxTema(${idCentro},${idCurso},${idAsignatura},${respuesta[i].id},'${respuesta[i].nombre_tema}');return false;">Editar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalTemas(${respuesta[i].id},${idAsignatura}, ${idCurso}, ${idCentro});return false;">Eliminar</button>
+                        </td>
+                        </tr>`
+                    }
+                    recarga += `</table>
+                        </div>
+                        </div>`;
                 }
-                recarga += `</table>
-                                </div>
-                            </div>`;
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -422,15 +450,15 @@ function showApuntes() {
     message.innerHTML = '';
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
+                Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+                var token = document.getElementById('token').getAttribute("content");
     
     
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
+                Usar el objeto FormData para guardar los parámetros que se enviarán:
+                var formData = new FormData();
+                formData.append('_token', token);
+                formData.append('clave', valor);
+                */
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
@@ -458,20 +486,25 @@ function showApuntes() {
                                 <th scope="col">Creador</th>
                                 <th scope="col">Acciones</th>
                                 </tr>`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                                     <td scope="row"><b>${respuesta[i].id}</b></td>
-                                     <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
-                                     <td>${respuesta[i].fecha_publicacion_contenido}</td>
-                                     <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                                     <td>
-                                     <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalApuntes(${respuesta[i].id});return false;">Eliminar</button>
-                                     </td>
-                                     </tr>`
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<tr>
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                        <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
+                        <td>${respuesta[i].fecha_publicacion_contenido}</td>
+                        <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
+                        <td>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="swalApuntes(${respuesta[i].id});return false;">Eliminar</button>
+                        </td>
+                        </tr>`
+                    }
+                    recarga += `</table>
+                        </div>
+                        </div>`;
                 }
-                recarga += `</table>
-                                </div>
-                            </div>`;
+
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -488,15 +521,15 @@ function showDenuncias() {
     message.innerHTML = '';
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
+                Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
+                var token = document.getElementById('token').getAttribute("content");
     
     
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
+                Usar el objeto FormData para guardar los parámetros que se enviarán:
+                var formData = new FormData();
+                formData.append('_token', token);
+                formData.append('clave', valor);
+                */
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
@@ -512,6 +545,7 @@ function showDenuncias() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
+                console.log(respuesta);
                 recarga = "";
                 recarga += `<div class="table-responsive">             
                 <table class="table table-striped">
@@ -523,19 +557,24 @@ function showDenuncias() {
                 <th scope="col">Demandante</th>
                 <th scope="col" colspan="2">Acciones</th>
             </tr>`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += ` <tr>
-                <td scope="row"><b>${respuesta[i].id}</b></td>
-                <td>${respuesta[i].tipus_denuncia}</td>
-                <td>${respuesta[i].desc_denuncia}</td>
-                <td>${respuesta[i].acusado}</td>
-                <td>${respuesta[i].demandante}</td>
-                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesDenuncia(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
-                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarDenuncia(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
-            </tr>`;
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += ` <tr>
+            <td scope="row"><b>${respuesta[i].id}</b></td>
+            <td>${respuesta[i].tipus_denuncia}</td>
+            <td>${respuesta[i].desc_denuncia}</td>
+            <td>${respuesta[i].acusado}</td>
+            <td>${respuesta[i].demandante}</td>
+            <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesDenuncia(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
+            <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarDenuncia(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
+        </tr>`;
+                    }
+                    recarga += `</table>
+            </div>`;
                 }
-                recarga += `</table>
-                </div>`;
+
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
@@ -749,22 +788,27 @@ function showHistorial() {
                                     <th scope="col">Nombre Usuario</th>
                                     <th scope="col" colspan="2">Acciones</th>
                                     </tr>`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                                        <td scope="row"><b>${respuesta[i].id}</b></td>
-                                        <td>${respuesta[i].nombre_contenido}</td>
-                                        <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                                        <td>
-                                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
-                                        </td>
-                                        <td>
-                                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarHistorial(${respuesta[i].id});return false;">Eliminar</button>
-                                        </td>
-                                        </tr>`
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
+                } else {
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<tr>
+                        <td scope="row"><b>${respuesta[i].id}</b></td>
+                        <td>${respuesta[i].nombre_contenido}</td>
+                        <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
+                        <td>
+                        <button class="btn btn-secondary" type="submit" value="Edit" onclick="modalbox();return false;">Editar</button>
+                        </td>
+                        <td>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarHistorial(${respuesta[i].id});return false;">Eliminar</button>
+                        </td>
+                        </tr>`
+                    }
+                    recarga += `</table>
+                        </div>
+                        </div>`;
                 }
-                recarga += `</table>
-                                    </div>
-                                    </div>`;
+
                 content.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */

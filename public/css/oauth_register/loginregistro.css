@@ -28,7 +28,7 @@
   width: 100%;
 }
 
-.flex, .login-page main .region .glassland .content-glassland, .login-page main .region1, .login-page main .region1 .content-region .glassland .content-glassland, .registro-page main .region1, .registro-page main .region1 .content-region .glassland .content-glassland {
+.flex, .login-page main .region .glassland .content-glassland, .login-page main .region1 .content-region .glassland .content-glassland, .registro-page main .region1 .content-region, .registro-page main .region1 .content-region .glassland .content-glassland {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -266,7 +266,11 @@ h4 {
   background: var(--svgColor1a);
 }
 
-.btn-glass-grande, .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .login-btn-absglass, .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland .login-btn-absglass {
+.btn-glass_b:hover {
+  background: var(--svgColor1);
+}
+
+.btn-glass-grande {
   background: var(--svgColor1);
   padding: calc(7px + 0.75vh) calc(10px + 0.9vw);
   width: 100%;
@@ -285,7 +289,7 @@ h4 {
   transition: all 0.4s;
 }
 
-.btn-glass-grande:hover, .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .login-btn-absglass:hover, .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland .login-btn-absglass:hover {
+.btn-glass-grande:hover {
   background: var(--svgColor1a);
 }
 
@@ -294,7 +298,7 @@ h4 {
 }
 
 .btn-glass-grande_b:hover {
-  background: var(--black);
+  background: var(--svgColor1);
 }
 
 .btn-glass-negro {
@@ -384,8 +388,20 @@ body {
   color: var(--white);
 }
 
-.darkmode .btn-glass_b {
-  background: var(--svgColor2a);
+.darkmode .btn-glass {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass:hover {
+  background: var(--svgColor2);
+}
+
+.darkmode .btn-glass-grande {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass-grande:hover {
+  background: var(--svgColor2);
 }
 
 main {
@@ -1067,6 +1083,15 @@ main {
   background-color: #dddddd;
 }
 
+.inputbtn-selec2 {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 30px 10px 0px;
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 .imginputbtn {
   position: absolute;
   right: 10px;
@@ -1112,6 +1137,12 @@ main {
   grid-column-end: 3;
   -ms-grid-column: 1;
       grid-column-start: 1;
+}
+
+.menuuno2 {
+  width: 100%;
+  float: left;
+  padding: 10px 10px 10px 10px;
 }
 
 .errortext {
@@ -1221,21 +1252,57 @@ main {
   border: 1px solid #000;
 }
 
-.login-page {
+.login-page main {
   height: calc(100vh - 105px);
 }
 
-.login-page main {
-  height: 100vh !important;
+@media (max-width: 1200px) {
+  .login-page main {
+    height: 100%;
+  }
 }
 
-.login-page main .region1 {
-  margin: 5% 0% 5% 10%;
+@media (min-width: 1200px) {
+  .login-page main .region1 {
+    padding: 5% 0% 5% 10%;
+  }
+}
+
+.login-page main .region1 .content-region {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media (max-width: 1200px) {
+  .login-page main .region1 .content-region {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
+  padding: calc(20px + 0.5vh) calc(15px + 1vw);
 }
 
 .login-page main .region1 .content-region .glassland .content-glassland .login-content-glassland .inputbtn::-webkit-input-placeholder {
@@ -1254,8 +1321,14 @@ main {
   font-family: "Font Awesome\ 6 pro";
 }
 
-.login-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
+@media (max-width: 1200px) {
+  .login-page main .region1 .content-region .imagenrelleno {
+    display: none;
+  }
+}
+
+.registro-page main {
+  height: calc(100vh - 105px);
 }
 
 .registro-page main .region .glassland .content-glassland {
@@ -1277,16 +1350,36 @@ main {
           flex-flow: column wrap;
 }
 
-.registro-page main .region1 {
-  margin: 5% 5% 5% 5%;
+@media (min-width: 1200px) {
+  .registro-page main .region1 {
+    padding: 5% 0% 5% 10%;
+  }
+}
+
+.registro-page main .region1 .content-region {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media (max-width: 1200px) {
+  .registro-page main .region1 .content-region {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .registro-page main .region1 .content-region .glassland .content-glassland .registro-content-glassland {
-  width: 80%;
-  padding: 2% 0% 2% 10%;
+  padding: calc(20px + 0.5vh) calc(10px + 1vw);
 }
 
-.registro-page main .region1 .content-region .imagenrelleno {
-  padding-left: 41%;
+@media (max-width: 1200px) {
+  .registro-page main .region1 .content-region .imagenrelleno {
+    display: none;
+  }
 }
 /*# sourceMappingURL=loginregistro.css.map */

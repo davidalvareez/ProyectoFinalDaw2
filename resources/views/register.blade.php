@@ -23,13 +23,13 @@
                         <span class="left"></span>
                         <span class="right"></span>
                       </a>
-                      <h2>
+                      <h2 style="color: black">
                           Alumno
                       </h2>
                     </div>
                     <div class="card-flap flap1">
                       <div class="card-description">
-                          <p>Visualiza, comparte, comenta y descarga apuntes de la comunidad de estudiantes de NoteHub. Además tendras acceso a profesores con los que podrás tener clases particulares</p>
+                          <p style="color: black">Visualiza, comparte, comenta y descarga apuntes de la comunidad de estudiantes de NoteHub. Además tendras acceso a profesores con los que podrás tener clases particulares</p>
                       </div>
                       <div class="card-flap flap2">
                         <div class="card-actions">
@@ -47,14 +47,14 @@
                         <span class="left"></span>
                         <span class="right"></span>
                       </a>
-                      <h2>
+                      <h2 style="color: black">
                           Profesor
                       </h2>
                     </div>
                     <div class="card-flap flap1">
                       <div class="card-description">
-                          <p>Imparte clases a la comunidad de estudiantes de NoteHub. Sube tus apuntes y date a conocer dentro de nuestra comunidad</p>
-                          <p>Una vez completado el registro, nuestro equipo validará tu propuesta de ser un profesor y te habilitará la cuenta.</p>
+                          <p style="color: black">Imparte clases a la comunidad de estudiantes de NoteHub. Sube tus apuntes y date a conocer dentro de nuestra comunidad</p>
+                          <p style="color: black">Una vez completado el registro, nuestro equipo validará tu propuesta de ser un profesor y te habilitará la cuenta.</p>
                       </div>
                       <div class="card-flap flap2">
                         <div class="card-actions">
@@ -295,7 +295,7 @@
                                 </div>
 
                                 <div class="menuuno">
-                                    <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
+                                    <input class="btn-glass-grande" type="submit" value="ENTRAR"></input>
                                 </div>
                                 <div class="menuuno">
                                     <div class="alienarleft">
@@ -524,7 +524,7 @@
                                     </a>
                                 </div> -->
                                 <div class="menuuno">
-                                    <input class="login-btn-absglass" type="submit" value="ENTRAR"></input>
+                                    <input class="btn-glass-grande" type="submit" value="ENTRAR"></input>
                                 </div>
                                 <div class="menuuno">
                                     <div class="alienarleft">
