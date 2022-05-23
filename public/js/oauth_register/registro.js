@@ -10,7 +10,7 @@ window.onload = function() {
 $(document).ready(function() {
     var zindex = 10;
 
-    $("div.card").click(function(e) {
+    $("div.cardregistro").click(function(e) {
         e.preventDefault();
 
         var isShowing = false;
@@ -19,14 +19,14 @@ $(document).ready(function() {
             isShowing = true
         }
 
-        if ($("div.cards").hasClass("showing")) {
+        if ($("div.cardsregistro").hasClass("showing")) {
             // a card is already in view
-            $("div.card.show")
+            $("div.cardregistro.show")
                 .removeClass("show");
 
             if (isShowing) {
                 // this card was showing - reset the grid
-                $("div.cards")
+                $("div.cardsregistro")
                     .removeClass("showing");
             } else {
                 // this card isn't showing - get in with it
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
         } else {
             // no cards in view
-            $("div.cards")
+            $("div.cardsregistro")
                 .addClass("showing");
             $(this)
                 .css({ zIndex: zindex })

@@ -49,6 +49,14 @@
     }
 }
 
+.inputbtn-selec2 {
+    box-sizing: border-box;
+    padding: 10px 30px 10px 0px;
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
 .imginputbtn {
     position: absolute;
     right: 10px;
@@ -95,6 +103,12 @@
     padding: 10px 10px 10px 10px;
     grid-column-end: 3;
     grid-column-start: 1;
+}
+
+.menuuno2 {
+    width: 100%;
+    float: left;
+    padding: 10px 10px 10px 10px;
 }
 
 .errortext {
@@ -202,11 +216,11 @@
 }
 
 .login-page {
-    height: calc(100vh - 105px);
-    //overflow-y: hidden;
     main {
-        height: 100vh !important;
-        //@include flex-cv($d: column);
+        height: calc(100vh - 105px);
+        @media(max-width: $grid-float-breakpoint) {
+            height: 100%;
+        }
         .region {
             .glassland {
                 @extend .glass-2;
@@ -216,29 +230,34 @@
             }
         }
         .region1 {
-            margin: 5% 0% 5% 10%;
-            @extend .flex;
+            @media(min-width: $grid-float-breakpoint) {
+                padding: 5% 0% 5% 10%;
+            }
             .content-region {
+                @include flex-cv($d: row);
+                justify-content: space-around;
+                @media(max-width: $grid-float-breakpoint) {
+                    flex-flow: column;
+                    justify-content: center;
+                }
                 .glassland {
                     .content-glassland {
                         @extend .flex;
                         .login-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
+                            padding: calc(20px + 0.5vh) calc(15px + 1vw);
                             .inputbtn {
                                 &::placeholder {
                                     font-family: "Font Awesome\ 6 pro";
                                 }
                             }
-                            .login-btn-absglass {
-                                @extend .btn-glass-grande;
-                            }
+                            .login-btn-absglass {}
                         }
                     }
                 }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 41%;
+                @media(max-width: $grid-float-breakpoint) {
+                    .imagenrelleno {
+                        display: none;
+                    }
                 }
             }
         }
@@ -246,36 +265,41 @@
 }
 
 .registro-page {
-    //overflow-y: hidden;
     main {
-        //@include flex-cv($d: column);
+        height: calc(100vh - 105px);
         .region {
             .glassland {
                 @extend .glass-2;
                 .content-glassland {
+                    //@include flex-cv($d: column);
                     @include flex-cv($d: column);
                 }
             }
         }
         .region1 {
-            margin: 5% 5% 5% 5%;
-            @extend .flex;
+            @media(min-width: $grid-float-breakpoint) {
+                padding: 5% 0% 5% 10%;
+            }
             .content-region {
+                @extend .flex;
+                justify-content: space-around;
+                @media(max-width: $grid-float-breakpoint) {
+                    flex-flow: column;
+                    justify-content: center;
+                }
                 .glassland {
                     .content-glassland {
                         @extend .flex;
                         .registro-content-glassland {
-                            width: 80%;
-                            padding: 2% 0% 2% 10%;
-                            .login-btn-absglass {
-                                @extend .btn-glass-grande;
-                            }
+                            padding: calc(20px + 0.5vh) calc(10px + 1vw);
+                            .login-btn-absglass {}
                         }
                     }
                 }
-                .imagenrelleno {
-                    //float: right;
-                    padding-left: 41%;
+                @media(max-width: $grid-float-breakpoint) {
+                    .imagenrelleno {
+                        display: none;
+                    }
                 }
             }
         }

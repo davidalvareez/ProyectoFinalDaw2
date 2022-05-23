@@ -62,7 +62,7 @@
                                     </a>
                                 </div> -->
                                 <br>
-                                <input class="validarcorreo-btn-absglass" type="submit" value="VALIDAR">
+                                <input class="btn-glass-grande" type="submit" value="VALIDAR">
                                 <div class="">
                                     <div class="alienarleft">
                                         <p>Volver a la página de inicio?</p>

@@ -262,9 +262,7 @@
                                     font-family: "Font Awesome\ 6 pro";
                                 }
                             }
-                            .login-btn-absglass {
-                                @extend .btn-glass-grande;
-                            }
+                            .login-btn-absglass {}
                         }
                     }
                 }
@@ -319,9 +317,7 @@
                         @extend .flex;
                         .registro-content-glassland {
                             padding: calc(20px + 0.5vh) calc(15px + 1vw);
-                            .login-btn-absglass {
-                                @extend .btn-glass-grande;
-                            }
+                            .login-btn-absglass {}
                         }
                     }
                 }

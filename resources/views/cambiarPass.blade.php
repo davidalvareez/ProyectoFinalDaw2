@@ -86,7 +86,7 @@
                                     @enderror
                                 </div>
 
-                                <input class="cambiarpass-btn-absglass" type="submit" value="Restablecer contraseña">
+                                <input class="btn-glass-grande" type="submit" value="Restablecer contraseña">
                                 {{-- <div class="">
                                     <div class="alienarleft">
                                         <p>Cancelar proceso</p>
