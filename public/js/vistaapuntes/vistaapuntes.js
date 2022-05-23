@@ -112,10 +112,10 @@ function denunciarComentario(id_usu_comentario, id_comentario, id_contenido) {
 
 function denunciarApunte(id_usu_apunte, id_apunte) {
     Swal.fire({
-        title: "Denunciar comentario",
+        title: "Denunciar contenido",
         text: "Escribe motivo de denuncia",
         input: 'text',
-        confirmButtonText: "Denunciar comentario",
+        confirmButtonText: "Denunciar contenido",
         cancelButtonText: "Cancelar",
         showCancelButton: true
     }).then((result) => {
