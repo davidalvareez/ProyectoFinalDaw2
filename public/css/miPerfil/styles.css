@@ -266,6 +266,10 @@ h4 {
   background: var(--svgColor1a);
 }
 
+.btn-glass_b:hover {
+  background: var(--svgColor1);
+}
+
 .btn-glass-grande {
   background: var(--svgColor1);
   padding: calc(7px + 0.75vh) calc(10px + 0.9vw);
@@ -294,7 +298,7 @@ h4 {
 }
 
 .btn-glass-grande_b:hover {
-  background: var(--black);
+  background: var(--svgColor1);
 }
 
 .btn-glass-negro {
@@ -384,8 +388,20 @@ body {
   color: var(--white);
 }
 
-.darkmode .btn-glass_b {
-  background: var(--svgColor2a);
+.darkmode .btn-glass, .darkmode main .region-perfil .content-region .region-header .content-header .btn-glass, main .region-perfil .content-region .region-header .content-header .darkmode .btn-glass, .darkmode main .region-perfil .content-region .region-menu .content-menu .menu-info-persona .btn-glass, main .region-perfil .content-region .region-menu .content-menu .menu-info-persona .darkmode .btn-glass, .darkmode main .region-perfil .content-region .region-subir-apuntes .content-subir-apuntes .btn-glass, main .region-perfil .content-region .region-subir-apuntes .content-subir-apuntes .darkmode .btn-glass, .darkmode main .region-perfil .content-region .region-baja .content-baja .btn-glass, main .region-perfil .content-region .region-baja .content-baja .darkmode .btn-glass {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass:hover, .darkmode main .region-perfil .content-region .region-header .content-header .btn-glass:hover, main .region-perfil .content-region .region-header .content-header .darkmode .btn-glass:hover, .darkmode main .region-perfil .content-region .region-menu .content-menu .menu-info-persona .btn-glass:hover, main .region-perfil .content-region .region-menu .content-menu .menu-info-persona .darkmode .btn-glass:hover, .darkmode main .region-perfil .content-region .region-subir-apuntes .content-subir-apuntes .btn-glass:hover, main .region-perfil .content-region .region-subir-apuntes .content-subir-apuntes .darkmode .btn-glass:hover, .darkmode main .region-perfil .content-region .region-baja .content-baja .btn-glass:hover, main .region-perfil .content-region .region-baja .content-baja .darkmode .btn-glass:hover {
+  background: var(--svgColor2);
+}
+
+.darkmode .btn-glass-grande {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass-grande:hover {
+  background: var(--svgColor2);
 }
 
 main {

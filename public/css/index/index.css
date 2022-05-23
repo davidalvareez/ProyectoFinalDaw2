@@ -6,7 +6,14 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.glass, .landing-page main .region .glassland, .landing-page main .region .absglass, .landing-page main .region-portada .absglassportada {
+.glass-admin {
+  backdrop-filter: blur(300px) saturate(50%);
+  -webkit-backdrop-filter: blur(13px) saturate(180%);
+  background-color: #a3a8b062;
+  border-radius: 12px;
+}
+
+.glass-5, .landing-page main .region .glassland, .landing-page main .region .absglass, .landing-page main .region-portada .absglassportada {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -16,28 +23,21 @@
   transition: all 0.7s;
 }
 
-.flex-cv, .landing-page main .region .glassland .content-glassland, .landing-page main .region .absglass, .landing-page main .region-portada .absglassportada, .landing-page main .region1 .content-region .absglass1 .content-absglass .crearcuenta-content-absglass, .landing-page main .region2 .content-region .absglass2 .content-absglass .iniciarsesion-content-absglass, .landing-page main .region3 .content-region .absglass3 .content-absglass .subirapuntes-content-absglass, .landing-page main .region4 .content-region .absglass4 .content-absglass .sabermas-content-absglass {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  justify-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-}
-
 .allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
   height: 100%;
   width: 100%;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
 }
 
 @font-face {
@@ -182,6 +182,7 @@
   --svgColor2: #ffffff;
   --svgColor1a: #fc2e76;
   --svgColor2a: #ffffff;
+  --svgColor3: #b82055;
   /** light side **/
   --blue-background: #C2E9F6;
   --blue-border: #72cce3;
@@ -201,6 +202,7 @@
   --font1: Poppins;
   --white: #ffffff;
   --black: #000000;
+  --black-low: #2c2c2c;
   --grey: #eee;
   --letter-grey: #797c7e;
   --font1: Poppins;
@@ -253,36 +255,78 @@ h4 {
   color: var(--white);
   font-size: calc(13px + 0.2vw);
   padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
+  cursor: pointer;
+}
+
+.btn-glass:hover {
+  background: var(--svgColor1a);
 }
 
 .btn-glass_b {
   background: var(--svgColor1a);
 }
 
-.btn-glass_negro {
+.btn-glass_b:hover {
+  background: var(--svgColor1);
+}
+
+.btn-glass-grande {
+  background: var(--svgColor1);
+  padding: calc(7px + 0.75vh) calc(10px + 0.9vw);
+  width: 100%;
+  float: left;
+  border: 0;
+  text-decoration: none;
+  border-radius: calc(-90px + 5vw);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  color: var(--white);
+  font-size: calc(13px + 0.2vw);
+  letter-spacing: 2px;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.btn-glass-grande:hover {
+  background: var(--svgColor1a);
+}
+
+.btn-glass-grande_b {
+  background: var(--svgColor1a);
+}
+
+.btn-glass-grande_b:hover {
+  background: var(--svgColor1);
+}
+
+.btn-glass-negro {
   background: var(--black);
   border-radius: calc(25px + 5vw);
   color: var(--white);
   font-size: calc(13px + 0.2vw);
   padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
   margin-top: 20px;
+  cursor: pointer;
 }
 
-.btn-glass_rosa {
+.btn-glass-negro:hover {
+  background: var(--black-low);
+}
+
+.btn-glass-rosa {
   background: var(--svgColor1a);
   border-radius: calc(25px + 5vw);
   color: var(--white);
   font-size: calc(13px + 0.2vw);
   padding: calc(3px + 0.75vh) calc(10px + 0.9vw);
   margin-top: 20px;
+  cursor: pointer;
 }
 
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse {
-  backdrop-filter: blur(10px) saturate(105%);
-  -webkit-backdrop-filter: blur(13px) saturate(180%);
-  background-color: #a3a8b062;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+.btn-glass-rosa:hover {
+  background: var(--svgColor3);
 }
 
 * {
@@ -344,8 +388,20 @@ body {
   color: var(--white);
 }
 
-.darkmode .btn-glass_b {
-  background: var(--svgColor2a);
+.darkmode .btn-glass {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass:hover {
+  background: var(--svgColor2);
+}
+
+.darkmode .btn-glass-grande {
+  background: var(--svgColor1);
+}
+
+.darkmode .btn-glass-grande:hover {
+  background: var(--svgColor2);
 }
 
 main {
@@ -1101,20 +1157,6 @@ main {
   text-align: center;
 }
 
-.landing-page main .region1 .content-region .absglass1 .content-absglass .crearcuenta-content-absglass .crearcuenta-btn-absglass {
-  margin: 10px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
 .landing-page main .region1 .content-region .glassland .content-glassland .crearcuenta-content-glassland {
   width: 60%;
   padding: 15px 300px 30px 15px;
@@ -1129,21 +1171,6 @@ main {
   padding: 10px 0px 40px 620px;
 }
 
-.landing-page main .region2 .content-region .glassland .content-glassland .iniciarsesion-content-glassland .iniciarsesion-btn-glassland {
-  margin: 10px 0px 0px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-  margin: 20px;
-}
-
 .landing-page main .region2 .content-region .absglass2 {
   width: 20%;
   left: 230px;
@@ -1155,20 +1182,6 @@ main {
   text-align: center;
 }
 
-.landing-page main .region2 .content-region .absglass2 .content-absglass .iniciarsesion-content-absglass .iniciarsesion-btn-absglass {
-  margin: 10px 0px 0px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
 .landing-page main .region3 {
   margin: 10% 0% 0% 5%;
 }
@@ -1176,21 +1189,6 @@ main {
 .landing-page main .region3 .content-region .glassland .content-glassland .subirapuntes-content-glassland {
   width: 61%;
   padding: 22px 0px 40px 79px;
-}
-
-.landing-page main .region3 .content-region .glassland .content-glassland .subirapuntes-content-glassland .subirapuntes-btn-glassland {
-  margin: 10px 0px 0px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-  margin: 20px;
 }
 
 .landing-page main .region3 .content-region .absglass3 {
@@ -1204,20 +1202,6 @@ main {
   text-align: center;
 }
 
-.landing-page main .region3 .content-region .absglass3 .content-absglass .subirapuntes-content-absglass .subirapuntes-btn-absglass {
-  margin: 10px 0px 0px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
 .landing-page main .region4 {
   margin: 15% 0% 0% 5%;
 }
@@ -1225,21 +1209,6 @@ main {
 .landing-page main .region4 .content-region .glassland .content-glassland .sabermas-content-glassland {
   width: 46%;
   padding: 10px 0px 40px 620px;
-}
-
-.landing-page main .region4 .content-region .glassland .content-glassland .sabermas-content-glassland .sabermas-btn-glassland {
-  margin: 10px 0px 0px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-  margin: 20px;
 }
 
 .landing-page main .region4 .content-region .absglass4 {
@@ -1251,19 +1220,5 @@ main {
 
 .landing-page main .region4 .content-region .absglass4 .content-absglass .sabermas-content-absglass {
   text-align: center;
-}
-
-.landing-page main .region4 .content-region .absglass4 .content-absglass .sabermas-content-absglass .sabermas-btn-absglass {
-  margin: 10px 0px 0px 0px;
-  padding: 24px 32px;
-  font-size: 20px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
 }
 /*# sourceMappingURL=index.css.map */
