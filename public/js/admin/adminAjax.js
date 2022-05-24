@@ -987,29 +987,13 @@ function eliminarCursos(curso_id, idCentro) {
     console.log(idCentro);
     return false; */
 
-    /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
-
-    /* 
-            Obtener elemento/s que se pasarán como parámetros: token, method, inputs... 
-            var token = document.getElementById('token').getAttribute("content");
-        
-            Usar el objeto FormData para guardar los parámetros que se enviarán:
-            var formData = new FormData();
-            formData.append('_token', token);
-            formData.append('clave', valor);
-            */
     var token = document.getElementById('token').getAttribute("content");
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', "DELETE");
     /* Inicializar un objeto AJAX */
     var ajax = llamadaAjax();
-    /*
-    ajax.open("method", "rutaURL", true);
-    GET  -> No envía parámetros
-    POST -> Sí envía parámetros
-    true -> asynchronous
-    */
+
     ajax.open("POST", "admin/cursos/" + curso_id, true);
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
@@ -1616,7 +1600,6 @@ function modalboxCrearCentro() {
 function modalboxCrearCurso(idCentro) {
     var recarga = '';
     recarga += `<form id="formCrearCurso" method="post" enctype="multipart/form-data">
-                        <h2 id="nombreCurso">Crear Curso</h2>
                         <b><span>Nombre del Curso:</span>
                         <input type="text" name="nombre_curso" id="nombre_curso" value=""><br>
                         <b><span>Abreviación:</span>

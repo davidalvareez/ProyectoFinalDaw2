@@ -328,7 +328,7 @@ class CRUDAdminController extends Controller
                 INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
                 INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
                 INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                WHERE centro.id =  ?",[$id]);
+                WHERE centro.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
                 //Si no existe la carpeta la creamos
                 if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
@@ -377,7 +377,7 @@ class CRUDAdminController extends Controller
                 INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
                 INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
                 INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                WHERE curso.id =  ?",[$id]);
+                WHERE curso.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
                 //Si no existe la carpeta la creamos
                 if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
@@ -422,7 +422,7 @@ class CRUDAdminController extends Controller
                 INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
                 INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
                 INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                WHERE asig.id =  ?",[$id]);
+                WHERE asig.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
                 //Si no existe la carpeta la creamos
                 if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
@@ -461,7 +461,7 @@ class CRUDAdminController extends Controller
                 INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
                 INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
                 INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                WHERE temas.id =  ?",[$id]);
+                WHERE temas.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
                 //Si no existe la carpeta la creamos
                 if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
                     Storage::makeDirectory('public/uploads/apuntes_reciclados');
@@ -513,7 +513,7 @@ class CRUDAdminController extends Controller
                 LEFT JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
                 LEFT JOIN tbl_temas temas ON asig.id = temas.id_asignatura
                 LEFT JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                WHERE apuntes.id =  ?",[$id]);
+                WHERE apuntes.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
                 //Validar si existe el apunte entre todo en caso que no es que esta en reciclaje
                 if (count($apunte) == 0) {
                     $apunte = DB::select("SELECT * FROM tbl_contenidos WHERE id = ?",[$id]);
