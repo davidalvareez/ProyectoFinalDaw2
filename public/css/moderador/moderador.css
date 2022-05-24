@@ -13,7 +13,7 @@
   border-radius: 12px;
 }
 
-.glass-5 {
+.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -21,6 +21,10 @@
   border: 1px solid rgba(255, 255, 255, 0.866);
   -webkit-transition: all 0.7s;
   transition: all 0.7s;
+}
+
+.glass-saturate, .card > .container .reverse-card .container-reverse {
+  background: rgba(255, 255, 255, 0.87) !important;
 }
 
 .allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
@@ -956,6 +960,10 @@ main {
 
 .card > .container .reverse-card .container-reverse > .top .user-info .container-info .avatar-user {
   font-size: 50px;
+}
+
+.card > .container .reverse-card .container-reverse > .top .user-info .container-info .container-text {
+  padding-left: 5px;
 }
 
 .card > .container .reverse-card .container-reverse > .top .user-info .date-info {
