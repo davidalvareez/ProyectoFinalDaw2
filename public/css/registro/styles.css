@@ -1,4 +1,4 @@
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse, .modal-content2 {
+.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .modal-content2 {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -13,7 +13,7 @@
   border-radius: 12px;
 }
 
-.glass-5 {
+.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -21,6 +21,10 @@
   border: 1px solid rgba(255, 255, 255, 0.866);
   -webkit-transition: all 0.7s;
   transition: all 0.7s;
+}
+
+.glass-saturate, .card > .container .reverse-card .container-reverse {
+  background: rgba(255, 255, 255, 0.87) !important;
 }
 
 .allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
@@ -958,6 +962,10 @@ main {
   font-size: 50px;
 }
 
+.card > .container .reverse-card .container-reverse > .top .user-info .container-info .container-text {
+  padding-left: 5px;
+}
+
 .card > .container .reverse-card .container-reverse > .top .user-info .date-info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1023,6 +1031,27 @@ main {
 
 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a {
   color: var(--white);
+}
+
+.swal2-container .swal2-html-container .swal-estudios {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.swal2-container .swal2-html-container .swal-estudios input {
+  width: inherit;
+  margin: 0px 10px 0px 0px;
 }
 
 body {

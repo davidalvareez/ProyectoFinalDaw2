@@ -1,4 +1,5 @@
 @include('template.header')
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdEQhYgAAAAAN-CmQ77-igS399f9BKq-9c8x7OG"></script>
     <script src="../public/js/registro/registro.js"></script>
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
     <link rel="stylesheet" href="{!! asset ('css/registro/styles.css')!!}">
@@ -108,9 +109,7 @@
                             <br>
                             
                             <form action="{{url('register')}}" class="formulario-grid" id="idRegister" onsubmit="return hasAvatarOrImage();" method="post" enctype="multipart/form-data">
-                                
                                 @csrf
-
                                 <div class="menudos">
                                     <h4 class="pizq">Nombre</h4>
                                     <div>
@@ -295,7 +294,8 @@
                                 </div>
 
                                 <div class="menuuno">
-                                    <input class="btn-glass-grande" type="submit" value="ENTRAR"></input>
+                                    <input class="btn-glass-grande" data-sitekey="6LdEQhYgAAAAAN-CmQ77-igS399f9BKq-9c8x7OG" 
+                                    data-callback='hasAvatarOrImage' data-action='submit' type="submit" value="ENTRAR"></input>
                                 </div>
                                 <div class="menuuno">
                                     <div class="alienarleft">
@@ -524,7 +524,8 @@
                                     </a>
                                 </div> -->
                                 <div class="menuuno">
-                                    <input class="btn-glass-grande" type="submit" value="ENTRAR"></input>
+                                            <input class="btn-glass-grande" data-sitekey="6LdEQhYgAAAAAN-CmQ77-igS399f9BKq-9c8x7OG" 
+                                            data-callback='hasAvatarOrImage' data-action='submit' type="submit" value="ENTRAR"></input>
                                 </div>
                                 <div class="menuuno">
                                     <div class="alienarleft">
