@@ -55,6 +55,11 @@ $(document).ready(function() {
             $("#popup").removeClass('active');
 
         });
+        $(".btn-cerrarPop2").click(function() {
+            $("#overlay").removeClass('active');
+            $("#popup").removeClass('active');
+
+        });
         $(".btn-abrirPop").click(function() {
             $("#overlay").addClass('active');
             $("#popup").addClass('active');

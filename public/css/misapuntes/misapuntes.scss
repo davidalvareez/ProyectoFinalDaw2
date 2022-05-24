@@ -83,6 +83,22 @@ td {
     border-spacing: 2px;
 }
 
+@media screen and (max-width: 500px) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        //border: 1px solid #ddd;
+    }
+    .table-responsive {
+        min-height: .01%;
+        overflow-x: auto;
+        display: block;
+        //-webkit-overflow-scrolling: touch;
+    }
+}
+
 .btn-danger {
     color: #fff;
     background-color: #dc3545;
