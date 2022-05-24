@@ -97,6 +97,7 @@
                     <div class="glassland">
                         <div class="content-glassland">
                             <div class="misapuntes-content-glassland">
+                              <div class="table-responsive">
                                 <table class="table" id="content">
                                     <tr>
                                         <th style="text-align: center"><h4>Documento</h4></th>
@@ -113,6 +114,7 @@
                                     </tr>
                                     @endforeach
                                 </table>
+                              </div>
                             </div>
                         </div>
                     </div>
