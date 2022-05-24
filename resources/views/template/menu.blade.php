@@ -49,6 +49,9 @@
                                 <li>
                                     <a href="{{url('perfil/'.Session::get('user')->nick_usu)}}"><span>Perfil</span></a>
                                 </li>
+                                <li>
+                                    <a href="{{url('notehub-chat')}}"><span>NoteHub Chat</span></a>
+                                </li>
                                 <li class="register btn">
                                     <a href="{{url('logout')}}"><span>Cerrar Sesión</span></a>
                                 </li>
