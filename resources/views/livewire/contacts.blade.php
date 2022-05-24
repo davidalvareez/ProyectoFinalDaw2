@@ -14,16 +14,22 @@
     <div class="chat-box-content" wire:poll.keep-alive>
         <div class="conversation-group">
             @forelse ($contacts as $user)
-                @if ($user->user->id != Session::get('user')->id)
-                    <a href="{{ route('chat_with', $user->user->uuid) }}">
-                        <div class="contact">
-                            <img class="contact_image" src="{{asset('storage').'/'.$user->user->image }}" alt="" />
-                            <p class="contact_name">{{ $user->user->name }}</p>
-                            <!--Mostrar hora del ultimo mensaje, mostra el mensaje de quien fue para mostrar una cosa o otra-->
-                            <div class="contact_last_chat_time">{{ $user->created_at->format('H:m') }}</div>
-                        </div>
-                    </a>
-                @endif
+                <a href="{{ route('chat_with', $user->uuid) }}">
+                    <div class="contact">
+                        <img class="contact_image" src="{{asset('storage').'/'.$user->image }}" alt="" />
+                        <p class="contact_name">{{ $user->name }}</p>
+                        <!--Mostrar hora del ultimo mensaje, mostra el mensaje de quien fue para mostrar una cosa o otra-->
+                        <!--MENSAJE MIO-->
+                        @if ($user->user_id == Session::get('user')->id)
+                        <div class="last-mensaje">Tú: {{ $user->message }}</div>
+                        @else
+                        <!--MENSAJE DE EL-->
+                        {{-- <div class="last-mensaje">{{ $user->name }}: {{ $user->message }}</div> --}}
+                        <div class="last-mensaje"> ➤ {{ $user->message }}</div>
+                        @endif
+                        <div class="contact_last_chat_time">{{ $user->created_at }}</div>
+                    </div>
+                </a>
             @empty
                 <center>No hay ningun chat</center>
             @endforelse

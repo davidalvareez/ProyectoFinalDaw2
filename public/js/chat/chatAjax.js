@@ -33,7 +33,7 @@ function closeChat(id) {
             ajax.open("POST", "deleteChat", true);
             ajax.onreadystatechange = function() {
                 if (ajax.readyState == 4 && ajax.status == 200) {
-                    let respuesta = JSON.parse(this.responseText);
+                    var respuesta = JSON.parse(this.responseText);
                     if (respuesta.resultado == "OK") {
                         window.location.href = '../notehub-chat';
                     } else {

@@ -1,4 +1,4 @@
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .zonamoderador main .region .glassland {
+.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -6,7 +6,7 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-.glass-admin {
+.glass-admin, .zonamoderador main .region .glassland {
   backdrop-filter: blur(300px) saturate(50%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -32,7 +32,7 @@
   width: 100%;
 }
 
-.flex, .zonamoderador main .region .glassland .content-glassland {
+.flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1033,6 +1033,27 @@ main {
   color: var(--white);
 }
 
+.swal2-container .swal2-html-container .swal-estudios {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.swal2-container .swal2-html-container .swal-estudios input {
+  width: inherit;
+  margin: 0px 10px 0px 0px;
+}
+
 .imgavatar {
   width: 100px;
   height: 100px;
@@ -1047,23 +1068,54 @@ main {
 }
 
 .zonamoderador main .region {
-  width: 90%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
 }
 
 .zonamoderador main .region1 {
   margin: 50px 0px 0px 0px;
 }
 
-.zonamoderador main .region1 .menu {
-  margin: 0px 0px 44px 0px;
+.zonamoderador main .region1 .menu-moderador {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
 }
 
-.zonamoderador main .region1 .menu .content-menu .filtrador {
+.zonamoderador main .region1 .menu-moderador .content-menu .filtrador {
   margin-top: 50px;
   width: 50%;
 }
 
-.zonamoderador main .region1 .menu .content-menu .boton-menu {
+.zonamoderador main .region1 .menu-moderador .content-menu .boton-menu {
   width: 25%;
   height: 40px;
   border-radius: 7px;
@@ -1080,7 +1132,7 @@ main {
   outline: none;
 }
 
-.zonamoderador main .region1 .menu .content-menu .boton-tabla {
+.zonamoderador main .region1 .menu-moderador .content-menu .boton-tabla {
   width: 5%;
   height: 30px;
   border-radius: 7px;
@@ -1097,26 +1149,19 @@ main {
   outline: none;
 }
 
-.zonamoderador main .region1 .menu .content-menu .cgradient-1 {
-  background: linear-gradient(83deg, #ff8f0b, #00cf9a);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
 .zonamoderador main .region2 {
-  margin: 30px;
+  padding-top: 30px;
 }
 
 .zonamoderador main .region2 .content-region .glassland .content-glassland {
   width: 100%;
 }
 
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland {
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland {
   width: 90vw;
 }
 
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .boton-menu {
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .boton-menu {
   width: 25%;
   height: 45px;
   border-radius: 7px;
@@ -1132,7 +1177,7 @@ main {
   outline: none;
 }
 
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .boton-tabla {
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .boton-tabla {
   width: 6%;
   height: 30px;
   border-radius: 7px;
@@ -1148,7 +1193,7 @@ main {
   outline: none;
 }
 
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .boton-volver {
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .boton-volver {
   width: 10%;
   height: 30px;
   border-radius: 7px;
@@ -1165,26 +1210,19 @@ main {
   outline: none;
 }
 
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .cgradient-1 {
-  background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-  background-size: 600% 600%;
-  -webkit-animation: aniGrad 8s ease infinite;
-  animation: aniGrad 8s ease infinite;
-}
-
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .table th,
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .table td,
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .table tr {
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .tablas .table th,
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .tablas .table td,
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .tablas .table tr {
   border-top: none !important;
   text-align: center;
   vertical-align: middle;
 }
 
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .table th {
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .tablas .table th {
   font-weight: bold;
 }
 
-.zonamoderador main .region2 .content-region .glassland .content-glassland .admin-content-glassland .tablas .content-tablas .content {
+.zonamoderador main .region2 .content-region .glassland .content-glassland .moderador-content-glassland .tablas .content-tablas .content {
   padding: 50px;
 }
 /*# sourceMappingURL=moderador.css.map */

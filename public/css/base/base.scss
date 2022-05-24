@@ -748,3 +748,22 @@ main {
         }
     }
 }
+
+///////////////////////////////////////////////////////////////////
+/////////////////////sweet alert////////////////////////////////77
+///////////////////////////////////////////////////////////////////
+/////////clase de los sweet alerts
+.swal2-container {
+    .swal2-html-container {
+        .swal-estudios {
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+            input {
+                width: inherit;
+                margin: 0px 10px 0px 0px;
+            }
+        }
+    }
+}
