@@ -8,20 +8,20 @@
     <title>Vista Moderador</title>
 </head>
 <body class="zonamoderador">
-    @include('template.menu') 
     <header></header>
     <main>
         <center>
             <div class="region region1">
-                <div class="menu">
+                <div class="menu-moderador">
                     <div class="content-menu">
                         <h1>Denuncias</h1>
                         {{-- <form action='{{url('logout')}}' method='get'>
                             <button class="btn btn-secondary">Logout</button>
                         </form> --}}
-                        <button class="boton-menu cgradient-1" onclick="showAll();">Todas las denuncias</button>
-                        <button class="boton-menu cgradient-1" onclick="showComments();">Comentarios</button>
-                        <button class="boton-menu cgradient-1" onclick="showNotes();">Apuntes</button>
+                        <button class="btn-glass" onclick="showAll();">Todas las denuncias</button>
+                        <button class="btn-glass" onclick="showComments();">Comentarios</button>
+                        <button class="btn-glass" onclick="showNotes();">Apuntes</button>
+                        <a href="{{url('logout')}}"><button class="btn-glass-rosa" return false">Cerrar Sesión</button></a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="content-region">
                 <div class="glassland">
                     <div class="content-glassland">
-                        <div class="admin-content-glassland">
+                        <div class="moderador-content-glassland">
                             <div class="tablas">
                                 <div class="content-tablas">
                                     <div class="" id="content">
@@ -73,7 +73,6 @@
             </div>
         </div>
     </main>
-    @include('template.footer')  
     <div class="background">
         <div class="container-bg">
             <div class="coso coso0">
