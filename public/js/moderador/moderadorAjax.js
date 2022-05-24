@@ -39,16 +39,20 @@ function showAll() {
                 <th scope="col">Demandante</th>
                 <th scope="col" colspan="2">Acciones</th>
             </tr>`;
-            for (let i = 0; i < respuesta.length; i++) {
-                recarga += ` <tr>
-                <td scope="row"><b>${respuesta[i].id}</b></td>
-                <td>${respuesta[i].tipus_denuncia}</td>
-                <td>${respuesta[i].desc_denuncia}</td>
-                <td>${respuesta[i].acusado}</td>
-                <td>${respuesta[i].demandante}</td>
-                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
-                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
-            </tr>`;
+            if (respuesta.length == 0) {
+                recarga += `<h1>No se han encontrado registros...</h1>`
+            } else {
+                for (let i = 0; i < respuesta.length; i++) {
+                    recarga += ` <tr>
+                    <td scope="row"><b>${respuesta[i].id}</b></td>
+                    <td>${respuesta[i].tipus_denuncia}</td>
+                    <td>${respuesta[i].desc_denuncia}</td>
+                    <td>${respuesta[i].acusado}</td>
+                    <td>${respuesta[i].demandante}</td>
+                    <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
+                    <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
+                </tr>`;
+                }
             }
             recarga += `</table>`;
             contenedor.innerHTML = recarga;
@@ -77,16 +81,20 @@ function showComments() {
                 <th scope="col">Demandante</th>
                 <th scope="col" colspan="2">Acciones</th>
             </tr>`;
-            for (let i = 0; i < respuesta.length; i++) {
-                recarga += ` <tr>
-                <td scope="row"><b>${respuesta[i].id}</b></td>
-                <td>${respuesta[i].tipus_denuncia}</td>
-                <td>${respuesta[i].desc_denuncia}</td>
-                <td>${respuesta[i].acusado}</td>
-                <td>${respuesta[i].demandante}</td>
-                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesComentario(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
-                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarComentario(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
-            </tr>`;
+            if (respuesta.length == 0) {
+                recarga += `<h1>No se han encontrado registros...</h1>`
+            } else {
+                for (let i = 0; i < respuesta.length; i++) {
+                    recarga += ` <tr>
+                    <td scope="row"><b>${respuesta[i].id}</b></td>
+                    <td>${respuesta[i].tipus_denuncia}</td>
+                    <td>${respuesta[i].desc_denuncia}</td>
+                    <td>${respuesta[i].acusado}</td>
+                    <td>${respuesta[i].demandante}</td>
+                    <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesComentario(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
+                    <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarComentario(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
+                    </tr>`;
+                }
             }
             recarga += `</table>`;
             contenedor.innerHTML = recarga;
@@ -115,18 +123,22 @@ function showNotes() {
                 <th scope="col">Demandante</th>
                 <th scope="col" colspan="2">Acciones</th>
             </tr>`;
-            for (let i = 0; i < respuesta.length; i++) {
-                recarga += ` <tr>
-                <td scope="row"><b>${respuesta[i].id}</b></td>
-                <td>${respuesta[i].tipus_denuncia}</td>
-                <td>${respuesta[i].desc_denuncia}</td>
-                <td>${respuesta[i].acusado}</td>
-                <td>${respuesta[i].demandante}</td>
-                <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesApunte(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
-                <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarApunte(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
-            </tr>`;
+            if (respuesta.length == 0) {
+                recarga += `<h1>No se han encontrado registros...</h1>`
+            } else {
+                for (let i = 0; i < respuesta.length; i++) {
+                    recarga += ` <tr>
+                    <td scope="row"><b>${respuesta[i].id}</b></td>
+                    <td>${respuesta[i].tipus_denuncia}</td>
+                    <td>${respuesta[i].desc_denuncia}</td>
+                    <td>${respuesta[i].acusado}</td>
+                    <td>${respuesta[i].demandante}</td>
+                    <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesApunte(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
+                    <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarApunte(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
+                    </tr>`;
+                }
+                recarga += `</table>`;
             }
-            recarga += `</table>`;
             contenedor.innerHTML = recarga;
         }
     }

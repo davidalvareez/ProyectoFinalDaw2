@@ -322,24 +322,24 @@ class CRUDAdminController extends Controller
         public function eliminarCentro($id){
             try {
                 DB::beginTransaction();
-                $id_curso = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.id as id_curso,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
-                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
-                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
-                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
-                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
-                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                $id_curso = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.id as id_curso,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_centro centro 
+                LEFT JOIN tbl_cursos curso ON curso.id_centro = centro.id
+                LEFT JOIN tbl_asignaturas asig ON asig.id_curso = curso.id
+                LEFT JOIN tbl_temas temas ON temas.id_asignatura = asig.id
+                LEFT JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
                 WHERE centro.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
-                //Si no existe la carpeta la creamos
-                if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
-                    Storage::makeDirectory('public/uploads/apuntes_reciclados');
-                }
+                
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
                 if ($id_curso != null) {
                     foreach ($id_curso as $apunte){
-                        if ($apunte->extension_contenido == ".pdf") {
-                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        if ($apunte->nombre_contenido != null) {
+                            if (file_exists(storage_path('app/public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido))) {
+                                if ($apunte->extension_contenido == ".pdf") {
+                                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                                }
+                                Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
+                            }
                         }
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
                 //Eliminamos la carpeta
                     $pathFolder = 'public/uploads/apuntes/'.$id_curso[0]->nombre_centro;
@@ -371,24 +371,23 @@ class CRUDAdminController extends Controller
         public function eliminarCurso($id){
             try{
                 DB::beginTransaction();
-                $id_asignatura=DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.id as id_asignatura,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
-                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
-                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
-                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
-                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
-                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                $id_asignatura=DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.id as id_asignatura,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_centro centro 
+                LEFT JOIN tbl_cursos curso ON curso.id_centro = centro.id
+                LEFT JOIN tbl_asignaturas asig ON asig.id_curso = curso.id
+                LEFT JOIN tbl_temas temas ON temas.id_asignatura = asig.id
+                LEFT JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
                 WHERE curso.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
-                //Si no existe la carpeta la creamos
-                if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
-                    Storage::makeDirectory('public/uploads/apuntes_reciclados');
-                }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
                 if ($id_asignatura != null) {
                     foreach ($id_asignatura as $apunte){
-                        if ($apunte->extension_contenido == ".pdf") {
-                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        if ($apunte->nombre_contenido != null) {
+                            if (file_exists(storage_path('app/public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido))) {
+                                if ($apunte->extension_contenido == ".pdf") {
+                                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                                }
+                                Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
+                            }
                         }
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
                     //Eliminamos la carpeta
                     $pathFolder = 'public/uploads/apuntes/'.$id_asignatura[0]->nombre_centro.'/'.$id_asignatura[0]->nombre_curso;
@@ -416,24 +415,23 @@ class CRUDAdminController extends Controller
         public function eliminarAsignatura($id){
             try{
                 DB::beginTransaction();
-                $id_tema = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
-                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
-                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
-                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
-                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
-                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                $id_tema = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_centro centro 
+                LEFT JOIN tbl_cursos curso ON curso.id_centro = centro.id
+                LEFT JOIN tbl_asignaturas asig ON asig.id_curso = curso.id
+                LEFT JOIN tbl_temas temas ON temas.id_asignatura = asig.id
+                LEFT JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
                 WHERE asig.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
-                //Si no existe la carpeta la creamos
-                if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
-                    Storage::makeDirectory('public/uploads/apuntes_reciclados');
-                }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
                 if ($id_tema != null) {
                     foreach ($id_tema as $apunte){
-                        if ($apunte->extension_contenido == ".pdf") {
-                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        if ($apunte->nombre_contenido != null) {
+                            if (file_exists(storage_path('app/public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido))) {
+                                if ($apunte->extension_contenido == ".pdf") {
+                                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                                }
+                                Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
+                            }
                         }
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }
                     //Eliminamos la carpeta
                     $pathFolder = 'public/uploads/apuntes/'.$id_tema[0]->nombre_centro.'/'.$id_tema[0]->nombre_curso.'/'.$id_tema[0]->nombre_asignatura;
@@ -455,24 +453,23 @@ class CRUDAdminController extends Controller
         public function eliminarTema($id){
             try{
                 DB::beginTransaction(); 
-                $apuntes = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_usuario usu 
-                INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
-                INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
-                INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
-                INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
-                INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
+                $apuntes = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.id as id_tema,temas.nombre_tema FROM tbl_centro centro 
+                LEFT JOIN tbl_cursos curso ON curso.id_centro = centro.id
+                LEFT JOIN tbl_asignaturas asig ON asig.id_curso = curso.id
+                LEFT JOIN tbl_temas temas ON temas.id_asignatura = asig.id
+                LEFT JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
                 WHERE temas.id =  ? GROUP BY apuntes.nombre_contenido",[$id]);
-                //Si no existe la carpeta la creamos
-                if (!file_exists(storage_path('app/public/uploads/apuntes_reciclados'))) {
-                    Storage::makeDirectory('public/uploads/apuntes_reciclados');
-                }
                 //Traspasamos todos los apuntes a reciclaje antes de eliminarlos
                 if ($apuntes != null) {
                     foreach ($apuntes as $apunte){
-                        if ($apunte->extension_contenido == ".pdf") {
-                            Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                        if ($apunte->nombre_contenido != null) {
+                            if (file_exists(storage_path('app/public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido))) {
+                                if ($apunte->extension_contenido == ".pdf") {
+                                    Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.".png", 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.".png");
+                                }
+                                Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
+                            }
                         }
-                        Storage::move('public/uploads/apuntes/'.$apunte->nombre_centro.'/'.$apunte->nombre_curso.'/'.$apunte->nombre_asignatura.'/'.$apunte->nombre_tema.'/'.$apunte->nombre_contenido.$apunte->extension_contenido, 'public/uploads/apuntes_reciclados/'.$apunte->nombre_contenido.$apunte->extension_contenido);
                     }   
                     //Eliminamos la carpeta
                     $pathFolder = 'public/uploads/apuntes/'.$apuntes[0]->nombre_centro.'/'.$apuntes[0]->nombre_curso.'/'.$apuntes[0]->nombre_asignatura;

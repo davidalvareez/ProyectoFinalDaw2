@@ -44,13 +44,13 @@ function getInputCursos(idCentro) {
     input_container.innerHTML = input;
 }
 
-function getInputAsignatura(idCentro, idCurso) {
-    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por asignatura..." aria-label="Search" onkeyup="showAsignaturas(${idCentro},${idCurso}); return false;"/>`
+function getInputAsignatura(idCurso, idCentro) {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por asignatura..." aria-label="Search" onkeyup="showAsignaturas(${idCurso},${idCentro}); return false;"/>`
     input_container.innerHTML = input;
 }
 
-function getInputTema(idCentro, idCurso, idAsignatura) {
-    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por tema..." aria-label="Search" onkeyup="showTemas(${idCentro},${idCurso},${idAsignatura}); return false;"/>`
+function getInputTema(idAsignatura, idCurso, idCentro) {
+    let input = `<input type="search" id="search" name="titulo" class="form-control" placeholder="Buscar por tema..." aria-label="Search" onkeyup="showTemas(${idAsignatura},${idCurso},${idCentro}); return false;"/>`
     input_container.innerHTML = input;
 }
 
@@ -113,8 +113,8 @@ function showUsers() {
                     <th scope="col">Eliminar</th>
                     <tr>`;
                 //Cuerpoelse
-                if (respuesta.lenth = 0) {
-                    recarga += `No se han encontrado registros...`
+                if (respuesta.length == 0) {
+                    recarga += `<h1>No se han encontrado registros...</h1>`
                 } else {
                     for (let i = 0; i < respuesta.length; i++) {
                         recarga += `<tr>
@@ -257,7 +257,7 @@ function showCursos(idCentro) {
                 var recarga = '';
                 recarga += `<div class="">
                 <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearCurso(${idCentro});">Crear</button>
-                <button class="boton-volver" type="submit" value="Edit" onclick="showCentros();">Voler a centros</button>
+                <button class="boton-volver" type="submit" value="Edit" onclick="getInputCentros();showCentros();">Voler a centros</button>
                 <div class="table-responsive">     
                     <table class="table table-striped">
                         <tr>
@@ -333,7 +333,7 @@ function showAsignaturas(idCurso, idCentro) {
                 var recarga = '';
                 recarga += `<div class="">
                 <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearAsignatura(${idCurso},${idCentro});">Crear</button>
-                <button class="boton-volver" type="submit" value="Edit" onclick="showCursos(${idCentro});">Voler a Cursos</button>
+                <button class="boton-volver" type="submit" value="Edit" onclick="getInputCursos(${idCentro});showCursos(${idCentro});">Voler a Cursos</button>
                 <div class="table-responsive">             
                     <table class="table table-striped">
                             <tr>
@@ -407,7 +407,7 @@ function showTemas(idAsignatura, idCurso, idCentro) {
                 var recarga = '';
                 recarga += `<div class="">
                 <button style="float: left; margin: 5px;" class="btn btn-warning" type="submit" value="Create" onclick="modalboxCrearTema(${idAsignatura},${idCurso},${idCentro});">Crear</button>
-                <button class="boton-volver" type="submit" value="Edit" onclick="showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
+                <button class="boton-volver" type="submit" value="Edit" onclick="getInputAsignatura(${idCurso},${idCentro});showAsignaturas(${idCurso},${idCentro});">Voler a Asignaturas</button>
                 <div class="table-responsive">                             
                     <table class="table table-striped">
                                 <tr>
@@ -1378,7 +1378,7 @@ function modalboxTema(idCentro, idCurso, idAsignatura, id, nombre_tema) {
         cancelButtonText: "Cancelar",
     }).then((result) => {
         if (result.isConfirmed) {
-            actualizarAsignatura(idCentro, idCurso, idAsignatura);
+            actualizarTema(idCentro, idCurso, idAsignatura);
         }
     });
 }
@@ -1625,7 +1625,6 @@ function modalboxCrearCurso(idCentro) {
 function modalboxCrearAsignatura(idCurso, idCentro) {
     var recarga = '';
     recarga += `<form id="formCrearAsignatura" method="post" enctype="multipart/form-data">
-                        <h2 id="nombreAsignatura">Crear Curso</h2>
                         <b><span>Nombre de la Asignatura:</span>
                         <input type="text" name="nombre_asignatura" id="nombre_asignatura" value=""><br>
                         <input type="hidden" name="id_curso" id="id_curso" value="${idCurso}"><br>
@@ -1639,7 +1638,7 @@ function modalboxCrearAsignatura(idCurso, idCentro) {
         cancelButtonText: "Cancelar",
     }).then((result) => {
         if (result.isConfirmed) {
-            crearAsignatura(idCurso);
+            crearAsignatura(idCurso, idCentro);
         }
     });
 }
@@ -1648,7 +1647,6 @@ function modalboxCrearAsignatura(idCurso, idCentro) {
 function modalboxCrearTema(idAsignatura, idCurso, idCentro) {
     var recarga = '';
     recarga += `<form id="formCrearTema" method="post" enctype="multipart/form-data">
-                        <h2 id="nombreTema">Crear Curso</h2>
                         <b><span>Nombre del Tema:</span>
                         <input type="text" name="nombre_tema" id="nombre_tema" value=""><br>
                         <input type="hidden" name="id_asignatura" id="id_asignatura" value="${idAsignatura}"><br>
@@ -1663,7 +1661,7 @@ function modalboxCrearTema(idAsignatura, idCurso, idCentro) {
         cancelButtonText: "Cancelar",
     }).then((result) => {
         if (result.isConfirmed) {
-            crearTema(idAsignatura);
+            crearTema(idAsignatura, idCurso, idCentro);
         }
     });
 }
@@ -1745,7 +1743,7 @@ function crearCurso(idCentro) {
 }
 
 /* CrearAsignatura */
-function crearAsignatura(idCurso) {
+function crearAsignatura(idCurso, idCentro) {
     var message = document.getElementById('message');
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     var token = document.getElementById('token').getAttribute("content");
@@ -1764,7 +1762,7 @@ function crearAsignatura(idCurso) {
             if (respuesta.resultado == "OK") {
                 //message.innerHTML = '<p>Usuario modificado correctamente.</p>';
                 alertify.success("Asignatura creada correctamente");
-                showAsignaturas(idCurso);
+                showAsignaturas(idCurso, idCentro);
             } else {
                 message.innerHTML = respuesta.resultado;
                 alertify.error("Ha habido un error");
@@ -1776,7 +1774,7 @@ function crearAsignatura(idCurso) {
 }
 
 /* CrearAsignatura */
-function crearTema(idAsignatura) {
+function crearTema(idAsignatura, idCurso, idCentro) {
     var message = document.getElementById('message');
     /* Obtener elemento html donde introduciremos la recarga (datos o mensajes) */
     var token = document.getElementById('token').getAttribute("content");
@@ -1794,8 +1792,8 @@ function crearTema(idAsignatura) {
             return false; */
             if (respuesta.resultado == "OK") {
                 //message.innerHTML = '<p>Usuario modificado correctamente.</p>';
-                alertify.success("Asignatura creada correctamente");
-                showTemas(idAsignatura);
+                alertify.success("Tema creado correctamente");
+                showTemas(idAsignatura, idCurso, idCentro);
             } else {
                 message.innerHTML = respuesta.resultado;
                 alertify.error("Ha habido un error");

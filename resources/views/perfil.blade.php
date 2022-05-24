@@ -15,7 +15,7 @@
                     <div class="content-header">
                         <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('buscador')}}'">Inicio</button>
                         @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
-                        <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('misApuntes')}}'">Mis apuntes</button>
+                        <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('mis-apuntes')}}'">Mis apuntes</button>
                         <button class="btn-glass btn-glass_b" onclick="getConfigUser();">Preferencias</button>
                           @if ($perfilUser[0]->id_rol == 4)
                           <button class="btn-glass btn-glass_b" onclick="getConfigEstudios();">Estudios</button>
@@ -77,7 +77,7 @@
                     <div class="content-subir-apuntes">
                         @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                         <h2 class="titular">SUBIR APUNTES</h2>
-                        <button class="btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Comparte tus apuntes</button>
+                        <button class="btn-glass" onclick="window.location.href='{{url('mis-apuntes')}}'">Comparte tus apuntes</button>
                         @else
                         @if (count($apunteDestacado) == 1)
                             <h2 class="titular">APUNTE MÁS DESCARGAS</h2>
