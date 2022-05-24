@@ -367,7 +367,7 @@ function getConfigEstudios() {
                     let respuesta = JSON.parse(this.responseText);
                     recarga = '';
                     for (let i = 0; i < respuesta.length; i++) {
-                        recarga += `<div>
+                        recarga += `<div class="swal-estudios">
                         <input type="checkbox" name="cursos" value="${respuesta[i].id}">
                         <label name="${respuesta[i].nombre_curso}">${respuesta[i].nombre_curso}</label>
                         </div>`;
@@ -426,7 +426,7 @@ function getConfigEstudios() {
                     let respuesta = JSON.parse(this.responseText);
                     recarga = '';
                     for (let i = 0; i < respuesta.length; i++) {
-                        recarga += `<div>
+                        recarga += `<div class="swal-estudios">
                         <input type="checkbox" name="cursos" value="${respuesta[i].id}">
                         <label name="${respuesta[i].nombre_curso}">${respuesta[i].nombre_curso}</label>
                         </div>`;
