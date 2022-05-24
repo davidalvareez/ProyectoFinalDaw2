@@ -27,7 +27,7 @@
             </div>
             <div class="advancedSearch">
                 <div class="container">
-                    <button class="btn-abrirPop">
+                    <button class="btn-abrirPop btn-glass">
                         Busqueda avanzada
                     </button>
                     {{-- <form action='{{url('logout')}}' method='get'>
