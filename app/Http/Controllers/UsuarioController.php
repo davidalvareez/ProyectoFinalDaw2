@@ -292,7 +292,7 @@ class UsuarioController extends Controller
         public function perfil($nick_usu){
             if (session()->get("user")) {
                 //return $nick_usu;
-                $perfilUser = DB::select("SELECT user.*,users.uuid,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
+                $perfilUser = DB::select("SELECT user.id,user.nick_usu,user.nombre_usu,user.apellido_usu,user.correo_usu,DATE_FORMAT(user.fecha_nac_usu,'%d/%m/%Y') as 'fecha_nac_usu',user.id_rol,users.uuid,avatar.img_avatar,centro.nombre_centro,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas' FROM tbl_usuario user
                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = user.id
                 LEFT JOIN tbl_centro centro ON user.id_centro = centro.id
                 LEFT JOIN tbl_contenidos content ON content.id_usu = user.id
@@ -301,7 +301,7 @@ class UsuarioController extends Controller
                 JOIN users ON users.id = user.id
                 WHERE user.nick_usu = ?",[$nick_usu]);
 
-                $apuntesUser = DB::select("SELECT content.id as 'id_content', content.*,users.nick_usu,avatar.img_avatar,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',centro.id,centro.nombre_centro,curso.id,curso.nombre_curso,asignaturas.id,asignaturas.nombre_asignatura,temas.id,temas.nombre_tema 
+                $apuntesUser = DB::select("SELECT content.id as id_content, content.nombre_contenido,content.extension_contenido,DATE_FORMAT(content.fecha_publicacion_contenido,'%d/%m/%Y') as 'fecha_publicacion_contenido',users.nick_usu,(sum(coment.val_comentario)/count(coment.val_comentario)) as 'valoracion',count(hist.id_contenido) as 'descargas',avatar.img_avatar,centro.nombre_centro,curso.nombre_curso,asignaturas.nombre_asignatura,temas.nombre_tema,temas.id as id_tema 
                 FROM tbl_contenidos content
                 INNER JOIN tbl_usuario users ON content.id_usu = users.id
                 LEFT JOIN tbl_avatar avatar ON avatar.id_usu = users.id
