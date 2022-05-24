@@ -21,6 +21,10 @@
     border: 1px solid rgba(255, 255, 255, 0.866);
     transition: all 0.7s;
 }
+.glass-saturate {
+    @extend .glass-5;
+    background: rgba(255, 255, 255, 0.87) !important;
+}
 .allwh {
     height: 100%;
     width: 100%;

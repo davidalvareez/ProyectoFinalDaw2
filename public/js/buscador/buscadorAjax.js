@@ -384,7 +384,7 @@ function busquedaAvanzada() {
                 $('.owl-carousel-3').owlCarousel({
                         loop: false,
                         margin: 10,
-                        nav: false,
+                        nav: true,
                         responsive: {
                             0: {
                                 items: 1
