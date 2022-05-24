@@ -30,7 +30,8 @@ function showAll() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             recarga = "";
-            recarga += `<table class="table table-striped">
+            recarga += `<div class="table-responsive">
+            <table class="table table-striped">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tipo</th>
@@ -50,7 +51,8 @@ function showAll() {
                 <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
             </tr>`;
             }
-            recarga += `</table>`;
+            recarga += `</table>
+                        </div>`;
             contenedor.innerHTML = recarga;
         }
     }
@@ -68,7 +70,8 @@ function showComments() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             recarga = "";
-            recarga += `<table class="table table-striped">
+            recarga += `<div class="table-responsive">
+            <table class="table table-striped">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tipo</th>
@@ -88,7 +91,8 @@ function showComments() {
                 <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarComentario(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
             </tr>`;
             }
-            recarga += `</table>`;
+            recarga += `</table>
+                    </div>`;
             contenedor.innerHTML = recarga;
         }
     }
@@ -106,7 +110,8 @@ function showNotes() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var respuesta = JSON.parse(this.responseText);
             recarga = "";
-            recarga += `<table class="table table-striped">
+            recarga += `<div class="table-responsive">
+            <table class="table table-striped">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tipo</th>
@@ -126,7 +131,8 @@ function showNotes() {
                 <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarApunte(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
             </tr>`;
             }
-            recarga += `</table>`;
+            recarga += `</table>
+                    </div>`;
             contenedor.innerHTML = recarga;
         }
     }
