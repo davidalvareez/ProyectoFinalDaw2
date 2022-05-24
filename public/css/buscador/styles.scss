@@ -562,3 +562,51 @@ body {
         opacity: 1;
     }
 }
+
+/////profesores
+
+.container-grid {
+    .grid-cartas{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-gap: 2em;
+        .user-card{
+            @extend .glass-2;
+            @extend .flex-cv;
+            flex-flow: column;
+            min-height: 20rem;
+            padding: calc(10px + 1.5vh) calc(10px + 2vw);
+            .image-user{
+                img{
+                    width: 15rem;
+                    height: 15rem;
+                    background: blue;
+                }
+            }
+            .name-surname{
+                .name{}
+                .surname{}
+            }
+            .actions-user{
+                .two{
+                    display: flex;
+                    flex-flow: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 15px;
+                    .show-estudios{
+                        width: 50%;
+                    }
+                    .mostrar-cv{
+                        width: 50%;
+                    }
+                }
+                .one{
+                    .contact-me{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

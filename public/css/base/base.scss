@@ -245,6 +245,15 @@ body {
             background: var(--svgColor2);
         }
     }
+    .owl-carousel{
+        .owl-nav{
+            .owl-prev,.owl-next{
+                span{
+                    color: var(--white);
+                }
+            }
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////
@@ -745,6 +754,29 @@ main {
                     }
                 }
             }
+        }
+    }
+}
+////////////////////////////////////
+/////owl carousel
+////////////////////////////////////
+
+.owl-carousel{
+    .owl-nav{
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+        .owl-next,.owl-prev{
+            span{
+                font-size: 100px;
+            }
+            
+        }
+        .owl-next{
+
+        }
+        .owl-prev{
+
         }
     }
 }

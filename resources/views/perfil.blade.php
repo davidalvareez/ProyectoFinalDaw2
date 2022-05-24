@@ -64,9 +64,11 @@
                             </div>
                         </div>
                         <div class="region-datos">
+                          @if ($perfilUser[0]->valoracion != null)
                             <div class="valoracion">
                                 <h4>{{$perfilUser[0]->valoracion}}*</h4>
                             </div>
+                          @endif
                             <div class="descargas">
                                 <h4>{{$perfilUser[0]->descargas}} descargas</h4>
                             </div>

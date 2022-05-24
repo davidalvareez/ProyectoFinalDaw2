@@ -33,12 +33,14 @@
                     <div class="row">
                         <nav>
                             <ul>
+                                @if (!Session::get('user'))
                                 <li>
                                     <a href="{{url('/')}}"><span>Home</span></a>
                                 </li>
                                 <li>
                                     <a href="{{url('about-us')}}"><span>About us</span></a>
                                 </li>
+                                @endif
                                 @if (Session::get('user'))
                                 <li>
                                     <a href="{{url('buscador')}}"><span>Buscador</span></a>
@@ -48,6 +50,9 @@
                                 </li>
                                 <li>
                                     <a href="{{url('perfil/'.Session::get('user')->nick_usu)}}"><span>Perfil</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{url('profesores')}}"><span>Profesores</span></a>
                                 </li>
                                 <li>
                                     <a href="{{url('notehub-chat')}}"><span>NoteHub Chat</span></a>

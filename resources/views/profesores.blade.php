@@ -39,6 +39,34 @@
     </div>
     <main>
         <div class="" id="contenedor">
+          <div class="container-grid">
+          <div class="grid-cartas">
+            
+              @foreach($MostrarProfesores as $Resultados)
+              <div class="user-card">
+                <div class="image-user">
+                  <img src="{{asset('storage').'/'.$Resultados->img_avatar}}" alt="">
+                </div>
+                <div class="name-surname">
+                  <span class="name">{{$Resultados->nombre_usu}} </span>
+                  <span class="surname">{{$Resultados->apellido_usu}}</span>
+                </div>
+                <div class="actions-user">
+                  <div class="two">
+                    <button class="show-estudios btn-glass" onclick="mostrarEstudios({{$Resultados->id}});">Mostrar Estudios</button>
+                    @if ($Resultados->nombre_curriculum != null)
+                    <button class="show-cv btn-glass" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar CV</button>
+                    @endif
+                  </div>
+                  <div class="one">
+                    <button class="contact-me btn-glass_b" onclick="window.location.href = '{{ url('notehub-chat/'.$Resultados->uuid)}}'">Contactar</button>
+                  </div>
+                </div>
+              </div>
+              
+              @endforeach
+            </div>
+          </div>
             <table class="table table-striped table-dark">
                 <tr>
                     <th scope="col">#</th>

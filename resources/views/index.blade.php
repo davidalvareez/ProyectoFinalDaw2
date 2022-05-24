@@ -27,7 +27,7 @@
                         <div class="crearcuenta-content-glassland">
                             <img src="media/3Dicons-dinamicos/icons/png/thumb-up/thumb-up-dynamic-color.png" width="80px" height="80px"> 
                             <h2>¡Crea una cuenta para poder disfrutar de todas las características que NoteHub te proporciona!</h2>
-                            <h4>Comparte archivos, comenta, opina y puntúa los demás apuntes para poder convertirte en VIP para disfrutar de muchas más funcionalidades extra.</h4>
+                            <h4>Comparte archivos, comenta, opina y puntúa los demás apuntes que los estudiantes de toda España han subido. Tambíen tendrás acceso a muchas más funcionalidades extra.</h4>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <div class="iniciarsesion-content-glassland">
                             <img src="media/3Dicons-dinamicos/icons/png/explorer/explorer-dynamic-premium.png" width="80px" height="80px"> 
                             <h2>¡Consulta apuntes de la Universidad, Formación Profesional o Bachillerato!</h2>
-                            <h4>Filtra por aquello que estés buscando, matemáticas, física, química, historia, tecnología, medicina, lenguas, arte, programación... tienes un sinfín de cursos y asignaturas.</h4>
+                            <h4>Podrás consultar los apuntes de los estudiantes que están en la misma situación que tú. También puedes contactar con profesores que están impartiendo la asignatura que estás buscando.</h4>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/folder-new/new-folder-dynamic-color.png" width="90px" height="90px">
                             </div>
-                            <button class="subirapuntes-btn-absglass btn-glass" onclick="window.location.href='{{url('misApuntes')}}'">Subir archivos</button>
+                            <button class="subirapuntes-btn-absglass btn-glass" onclick="window.location.href='{{url('mis-puntes')}}'">Subir archivos</button>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                         <div class="sabermas-content-glassland">
                             <img src="media/3Dicons-dinamicos/icons/png/plus/plus-dynamic-color.png" width="80px" height="80px"> 
                             <h2>¿Quieres saber más sobre nosotros?</h2>
-                            <h4>¿Quienes somos? ¿Que departamentos tenemos? ¿Por qué hemos creado esta web? ¿Cual es nuestro objetivo?</h4>
+                            <h4>¡Entra si quieres saber quienes somos y cuales son nuestros objetivos!</h4>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                             <div class="iconoanimacion">
                                 <img class="animationbounce" src="media/3Dicons-dinamicos/icons/png/zoom/zoom-dynamic-color.png" width="90px" height="90px">
                             </div>
-                            <button class="sabermas-btn-absglass btn-glass" onclick="window.location.href='{{url('aboutus')}}'">Mas información</button>
+                            <button class="sabermas-btn-absglass btn-glass" onclick="window.location.href='{{url('about-us')}}'">Mas información</button>
                         </div>
                     </div>
                 </div>

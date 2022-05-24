@@ -1,4 +1,4 @@
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .card > .container .reverse-card .container-reverse {
+.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -406,6 +406,10 @@ body {
 
 .darkmode .btn-glass-grande:hover {
   background: var(--svgColor2);
+}
+
+.darkmode .owl-carousel .owl-nav .owl-prev span, .darkmode .owl-carousel .owl-nav .owl-next span {
+  color: var(--white);
 }
 
 main {
@@ -1031,6 +1035,23 @@ main {
 
 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a {
   color: var(--white);
+}
+
+.owl-carousel .owl-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.owl-carousel .owl-nav .owl-next span, .owl-carousel .owl-nav .owl-prev span {
+  font-size: 100px;
 }
 
 .swal2-container .swal2-html-container .swal-estudios {
