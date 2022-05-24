@@ -343,3 +343,8 @@ hr {
     bottom: 2px;
     margin-top: -10px;
 }
+
+.last-mensaje {
+    margin-left: 60px;
+    color: rgb(200, 200, 200);
+}

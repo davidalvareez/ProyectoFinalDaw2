@@ -660,7 +660,7 @@ main {
             display: none;
             .container-reverse {
                 @extend .allwh;
-                @extend .glass-2;
+                @extend .glass-saturate;
                 border-radius: 0;
                 >.top {
                     height: 35%;
@@ -680,6 +680,7 @@ main {
                                 }
                             }
                             .container-text {
+                                padding-left: 5px;
                                 .username {
                                     p {}
                                 }
@@ -743,6 +744,25 @@ main {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+/////////////////////sweet alert////////////////////////////////77
+///////////////////////////////////////////////////////////////////
+/////////clase de los sweet alerts
+.swal2-container {
+    .swal2-html-container {
+        .swal-estudios {
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+            align-items: center;
+            input {
+                width: inherit;
+                margin: 0px 10px 0px 0px;
             }
         }
     }

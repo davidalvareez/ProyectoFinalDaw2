@@ -21,10 +21,11 @@
                         <!--Mostrar hora del ultimo mensaje, mostra el mensaje de quien fue para mostrar una cosa o otra-->
                         <!--MENSAJE MIO-->
                         @if ($user->user_id == Session::get('user')->id)
-                        <div>{{ $user->message }}</div>
+                        <div class="last-mensaje">Tú: {{ $user->message }}</div>
                         @else
                         <!--MENSAJE DE EL-->
-                        <div>{{ $user->message }}</div>
+                        {{-- <div class="last-mensaje">{{ $user->name }}: {{ $user->message }}</div> --}}
+                        <div class="last-mensaje"> ➤ {{ $user->message }}</div>
                         @endif
                         <div class="contact_last_chat_time">{{ $user->created_at }}</div>
                     </div>

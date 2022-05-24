@@ -15,18 +15,19 @@
 .zonamoderador {
     main {
         .region {
-            width: 90%;
+            width: 100%;
+            @include flex-cv($d: column);
             .glassland {
-                @extend .glass-2;
+                @extend .glass-admin;
                 .content-glassland {
-                    @extend .flex;
+                    //@extend .flex;
                 }
             }
         }
         .region1 {
             margin: 50px 0px 0px 0px;
-            .menu {
-                margin: 0px 0px 44px 0px;
+            .menu-moderador {
+                @include flex-cv($d: column);
                 .content-menu {
                     .filtrador {
                         margin-top: 50px;
@@ -62,23 +63,17 @@
                         margin-top: 10px;
                         outline: none;
                     }
-                    .cgradient-1 {
-                        background: linear-gradient(83deg, #ff8f0b, #00cf9a);
-                        background-size: 600% 600%;
-                        -webkit-animation: aniGrad 8s ease infinite;
-                        animation: aniGrad 8s ease infinite;
-                    }
                 }
             }
         }
         .region2 {
-            margin: 30px;
+            padding-top: 30px;
             .content-region {
                 .glassland {
                     .content-glassland {
                         //@include flex-cv($d: column);
                         width: 100%;
-                        .admin-content-glassland {
+                        .moderador-content-glassland {
                             width: 90vw;
                             .boton-menu {
                                 width: 25%;
@@ -122,14 +117,6 @@
                                 position: relative;
                                 margin: 10px;
                                 outline: none;
-                            }
-                            .cgradient-1 {
-                                background: linear-gradient(83deg, #854ad4, #ae5acb, #ff7ab7);
-                                background-size: 600% 600%;
-                                -webkit-animation: aniGrad 8s ease infinite;
-                                -moz-animation: aniGrad 8s ease infinite;
-                                -o-animation: aniGrad 8s ease infinite;
-                                animation: aniGrad 8s ease infinite;
                             }
                             .tablas {
                                 .table th,
