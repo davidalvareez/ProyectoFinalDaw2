@@ -1314,4 +1314,30 @@ div.cardregistro.show div.flap2 {
   -webkit-transition: all 0.3s 0.2s ease-out;
   transition: all 0.3s 0.2s ease-out;
 }
+
+@media (max-width: 1200px) {
+  .modal-content2 {
+    margin: auto;
+    padding: 5px;
+    border: 1px solid #888;
+    width: 100%;
+    height: 130vh;
+  }
+  .cardregistro {
+    margin-bottom: 200px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-content2 {
+    margin: auto;
+    padding: 5px;
+    border: 1px solid #888;
+    width: 100%;
+    height: 200vh;
+  }
+  .cardregistro {
+    margin-bottom: 200px !important;
+  }
+}
 /*# sourceMappingURL=styles.css.map */
