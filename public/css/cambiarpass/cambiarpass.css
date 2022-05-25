@@ -1132,7 +1132,8 @@ main {
 }
 
 .cambiarpass-page main {
-  height: calc(100vh - 105px);
+  height: 100%;
+  padding-top: calc(7vh + 50px);
 }
 
 @media (min-width: 1200px) {
@@ -1214,7 +1215,7 @@ main {
 
 @media (max-width: 1200px) {
   main {
-    padding-top: calc(10vh - 105px);
+    padding-top: calc(25vh - 105px);
   }
 }
 /*# sourceMappingURL=cambiarpass.css.map */
