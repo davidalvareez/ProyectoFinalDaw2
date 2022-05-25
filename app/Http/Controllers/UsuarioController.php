@@ -599,7 +599,15 @@ class UsuarioController extends Controller
                     JOIN users ON users.id = user.id
                     WHERE user.id_rol = ?",[4]);
             }else{
-                $cursos = $datos["cursos"];
+                $cursos = explode(',',$datos["cursos"]);
+                $array_cursos_id = [];
+                for ($i=0; $i < count($cursos); $i++) {
+                    $id_curso = DB::select("SELECT * FROM tbl_cursos WHERE nombre_curso = '{$cursos[$i]}'");
+                    foreach($id_curso as $id){
+                        array_push($array_cursos_id,$id->id);
+                    }
+                }
+                $string_array_cursos_id = implode(',',$array_cursos_id);
                 $select = "SELECT user.*,users.uuid, estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
                 avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
                 cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
@@ -608,7 +616,7 @@ class UsuarioController extends Controller
                 INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
                 LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
                 JOIN users ON users.id = user.id
-                WHERE user.id_rol = 4 AND estudios.id_curso IN ($cursos) ORDER BY user.id ASC";
+                WHERE user.id_rol = 4 AND estudios.id_curso IN ($string_array_cursos_id) ORDER BY user.id ASC";
                 $filterProfe = DB::select($select);
             }
             return response()->json($filterProfe);

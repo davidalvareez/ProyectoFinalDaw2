@@ -29,7 +29,7 @@
                 <div class="container">
                     <form onchange="advancedFilterProfesores();" method="POST" id="filterCurso">
                         @foreach($allCursos as $cursos)
-                            <input type="checkbox" name="cursos" value="{{$cursos->id}}"/>
+                            <input type="checkbox" name="cursos" value="{{$cursos->nombre_curso}}"/>
                             <label name="{{$cursos->nombre_curso}}">{{$cursos->nombre_curso}}</label>
                         @endforeach
                     </form>
