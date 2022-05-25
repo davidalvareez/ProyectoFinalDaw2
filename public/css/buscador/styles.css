@@ -1770,4 +1770,14 @@ body {
 .container-grid .grid-cartas .user-card .actions-user .one .contact-me {
   width: 100%;
 }
+
+@media (max-width: 600px) {
+  main {
+    padding: 10vh 4vw !important;
+  }
+  .main-page .region-header .content-header .widget-search > .container {
+    width: 90vw;
+    height: 20vh;
+  }
+}
 /*# sourceMappingURL=styles.css.map */

@@ -1213,4 +1213,44 @@ main {
 .about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta3 {
   padding: 23px 23px 23px 23px;
 }
+
+@media (max-width: 600px) {
+  main {
+    padding-top: calc(20vh - 105px);
+    overflow-x: hidden;
+  }
+  .titulo-presentacion {
+    padding: 10px;
+  }
+  .about-us main .region1 .content-region .presentacion .content-presentacion .alineacion {
+    margin: 26px 0px 0px 0px;
+    padding: 0vh 0vh 10vh 0vh;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 136px 112px;
+    -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .about-us main .region2 .content-region .explicacion .content-explicacion .preguntas {
+    margin: 26px 0px 0px 0px;
+    padding: 8vh 0vh;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 50px 68px;
+    -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  .about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta1 {
+    padding: 23px 23px 23px 23px;
+    width: 87%;
+  }
+  .about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta2 {
+    padding: 23px 23px 23px 23px;
+    width: 87%;
+  }
+  .about-us main .region2 .content-region .explicacion .content-explicacion .preguntas .carta3 {
+    padding: 23px 23px 23px 23px;
+    width: 87%;
+  }
+}
 /*# sourceMappingURL=aboutus.css.map */

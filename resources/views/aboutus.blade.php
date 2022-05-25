@@ -12,7 +12,7 @@
             <div class="content-region">
                 <div class="presentacion">
                     <div class="content-presentacion">
-                        <h1>Nuestro equipo</h1>
+                        <h1 class="titulo-presentacion">Nuestro equipo</h1>
                         <div class="alineacion">
                             <div class="carta cartadavid" data-aos="zoom-in-up">
                                 <div class="content-carta">

@@ -610,3 +610,17 @@ body {
         }
     }
 }
+@media (max-width:1200px) {
+    //<!—- Aquí van todos los estilos CSS -->
+}
+
+//////////////////////////////
+@media (max-width:600px) {
+    main{
+        padding: 10vh 4vw !important;
+    }
+    .main-page .region-header .content-header .widget-search > .container{
+        width: 90vw;
+        height: 20vh;
+    }
+}
