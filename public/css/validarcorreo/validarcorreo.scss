@@ -152,7 +152,18 @@
                         display: none;
                     }
                 }
+                @media(max-width: 1612px) {
+                    .imagenrelleno {
+                        // @extend .hide;
+                        display: none;
+                    }
+                }
             }
+        }
+    }
+    @media(max-width: 1612px) {
+        main {
+            padding-top: calc(30vh - 105px);
         }
     }
 }

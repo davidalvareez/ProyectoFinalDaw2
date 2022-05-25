@@ -1249,4 +1249,16 @@ main {
     display: none;
   }
 }
+
+@media (max-width: 1612px) {
+  .validarcorreo-page main .region1 .content-region .imagenrelleno {
+    display: none;
+  }
+}
+
+@media (max-width: 1612px) {
+  .validarcorreo-page main {
+    padding-top: calc(30vh - 105px);
+  }
+}
 /*# sourceMappingURL=validarcorreo.css.map */
