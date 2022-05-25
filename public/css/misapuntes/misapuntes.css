@@ -409,7 +409,20 @@ body {
 }
 
 main {
-  padding-top: calc(20px + 3vh);
+  padding-top: calc(10vh + 50px);
+}
+
+@media (max-width: 1200px) {
+  main {
+    padding-top: calc(30vh - 105px);
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: calc(40vh - 105px);
+  }
 }
 
 .background {
@@ -1100,8 +1113,13 @@ main {
 }
 
 .padding-subirapuntes {
-  float: left;
   margin: 20px;
+}
+
+@media (min-width: 800px) {
+  .padding-subirapuntes {
+    float: left;
+  }
 }
 
 .padding-subirapuntes-submit {
@@ -1115,7 +1133,7 @@ main {
 }
 
 .title-text {
-  padding-left: 90px;
+  padding-left: 5vw;
 }
 
 .table th,
@@ -1191,16 +1209,6 @@ td {
   }
 }
 
-.misapuntes-page main {
-  padding-top: calc(100px + 3vh) !important;
-}
-
-@media (min-width: 100vh) {
-  .misapuntes-page main {
-    height: 100vh;
-  }
-}
-
 .misapuntes-page main .region1 {
   margin-bottom: 60px;
   display: -webkit-box;
@@ -1252,5 +1260,11 @@ td {
 
 .misapuntes-page main .region2 .content-region .glassland .content-glassland .misapuntes-content-glassland {
   width: 90vw;
+}
+
+@media (max-width: 1200px) {
+  main {
+    height: 100%;
+  }
 }
 /*# sourceMappingURL=misapuntes.css.map */
