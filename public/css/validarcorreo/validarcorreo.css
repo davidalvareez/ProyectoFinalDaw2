@@ -409,7 +409,20 @@ body {
 }
 
 main {
-  padding-top: calc(20px + 3vh);
+  padding-top: calc(10vh + 50px);
+}
+
+@media (max-width: 1200px) {
+  main {
+    padding-top: calc(30vh - 105px);
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: calc(40vh - 105px);
+  }
 }
 
 .background {
@@ -1194,12 +1207,6 @@ main {
           flex-flow: column wrap;
 }
 
-@media (min-width: 1200px) {
-  .validarcorreo-page main .region1 {
-    padding: 5% 0% 5% 10%;
-  }
-}
-
 .validarcorreo-page main .region1 .content-region {
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -1214,10 +1221,6 @@ main {
 
 @media (max-width: 1200px) {
   .validarcorreo-page main .region1 .content-region {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1253,12 +1256,6 @@ main {
 @media (max-width: 1612px) {
   .validarcorreo-page main .region1 .content-region .imagenrelleno {
     display: none;
-  }
-}
-
-@media (max-width: 1612px) {
-  .validarcorreo-page main {
-    padding-top: calc(30vh - 105px);
   }
 }
 /*# sourceMappingURL=validarcorreo.css.map */

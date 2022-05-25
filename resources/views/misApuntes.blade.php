@@ -56,7 +56,7 @@
                                             <input type="radio" name="newTema" id="radioNo" value="no" checked>No
                                             <br>
                                             <div>
-                                                <div id="selectTema" style="display: ; float: left;">
+                                                <div id="selectTema" style="display: ;">
                                                     <select disabled name="select_tema" class="inputbtn-selec" autocomplete="off" list="temas" placeholder="Seleccionar tema">
                                                         <option value="" selected>--</option>
                                                         {{-- @foreach($selectTema as $tema)
@@ -64,7 +64,7 @@
                                                         @endforeach --}}
                                                     </select>
                                                 </div>
-                                                <div id="textNewTema" style="display: none; float: left;">
+                                                <div id="textNewTema" style="display: none;">
                                                     <input class="inputbtn" type="text" name="text_tema" id="text_tema" placeholder="Escribe el tema">
                                                 </div>
                                             </div>
