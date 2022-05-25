@@ -121,15 +121,12 @@
             }
         }
         .region1 {
-            @media(min-width: $grid-float-breakpoint) {
-                padding: 5% 0% 5% 10%;
-            }
             .content-region {
                 justify-content: space-around;
                 display: flex;
                 flex-flow: row wrap;
                 @media(max-width: $grid-float-breakpoint) {
-                    flex-flow: column;
+                    //flex-flow: column;
                     justify-content: center;
                 }
                 .glassland {
@@ -152,7 +149,24 @@
                         display: none;
                     }
                 }
+                @media(max-width: 1612px) {
+                    .imagenrelleno {
+                        // @extend .hide;
+                        display: none;
+                    }
+                }
             }
         }
     }
 }
+
+//////////////////////////////////RESPONISVE//////////////////////////
+@media (max-width:1200px) {}
+
+//////////////////////////////
+@media (max-width:600px) {}
+
+/////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////
+///////////////

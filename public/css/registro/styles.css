@@ -413,7 +413,20 @@ body {
 }
 
 main {
-  padding-top: calc(20px + 3vh);
+  padding-top: calc(10vh + 50px);
+}
+
+@media (max-width: 1200px) {
+  main {
+    padding-top: calc(30vh - 105px);
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: calc(40vh - 105px);
+  }
 }
 
 .background {

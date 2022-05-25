@@ -413,7 +413,20 @@ body {
 }
 
 main {
-  padding-top: calc(20px + 3vh);
+  padding-top: calc(10vh + 50px);
+}
+
+@media (max-width: 1200px) {
+  main {
+    padding-top: calc(30vh - 105px);
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: calc(40vh - 105px);
+  }
 }
 
 .background {
@@ -1324,7 +1337,7 @@ main {
 
 @media (min-width: 1200px) {
   .login-page main .region1 {
-    padding: 5% 0% 5% 10%;
+    padding: 0% 0% 5% 0%;
   }
 }
 
@@ -1351,10 +1364,6 @@ main {
 
 @media (max-width: 1200px) {
   .login-page main .region1 .content-region {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1422,7 +1431,7 @@ main {
 
 @media (min-width: 1200px) {
   .registro-page main .region1 {
-    padding: 5% 0% 5% 10%;
+    padding: 0% 0% 5% 0%;
   }
 }
 

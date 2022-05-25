@@ -1,129 +1,3 @@
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-BlackItalic.ttf') format('truetype');
-    font-weight: 900;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-BoldItalic.ttf') format('truetype');
-    font-weight: 700;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: 800;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ExtraLightItalic.ttf') format('truetype');
-    font-weight: 200;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Italic.ttf') format('truetype');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-MediumItalic.ttf') format('truetype');
-    font-weight: 500;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../../media/fonts/poppins/Poppins-ThinItalic.ttf') format('truetype');
-    font-weight: 100;
-    font-style: italic;
-}
-
 main section .title-center {
     margin-bottom: 10px;
     margin-top: 100px;
@@ -168,7 +42,7 @@ ol {
 }
 
 .ul-box {
-    width: 1200px;
+    width: 90vw;
     display: block;
     list-style-type: decimal;
     margin: auto;
@@ -176,43 +50,10 @@ ol {
 }
 
 .browser-default {
-    width: 1200px;
+    width: 75vw;
     display: block;
     margin: auto;
     padding-inline-start: 40px;
-}
-
-$padding: 15px;
-$first-color:#19c673; //color principal
-$second-color:#05a357; //color para resaltes pequeños
-$third-color:#f6f0ea; //color fondo para recuadritos y tal
-$fourth-color: #7319c6; //color triadico 1
-$fifth-color:#c67319; //color triadico 2
-$sixth-color: #19c3c6; //color analogo 1
-$seventh-color: #19c61d; // color analogo 2
-$eightth-color: #c6196c; //color complementario
-$white: #ffffff; //blanco
-$black: #000000; //negro
-$grey: #eee;
-$letter-grey: #797c7e;
-$font1: Poppins;
-$grid-float-breakpoint: 1200px; //puntp de canvio de pantallas
-$movil: 600px;
-$mobil: 600px;
-:root {
-    --first-color: #19c673; //color principal
-    --second-color: #05a357; //color para resaltes pequeños
-    --third-color: #f6f0ea; //color fondo para recuadritos y tal
-    --fourth-color: #7319c6; //color triadico 1
-    --fifth-color: #c67319; //color triadico 2
-    --sixth-color: #19c3c6; //color analogo 1
-    --seventh-color: #19c61d; // color analogo 2
-    --eightth-color: #c6196c; //color complementario
-    --white: #ffffff; //blanco
-    --black: #000000; //negro
-    --grey: #eee;
-    --letter-grey: #797c7e;
-    --font1: Poppins;
 }
 
 ///////////////////////////////////////////////////
@@ -223,43 +64,38 @@ html {
     position: relative;
 }
 
-* {
-    font-family: var(--font1);
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: auto;
-}
 
-body {
-    height: 100%;
-    width: 100%;
-    // min-height: 100vh;
-    position: relative;
-}
+/* Media Queries */
 
-///////////////////
-h1 {
-    font-family: var(--font1);
-    font-size: calc(48px + 1vw);
-    font-weight: bold;
-}
-
-h2 {
-    font-family: var(--font1);
-    font-size: calc(18px + 1vw);
-    font-weight: 600;
-}
-
-h3 {
-    font-family: var(--font1);
-    font-size: calc(18px + 0.5vw);
-    font-weight: bold;
-}
-
-h4 {
-    font-family: var(--font1);
-    font-size: calc(18px + 0.1vw);
-    font-weight: bold;
+@media (max-width: 1200px) {
+    main * {
+        max-width: 100vw !important;
+    }
+    main {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .ul-box {
+        width: 90%;
+    }
+    .browser-default {
+        width: 75vw;
+        margin: inherit;
+    }
+    section .title {
+        font-size: 2rem;
+        width: 90vw;
+        margin: 0 5vw;
+        text-align: center;
+        letter-spacing: -.11rem;
+    }
+    main section .text,
+    main section .ul-box {
+        width: 90vw;
+        //margin: 0 5vw;
+    }
+    main section .title-left {
+        margin-top: 40px;
+        font-size: 1.5rem;
+    }
 }

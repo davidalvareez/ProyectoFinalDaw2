@@ -36,6 +36,7 @@
                             <div class="tablas">
                                 <div class="content-tablas">
                                     <div class="" id="content">
+                                      <div class="table-responsive">
                                         <table class="table table-striped">
                                             <tr>
                                                 <th scope="col">#</th>
@@ -62,6 +63,7 @@
                                             </tr>
                                             @endforeach
                                         </table>
+                                      </div>
                                     </div>
                                     <div id="myModal" class="modal">
                                     </div>

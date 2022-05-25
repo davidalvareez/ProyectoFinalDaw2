@@ -511,6 +511,8 @@
                     <div class="form-group input-text">
                         <input type="text" name="nombre_tema" placeholder="Introduce nombre del tema..." onkeyup="busquedaAvanzada()">
                     </div>
+
+                    <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop2 btn-glass">Ver resultados</a>
                 </form>
             </div>
         </div>
