@@ -1306,7 +1306,7 @@ main {
 
 @media (min-width: 1200px) {
   .login-page main .region1 {
-    padding: 5% 0% 5% 10%;
+    padding: 0% 0% 5% 10%;
   }
 }
 
@@ -1333,10 +1333,6 @@ main {
 
 @media (max-width: 1200px) {
   .login-page main .region1 .content-region {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;

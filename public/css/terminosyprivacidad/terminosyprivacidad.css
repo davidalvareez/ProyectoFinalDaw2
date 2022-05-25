@@ -69,6 +69,10 @@ html {
   main * {
     max-width: 100vw !important;
   }
+  main {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
   .ul-box {
     width: 90%;
   }
