@@ -32,20 +32,22 @@ textarea {
 }
 
 .descargar {
-    width: 82%;
+    width: 100%;
 }
 
 .vista-apuntes {
     main {
+        //margin: 2% 0% 0% 0%;
+        width: 100%;
         .region {
-            margin: 2% 0% 0% 0%;
-            width: 100%;
             .glassland {
                 @extend .glass-2;
                 .content-glassland {
                     @extend .flex;
                 }
             }
+        }
+        .region1 {
             .content-region {
                 width: 100%;
                 .apuntes {
@@ -53,9 +55,10 @@ textarea {
                     @extend .flex;
                     .content-apuntes {
                         width: 100%;
+                        padding-bottom: 30px;
                         iframe {
                             //width: 1280px;
-                            width: 100%;
+                            width: 90%;
                             height: 600px;
                             border-radius: 10px;
                         }
@@ -92,11 +95,11 @@ textarea {
             padding-bottom: 60px;
             @extend .flex;
             .content-region {
-                @include flex-cv($d: column);
+                //@include flex-cv($d: column);
                 .glassland {
                     .content-glassland {
                         .crearcomentario-content-glassland {
-                            width: 80vw;
+                            width: 100vw;
                             padding: 20px;
                         }
                         .comentario-content-glassland {
@@ -113,7 +116,6 @@ textarea {
         .rating-label,
         .rating {
             padding: 0px 20px 0px 15px;
-            float: left;
             display: block;
             font-family: ui-sans-serif, system-ui, sans-serif;
         }
