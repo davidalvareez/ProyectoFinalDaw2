@@ -13,7 +13,7 @@
             <div class="content-region">
                 <div class="region-header">
                     <div class="content-header">
-                        <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('buscador')}}'">Inicio</button>
+                       
                         @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                         <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('mis-apuntes')}}'">Mis apuntes</button>
                         <button class="btn-glass btn-glass_b" onclick="getConfigUser();">Preferencias</button>
@@ -29,7 +29,7 @@
                         @if (Session::get('user')->nick_usu != $perfilUser[0]->nick_usu)
                         <button onclick="window.location.href = '{{ url('notehub-chat/'.$perfilUser[0]->uuid)}}'" class="btn-glass btn-glass_b">Contactar</button>
                         @endif
-                        <button class="btn-glass btn-glass_b" onclick="window.location.href='{{url('logout')}}'">Cerrar sesion</button>
+                     
                     </div>
                 </div>
                 <div class="region-menu">
