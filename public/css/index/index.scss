@@ -64,23 +64,14 @@
                 width: 90%;
                 @extend .glass-5;
                 .content-glassland {
-                    // display: -webkit-box;
-                    // display: -ms-flexbox;
-                    // display: flex;
-                    // -webkit-box-align: center;
-                    // -ms-flex-align: center;
-                    // align-items: center;
-                    // -ms-flex-line-pack: center;
-                    // align-content: center;
+                    padding: 50px;
                     @extend .flex-cv;
                     text-align: center;
                 }
             }
-            .absglass {
-                @extend .glass-5;
-                @extend .flex-cv;
-                position: absolute;
-            }
+        }
+        .btn-absglass{
+            margin: 40px;
         }
         .region-portada {
             .absglassportada {
@@ -91,6 +82,9 @@
                 height: 10%;
                 @extend .flex-cv;
                 @extend .glass-5;
+                @media (max-width:$tablet) {
+                    width: 100%;
+                }
             }
             .content-region {
                 display: -webkit-box;
@@ -106,13 +100,13 @@
                 .content-video {
                     width: 100%;
                     .imagen-difuminada {
-                        -webkit-box-shadow: 8px 8px 8px 8px red inset;
-                        box-shadow: 8px 8px 8px 8px red inset;
+                        @media (max-width:$tablet){
+                            max-width: 250px;
+                        }
                     }
                 }
             }
             width: 100%;
-            margin: 0px 0px 300px 0px;
         }
         .region1 {
             .content-region {
@@ -121,6 +115,9 @@
                     width: 20%;
                     right: 216px;
                     top: 950px;
+                    @media (max-width:$tablet) {
+                        width: 100%;
+                    }
                     .content-absglass {
                         .crearcuenta-content-absglass {
                             @extend .flex-cv;
@@ -145,7 +142,9 @@
                     .content-glassland {
                         .crearcuenta-content-glassland {
                             width: 60%;
-                            padding: 15px 300px 30px 15px;
+                            @media (max-width:$tablet) {
+                                width: 100%;
+                            }
                         }
                     }
                 }
@@ -158,7 +157,9 @@
                     .content-glassland {
                         .iniciarsesion-content-glassland {
                             width: 60%;
-                            padding: 15px 15px 30px 465px;
+                            @media (max-width:$tablet) {
+                                width: 100%;
+                            }
                             .iniciarsesion-btn-glassland {
                                 // margin: 10px 0px 0px 0px;
                                 // padding: 24px 32px;
@@ -181,6 +182,9 @@
                     left: 230px;
                     top: 1539px;
                     padding: 15px;
+                    @media (max-width:$tablet) {
+                        width: 100%;
+                    }
                     .content-absglass {
                         .iniciarsesion-content-absglass {
                             @extend .flex-cv;
@@ -210,7 +214,9 @@
                     .content-glassland {
                         .subirapuntes-content-glassland {
                             width: 60%;
-                            padding: 15px 300px 30px 15px;
+                            @media (max-width:$tablet) {
+                                width: 100%;
+                            }
                             .subirapuntes-btn-glassland {
                                 // margin: 10px 0px 0px 0px;
                                 // padding: 24px 32px;
@@ -233,6 +239,9 @@
                     right: 216px;
                     top: 1995px;
                     padding: 15px;
+                    @media (max-width:$tablet) {
+                        width: 100%;
+                    }
                     .content-absglass {
                         .subirapuntes-content-absglass {
                             @extend .flex-cv;
@@ -262,7 +271,9 @@
                     .content-glassland {
                         .sabermas-content-glassland {
                             width: 60%;
-                            padding: 15px 15px 30px 465px;
+                            @media (max-width:$tablet) {
+                                width: 100%;
+                            }
                             .sabermas-btn-glassland {
                                 // margin: 10px 0px 0px 0px;
                                 // padding: 24px 32px;
@@ -285,6 +296,9 @@
                     left: 230px;
                     top: 2485px;
                     padding: 15px;
+                    @media (max-width:$tablet) {
+                        width: 100%;
+                    }
                     .content-absglass {
                         .sabermas-content-absglass {
                             @extend .flex-cv;
@@ -310,19 +324,15 @@
         }
     }
 }
-@media (max-width:1200px) {
+@media (max-width:$grid-float-breakpoint) {
     //<!—- Aquí van todos los estilos CSS -->
 }
 
 //////////////////////////////
-@media (max-width:600px) {
-    .landing-page main .region-portada .absglassportada{
-        position:relative;
-    }
-    .absglassportada{
-        position:relative;
-    }
-    .landing-page main .region-portada{
-        
-    }
+@media (max-width:$movil) {
+   
+.landing-page main{
+    padding: 0;
+    padding-bottom: 10px;
+}
 }
