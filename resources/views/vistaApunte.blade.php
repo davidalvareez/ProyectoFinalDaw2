@@ -6,7 +6,7 @@
     <title>Apunte</title>
 </head>
 <body class="vista-apuntes">
-    @include('template.menu') 
+    {{-- @include('template.menu')  --}}
     <header></header>
     <main>
         <div class="region">

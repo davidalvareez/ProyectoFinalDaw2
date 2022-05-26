@@ -28,6 +28,11 @@ textarea {
     resize: none;
     padding: 5px;
     font-size: 16px;
+    width: -webkit-fill-available;
+}
+
+.descargar {
+    width: 82%;
 }
 
 .vista-apuntes {
@@ -49,7 +54,8 @@ textarea {
                     .content-apuntes {
                         width: 100%;
                         iframe {
-                            width: 1280px;
+                            //width: 1280px;
+                            width: 100%;
                             height: 600px;
                             border-radius: 10px;
                         }
@@ -59,10 +65,10 @@ textarea {
                     @extend .flex;
                     .content-acciones {
                         width: 100%;
-                        padding: 4vh 48vh;
+                        //padding: 4vh 48vh;
                         display: -ms-grid;
                         display: grid;
-                        grid-gap: 0px 0px;
+                        grid-gap: 10px 0px;
                         -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
                         grid-template-columns: repeat(auto-fit, minmax(426px, 1fr));
                         .btn-acciones {
@@ -203,3 +209,23 @@ textarea {
         }
     }
 }
+
+//////////////////////////////////RESPONISVE//////////////////////////
+@media (max-width:1200px) {
+    .crear-coment {
+        width: 100%;
+    }
+    .titulo-coment {
+        margin: 30px 0px 30px 0px;
+    }
+}
+
+//////////////////////////////
+@media (max-width:600px) {
+    //<!—- Aquí van todos los estilos CSS -->
+}
+
+/////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////
+///////////////
