@@ -64,7 +64,25 @@ $(document).ready(function() {
 
         }
     });
+
+
+    var burger = $(".menu .widget-menu .burger .menu-burg");
+    burger.click(function() {
+        $(".widget-menu").toggleClass("open");
+    })
+    if ($(window).width() < 1200) {
+        $(".menu .widget-toggle").appendTo(".widget-menu ul")
+    }
+    $(window).on('resize', function() {
+        if ($(window).width() < 1200) {
+            $(".menu .widget-toggle").appendTo(".widget-menu ul")
+        }
+    });
 });
+
+
+
+
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();

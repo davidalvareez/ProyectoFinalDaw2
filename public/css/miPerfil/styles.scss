@@ -10,14 +10,6 @@ $grid-float-breakpoint: 1200px; //puntp de canvio en portatil pocho/tablet
 $movil: 800px;
 $mobil: 800px;
 //////////////////////////////////////GENERAL/////////////////////////////
-.glass-2 {
-    backdrop-filter: blur(10px) saturate(105%);
-    -webkit-backdrop-filter: blur(13px) saturate(180%);
-    background-color: #a3a8b062;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
-}
-
 .glass {
     background: rgba(255, 255, 255, 0.57);
     backdrop-filter: blur(13px) saturate(105%);
@@ -104,38 +96,44 @@ main {
             grid-row-gap: 30px;
             margin: 50px;
             @media (max-width: $grid-float-breakpoint) {
-                grid-template-rows: auto;
-                grid-template-columns: 1fr;
+                display: block;
+                margin: 40px 10px
             }
             >div {
-                &:nth-child(1) {
-                    grid-column: 1/4;
-                    grid-row: 1/2;
-                }
-                &:nth-child(2) {
-                    grid-column: 1/2;
-                    grid-row: 2/4;
-                }
-                &:nth-child(3) {
-                    grid-column: 2/2;
-                    grid-row: 2/4;
-                }
-                &:nth-child(4) {
-                    grid-column: 3/3;
-                    grid-row: 2/3;
-                }
-                &:nth-child(5) {
-                    grid-column: 3/3;
-                    grid-row: 3/3;
-                }
-                &:nth-child(6) {
-                    grid-column: 1/4;
-                    grid-row: 4/4;
+                margin: 15px;
+                @media (min-width: $grid-float-breakpoint) {
+                    &:nth-child(1) {
+                        grid-column: 1/4;
+                        grid-row: 1/2;
+                    }
+                    &:nth-child(2) {
+                        grid-column: 1/2;
+                        grid-row: 2/4;
+                    }
+                    &:nth-child(3) {
+                        grid-column: 2/2;
+                        grid-row: 2/4;
+                    }
+                    &:nth-child(4) {
+                        grid-column: 3/3;
+                        grid-row: 2/3;
+                    }
+                    &:nth-child(5) {
+                        grid-column: 3/3;
+                        grid-row: 3/3;
+                    }
+                    &:nth-child(6) {
+                        grid-column: 1/4;
+                        grid-row: 4/4;
+                    }
                 }
             }
             .region-header {
                 @include flex-cv($d: row);
                 @extend .glass;
+                @media (max-width: $grid-float-breakpoint) {
+                    padding: 15px;
+                }
                 .content-header {
                     @include flex-cv($d: row);
                     .btn-glass {
