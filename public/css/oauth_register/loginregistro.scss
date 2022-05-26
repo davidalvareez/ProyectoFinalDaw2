@@ -65,6 +65,16 @@
 
 .pizq {
     float: left;
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
+}
+
+.pizq2 {
+    float: left;
+    @media (max-width: 600px) {
+        font-size: 10px;
+    }
 }
 
 .pder {
