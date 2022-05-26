@@ -117,8 +117,8 @@ class moderadorController extends Controller
                             $msj = "Querido/a $nombreApellido nuestro departamento responde a su demanda hacia el comentario, reprendiendo las acciones necesarias para mejorar la plataforma y el correcto funcionamiento de esta. 
                             Se censurará dicho contenido junto con una amonestación al usuario. 
                             El equipo de Note Hub le desea un cordial saludo.";
-                            DB::delete("DELETE FROM tbl_comentarios WHERE id = ?",[$datosDenuncia->id_comentario]);
                             DB::delete("DELETE FROM tbl_denuncias WHERE id = ?",[$datosDenuncia->id]);
+                            DB::delete("DELETE FROM tbl_comentarios WHERE id = ?",[$datosDenuncia->id_comentario]);
                             $datos = array('message'=>$msj);
                             $enviar = new sendMail($datos);
                             $enviar->sub = $sub;
@@ -138,13 +138,13 @@ class moderadorController extends Controller
                             $msj = "Querido/a $nombreApellido nuestro departamento responde a su demanda hacia el documento, reprendiendo las acciones necesarias para mejorar la plataforma y el correcto funcionamiento de esta. 
                             Se censurará dicho contenido junto con una amonestación al usuario. 
                             El equipo de Note Hub le desea un cordial saludo.";
-                            $existComment = DB::SELECT("SELECT * FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
-                            if (count($existComment) != 0) {
-                                DB::delete("DELETE FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
-                            }
                             $exitDenuncia =DB::select("SELECT * FROM tbl_denuncias WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
                             if (count($exitDenuncia) != 0) {
                                 DB::delete("DELETE FROM tbl_denuncias WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                            }
+                            $existComment = DB::SELECT("SELECT * FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
+                            if (count($existComment) != 0) {
+                                DB::delete("DELETE FROM tbl_comentarios WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
                             }
                             $existMultimedia = DB::select("SELECT * FROM tbl_multimedia WHERE id = ?",[$datosDenuncia->id_contenido]);
                             if (count($existMultimedia) != 0) {

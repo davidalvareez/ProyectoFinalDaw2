@@ -3,8 +3,10 @@
     backdrop-filter: blur(10px) saturate(105%);
     -webkit-backdrop-filter: blur(13px) saturate(180%);
     background-color: #a3a8b062;
+    //background: rgba(255, 255, 255, 0.57);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    //border: 1px solid rgba(255, 255, 255, 0.125);
+    border: 1px solid rgba(255, 255, 255, 0.866);
 }
 
 .glass-admin {
@@ -21,10 +23,12 @@
     border: 1px solid rgba(255, 255, 255, 0.866);
     transition: all 0.7s;
 }
+
 .glass-saturate {
     @extend .glass-5;
     background: rgba(255, 255, 255, 0.87) !important;
 }
+
 .allwh {
     height: 100%;
     width: 100%;

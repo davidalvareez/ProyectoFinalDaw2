@@ -15,7 +15,7 @@ function llamadaAjax() {
     return xmlhttp;
 }
 
-function addcomment() {
+function addcomment(my_id) {
     let form = document.getElementById("formAddComment");
     let token = document.getElementById('token').getAttribute("content");
     let formData = new FormData(form);
@@ -37,8 +37,14 @@ function addcomment() {
                         </div>
                         <div style="float:left">
                             <img src="../storage/${respuesta.comentarios[i].img_avatar}" alt="avatar" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
-                        </div>
-                    </div>
+                        </div>`
+                    if (respuesta.comentarios[i].id_usu != my_id) {
+                        recarga += `<div style="float:left">
+                                        <img src="../media/vistaapuntes/denuncia.png" onclick="denunciarComentario(${respuesta.comentarios[i].id_usu},${respuesta.comentarios[i].id},${respuesta.comentarios[i].id_contenido});" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
+                                    </div>`;
+                    }
+
+                    recarga += `</div>
                     <div class="nota-resta">
                         <label class="rating-label">
                             <input
