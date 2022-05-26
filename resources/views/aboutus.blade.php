@@ -12,7 +12,7 @@
             <div class="content-region">
                 <div class="presentacion">
                     <div class="content-presentacion">
-                        <h1>Nuestro equipo</h1>
+                        <h1 class="titulo-presentacion">Nuestro equipo</h1>
                         <div class="alineacion">
                             <div class="carta cartadavid" data-aos="zoom-in-up">
                                 <div class="content-carta">
@@ -29,7 +29,7 @@
                             <div class="carta cartamarc" data-aos="zoom-in-up">
                                 <div class="content-carta">
                                     <img class="img-marc" src="{!! asset ('media/aboutus/img-aboutus/marc.png') !!}" alt="" srcset="">
-                                    <h3>Marc Ortiz García</h3>
+                                    <h3>Marc Ortiz González</h3>
                                     <h4>Departamento de Frontend</h4>
                                     <img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/rocket/rocket-dynamic-color.png') !!}" alt="" srcset=""><img class="icono-carta" src="{!! asset ('media/3Dicons-dinamicos/icons/png/painting-brush/paint-brush-dynamic-color.png') !!}" alt="" srcset="">
                                 </div>

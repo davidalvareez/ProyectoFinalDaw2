@@ -408,8 +408,25 @@ body {
   background: var(--svgColor2);
 }
 
+.darkmode .owl-carousel .owl-nav .owl-prev span, .darkmode .owl-carousel .owl-nav .owl-next span {
+  color: var(--white);
+}
+
 main {
-  padding-top: calc(20px + 3vh);
+  padding-top: calc(10vh + 50px);
+}
+
+@media (max-width: 1200px) {
+  main {
+    padding-top: calc(30vh - 105px);
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: calc(40vh - 105px);
+  }
 }
 
 .background {
@@ -1031,6 +1048,23 @@ main {
 
 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a {
   color: var(--white);
+}
+
+.owl-carousel .owl-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.owl-carousel .owl-nav .owl-next span, .owl-carousel .owl-nav .owl-prev span {
+  font-size: 100px;
 }
 
 .swal2-container .swal2-html-container .swal-estudios {
