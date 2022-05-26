@@ -6,7 +6,7 @@
   <title>Apunte</title>
 </head>
 <body class="vista-apuntes">
-  {{-- @include('template.menu')  --}}
+  @include('template.menu') 
   <header></header>
   <main>
     <div class="region region1">
@@ -17,12 +17,12 @@
               <iframe id="framePDF" src="{{$path}}#toolbar=0" type="application/pdf"></iframe>
             @elseif($apunte[0]->extension_contenido == '.jpeg' || $apunte[0]->extension_contenido == '.jpg' || $apunte[0]->extension_contenido == '.png')
               <img src="{{$path}}">
-            @endif"
+            @endif
           </div>
         </div>
         <div class="acciones">
           <div class="content-acciones">
-            <div class="descargar">
+            <div>
               <form action="{{url('download')}}" {{-- onsubmit="return false;" --}} method="POST"> 
                 @csrf
                 <input type="hidden" name="id" value="{{$apunte[0]->id}}">
@@ -31,7 +31,7 @@
             </div>
             <!--DENUNCIAR COMENTARIO-->
             @if ($apunte[0]->id_usu != Session::get('user')->id)
-              <div class="descargar">
+              <div>
                 <button class="btn-glass" onclick="denunciarApunte({{$apunte[0]->id_usu}},{{$apunte[0]->id}});">Denunciar</button>
               </div>
             @endif
@@ -44,92 +44,89 @@
     <div class="region region2">
       <div class="content-region">
         <div class="glassland">
-          <div class="content-glassland">
-            <div class="crearcomentario-content-glassland">
-              <div>
-                <h3 class="titulo-coment">Dinos tu opinión sobre el apunte</h3>
-              </div>
-              <!--formulario para comentar-->
-              <div>
-                <form id="formAddComment" onsubmit="addcomment({{Session::get('user')->id}}); return false;" method="post">
-                  <div class="nota-resta">
-                    <div class="crear-coment">
-                      <label class="rating-label">
-                        <input
-                        class="rating"
+          <div class="crearcomentario-content-glassland">
+            <div>
+              <h3 class="titulo-coment">Dinos tu opinión sobre el apunte</h3>
+            </div>
+            <!--formulario para comentar-->
+            <div>
+              <form class="formulario-grid" id="formAddComment" onsubmit="addcomment({{Session::get('user')->id}}); return false;" method="post">
+                <div>
+                  <div>
+                    <label class="rating-label">
+                      <input
+                      class="rating"
+                      max="5"
+                      min="0"
+                      oninput="this.style.setProperty('--value', this.value)"
+                      step="0.5"
+                      type="range"
+                      value="3.5"
+                      style="--value:3.5;"
+                      name="val_comentario"
+                      >
+                    </label>
+                  </div>
+                  <div>
+                    <textarea name="desc_comentario" cols="60" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
+                  </div>
+                  <div>
+                    <input type="hidden" name="id_contenido" value={{$apunte[0]->id}}>
+                  </div>
+                  <div>
+                    <input class="btn-glass-negro" type="submit" value="Enviar">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="comentario-content-glassland">
+            <div>
+              <h3>Comentarios</h3>
+            </div>
+            <div id="comentarios">
+              <!--COMENTARIOS-->
+              @if (count($comentarios) > 0)
+                @foreach($comentarios as $comentario)
+                  <div>
+                    <div>
+                      <h4>{{$comentario->nick_usu}}</h4>
+                    </div>
+                    <div>
+                      <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px">
+                    </div>
+                      <!--DENUNCIAR COMENTARIO-->
+                      @if ($comentario->id_usu != Session::get('user')->id)
+                        <div>
+                          <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" onclick="denunciarComentario({{$comentario->id_usu}},{{$comentario->id}},{{$apunte[0]->id}});" alt="" width="30px" height="30px" cursor: pointer;">
+                        </div>
+                      @endif
+                  </div>
+                  <div>
+                    <label class="rating-label">
+                      <input
+                        class="rating-small"
                         max="5"
                         min="0"
                         oninput="this.style.setProperty('--value', this.value)"
                         step="0.5"
                         type="range"
-                        value="3.5"
-                        style="--value:3.5;"
-                        name="val_comentario"
+                        value="{{$comentario->val_comentario}}"
+                        style="--value:{{$comentario->val_comentario}};"
+                        disabled
                         >
-                      </label>
-                    </div>
-                    <div class="crear-coment">
-                      <textarea name="desc_comentario" cols="60" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
-                    </div>
-                    <div>
-                      <input type="hidden" name="id_contenido" value={{$apunte[0]->id}}>
-                    </div>
-                    <div class="crear-coment">
-                      <input class="btn-glass-negro" type="submit" value="Enviar">
-                    </div>
+                    </label>
                   </div>
-                </form>
-              </div>
+                  <div>
+                    <p id="{{$comentario->id}}">{{$comentario->desc_comentario}}</p>
+                  </div>
+                @endforeach
+              @else
+                <!--TEXTO SI NO HAY COMENTARIOS-->
+                <p>Actualmente no hay comentarios :)</p>
+              @endif
             </div>
           </div>
-              <div class="content-glassland">
-                <div class="comentario-content-glassland">
-                    <h3>Comentarios</h3>
-                    <div id="comentarios">
-                        <!--COMENTARIOS-->
-                        @if (count($comentarios) > 0)
-                            @foreach($comentarios as $comentario)
-                            <div>
-                                <div>
-                                    <h4>{{$comentario->nick_usu}}</h4>
-                                </div>
-                                <div>
-                                    <img src="{{asset('storage').'/'.$comentario->img_avatar}}" alt="" width="50px" height="50px">
-                                </div>
-                                <!--DENUNCIAR COMENTARIO-->
-                                @if ($comentario->id_usu != Session::get('user')->id)
-                                    <div>
-                                        <img src="{!! asset ('media/vistaapuntes/denuncia.png') !!}" onclick="denunciarComentario({{$comentario->id_usu}},{{$comentario->id}},{{$apunte[0]->id}});" alt="" width="30px" height="30px" cursor: pointer;">
-                                    </div>
-                                @endif
-                            </div>
-                            <div>
-                                <label class="rating-label">
-                                    <input
-                                        class="rating-small"
-                                        max="5"
-                                        min="0"
-                                        oninput="this.style.setProperty('--value', this.value)"
-                                        step="0.5"
-                                        type="range"
-                                        value="{{$comentario->val_comentario}}"
-                                        style="--value:{{$comentario->val_comentario}};"
-                                        disabled
-                                        >
-                                </label>
-                            </div>
-                            <div>
-                                <p id="{{$comentario->id}}">{{$comentario->desc_comentario}}</p>
-                            </div>
-                            @endforeach
-                        @else
-                            <!--TEXTO SI NO HAY COMENTARIOS-->
-                            <p>Actualmente no hay comentarios :)</p>
-                        @endif
-                    </div>
-                </div>
-              </div>
-            </div>
         </div>
       </div>
     </div>

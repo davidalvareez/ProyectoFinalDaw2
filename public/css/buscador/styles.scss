@@ -216,7 +216,8 @@ body {
 ///////////////////////////////77
 .main-page {
     .region-header {
-        height: 40vh;
+        //height: 40vh;
+        height: 50vh;
         .content-header {
             @extend .allwh;
             .widget-search {
@@ -225,12 +226,13 @@ body {
                 >.container {
                     @extend .flex-cv;
                     @extend .glass-2;
-                    width: 62vw;
-                    height: 20vh;
+                    width: 90vw;
+                    height: 15vh;
                 }
                 .searchbar {
                     max-width: 840px;
-                    width: 100%;
+                    //width: 100%;
+                    width: 65%;
                     padding: 15px 35px;
                     background-color: #ff7575;
                     border-radius: 20px;
@@ -564,45 +566,44 @@ body {
 }
 
 /////profesores
-
 .container-grid {
-    .grid-cartas{
+    .grid-cartas {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         grid-gap: 2em;
-        .user-card{
+        .user-card {
             @extend .glass-2;
             @extend .flex-cv;
             flex-flow: column;
             min-height: 20rem;
             padding: calc(10px + 1.5vh) calc(10px + 2vw);
-            .image-user{
-                img{
+            .image-user {
+                img {
                     width: 15rem;
                     height: 15rem;
                     background: blue;
                 }
             }
-            .name-surname{
-                .name{}
-                .surname{}
+            .name-surname {
+                .name {}
+                .surname {}
             }
-            .actions-user{
-                .two{
+            .actions-user {
+                .two {
                     display: flex;
                     flex-flow: row;
                     justify-content: center;
                     align-items: center;
                     padding: 15px;
-                    .show-estudios{
+                    .show-estudios {
                         width: 50%;
                     }
-                    .mostrar-cv{
+                    .mostrar-cv {
                         width: 50%;
                     }
                 }
-                .one{
-                    .contact-me{
+                .one {
+                    .contact-me {
                         width: 100%;
                     }
                 }
@@ -610,16 +611,17 @@ body {
         }
     }
 }
+
 @media (max-width:1200px) {
     //<!—- Aquí van todos los estilos CSS -->
 }
 
 //////////////////////////////
 @media (max-width:600px) {
-    main{
+    main {
         padding: 10vh 4vw !important;
     }
-    .main-page .region-header .content-header .widget-search > .container{
+    .main-page .region-header .content-header .widget-search>.container {
         width: 90vw;
         height: 20vh;
     }
