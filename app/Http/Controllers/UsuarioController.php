@@ -533,19 +533,23 @@ class UsuarioController extends Controller
         }
     /*Profesores*/
         public function MostrarProfesores(){
-            //Todos los profes
-            $MostrarProfesores = DB::select("SELECT user.*,users.uuid,estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
-            avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
-            cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
-            LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
-            INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
-            INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
-            LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
-            JOIN users ON users.id = user.id
-            WHERE user.id_rol = ?",[4]);
-            //Todos los cursos
-            $allCursos = DB::select("SELECT * FROM tbl_cursos GROUP BY nombre_curso ORDER BY id ASC");
-            return view ('profesores',compact('MostrarProfesores','allCursos'));
+            if (session()->get('user')) {
+                //Todos los profes
+                $MostrarProfesores = DB::select("SELECT user.*,users.uuid,estudios.id_usu, estudios.id_curso, avatar.tipo_avatar,
+                avatar.img_avatar, avatar.id_usu, cursos.nombre_curso, cursos.nombre_corto_curso, cursos.tipo_curso,
+                cursos.id_centro,cv.nombre_curriculum FROM tbl_usuario user
+                LEFT JOIN tbl_avatar avatar ON user.id = avatar.id_usu
+                INNER JOIN tbl_estudios estudios ON user.id = estudios.id_usu
+                INNER JOIN tbl_cursos cursos ON cursos.id = estudios.id_curso
+                LEFT JOIN tbl_curriculum cv ON cv.id_usu = user.id
+                JOIN users ON users.id = user.id
+                WHERE user.id_rol = ?",[4]);
+                //Todos los cursos
+                $allCursos = DB::select("SELECT * FROM tbl_cursos GROUP BY nombre_curso ORDER BY id ASC");
+                return view ('profesores',compact('MostrarProfesores','allCursos'));
+            }else{
+                return redirect('login');
+            }
         }
 
         public function multiplyFilterProfesores(Request $request){
