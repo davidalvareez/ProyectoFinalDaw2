@@ -13,6 +13,7 @@
     </div>
     <div class="chat-box-content" wire:poll.keep-alive>
         <div class="conversation-group">
+            @if (isset($contacts))
             @forelse ($contacts as $user)
                 <a href="{{ route('chat_with', $user->uuid) }}">
                     <div class="contact">
@@ -33,6 +34,9 @@
             @empty
                 <center>No hay ningun chat</center>
             @endforelse
+            @else
+            <script type="text/javascript">window.location.href="login"</script>
+            @endif
         </div>
     </div>
 </div>
