@@ -3,7 +3,7 @@
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+  border: 1px solid rgba(255, 255, 255, 0.866);
 }
 
 .glass-admin {
@@ -1163,6 +1163,22 @@ main {
 
 .pizq {
   float: left;
+}
+
+@media (max-width: 600px) {
+  .pizq {
+    font-size: 15px;
+  }
+}
+
+.pizq2 {
+  float: left;
+}
+
+@media (max-width: 600px) {
+  .pizq2 {
+    font-size: 10px;
+  }
 }
 
 .pder {

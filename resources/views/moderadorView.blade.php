@@ -44,7 +44,7 @@
                                                 <th scope="col">Descripción</th>
                                                 <th scope="col">Acusado</th>
                                                 <th scope="col">Demandante</th>
-                                                <th scope="col" colspan="2">Acciones</th>
+                                                <th scope="col" colspan="3">Acciones</th>
                                             </tr>
                                             @foreach($moderador as $registro)
                                             <tr>
@@ -56,9 +56,9 @@
                                                 <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones({{$registro->id}},'{{$registro->nick_acusado}}');return false;">Opciones</button></td>
                                                 <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar({{$registro->id}},'{{$registro->nick_demandante}}');return false;">Eliminar</button></td>
                                                 @if ($registro->tipus_denuncia == "Comentario")
-                                                <td><button class= "btn btn-danger" type="submit" value="Ver comentario" onclick="window.location.href='{{url('apuntes/'.$registro->id_contenido.'#'.$registro->id)}}';return false;">Ver comentario</button></td>
+                                                <td><button class= "btn btn-warning" type="submit" value="Ver comentario" onclick="window.location.href='{{url('apuntes/'.$registro->id_contenido.'#'.$registro->id)}}';return false;">Ver comentario</button></td>
                                                 @else
-                                                <td><button class= "btn btn-danger" type="submit" value="Ver apunte" onclick="window.location.href='{{url('apuntes/'.$registro->id_contenido)}}';return false;">Ver apunte</button></td>
+                                                <td><button class= "btn btn-warning" type="submit" value="Ver apunte" onclick="window.location.href='{{url('apuntes/'.$registro->id_contenido)}}';return false;">Ver apunte</button></td>
                                                 @endif
                                             </tr>
                                             @endforeach

@@ -53,7 +53,7 @@
                                 <h3 class="titulo-coment">Dinos tu opinión sobre el apunte</h3>
                                 <div>
                                     <!--formulario para comentar-->
-                                    <form id="formAddComment" onsubmit="addcomment(); return false;" method="post">
+                                    <form id="formAddComment" onsubmit="addcomment({{Session::get('user')->id}}); return false;" method="post">
                                         <div class="nota-resta">
                                             <div class="crear-coment">
                                                 <label class="rating-label">
