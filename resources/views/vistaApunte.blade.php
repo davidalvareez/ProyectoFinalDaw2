@@ -68,7 +68,7 @@
                     </label>
                   </div>
                   <div>
-                    <textarea name="desc_comentario" cols="60" rows="5" maxlength="200" placeholder="Esribe tu opinión"></textarea>
+                    <textarea name="desc_comentario" cols="60" rows="5" maxlength="150" placeholder="Esribe tu opinión"></textarea>
                   </div>
                   <div>
                     <input type="hidden" name="id_contenido" value={{$apunte[0]->id}}>
