@@ -32,20 +32,20 @@ function addcomment(my_id) {
                 let recarga = "";
                 for (let i = 0; i < respuesta.comentarios.length; i++) {
                     recarga += `<div>
-                        <div style="float: left">
-                            <h4 style="margin-left:20px;">${respuesta.comentarios[i].nick_usu}</h4>
+                        <div>
+                            <h4>${respuesta.comentarios[i].nick_usu}</h4>
                         </div>
-                        <div style="float:left">
-                            <img src="../storage/${respuesta.comentarios[i].img_avatar}" alt="avatar" width="50px" height="50px" style="border-radius: 30px; margin-left:20px;">
+                        <div>
+                            <img src="../storage/${respuesta.comentarios[i].img_avatar}" alt="avatar" width="50px" height="50px">
                         </div>`
                     if (respuesta.comentarios[i].id_usu != my_id) {
-                        recarga += `<div style="float:left">
-                                        <img src="../media/vistaapuntes/denuncia.png" onclick="denunciarComentario(${respuesta.comentarios[i].id_usu},${respuesta.comentarios[i].id},${respuesta.comentarios[i].id_contenido});" alt="" width="30px" height="30px" style="margin-left:20px; cursor: pointer;">
+                        recarga += `<div>
+                                        <img src="../media/vistaapuntes/denuncia.png" onclick="denunciarComentario(${respuesta.comentarios[i].id_usu},${respuesta.comentarios[i].id},${respuesta.comentarios[i].id_contenido});" alt="" width="30px" height="30px" cursor: pointer;">
                                     </div>`;
                     }
 
                     recarga += `</div>
-                    <div class="nota-resta">
+                    <div>
                         <label class="rating-label">
                             <input
                               class="rating-small"
@@ -61,7 +61,7 @@ function addcomment(my_id) {
                         </label>
                     </div>
                     <div>
-                        <p class="texto-coment" id="${respuesta.comentarios[i].id}">${respuesta.comentarios[i].desc_comentario}</p>
+                        <p id="${respuesta.comentarios[i].id}">${respuesta.comentarios[i].desc_comentario}</p>
                     </div>`;
                 }
                 alertify.success('Comentario publicado correctamente');
