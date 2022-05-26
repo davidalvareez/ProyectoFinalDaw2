@@ -38,7 +38,7 @@ function showAll() {
                 <th scope="col">Descripción</th>
                 <th scope="col">Acusado</th>
                 <th scope="col">Demandante</th>
-                <th scope="col" colspan="2">Acciones</th>
+                <th scope="col" colspan="3">Acciones</th>
             </tr>`;
             if (respuesta.length == 0) {
                 recarga += `<h1>No se han encontrado registros...</h1>`
@@ -51,8 +51,13 @@ function showAll() {
                     <td>${respuesta[i].acusado}</td>
                     <td>${respuesta[i].demandante}</td>
                     <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opciones(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
-                    <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
-                </tr>`;
+                    <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>`
+                    if (respuesta[i].tipus_denuncia == "Comentario") {
+                        recarga += `<td><button class= "btn btn-warning" type="submit" value="Ver comentario" onclick="window.location.href='apuntes/${respuesta[i].id_contenido}#${respuesta[i].id}';return false;">Ver comentario</button></td>`;
+                    } else {
+                        recarga += `<td><button class= "btn btn-warning" type="submit" value="Ver apunte" onclick="window.location.href='apuntes/${respuesta[i].id_contenido}';return false;">Ver apunte</button></td>`;
+                    }
+                    recarga += `</tr>`;
                 }
             }
             recarga += `</table>
@@ -82,7 +87,7 @@ function showComments() {
                 <th scope="col">Descripción</th>
                 <th scope="col">Acusado</th>
                 <th scope="col">Demandante</th>
-                <th scope="col" colspan="2">Acciones</th>
+                <th scope="col" colspan="3">Acciones</th>
             </tr>`;
             if (respuesta.length == 0) {
                 recarga += `<h1>No se han encontrado registros...</h1>`
@@ -96,6 +101,7 @@ function showComments() {
                     <td>${respuesta[i].demandante}</td>
                     <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesComentario(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
                     <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarComentario(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
+                    <td><button class= "btn btn-warning" type="submit" value="Ver comentario" onclick="window.location.href='apuntes/${respuesta[i].id_contenido}#${respuesta[i].id}';return false;">Ver comentario</button></td>
                     </tr>`;
                 }
             }
@@ -140,6 +146,7 @@ function showNotes() {
                     <td>${respuesta[i].demandante}</td>
                     <td><button class="btn btn-secondary" type="submit" value="Edit" onclick="opcionesApunte(${respuesta[i].id},'${respuesta[i].nick_acusado}');return false;">Opciones</button></td>
                     <td><button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminarApunte(${respuesta[i].id},'${respuesta[i].nick_demandante}');return false;">Eliminar</button></td>
+                    <td><button class= "btn btn-warning" type="submit" value="Ver apunte" onclick="window.location.href='apuntes/${respuesta[i].id_contenido}';return false;">Ver apunte</button></td>
                     </tr>`;
                 }
                 recarga += `</table>

@@ -120,7 +120,7 @@
                                         @enderror
                                     </div>
                                     <div>
-                                        <div style="float: left">
+                                        <div class="pizq2">
                                             <a href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=(INSERTE NOMBRE DEL CENTRO) no se encuentra en el selector de centros.">
                                                 <p>No encuentras tu centro?</p>
                                             </a>
@@ -211,7 +211,7 @@
                                         </datalist>
                                     </div>
                                     <div>
-                                        <div style="float: left">
+                                        <div class="pizq2">
                                             <a href="mailto:notehubdaw2@gmail.com?subject=Petición de centro&body=(INSERTE NOMBRE DEL CENTRO) no se encuentra en el selector de centros.">
                                                 <p>No encuentras tu centro?</p>
                                             </a>

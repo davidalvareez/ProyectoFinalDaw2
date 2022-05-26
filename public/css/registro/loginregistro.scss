@@ -1,13 +1,9 @@
 @import '../base/base.scss';
 //////////////////////////////////RESPONISVE//////////////////////////
-
-
 /////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //////////////////////////////
 ///////////////
-
-
 .glassbtn {
     padding: 10px 10px 10px 10px;
     width: 100%;
@@ -74,6 +70,16 @@
 
 .pizq {
     float: left;
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
+}
+
+.pizq2 {
+    float: left;
+    @media (max-width: 600px) {
+        font-size: 10px;
+    }
 }
 
 .pder {
@@ -352,14 +358,9 @@
     }
 }
 
-
-
-
 @media (max-width:1200px) {
     //<!—- Aquí van todos los estilos CSS -->
 }
 
 //////////////////////////////
-@media (max-width:600px) {
-
-}
+@media (max-width:600px) {}
