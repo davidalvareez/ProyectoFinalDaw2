@@ -13,7 +13,7 @@
   border-radius: 12px;
 }
 
-.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse {
+.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse, .modal-content-registro {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -1265,12 +1265,11 @@ main {
   /* Black w/ opacity */
 }
 
-.modal-content, .modal-content-avatar {
-  background-color: #fefefe;
+.modal-content-registro {
   margin: auto;
-  padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 79%;
+  height: 69%;
 }
 
 .aceptarbtn {
@@ -1364,6 +1363,10 @@ main {
 
 @media (max-width: 1200px) {
   .login-page main .region1 .content-region {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1431,7 +1434,7 @@ main {
 
 @media (min-width: 1200px) {
   .registro-page main .region1 {
-    padding: 0% 0% 5% 0%;
+    padding: 0% 0% 5% 10%;
   }
 }
 
@@ -1475,5 +1478,33 @@ main {
 
 .registro-page main .alienar-2 {
   padding: 80px 0px 20px 0px;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    padding: 3vh 0vh;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 16px 3px;
+    -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    padding: 3vh 0vh;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 16px 2px;
+    -ms-grid-columns: minmax(500px, 1fr) [auto-fit];
+    grid-template-columns: repeat(auto-fit, minmax(139px, 1fr));
+  }
+  .modal-content-registro {
+    margin: auto;
+    border: 1px solid #888;
+    width: auto;
+    height: auto;
+  }
 }
 /*# sourceMappingURL=loginregistro.css.map */

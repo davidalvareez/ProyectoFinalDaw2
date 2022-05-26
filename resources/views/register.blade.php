@@ -84,7 +84,7 @@
                     <div class="content-glassland">
                         <div class="registro-content-glassland">
                             <div id="myModal" class="modal">
-                                <div class="modal-content">
+                                <div class="modal-content-registro">
                                     <span class="close" onclick="closeModal();">&times;</span>
                                     <br><br>
                                     <h1>Escoge tu avatar</h1>

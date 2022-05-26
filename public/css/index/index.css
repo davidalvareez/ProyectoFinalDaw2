@@ -1284,4 +1284,13 @@ main {
 .landing-page main .region4 .content-region .absglass4 .content-absglass .sabermas-content-absglass {
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .landing-page main .region-portada .absglassportada {
+    position: relative;
+  }
+  .absglassportada {
+    position: relative;
+  }
+}
 /*# sourceMappingURL=index.css.map */
