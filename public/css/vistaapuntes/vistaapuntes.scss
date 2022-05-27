@@ -1,6 +1,10 @@
 @import '../base/base.scss';
 .titulo-coment {
-    margin: 30px 0px 30px 0px;
+    padding: 30px 0px 80px 0px;
+}
+
+.titulo2-coment {
+    padding: 80px 0px 40px 0px;
 }
 
 textarea {
@@ -8,6 +12,36 @@ textarea {
     padding: 5px;
     font-size: 16px;
     width: 90%;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
+.comentar-apunte-box {
+    width: 100%;
+    float: left;
+}
+
+.comentar-apunte {
+    width: 33.33%;
+    float: left;
+}
+
+.comentario-texto {
+    padding-bottom: 50px;
+}
+
+.comentario-box {
+    width: 100%;
+}
+
+.comentario-imagen-box {
+    padding: 10px 0px 10px 0px;
+}
+
+.comentario-imagen-usuario {
+    width: 50px;
+    //height: 50px;
+    border-radius: 3px;
 }
 
 
@@ -122,7 +156,7 @@ textarea {
         width: 100%;
         .region {
             .glassland {
-                @extend .glass-2;
+                @extend .glass-5;
             }
         }
         .region1 {
@@ -164,17 +198,18 @@ textarea {
             padding-bottom: 60px;
             @include flex-cv($d: column);
             .content-region {
-                width: auto;
-                @extend .flex;
+                //width: auto;
+                //@extend .flex;
+                width: 90%;
                 .glassland {
                     @include flex-cv($d: column);
-                    .content-glassland {
-                        .crearcomentario-content-glassland {
-                            //@extend .flex;
-                        }
-                        .comentario-content-glassland {
-                            //@extend .flex;
-                        }
+                    .crearcomentario-content-glassland {
+                        width: 100%;
+                        text-align: center;
+                    }
+                    .comentario-content-glassland {
+                        width: 100%;
+                        text-align: center;
                     }
                 }
             }
@@ -188,6 +223,12 @@ textarea {
     .rating {
         //padding: 0px 0px 0px 10vw;
         padding: auto;
+    }
+    .imagen-apuntes {
+        width: 90%;
+    }
+    .comentar-apunte {
+        width: 100%;
     }
 }
 

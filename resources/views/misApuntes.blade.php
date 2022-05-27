@@ -106,7 +106,7 @@
                                     </tr>
                                     @foreach($select as $apuntes)
                                     <tr>
-                                        <td onclick="window.location.href='{{url('apuntes/'.$apuntes->id)}}'">{{$apuntes->nombre_contenido}}{{$apuntes->extension_contenido}}</td>
+                                        <td style="cursor: pointer" onclick="window.location.href='{{url('apuntes/'.$apuntes->id)}}'">{{$apuntes->nombre_contenido}}{{$apuntes->extension_contenido}}</td>
                                         <td>{{$apuntes->fecha_publicacion_contenido}}</td>
                                         <td>
                                             <button class="btn-danger" type="submit" id="" onclick="eliminarApunte({{$apuntes->id}})">Eliminar</button>

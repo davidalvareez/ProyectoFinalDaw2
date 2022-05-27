@@ -469,18 +469,37 @@
                                 width: 0px;
                                 height: 0px;
                                 opacity: 0;
+                                padding: 0;
                             }
                             ul {
                                 list-style-type: none;
                                 display: flex;
                                 flex-flow: row wrap;
                                 justify-content: center;
+                                @media (max-width: $grid-float-breakpoint) {
+                                    width: 0px;
+                                    height: 0px;
+                                    opacity: 0;
+                                    padding: 0;
+                                }
                                 li {
                                     padding: 10px 15px;
+                                    @media (max-width: $grid-float-breakpoint) {
+                                        width: 0px;
+                                        height: 0px;
+                                        opacity: 0;
+                                        padding: 0;
+                                    }
                                     a {
                                         text-decoration: none;
                                         color: var(--white);
                                         span {}
+                                        @media (max-width: $grid-float-breakpoint) {
+                                            width: 0px;
+                                            height: 0px;
+                                            opacity: 0;
+                                            padding: 0;
+                                        }
                                     }
                                 }
                                 >.widget-toggle {
@@ -552,9 +571,20 @@
                                 height: inherit;
                                 opacity: 1;
                                 ul {
+                                    width: inherit;
+                                    height: inherit;
+                                    opacity: 1;
                                     @include flex-cv($d: column);
                                     li {
-                                        a {}
+                                        width: inherit;
+                                        height: inherit;
+                                        opacity: 1;
+                                        padding: 10px 15px;
+                                        a {
+                                            width: inherit;
+                                            height: inherit;
+                                            opacity: 1;
+                                        }
                                     }
                                 }
                             }
@@ -807,7 +837,7 @@
     ///////////////////////////////////////////////////////////////////
     /////////clase de las cartas de los apuntes
     .card {
-        @extend .glass-2;
+        @extend .glass-5;
         color: #555;
         padding: 15px;
         height: 300px;
@@ -993,5 +1023,3 @@
     ////////////////////////////////////////////////////////////////
     ///////////////////////Burger///////////////////////////////////
     ////////////////////////////////////////////////////////////////
-
-

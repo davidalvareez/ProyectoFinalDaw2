@@ -147,7 +147,7 @@ function apuntesAjax() {
             </tr>`;
             for (let i = 0; i < respuesta.length; i++) {
                 recarga += `<tr>
-                <td>${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
+                <td style="cursor: pointer">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
                 <td>${respuesta[i].fecha_publicacion_contenido}</td>
                 <td>
                     <button class="btn btn-danger" type="submit" id="" onclick="eliminarApunte(${respuesta[i].id})">Eliminar</button>

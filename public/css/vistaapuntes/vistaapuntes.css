@@ -1,4 +1,4 @@
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .vista-apuntes main .region .glassland {
+.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -13,7 +13,7 @@
   border-radius: 12px;
 }
 
-.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse {
+.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse, .card, .vista-apuntes main .region .glassland {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -24,7 +24,7 @@
 }
 
 .glass-saturate, .card > .container .reverse-card .container-reverse {
-  background: rgba(255, 255, 255, 0.87) !important;
+  background: rgba(255, 255, 255, 0.445) !important;
 }
 
 .allwh, .card > .container, .card > .container .front-card, .card > .container .front-card .container-front, .card > .container .reverse-card, .card > .container .reverse-card .container-reverse {
@@ -32,7 +32,7 @@
   width: 100%;
 }
 
-.flex, .vista-apuntes main .region1 .content-region .apuntes, .vista-apuntes main .region1 .content-region .acciones, .vista-apuntes main .region2 .content-region {
+.flex, .vista-apuntes main .region1 .content-region .apuntes, .vista-apuntes main .region1 .content-region .acciones {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -724,6 +724,7 @@ main {
     width: 0px;
     height: 0px;
     opacity: 0;
+    padding: 0;
   }
 }
 
@@ -741,13 +742,40 @@ main {
           justify-content: center;
 }
 
+@media (max-width: 1200px) {
+  .menu > .container > .row .widget-menu > .row nav ul {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    padding: 0;
+  }
+}
+
 .menu > .container > .row .widget-menu > .row nav ul li {
   padding: 10px 15px;
+}
+
+@media (max-width: 1200px) {
+  .menu > .container > .row .widget-menu > .row nav ul li {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    padding: 0;
+  }
 }
 
 .menu > .container > .row .widget-menu > .row nav ul li a {
   text-decoration: none;
   color: var(--white);
+}
+
+@media (max-width: 1200px) {
+  .menu > .container > .row .widget-menu > .row nav ul li a {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    padding: 0;
+  }
 }
 
 .menu > .container > .row .widget-menu > .row nav ul > .widget-toggle {
@@ -856,6 +884,9 @@ main {
 }
 
 .menu > .container > .row .widget-menu.open > .row nav ul {
+  width: inherit;
+  height: inherit;
+  opacity: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -872,6 +903,19 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
+}
+
+.menu > .container > .row .widget-menu.open > .row nav ul li {
+  width: inherit;
+  height: inherit;
+  opacity: 1;
+  padding: 10px 15px;
+}
+
+.menu > .container > .row .widget-menu.open > .row nav ul li a {
+  width: inherit;
+  height: inherit;
+  opacity: 1;
 }
 
 .menu > .container > .row .widget-menu.open > .row .burger {
@@ -1400,7 +1444,11 @@ main {
 }
 
 .titulo-coment {
-  margin: 30px 0px 30px 0px;
+  padding: 30px 0px 80px 0px;
+}
+
+.titulo2-coment {
+  padding: 80px 0px 40px 0px;
 }
 
 textarea {
@@ -1408,6 +1456,35 @@ textarea {
   padding: 5px;
   font-size: 16px;
   width: 90%;
+  border: solid 1px black;
+  border-radius: 5px;
+}
+
+.comentar-apunte-box {
+  width: 100%;
+  float: left;
+}
+
+.comentar-apunte {
+  width: 33.33%;
+  float: left;
+}
+
+.comentario-texto {
+  padding-bottom: 50px;
+}
+
+.comentario-box {
+  width: 100%;
+}
+
+.comentario-imagen-box {
+  padding: 10px 0px 10px 0px;
+}
+
+.comentario-imagen-usuario {
+  width: 50px;
+  border-radius: 3px;
 }
 
 /*ESTRELLAS*/
@@ -1590,7 +1667,7 @@ textarea {
 }
 
 .vista-apuntes main .region2 .content-region {
-  width: auto;
+  width: 90%;
 }
 
 .vista-apuntes main .region2 .content-region .glassland {
@@ -1612,10 +1689,26 @@ textarea {
           flex-flow: column wrap;
 }
 
+.vista-apuntes main .region2 .content-region .glassland .crearcomentario-content-glassland {
+  width: 100%;
+  text-align: center;
+}
+
+.vista-apuntes main .region2 .content-region .glassland .comentario-content-glassland {
+  width: 100%;
+  text-align: center;
+}
+
 @media (max-width: 1200px) {
   .rating-label,
   .rating {
     padding: auto;
+  }
+  .imagen-apuntes {
+    width: 90%;
+  }
+  .comentar-apunte {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=vistaapuntes.css.map */
