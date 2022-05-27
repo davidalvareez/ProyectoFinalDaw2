@@ -25,7 +25,7 @@
                 <div class="widget-logo">
                     <div class="row">
                         <div class="filter">
-                            <img class="logo" src="{{asset('storage/uploads/logo/logo1.png')}}" alt="">
+                            <img class="logo" src="{{asset('storage/uploads/logo/logoblanco.png')}}" alt="">
                         </div>
                     </div>
                 </div>

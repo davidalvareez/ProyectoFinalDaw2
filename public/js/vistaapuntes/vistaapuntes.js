@@ -25,42 +25,42 @@ function addcomment(my_id) {
     let ajax = llamadaAjax();
     ajax.open("POST", "comentar", true);
     ajax.onreadystatechange = function() {
-        if (ajax.readyState == 4 && ajax.status == 200) {
-            let respuesta = JSON.parse(this.responseText);
-            console.log(respuesta);
-            if (respuesta.resultado == "OK") {
-                let recarga = "";
-                for (let i = 0; i < respuesta.comentarios.length; i++) {
-                    recarga += `<div>
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                let respuesta = JSON.parse(this.responseText);
+                console.log(respuesta);
+                if (respuesta.resultado == "OK") {
+                    let recarga = "";
+                    for (let i = 0; i < respuesta.comentarios.length; i++) {
+                        recarga += `<div>
                         <div>
                             <h4>${respuesta.comentarios[i].nick_usu}</h4>
                         </div>
+                        <div class="comentario-imagen-box">
+                            <img src="../storage/${respuesta.comentarios[i].img_avatar}" alt="avatar" class="comentario-imagen-usuario">
+                        </div>
                         <div>
-                            <img src="../storage/${respuesta.comentarios[i].img_avatar}" alt="avatar" width="50px" height="50px">
-                        </div>`
-                    if (respuesta.comentarios[i].id_usu != my_id) {
-                        recarga += `<div>
-                                        <img src="../media/vistaapuntes/denuncia.png" onclick="denunciarComentario(${respuesta.comentarios[i].id_usu},${respuesta.comentarios[i].id},${respuesta.comentarios[i].id_contenido});" alt="" width="30px" height="30px" cursor: pointer;">
-                                    </div>`;
-                    }
-
-                    recarga += `</div>
-                    <div>
-                        <label class="rating-label">
-                            <input
-                              class="rating-small"
-                              max="5"
-                              min="0"
-                              oninput="this.style.setProperty('--value', this.value)"
-                              step="0.5"
-                              type="range"
-                              value="${respuesta.comentarios[i].val_comentario}"
-                              style="--value:${respuesta.comentarios[i].val_comentario}";"
-                              disabled
-                              >
-                        </label>
+                            <label class="rating-label">
+                                <input
+                                class="rating-small"
+                                max="5"
+                                min="0"
+                                oninput="this.style.setProperty('--value', this.value)"
+                                step="0.5"
+                                type="range"
+                                value="${respuesta.comentarios[i].val_comentario}"
+                                style="--value:${respuesta.comentarios[i].val_comentario}";"
+                                disabled
+                                >
+                            </label>
+                        </div>
                     </div>
-                    <div>
+                    ${respuesta.comentarios[i].id_usu != my_id
+                        ? `<div>
+                                <img src="../media/vistaapuntes/denuncia.png" onclick="denunciarComentario(${respuesta.comentarios[i].id_usu},${respuesta.comentarios[i].id},${respuesta.comentarios[i].id_contenido});" alt="" width="30px" height="30px" style="cursor: pointer">
+                            </div>`
+                        : ``
+                        }
+                    <div class="comentario-texto">
                         <p id="${respuesta.comentarios[i].id}">${respuesta.comentarios[i].desc_comentario}</p>
                     </div>`;
                 }

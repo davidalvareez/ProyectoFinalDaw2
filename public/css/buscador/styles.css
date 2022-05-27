@@ -1,7 +1,4 @@
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .card, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card,
-.main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card,
-.main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card,
-.main-page main .region-news .content-news .resultados .owl-carousel-2 .card, .main-page .region-header .content-header .widget-search > .container, .popup, .container-grid .grid-cartas .user-card {
+.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .popup, .container-grid .grid-cartas .user-card {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -16,7 +13,10 @@
   border-radius: 12px;
 }
 
-.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse {
+.glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .card, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card,
+.main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card,
+.main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card,
+.main-page main .region-news .content-news .resultados .owl-carousel-2 .card {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -27,7 +27,7 @@
 }
 
 .glass-saturate, .card > .container .reverse-card .container-reverse, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse {
-  background: rgba(255, 255, 255, 0.87) !important;
+  background: rgba(255, 255, 255, 0.445) !important;
 }
 
 .allwh, .card > .container, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container, .card > .container .front-card, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .front-card, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .front-card, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .front-card, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .front-card, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .front-card, .card > .container .front-card .container-front, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .front-card .container-front, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .front-card .container-front, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .front-card .container-front, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .front-card .container-front, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .front-card .container-front, .card > .container .reverse-card, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card, .card > .container .reverse-card .container-reverse, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page .region-header .content-header, .main-page .region-header .content-header .widget-search {
@@ -728,6 +728,7 @@ main {
     width: 0px;
     height: 0px;
     opacity: 0;
+    padding: 0;
   }
 }
 
@@ -745,13 +746,40 @@ main {
           justify-content: center;
 }
 
+@media (max-width: 1200px) {
+  .menu > .container > .row .widget-menu > .row nav ul {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    padding: 0;
+  }
+}
+
 .menu > .container > .row .widget-menu > .row nav ul li {
   padding: 10px 15px;
+}
+
+@media (max-width: 1200px) {
+  .menu > .container > .row .widget-menu > .row nav ul li {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    padding: 0;
+  }
 }
 
 .menu > .container > .row .widget-menu > .row nav ul li a {
   text-decoration: none;
   color: var(--white);
+}
+
+@media (max-width: 1200px) {
+  .menu > .container > .row .widget-menu > .row nav ul li a {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    padding: 0;
+  }
 }
 
 .menu > .container > .row .widget-menu > .row nav ul > .widget-toggle {
@@ -860,6 +888,9 @@ main {
 }
 
 .menu > .container > .row .widget-menu.open > .row nav ul {
+  width: inherit;
+  height: inherit;
+  opacity: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -876,6 +907,19 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
+}
+
+.menu > .container > .row .widget-menu.open > .row nav ul li {
+  width: inherit;
+  height: inherit;
+  opacity: 1;
+  padding: 10px 15px;
+}
+
+.menu > .container > .row .widget-menu.open > .row nav ul li a {
+  width: inherit;
+  height: inherit;
+  opacity: 1;
 }
 
 .menu > .container > .row .widget-menu.open > .row .burger {

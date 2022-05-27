@@ -51,6 +51,11 @@ $mobil: 800px;
     padding: 10px;
 }
 
+.fa-solid,
+.fas {
+    color: black !important;
+}
+
 @mixin flex-cv($d: row, $w: wrap) {
     display: flex;
     justify-content: center;

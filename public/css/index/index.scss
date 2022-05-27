@@ -70,7 +70,7 @@
                 }
             }
         }
-        .btn-absglass{
+        .btn-absglass {
             margin: 40px;
         }
         .region-portada {
@@ -82,7 +82,7 @@
                 height: 10%;
                 @extend .flex-cv;
                 @extend .glass-5;
-                @media (max-width:$tablet) {
+                @media (max-width: $tablet) {
                     width: 100%;
                 }
             }
@@ -100,7 +100,7 @@
                 .content-video {
                     width: 100%;
                     .imagen-difuminada {
-                        @media (max-width:$tablet){
+                        @media (max-width: $tablet) {
                             max-width: 250px;
                         }
                     }
@@ -115,7 +115,7 @@
                     width: 20%;
                     right: 216px;
                     top: 950px;
-                    @media (max-width:$tablet) {
+                    @media (max-width: $tablet) {
                         width: 100%;
                     }
                     .content-absglass {
@@ -142,7 +142,7 @@
                     .content-glassland {
                         .crearcuenta-content-glassland {
                             width: 60%;
-                            @media (max-width:$tablet) {
+                            @media (max-width: $tablet) {
                                 width: 100%;
                             }
                         }
@@ -157,7 +157,7 @@
                     .content-glassland {
                         .iniciarsesion-content-glassland {
                             width: 60%;
-                            @media (max-width:$tablet) {
+                            @media (max-width: $tablet) {
                                 width: 100%;
                             }
                             .iniciarsesion-btn-glassland {
@@ -182,7 +182,7 @@
                     left: 230px;
                     top: 1539px;
                     padding: 15px;
-                    @media (max-width:$tablet) {
+                    @media (max-width: $tablet) {
                         width: 100%;
                     }
                     .content-absglass {
@@ -214,7 +214,7 @@
                     .content-glassland {
                         .subirapuntes-content-glassland {
                             width: 60%;
-                            @media (max-width:$tablet) {
+                            @media (max-width: $tablet) {
                                 width: 100%;
                             }
                             .subirapuntes-btn-glassland {
@@ -239,7 +239,7 @@
                     right: 216px;
                     top: 1995px;
                     padding: 15px;
-                    @media (max-width:$tablet) {
+                    @media (max-width: $tablet) {
                         width: 100%;
                     }
                     .content-absglass {
@@ -271,7 +271,7 @@
                     .content-glassland {
                         .sabermas-content-glassland {
                             width: 60%;
-                            @media (max-width:$tablet) {
+                            @media (max-width: $tablet) {
                                 width: 100%;
                             }
                             .sabermas-btn-glassland {
@@ -296,7 +296,7 @@
                     left: 230px;
                     top: 2485px;
                     padding: 15px;
-                    @media (max-width:$tablet) {
+                    @media (max-width: $tablet) {
                         width: 100%;
                     }
                     .content-absglass {
@@ -324,15 +324,16 @@
         }
     }
 }
+
 @media (max-width:$grid-float-breakpoint) {
     //<!—- Aquí van todos los estilos CSS -->
 }
 
 //////////////////////////////
 @media (max-width:$movil) {
-   
-.landing-page main{
-    padding: 0;
-    padding-bottom: 10px;
-}
+    .landing-page main {
+        //padding: 0;
+        padding-top: calc(30vh - 105px);
+        padding-bottom: 30px;
+    }
 }
