@@ -26,7 +26,8 @@
 
 .glass-saturate {
     @extend .glass-5;
-    background: rgba(255, 255, 255, 0.87) !important;
+    background: rgba(255, 255, 255, 0.445) !important;
+    //background: transparent !important;
 }
 
 .allwh {
