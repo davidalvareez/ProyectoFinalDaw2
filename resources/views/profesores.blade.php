@@ -29,8 +29,10 @@
                 <div class="container">
                     <form onchange="advancedFilterProfesores();" method="POST" id="filterCurso">
                         @foreach($allCursos as $cursos)
+                        <div class="super-check">
                             <input type="checkbox" name="cursos" value="{{$cursos->nombre_curso}}"/>
                             <label name="{{$cursos->nombre_curso}}">{{$cursos->nombre_curso}}</label>
+                          </div>
                         @endforeach
                     </form>
                 </div>
@@ -53,13 +55,13 @@
                 </div>
                 <div class="actions-user">
                   <div class="two">
-                    <button class="show-estudios btn-glass" onclick="mostrarEstudios({{$Resultados->id}});">Mostrar Estudios</button>
+                    <button class="btn-glass" onclick="mostrarEstudios({{$Resultados->id}});">Estudios</button>
                     @if ($Resultados->nombre_curriculum != null)
-                    <button class="show-cv btn-glass" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar CV</button>
+                    <button class="btn-glass" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Curriculum</button>
                     @endif
                   </div>
                   <div class="one">
-                    <button class="contact-me btn-glass_b" onclick="window.location.href = '{{ url('notehub-chat/'.$Resultados->uuid)}}'">Contactar</button>
+                    <button class="btn-glass" onclick="window.location.href = '{{ url('notehub-chat/'.$Resultados->uuid)}}'">Contactar</button>
                   </div>
                 </div>
               </div>
@@ -67,28 +69,6 @@
               @endforeach
             </div>
           </div>
-            <table class="table table-striped table-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">Nombre Y Apellidos</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-                @foreach($MostrarProfesores as $Resultados)
-                <tr>
-                    <td>{{$Resultados->id}}</td>
-                    <td><img src="{{asset('storage').'/'.$Resultados->img_avatar}}" width="50"></td>
-                    <td>{{$Resultados->nombre_usu}} {{$Resultados->apellido_usu}}</td>
-                    <td><button class="boton_modificar" type="submit" onclick="mostrarEstudios({{$Resultados->id}});">Mostrar Estudios</button></td>
-                    @if ($Resultados->nombre_curriculum != null)
-                    <td><button class="boton_modificar" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar Curriculum</button></td>
-                    @else
-                    <td><p>No tiene curriculum</p></td>
-                    @endif
-                    <td><button onclick="window.location.href = '{{ url('notehub-chat/'.$Resultados->uuid)}}'" class="boton_modificar" type="submit" id="">Contactar</button></td>
-                </tr>
-                @endforeach
-            </table>
         </div>
     </main>
     @include('template.footer')
