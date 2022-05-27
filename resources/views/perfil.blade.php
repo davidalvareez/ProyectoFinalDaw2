@@ -55,7 +55,14 @@
                         <div class="region-foto">
                             <div class="content-foto">
                                 <div class="content-img">
+                                  <?php 
+                                    $split_img_avatar = explode(":",$perfilUser[0]->img_avatar);
+                                  ?>
+                                  @if ($split_img_avatar[0] == "https" || $split_img_avatar[0] == "http")
+                                    <img id ="imgAvatar" class="foto-perfil"alt="Foto Avatar Usuario" src="{{$perfilUser[0]->img_avatar}}">
+                                  @else
                                     <img id ="imgAvatar" class="foto-perfil"alt="Foto Avatar Usuario" src="{{asset('storage').'/'.$perfilUser[0]->img_avatar}}">
+                                  @endif
                                     @if (Session::get('user')->nick_usu == $perfilUser[0]->nick_usu)
                                       <a class="add-button" onclick="modalbox();return false;"><span class="fa-solid fa-pencil"></span></a>
                                     @endif
@@ -182,7 +189,14 @@
                                                 <div class="container-info">
                                                     <div class="avatar-user user-img">
                                                         <div class="filter">
+                                                          <?php
+                                                              $split_img = explode(":",$apunte->img_avatar);
+                                                          ?>
+                                                            @if ($split_img[0] == "https" || $split_img[0] == "http")
+                                                            <img src="{{$apunte->img_avatar}}" alt="" class="avatar img">
+                                                            @else
                                                             <img src="{{asset('storage').'/'.$apunte->img_avatar}}" alt="" class="avatar img">
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="container-text">
