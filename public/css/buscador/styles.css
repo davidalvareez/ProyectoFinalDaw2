@@ -372,7 +372,6 @@ body {
 
 .darkmode a {
   color: var(--svgColor2);
-  color: var(--white);
 }
 
 .darkmode h1 {
@@ -1409,10 +1408,6 @@ main {
 
 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card .container-reverse .bottom .buttons-actions button, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button {
   background: transparent;
-}
-
-.card > .container .reverse-card .container-reverse .bottom .buttons-actions button a, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a {
-  color: var(--white);
 }
 
 .owl-carousel .owl-nav {

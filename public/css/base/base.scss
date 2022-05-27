@@ -216,7 +216,7 @@
         }
         a {
             color: var(--svgColor2);
-            color: var(--white);
+           
         }
         h1 {
             color: var(--svgColor1);
@@ -881,6 +881,7 @@
                             right: 0;
                             bottom: 0;
                             padding: 5px 15px 15px 15px;
+                            color: var(--svgColor2);
                         }
                     }
                 }
@@ -957,7 +958,7 @@
                             button {
                                 background: transparent;
                                 a {
-                                    color: var(--white);
+                                    //color: var(--white);
                                 }
                             }
                             .download-button {

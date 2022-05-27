@@ -369,7 +369,6 @@ body {
 
 .darkmode a {
   color: var(--svgColor2);
-  color: var(--white);
 }
 
 .darkmode h1 {
@@ -405,6 +404,10 @@ body {
 }
 
 .darkmode .btn-glass-grande:hover {
+  background: var(--svgColor2);
+}
+
+.darkmode .super-check input[type=checkbox]:checked ~ label {
   background: var(--svgColor2);
 }
 
@@ -1399,10 +1402,6 @@ main {
 
 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button {
   background: transparent;
-}
-
-.card > .container .reverse-card .container-reverse .bottom .buttons-actions button a, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button a {
-  color: var(--white);
 }
 
 .owl-carousel .owl-nav {

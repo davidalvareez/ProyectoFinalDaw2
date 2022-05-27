@@ -369,7 +369,6 @@ body {
 
 .darkmode a {
   color: var(--svgColor2);
-  color: var(--white);
 }
 
 .darkmode h1 {
@@ -1292,6 +1291,7 @@ main {
   right: 0;
   bottom: 0;
   padding: 5px 15px 15px 15px;
+  color: var(--svgColor2);
 }
 
 .card > .container .reverse-card {
@@ -1403,10 +1403,6 @@ main {
 
 .card > .container .reverse-card .container-reverse .bottom .buttons-actions button {
   background: transparent;
-}
-
-.card > .container .reverse-card .container-reverse .bottom .buttons-actions button a {
-  color: var(--white);
 }
 
 .owl-carousel .owl-nav {
