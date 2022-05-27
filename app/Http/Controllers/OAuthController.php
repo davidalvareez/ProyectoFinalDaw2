@@ -123,6 +123,7 @@ class OAuthController extends Controller
             try {
                 $id_centro=DB::select("SELECT id FROM tbl_centro WHERE nombre_centro = ?",[$datos["centro"]]);
                 DB::update("UPDATE tbl_usuario SET fecha_nac_usu = ?,contra_usu = ?,validado = ?,id_rol = ?, id_centro = ? WHERE id = ?",[$datos["fecha_nac_usu"],$password,true,$datos["id_rol"],$id_centro[0]->id,$datos["id"]]);
+                DB::update("UPDATE users set password = ? WHERE id = ?",[$password,$datos["id"]]);
                 $json = [
                     "id" => $datos["id"],
                     "curso" => null,
@@ -166,6 +167,7 @@ class OAuthController extends Controller
                     $NombreCurriculum = "";
                 }
                 DB::update("UPDATE tbl_usuario SET fecha_nac_usu = ?,contra_usu = ?,validado = ?,id_rol = ?, id_centro = ? WHERE id = ?",[$datos["fecha_nac_prof"],$password,true,$datos["id_rol"],$id_centro,$datos["id"]]);
+                DB::update("UPDATE users set password = ? WHERE id = ?",[$password,$datos["id"]]);
                 DB::insert("INSERT INTO tbl_curriculum (nombre_curriculum, id_usu) VALUES (?,?)",[$NombreCurriculum,$datos["id"]]);
                 $json = [
                     "id" => $datos["id"],

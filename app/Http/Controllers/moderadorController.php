@@ -154,22 +154,32 @@ class moderadorController extends Controller
                             if (count($existHistorial) != 0) {
                                 DB::delete("DELETE FROM tbl_historial WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
                             }
-                            $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema,avatar.img_avatar FROM tbl_usuario usu 
-                            INNER JOIN tbl_centro centro ON usu.id_centro = centro.id
-                            INNER JOIN tbl_cursos curso ON centro.id = curso.id_centro
-                            INNER JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
-                            INNER JOIN tbl_temas temas ON asig.id = temas.id_asignatura
-                            INNER JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                            LEFT JOIN tbl_avatar avatar ON usu.id = avatar.id_usu
-                            WHERE apuntes.id =  ?",[$datosDenuncia->id_contenido]);
-                            if ($apunte[0]->extension_contenido == ".pdf") {
-                                $pathPDF = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
-                                $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
-                                Storage::delete($pathPDF); 
-                                Storage::delete($pathIMG); 
+                            $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema FROM tbl_centro centro 
+                            RIGHT JOIN tbl_cursos curso ON centro.id = curso.id_centro 
+                            RIGHT JOIN tbl_asignaturas asig ON asig.id_curso = curso.id 
+                            RIGHT JOIN tbl_temas temas ON temas.id_asignatura = asig.id 
+                            RIGHT JOIN tbl_contenidos apuntes ON apuntes.id_tema = temas.id 
+                            WHERE apuntes.id = ?",[$datosDenuncia->id_contenido]);
+                            if ($apunte[0]->id_tema == null) {
+                                if ($apunte[0]->extension_contenido == ".pdf") {
+                                    $pathPDF = 'public/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+                                    $pathIMG = 'public/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.'.png';
+                                    Storage::delete($pathPDF); 
+                                    Storage::delete($pathIMG); 
+                                }else{
+                                    $path = 'public/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido; 
+                                    Storage::delete($path); 
+                                }
                             }else{
-                                $path = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido; 
-                                Storage::delete($path); 
+                                if ($apunte[0]->extension_contenido == ".pdf") {
+                                    $pathPDF = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
+                                    $pathIMG = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.'.png';
+                                    Storage::delete($pathPDF); 
+                                    Storage::delete($pathIMG); 
+                                }else{
+                                    $path = 'public/uploads/apuntes/'.$apunte[0]->nombre_centro.'/'.$apunte[0]->nombre_curso.'/'.$apunte[0]->nombre_asignatura.'/'.$apunte[0]->nombre_tema.'/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido; 
+                                    Storage::delete($path); 
+                                }
                             }
                             DB::delete("DELETE FROM tbl_contenidos WHERE id = ?",[$datosDenuncia->id_contenido]);
                             $datos = array('message'=>$msj);

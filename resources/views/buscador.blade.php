@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="header-apuntes">
                                         <div class="name-content">
-                                            <h3 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</span></h3>
+                                            <h3 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}</span></h3>
                                         </div>
                                         @if ($recentnotes->id_tema != null)
                                         <div class="centro info-centro">
@@ -98,6 +98,7 @@
                                 $nombre_tema = str_replace(" ","%20",$recentnotes->nombre_tema);
                             }
                                 $nombre_contenido = str_replace(" ","%20",$recentnotes->nombre_contenido);
+                                $split_img = explode(":",$recentnotes->img_avatar);
                             ?>
                             @if ($recentnotes->extension_contenido == ".pdf")
                                 @if ($recentnotes->id_tema != null)
@@ -118,7 +119,11 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
+                                                        @if ($split_img[0] == "https" || $split_img[0] == "http")
+                                                        <img src="{{$recentnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        @else
                                                         <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
@@ -126,9 +131,11 @@
                                                         <p><span onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'">{{$recentnotes->nick_usu}}</span></p>
                                                     </div>
                                                     <div class="column-2">
+                                                        @if ($recentnotes->valoracion != null)
                                                         <div class="stars">
-                                                            <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
+                                                            <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">{{$recentnotes->valoracion}}</span></p>
                                                         </div>
+                                                        @endif
                                                         <div class="down info-stats">
                                                             <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">{{$recentnotes->descargas}}</span></p>
                                                         </div>
@@ -145,7 +152,7 @@
                                     <div class="bottom">
                                         <div class="content-info">
                                             <div class="name-content">
-                                                <h4 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}{{$recentnotes->extension_contenido}}</span></h4>
+                                                <h4 class="name-content_text"><span class="">{{$recentnotes->nombre_contenido}}</span></h4>
                                             </div>
                                             @if ($recentnotes->id_tema != null)
                                             <div class="school-content">
@@ -212,7 +219,7 @@
                                     </div>
                                     <div class="header-apuntes">
                                         <div class="name-content">
-                                            <h3 class="name-content_text"><span class="">{{$popularnotes->nombre_contenido}}{{$popularnotes->extension_contenido}}</span></h3>
+                                            <h3 class="name-content_text"><span class="">{{$popularnotes->nombre_contenido}}</span></h3>
                                         </div>
                                         @if ($popularnotes->id_tema != null)
                                         <div class="centro info-centro">
@@ -233,6 +240,7 @@
                                 $nombre_tema = str_replace(" ","%20",$popularnotes->nombre_tema);
                             }
                                 $nombre_contenido = str_replace(" ","%20",$popularnotes->nombre_contenido);
+                                $split_img = explode(":",$recentnotes->img_avatar);
                             ?>
                             @if ($popularnotes->extension_contenido == ".pdf")
                                 @if ($popularnotes->id_tema != null)
@@ -254,7 +262,11 @@
                                             <div class="container-info">
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
+                                                        @if ($split_img[0] == "https" || $split_img[0] == "http")
+                                                        <img src="{{$popularnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        @else
                                                         <img src="{{asset('storage').'/'.$popularnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="container-text">
@@ -262,9 +274,11 @@
                                                         <p><span onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'">{{$popularnotes->nick_usu}}</span></p>
                                                     </div>
                                                     <div class="column-2">
+                                                        @if ($popularnotes->valoracion != null)
                                                         <div class="stars">
-                                                            <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
+                                                            <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">{{$popularnotes->valoracion}}</span></p>
                                                         </div>
+                                                        @endif
                                                         <div class="down info-stats">
                                                             <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">{{$popularnotes->descargas}}</span></p>
                                                         </div>
@@ -281,7 +295,7 @@
                                     <div class="bottom">
                                         <div class="content-info">
                                             <div class="name-content">
-                                                <h4 class="name-content_text"><span class="">{{$popularnotes->nombre_contenido}}{{$popularnotes->extension_contenido}}</span></h4>
+                                                <h4 class="name-content_text"><span class="">{{$popularnotes->nombre_contenido}}</span></h4>
                                             </div>
                                             @if ($popularnotes->id_tema != null)
                                             <div class="school-content">

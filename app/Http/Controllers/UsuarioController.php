@@ -17,14 +17,22 @@ class UsuarioController extends Controller
     //Login + registro
     //Funciones view para hacer funciones + formulario
         public function loginView(){
-            return view('login');
+            if (session()->get('user')) {
+                return redirect('buscador');
+            }else{
+                return view('login');
+            }
         }
 
         public function registerView(){
-            $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
-            $centros = DB::select("SELECT * FROM tbl_centro");
-            //return $avatares;
-            return view('register',compact('avatares','centros'));
+            if (session()->get('user')) {
+                return redirect('buscador');
+            }else{
+                $avatares = DB::select("SELECT * FROM tbl_avatar WHERE tipo_avatar = 'Sistema'");
+                $centros = DB::select("SELECT * FROM tbl_centro");
+                //return $avatares;
+                return view('register',compact('avatares','centros'));
+            }
         }
 
     //Funciones de hacer login y registro
@@ -490,6 +498,10 @@ class UsuarioController extends Controller
                     DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_estudios WHERE id_usu= ?",[$user->id]);
+                    DB::delete("DELETE FROM chats WHERE user_id= ?",[$user->id]);
+                    DB::delete("DELETE FROM chats WHERE friend_id= ?",[$user->id]);
+                    DB::delete("DELETE FROM friend WHERE user_id= ?",[$user->id]);
+                    DB::delete("DELETE FROM friend WHERE friend_id= ?",[$user->id]);
                     DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$user->id]);
                     DB::commit();
                     $redirect = url('/');

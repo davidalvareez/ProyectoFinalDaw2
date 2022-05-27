@@ -8,7 +8,7 @@
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
 
     <title>NoteHub Chat</title>
-
+    <link rel="shortcut icon" href="{{asset('storage/uploads/logo/favicon.png')}}" type="image/x-icon">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
