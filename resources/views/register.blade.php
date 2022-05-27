@@ -1,6 +1,6 @@
 @include('template.header')
     <script src="https://www.google.com/recaptcha/api.js?render=6LdEQhYgAAAAAN-CmQ77-igS399f9BKq-9c8x7OG"></script>
-    <script src="../public/js/registro/registro.js"></script>
+    <script src="{!! asset('js/registro/registro.js') !!}"></script>
     <link rel="stylesheet" href="{!! asset ('css/registro/loginregistro.css')!!}">
     <link rel="stylesheet" href="{!! asset ('css/registro/styles.css')!!}">
     <title>Register</title>
