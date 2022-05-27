@@ -581,7 +581,6 @@ body {
                 img {
                     width: 15rem;
                     height: 15rem;
-                    background: blue;
                 }
             }
             .name-surname {
@@ -606,12 +605,36 @@ body {
                     .contact-me {
                         width: 100%;
                     }
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    flex-flow: column;
                 }
             }
         }
     }
 }
 
+.swal2-popup{
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0,100%);
+    width: 32em;
+    max-width: 100%;
+    padding: 0 0 1.25em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #545454;
+    font-family: inherit;
+    font-size: 2rem;
+}
+
+iframe{
+    width: 80vw;
+    height: 80vh;
+}
 @media (max-width:1200px) {
     //<!—- Aquí van todos los estilos CSS -->
 }

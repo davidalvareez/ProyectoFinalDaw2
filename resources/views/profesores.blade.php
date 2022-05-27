@@ -53,13 +53,13 @@
                 </div>
                 <div class="actions-user">
                   <div class="two">
-                    <button class="show-estudios btn-glass" onclick="mostrarEstudios({{$Resultados->id}});">Mostrar Estudios</button>
+                    <button class="btn-glass" onclick="mostrarEstudios({{$Resultados->id}});">Estudios</button>
                     @if ($Resultados->nombre_curriculum != null)
-                    <button class="show-cv btn-glass" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar CV</button>
+                    <button class="btn-glass" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Curriculum</button>
                     @endif
                   </div>
                   <div class="one">
-                    <button class="contact-me btn-glass_b" onclick="window.location.href = '{{ url('notehub-chat/'.$Resultados->uuid)}}'">Contactar</button>
+                    <button class="btn-glass" onclick="window.location.href = '{{ url('notehub-chat/'.$Resultados->uuid)}}'">Contactar</button>
                   </div>
                 </div>
               </div>
