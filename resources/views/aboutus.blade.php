@@ -77,14 +77,14 @@
                 <div class="explicacion">
                     <div class="content-explicacion">
                         <div class="preguntas">
-                                <div class="carta-explicacion carta1" data-aos="fade-up">
+                                <div class="carta-explicacion carta1" data-aos="zoom-in-up">
                                     <div class="content-carta">
                                         <h3>¿QUIENES SOMOS?</h3>
                                         <h4>Somos 6 estudiantes de Desarrollo de Aplicaciones Web. El equipo está compuesto por 2 departamentos. Departamento de Frontend, formado por David Álvarez, Isaac Ortiz y Marc Ortiz.
                                         Y departamento de Backend, formado por Xavi Gómez, Miguel Gras y Raúl Santacruz.
                                     </div>
                                 </div>
-                                <div class="carta-explicacion carta2" data-aos="fade-up">
+                                <div class="carta-explicacion carta2" data-aos="zoom-in-up">
                                     <div class="content-carta">
                                         <h3>¿POR QUÉ CREAMOS NOTEHUB?</h3>
                                         <h4>Hemos creado esta web porque creemos que se necesitan más herramientas que ayuden a los estudiantes de todos los cursos. 
@@ -93,7 +93,7 @@
                                         </h4>
                                     </div>
                                 </div>
-                                <div class="carta-explicacion carta3" data-aos="fade-up">
+                                <div class="carta-explicacion carta3" data-aos="zoom-in-up">
                                     <div class="content-carta">
                                         <h3>¿CUAL ES NUESTRO OBJETIVO?</h3>
                                         <h4>Nuestro objetivo actualmente es hacer un sitio web donde puedas subir, previsualizar y descargar todo tipo de apuntes. Además, a medida que pasa el tiempo intentamos implementar nuevas características que mejorarán y rellenarán de contenido nuestra web, todo esto junto con una interfaz de usuario simple, visualmente atractiva y moderna.

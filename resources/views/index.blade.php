@@ -1,12 +1,14 @@
 @include('template.header')
     <link rel="stylesheet" href="{!!asset('css/index/index.css')!!}">
     <title>NoteHub</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body class="landing-page">
     @include('template.menu') 
     <header></header>
     <main>
-        <div class="region region1" >
+        <div class="region region1" data-aos="zoom-in-up">
             <div class="content-region">
                 <div class="glassland">
                     <div class="content-glassland">
@@ -20,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="region region2" >
+        <div class="region region2" data-aos="zoom-in-up">
             <div class="content-region">
                 <div class="glassland">
                     <div class="content-glassland">
@@ -34,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="region region3" >
+        <div class="region region3" data-aos="zoom-in-up">
             <div class="content-region">
                 <div class="glassland">
                     <div class="content-glassland">
@@ -48,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="region region4" >
+        <div class="region region4" data-aos="zoom-in-up">
             <div class="content-region">
                 <div class="glassland">
                     <div class="content-glassland">
@@ -223,4 +225,7 @@
         </div>
     </div> 
 </body>
+<script>
+  AOS.init();
+</script>
 </html>
