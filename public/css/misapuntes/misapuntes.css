@@ -426,7 +426,7 @@ main {
 
 @media (max-width: 600px) {
   main {
-    padding-top: calc(40vh - 105px);
+    padding-top: calc(30vh - 105px);
   }
 }
 
@@ -1456,12 +1456,6 @@ main {
 }
 
 .padding-subirapuntes-submit {
-  text-align: center;
-}
-
-.menu {
-  width: 100%;
-  padding: 20px 0px 90px 0px;
   text-align: center;
 }
 

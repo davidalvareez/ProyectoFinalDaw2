@@ -429,7 +429,7 @@ main {
 
 @media (max-width: 600px) {
   main {
-    padding-top: calc(40vh - 105px);
+    padding-top: calc(30vh - 105px);
   }
 }
 
@@ -1591,17 +1591,17 @@ body {
 }
 
 .main-page .region-header {
-  height: 40vh;
+  height: 50vh;
 }
 
 .main-page .region-header .content-header .widget-search > .container {
-  width: 62vw;
-  height: 20vh;
+  width: 90vw;
+  height: 15vh;
 }
 
 .main-page .region-header .content-header .widget-search .searchbar {
   max-width: 840px;
-  width: 100%;
+  width: 65%;
   padding: 15px 35px;
   background-color: #ff7575;
   border-radius: 20px;
