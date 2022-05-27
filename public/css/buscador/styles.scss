@@ -217,7 +217,8 @@ body {
 .main-page {
     .region-header {
         //height: 40vh;
-        height: 50vh;
+        height: fit-content;
+        padding: 140px 10px 10px 10px;
         .content-header {
             @extend .allwh;
             .widget-search {
@@ -360,12 +361,12 @@ body {
                 }
             }
             .advancedSearch {
+                padding: 15px;
                 .container {
-                    display: flex;
-                    text-align: center;
-                    align-items: center;
-                    align-content: center;
-                    flex-flow: column;
+                  @include flex-cv();
+                  form{
+                    @include flex-cv($d: row);
+                  }
                 }
             }
         }
@@ -569,8 +570,11 @@ body {
 .container-grid {
     .grid-cartas {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(5, 1fr);
         grid-gap: 2em;
+        @media(max-width: $grid-float-breakpoint){
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
         .user-card {
             @extend .glass-2;
             @extend .flex-cv;
@@ -648,4 +652,29 @@ iframe{
         width: 90vw;
         height: 20vh;
     }
+}
+
+
+
+
+//checkbox chevere
+
+.super-check{
+    position: relative;
+    input[type=checkbox]{
+        position: absolute;
+        height:100%;
+        width: 100%;
+        opacity: 0;
+        &:checked{
+            ~ label{
+                background: var(--svgColor1a);
+            }
+        }
+    }
+    label{
+        @extend .btn-glass;
+        text-align: center;
+    }
+     
 }

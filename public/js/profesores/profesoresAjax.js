@@ -33,28 +33,33 @@ function multiplyFilter() {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += `<table class="table table-striped table-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">Nombre Y Apellidos</th>
-                    <th scope="col">Acciones</th>
-                </tr>`;
+                recarga += `<div class="container-grid">
+                <div class="grid-cartas">`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                    <td>${respuesta[i].id}</td>
-                    <td><img src="storage/${respuesta[i].img_avatar}" width="50"></td>
-                    <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                    <td><button class="boton_modificar" type="submit" onclick="mostrarEstudios(${respuesta[i].id});">Mostrar Estudios</button></td>;`
-                    if (respuesta[i].nombre_curriculum != null) {
-                        recarga += `<td><button class="boton_modificar" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar Curriculum</button></td>`;
-                    }
-                    recarga += `<td><form  action="" method="GET">
-                        <button class="boton_modificar" type="submit" id="">Contactar</button>
-                    </form></td>
-                </tr>`;
+                    recarga += `<div class="user-card">
+                                    <div class="image-user">
+                                        <img src="storage/${respuesta[i].img_avatar}" alt="">
+                                    </div>
+                                    <div class="name-surname">
+                                        <span class="name">${respuesta[i].nombre_usu}</span>
+                                        <span class="surname"> ${respuesta[i].apellido_usu}</span>
+                                    </div>
+                                    <div class="actions-user">
+                                        <div class="two">
+                                            <button class="btn-glass" onclick="mostrarEstudios(${respuesta[i].id});">Estudios</button>
+                                            ${respuesta[i].nombre_curriculum != null
+                                                ? `<button class="btn-glass" type="submit" onclick="mostrarCurriculum(${respuesta[i].id});">Curriculum</button>`
+                                                : ``
+                                            }
+                                        </div>
+                                        <div class="one">
+                                            <button class="btn-glass" onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'">Contactar</button>
+                                        </div>
+                                    </div>
+                                </div>`;
                 }
-                recarga += `</table>`;
+                recarga += `</div>
+                </div>`;
                 content.innerHTML = recarga;
             }
         }
@@ -84,26 +89,33 @@ function advancedFilterProfesores() {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += `<table class="table table-striped table-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">Nombre Y Apellidos</th>
-                    <th scope="col">Acciones</th>
-                </tr>`;
+                recarga += `<div class="container-grid">
+                <div class="grid-cartas">`;
                 for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<tr>
-                    <td>${respuesta[i].id}</td>
-                    <td><img src="storage/${respuesta[i].img_avatar}" width="50"></td>
-                    <td>${respuesta[i].nombre_usu} ${respuesta[i].apellido_usu}</td>
-                    <td><button class="boton_modificar" type="submit" onclick="mostrarEstudios(${respuesta[i].id});">Mostrar Estudios</button></td>;`
-                    if (respuesta[i].nombre_curriculum != null) {
-                        recarga += `<td><button class="boton_modificar" type="submit" onclick="mostrarCurriculum({{$Resultados->id}});">Mostrar Curriculum</button></td>`;
-                    }
-                    recarga += `<td><button onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'" class="boton_modificar" type="submit" id="">Contactar</button></td>
-                </tr>`;
+                    recarga += `<div class="user-card">
+                                    <div class="image-user">
+                                        <img src="storage/${respuesta[i].img_avatar}" alt="">
+                                    </div>
+                                    <div class="name-surname">
+                                        <span class="name">${respuesta[i].nombre_usu}</span>
+                                        <span class="surname"> ${respuesta[i].apellido_usu}</span>
+                                    </div>
+                                    <div class="actions-user">
+                                        <div class="two">
+                                            <button class="btn-glass" onclick="mostrarEstudios(${respuesta[i].id});">Estudios</button>
+                                            ${respuesta[i].nombre_curriculum != null
+                                                ? `<button class="btn-glass" type="submit" onclick="mostrarCurriculum(${respuesta[i].id});">Curriculum</button>`
+                                                : ``
+                                            }
+                                        </div>
+                                        <div class="one">
+                                            <button class="btn-glass" onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'">Contactar</button>
+                                        </div>
+                                    </div>
+                                </div>`;
                 }
-                recarga += `</table>`;
+                recarga += `</div>
+                </div>`;
                 content.innerHTML = recarga;
             }
         }
