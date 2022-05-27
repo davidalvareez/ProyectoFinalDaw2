@@ -54,12 +54,11 @@
                     </div>
                     <div class="card-flap flap1">
                       <div class="card-description">
-                          <p style="color: black">Imparte clases a la comunidad de estudiantes de NoteHub. Sube tus apuntes y date a conocer dentro de nuestra comunidad</p>
-                          <p style="color: black">Una vez completado el registro, nuestro equipo validará tu propuesta de ser un profesor y te habilitará la cuenta.</p>
+                          <p style="color: black">Imparte clases a la comunidad de estudiantes de NoteHub. Sube tus apuntes y date a conocer dentro de nuestra comunidad. Una vez completado el registro, nuestro equipo validará tu propuesta de ser un profesor y te habilitará la cuenta.</p>
                       </div>
                       <div class="card-flap flap2">
                         <div class="card-actions">
-                          <button class="btn-glass" onclick="modalProfe();closeModalSeleccion(4);">Seleccionar</button>
+                          <button class="btn-glass" onclick="modalProfe();closeModalSeleccion(4);">Seleccionar perfil</button>
                         </div>
                       </div>
                     </div>
@@ -101,7 +100,7 @@
                                     <p style="float: left; padding-left:75px">o sube tu propio avatar:</p>
                                     <input type="file" name="img_avatar_usu" id="img_avatar_usu" onchange="deselectAvatar();">
                                     <br><br>
-                                    <button onclick="closeModal2();return false;" class="aceptarbtn" value="Aceptar">Aceptar</button>
+                                    <button onclick="closeModal2();return false;" class="btn-glass" value="Aceptar">Aceptar</button>
                                 </div>
                             </div>
                             <img src="{!! asset ('media/3Dicons-dinamicos/icons/png/boy\boy-dynamic-gradient.png') !!}" width="80px" height="80px">
