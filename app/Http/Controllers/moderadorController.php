@@ -155,11 +155,11 @@ class moderadorController extends Controller
                                 DB::delete("DELETE FROM tbl_historial WHERE id_contenido = ?",[$datosDenuncia->id_contenido]);
                             }
                             $apunte = DB::select("SELECT apuntes.*,centro.nombre_centro,curso.nombre_curso,asig.nombre_asignatura,temas.nombre_tema FROM tbl_centro centro 
-                            LEFT JOIN tbl_cursos curso ON centro.id = curso.id_centro
-                            LEFT JOIN tbl_asignaturas asig ON curso.id = asig.id_curso
-                            LEFT JOIN tbl_temas temas ON asig.id = temas.id_asignatura
-                            LEFT JOIN tbl_contenidos apuntes ON temas.id = apuntes.id_tema
-                            WHERE apuntes.id =  ?",[$datosDenuncia->id_contenido]);
+                            RIGHT JOIN tbl_cursos curso ON centro.id = curso.id_centro 
+                            RIGHT JOIN tbl_asignaturas asig ON asig.id_curso = curso.id 
+                            RIGHT JOIN tbl_temas temas ON temas.id_asignatura = asig.id 
+                            RIGHT JOIN tbl_contenidos apuntes ON apuntes.id_tema = temas.id 
+                            WHERE apuntes.id = ?",[$datosDenuncia->id_contenido]);
                             if ($apunte[0]->id_tema == null) {
                                 if ($apunte[0]->extension_contenido == ".pdf") {
                                     $pathPDF = 'public/uploads/apuntes_reciclados/'.$apunte[0]->nombre_contenido.$apunte[0]->extension_contenido;
