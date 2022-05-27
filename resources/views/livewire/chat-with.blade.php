@@ -1,6 +1,13 @@
 <div class="chat-body">
     <div class="chat-box-header2">
+        <?php 
+            $split_img = explode(":",$user->image);
+        ?>
+        @if ($split_img[0] == "https" || $split_img[0] == "http")
+        <img onclick="window.location.href='{{url('perfil/'.$user->name)}}'" src="{{$user->image }}" class="employee2" style="border-radius: 50%" alt="">
+        @else
         <img onclick="window.location.href='{{url('perfil/'.$user->name)}}'" src="{{asset('storage').'/'.$user->image }}" class="employee2" style="border-radius: 50%" alt="">
+        @endif
         <div onclick="window.location.href='{{url('perfil/'.$user->name)}}'" style="cursor: pointer" class="employee-name">{{ $user->name }}</div>
         <div class="top-right-menu-icons" onclick="closeChat({{$user->id}});">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

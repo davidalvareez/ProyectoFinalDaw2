@@ -17,7 +17,14 @@
             @forelse ($contacts as $user)
                 <a href="{{ route('chat_with', $user->uuid) }}">
                     <div class="contact">
+                        <?php
+                            $split_img = explode(":",$user->image);
+                        ?>
+                        @if ($split_img[0] == "https" || $split_img[0] == "http")
+                        <img class="contact_image" src="{{$user->image }}" alt="" />
+                        @else
                         <img class="contact_image" src="{{asset('storage').'/'.$user->image }}" alt="" />
+                        @endif
                         <p class="contact_name">{{ $user->name }}</p>
                         <!--Mostrar hora del ultimo mensaje, mostra el mensaje de quien fue para mostrar una cosa o otra-->
                         <!--MENSAJE MIO-->

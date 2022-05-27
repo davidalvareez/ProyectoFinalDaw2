@@ -298,6 +298,10 @@ class CRUDAdminController extends Controller
                 DB::delete("DELETE FROM tbl_contenidos WHERE id_usu= ?",[$id]);
                 DB::delete("DELETE FROM tbl_avatar WHERE id_usu= ?",[$id]);
                 DB::delete("DELETE FROM tbl_estudios WHERE id_usu= ?",[$id]);
+                DB::delete("DELETE FROM chats WHERE user_id= ?",[$user->id]);
+                DB::delete("DELETE FROM chats WHERE friend_id= ?",[$user->id]);
+                DB::delete("DELETE FROM friend WHERE user_id= ?",[$user->id]);
+                DB::delete("DELETE FROM friend WHERE friend_id= ?",[$user->id]);
                 DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$id]);
                 DB::commit();
                 return response()->json(array('resultado'=>'OK'));

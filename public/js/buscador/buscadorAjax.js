@@ -59,6 +59,7 @@ function multiplyFilter() {
                             <div class="resultados">
                                 <div class="owl-carousel owl-carousel-3">`;
                     for (let i = 0; i < respuesta.length; i++) {
+                        split_img = respuesta[i].img_avatar.split(':');
                         if (respuesta[i].id_tema != null) {
                             nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
                             nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
@@ -91,7 +92,7 @@ function multiplyFilter() {
                                                     </div>
                                                     <div class="header-apuntes">
                                                         <div class="name-content">
-                                                            <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h3>
+                                                            <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}</span></h3>
                                                         </div>`
                         if (respuesta[i].nombre_centro != null) {
                             recarga += `<div class="centro info-centro">
@@ -123,7 +124,10 @@ function multiplyFilter() {
                                                             <div class="container-info">
                                                                 <div class="avatar-user user-img">
                                                                     <div class="filter">
-                                                                        <img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">
+                                                                    ${split_img[0] == 'https' || split_img[0] == 'http'
+                                                                        ? `<img src="${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
+                                                                        : `<img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
+                                                                        }
                                                                     </div>
                                                                 </div>
                                                                 <div class="container-text">
@@ -131,9 +135,12 @@ function multiplyFilter() {
                                                                         <p><span onclick="window.location.href='perfil/${respuesta[i].nick_usu}'">${respuesta[i].nick_usu}</span></p>
                                                                     </div>
                                                                     <div class="column-2">
-                                                                        <div class="stars">
-                                                                            <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
-                                                                        </div>
+                                                                    ${respuesta[i].valoracion != null
+                                                                        ? `<div class="stars">
+                                                                                <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">${respuesta[i].valoracion}</span></p>
+                                                                            </div>`
+                                                                        : ``
+                                                                        }
                                                                         <div class="down info-stats">
                                                                             <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">${respuesta[i].descargas}</span></p>
                                                                         </div>
@@ -150,7 +157,7 @@ function multiplyFilter() {
                                                     <div class="bottom">
                                                         <div class="content-info">
                                                             <div class="name-content">
-                                                                <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h4>
+                                                                <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}</span></h4>
                                                             </div>`
                         if (respuesta[i].id_tema != null) {
                             recarga += `<div class="school-content">
@@ -191,7 +198,7 @@ function multiplyFilter() {
                 $('.owl-carousel-3').owlCarousel({
                         loop: false,
                         margin: 10,
-                        nav: false,
+                        nav: true,
                         responsive: {
                             0: {
                                 items: 1
@@ -254,6 +261,7 @@ function busquedaAvanzada() {
                         <div class="resultados">
                             <div class="owl-carousel owl-carousel-3">`;
                     for (let i = 0; i < respuesta.length; i++) {
+                        split_img = respuesta[i].img_avatar.split(':');
                         if (respuesta[i].id_tema != null) {
                             nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
                             nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
@@ -286,7 +294,7 @@ function busquedaAvanzada() {
                                                         </div>
                                                         <div class="header-apuntes">
                                                             <div class="name-content">
-                                                                <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h3>
+                                                                <h3 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}</span></h3>
                                                             </div>`
                         if (respuesta[i].nombre_centro != null) {
                             recarga += `<div class="centro info-centro">
@@ -318,7 +326,10 @@ function busquedaAvanzada() {
                                                                 <div class="container-info">
                                                                     <div class="avatar-user user-img">
                                                                         <div class="filter">
-                                                                            <img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">
+                                                                        ${split_img[0] == 'https' || split_img[0] == 'http'
+                                                                        ? `<img src="${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
+                                                                        : `<img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
+                                                                        }
                                                                         </div>
                                                                     </div>
                                                                     <div class="container-text">
@@ -326,9 +337,12 @@ function busquedaAvanzada() {
                                                                             <p><span onclick="window.location.href='perfil/${respuesta[i].nick_usu}'">${respuesta[i].nick_usu}</span></p>
                                                                         </div>
                                                                         <div class="column-2">
-                                                                            <div class="stars">
-                                                                                <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">4.5</span></p>
-                                                                            </div>
+                                                                        ${respuesta[i].valoracion != null
+                                                                            ? `<div class="stars">
+                                                                                    <p><span class="icon-stars"><i class="fa-duotone fa-meteor"></i></span> <span class="stars_text">${respuesta[i].valoracion}</span></p>
+                                                                                </div>`
+                                                                            : ``
+                                                                            }
                                                                             <div class="down info-stats">
                                                                                 <p><span class="icon-stats"><i class="fa-duotone fa-download"></i></span> <span class="stats_text">${respuesta[i].descargas}</span></p>
                                                                             </div>
@@ -345,7 +359,7 @@ function busquedaAvanzada() {
                                                         <div class="bottom">
                                                             <div class="content-info">
                                                                 <div class="name-content">
-                                                                    <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</span></h4>
+                                                                    <h4 class="name-content_text"><span class="">${respuesta[i].nombre_contenido}</span></h4>
                                                                 </div>`
                         if (respuesta[i].id_tema != null) {
                             recarga += `<div class="school-content">
