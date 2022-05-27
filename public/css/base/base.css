@@ -408,6 +408,10 @@ body {
   background: var(--svgColor2);
 }
 
+.darkmode .super-check input[type=checkbox]:checked ~ label {
+  background: var(--svgColor2);
+}
+
 .darkmode .owl-carousel .owl-nav .owl-prev span,
 .darkmode .owl-carousel .owl-nav .owl-next span {
   color: var(--white);

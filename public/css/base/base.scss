@@ -246,6 +246,15 @@
                 background: var(--svgColor2);
             }
         }
+        .super-check{
+            input[type=checkbox]{
+                &:checked{
+                    ~ label{
+                        background: var(--svgColor2);
+                    }
+                }
+            }
+        }
         .owl-carousel {
             .owl-nav {
                 .owl-prev,
