@@ -1291,6 +1291,7 @@ main {
   right: 0;
   bottom: 0;
   padding: 5px 15px 15px 15px;
+  color: var(--svgColor2);
 }
 
 .card > .container .reverse-card, main .region-perfil .content-region .region-mis-apuntes .owl-carousel-4 .card > .container .reverse-card {
@@ -2072,5 +2073,10 @@ main .region-perfil .content-region .region-mis-apuntes .content-mis-apuntes h2 
 
 .elegiravatar:active {
   border: 1px solid #000;
+}
+
+.username,
+.avatarimg {
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.css.map */

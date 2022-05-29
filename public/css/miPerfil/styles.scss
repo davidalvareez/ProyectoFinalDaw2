@@ -356,3 +356,8 @@ main {
 .elegiravatar:active {
     border: 1px solid #000;
 }
+
+.username,
+.avatarimg {
+    cursor: pointer;
+}
