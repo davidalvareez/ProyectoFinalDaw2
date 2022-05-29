@@ -43,12 +43,11 @@ ol {
 }
 
 .ul-box {
-  width: 90vw;
-  display: block;
-  list-style-type: decimal;
+  width: 1200px;
   margin: auto;
-  -webkit-padding-start: 40px;
-          padding-inline-start: 40px;
+  margin-bottom: 40px;
+  display: block;
+  text-align: left;
 }
 
 .browser-default {
