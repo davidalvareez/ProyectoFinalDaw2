@@ -363,16 +363,16 @@ body {
             .advancedSearch {
                 padding: 15px;
                 .container {
-                  @include flex-cv();
-                  form{
-                    @include flex-cv($d: row);
-                  }
+                    @include flex-cv();
+                    form {
+                        @include flex-cv($d: row);
+                    }
                 }
             }
         }
     }
     main {
-        padding: 2vh 4vw;
+        padding: 2vh 4vw 5vh 4vw;
         .title {
             h2 {}
         }
@@ -405,6 +405,11 @@ body {
             }
         }
     }
+}
+
+.username,
+.avatarimg {
+    cursor: pointer;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -572,11 +577,11 @@ body {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 2em;
-        @media(max-width: $grid-float-breakpoint){
+        @media(max-width: $grid-float-breakpoint) {
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
         .user-card {
-            @extend .glass-2;
+            @extend .glass-5;
             @extend .flex-cv;
             flex-flow: column;
             min-height: 20rem;
@@ -619,11 +624,11 @@ body {
     }
 }
 
-.swal2-popup{
+.swal2-popup {
     display: none;
     position: relative;
     box-sizing: border-box;
-    grid-template-columns: minmax(0,100%);
+    grid-template-columns: minmax(0, 100%);
     width: 32em;
     max-width: 100%;
     padding: 0 0 1.25em;
@@ -635,10 +640,11 @@ body {
     font-size: 2rem;
 }
 
-iframe{
+iframe {
     width: 80vw;
     height: 80vh;
 }
+
 @media (max-width:1200px) {
     //<!—- Aquí van todos los estilos CSS -->
 }
@@ -654,27 +660,25 @@ iframe{
     }
 }
 
-
-
-
 //checkbox chevere
-
-.super-check{
+.super-check {
     position: relative;
-    input[type=checkbox]{
-        position: absolute;
-        height:100%;
+    input[type=checkbox] {
+        //position: absolute;
+        height: 100%;
         width: 100%;
         opacity: 0;
-        &:checked{
-            ~ label{
+        &:checked {
+            ~label {
                 background: var(--svgColor1a);
             }
         }
     }
-    label{
+    label {
         @extend .btn-glass;
         text-align: center;
+        @media (max-width: 422px) {
+            font-size: 11px;
+        }
     }
-     
 }

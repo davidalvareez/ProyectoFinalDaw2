@@ -193,9 +193,9 @@
                                                               $split_img = explode(":",$apunte->img_avatar);
                                                           ?>
                                                             @if ($split_img[0] == "https" || $split_img[0] == "http")
-                                                            <img src="{{$apunte->img_avatar}}" alt="" class="avatar img">
+                                                            <img src="{{$apunte->img_avatar}}" alt="" class="avatarimg">
                                                             @else
-                                                            <img src="{{asset('storage').'/'.$apunte->img_avatar}}" alt="" class="avatar img">
+                                                            <img src="{{asset('storage').'/'.$apunte->img_avatar}}" alt="" class="avatarimg">
                                                             @endif
                                                         </div>
                                                     </div>

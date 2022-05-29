@@ -125,8 +125,8 @@ function multiplyFilter() {
                                                                 <div class="avatar-user user-img">
                                                                     <div class="filter">
                                                                     ${split_img[0] == 'https' || split_img[0] == 'http'
-                                                                        ? `<img src="${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
-                                                                        : `<img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
+                                                                        ? `<img src="${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatarimg">`
+                                                                        : `<img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatarimg">`
                                                                         }
                                                                     </div>
                                                                 </div>
@@ -327,8 +327,8 @@ function busquedaAvanzada() {
                                                                     <div class="avatar-user user-img">
                                                                         <div class="filter">
                                                                         ${split_img[0] == 'https' || split_img[0] == 'http'
-                                                                        ? `<img src="${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
-                                                                        : `<img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatar img">`
+                                                                        ? `<img src="${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatarimg">`
+                                                                        : `<img src="storage/${respuesta[i].img_avatar}" onclick="window.location.href='perfil/${respuesta[i].nick_usu}'" alt="" class="avatarimg">`
                                                                         }
                                                                         </div>
                                                                     </div>

@@ -1,4 +1,4 @@
-.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .popup, .container-grid .grid-cartas .user-card {
+.glass-2, .modal-content-avatar, .modal .modal-content, .modal .modal-content-avatar, .popup {
   backdrop-filter: blur(10px) saturate(105%);
   -webkit-backdrop-filter: blur(13px) saturate(180%);
   background-color: #a3a8b062;
@@ -16,7 +16,7 @@
 .glass-5, .glass-saturate, .card > .container .reverse-card .container-reverse, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card .container-reverse, .card, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card,
 .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card,
 .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card,
-.main-page main .region-news .content-news .resultados .owl-carousel-2 .card {
+.main-page main .region-news .content-news .resultados .owl-carousel-2 .card, .container-grid .grid-cartas .user-card {
   background: rgba(255, 255, 255, 0.57);
   -webkit-backdrop-filter: blur(13px) saturate(105%);
           backdrop-filter: blur(13px) saturate(105%);
@@ -1297,6 +1297,7 @@ main {
   right: 0;
   bottom: 0;
   padding: 5px 15px 15px 15px;
+  color: var(--svgColor2);
 }
 
 .card > .container .reverse-card, .main-page main .region-resultados-search .content-resultados-search .resultados .grid-resultados .card > .container .reverse-card, .main-page main .region-relationated .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card, .main-page main .region-relationated .content-news .resultados .owl-carousel-2 .card > .container .reverse-card, .main-page main .region-news .content-relationated .resultados .owl-carousel-2 .card > .container .reverse-card, .main-page main .region-news .content-news .resultados .owl-carousel-2 .card > .container .reverse-card {
@@ -1860,11 +1861,16 @@ body {
 }
 
 .main-page main {
-  padding: 2vh 4vw;
+  padding: 2vh 4vw 5vh 4vw;
 }
 
 .main-page main .region-resultados-search {
   width: 100%;
+}
+
+.username,
+.avatarimg {
+  cursor: pointer;
 }
 
 .form-search {
@@ -2214,7 +2220,6 @@ iframe {
 }
 
 .super-check input[type=checkbox] {
-  position: absolute;
   height: 100%;
   width: 100%;
   opacity: 0;
@@ -2226,5 +2231,11 @@ iframe {
 
 .super-check label {
   text-align: center;
+}
+
+@media (max-width: 422px) {
+  .super-check label {
+    font-size: 11px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

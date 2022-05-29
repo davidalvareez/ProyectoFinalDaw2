@@ -120,9 +120,9 @@
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
                                                         @if ($split_img[0] == "https" || $split_img[0] == "http")
-                                                        <img src="{{$recentnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        <img src="{{$recentnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'" alt="" class="avatarimg">
                                                         @else
-                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        <img src="{{asset('storage').'/'.$recentnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$recentnotes->nick_usu)}}'" alt="" class="avatarimg">
                                                         @endif
                                                     </div>
                                                 </div>
@@ -263,9 +263,9 @@
                                                 <div class="avatar-user user-img">
                                                     <div class="filter">
                                                         @if ($split_img[0] == "https" || $split_img[0] == "http")
-                                                        <img src="{{$popularnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        <img src="{{$popularnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'" alt="" class="avatarimg">
                                                         @else
-                                                        <img src="{{asset('storage').'/'.$popularnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'" alt="" class="avatar img">
+                                                        <img src="{{asset('storage').'/'.$popularnotes->img_avatar}}" onclick="window.location.href='{{url('perfil/'.$popularnotes->nick_usu)}}'" alt="" class="avatarimg">
                                                         @endif
                                                     </div>
                                                 </div>
