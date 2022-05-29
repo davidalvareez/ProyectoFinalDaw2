@@ -91,28 +91,10 @@
                                 </div>
                             </div>
                             <?php
-                            if ($recentnotes -> id_tema != null){
-                                $nombre_centro = str_replace(" ","%20",$recentnotes->nombre_centro);
-                                $nombre_curso = str_replace(" ","%20",$recentnotes->nombre_curso);
-                                $nombre_asignatura = str_replace(" ","%20",$recentnotes->nombre_asignatura);
-                                $nombre_tema = str_replace(" ","%20",$recentnotes->nombre_tema);
-                            }
-                                $nombre_contenido = str_replace(" ","%20",$recentnotes->nombre_contenido);
                                 $split_img = explode(":",$recentnotes->img_avatar);
                             ?>
-                            @if ($recentnotes->extension_contenido == ".pdf")
-                                @if ($recentnotes->id_tema != null)
-                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
-                                @else
-                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.'.png'}})">
-                                @endif
-                            @else
-                                @if ($recentnotes->id_tema != null)
-                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$recentnotes->extension_contenido}})">
-                                @else
-                                <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.$recentnotes->extension_contenido}})">
-                                @endif
-                            @endif
+                            {{-- <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})"> --}}
+                            <div class="reverse-card">
                                 <div class="container-reverse">
                                     <div class="top">
                                         <div class="user-info left-top">
@@ -233,30 +215,10 @@
                                 </div>
                             </div>
                             <?php
-                            if ($popularnotes->id_tema != null) {
-                                $nombre_centro = str_replace(" ","%20",$popularnotes->nombre_centro);
-                                $nombre_curso = str_replace(" ","%20",$popularnotes->nombre_curso);
-                                $nombre_asignatura = str_replace(" ","%20",$popularnotes->nombre_asignatura);
-                                $nombre_tema = str_replace(" ","%20",$popularnotes->nombre_tema);
-                            }
-                                $nombre_contenido = str_replace(" ","%20",$popularnotes->nombre_contenido);
                                 $split_img = explode(":",$recentnotes->img_avatar);
                             ?>
-                            @if ($popularnotes->extension_contenido == ".pdf")
-                                @if ($popularnotes->id_tema != null)
-                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
-                                @else
-                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.'.png'}})">
-                                @endif
-                            @else
-                                @if ($popularnotes->id_tema != null)
-                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$popularnotes->extension_contenido}})">
-                                @else
-                                <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.$popularnotes->extension_contenido}})">
-                                @endif
-                            @endif
+                            <div class="reverse-card">
                                 <div class="container-reverse">
-
                                     <div class="top">
                                         <div class="user-info left-top">
                                             <div class="container-info">

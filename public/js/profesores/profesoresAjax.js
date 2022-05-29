@@ -22,6 +22,10 @@ function llamadaAjax() {
 
 //Filtro Múltiple
 function multiplyFilter() {
+    let checkbox = document.getElementsByName("cursos");
+    for (let i = 0; i < checkbox.length; i++) {
+        checkbox[i].checked = false;
+    }
     var formData = new FormData();
     formData.append('_token', token);
     formData.append('_method', 'POST');
@@ -71,6 +75,7 @@ function multiplyFilter() {
 
 //Función advancedFilterProfesores
 function advancedFilterProfesores() {
+    document.getElementById("multiplysearch").value = "";
     let cursos = document.getElementsByName("cursos");
     let arrayCursosChecked = [];
     for (let i = 0; i < cursos.length; i++) {

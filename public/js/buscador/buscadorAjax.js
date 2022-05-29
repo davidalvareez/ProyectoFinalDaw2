@@ -60,15 +60,6 @@ function multiplyFilter() {
                                 <div class="owl-carousel owl-carousel-3">`;
                     for (let i = 0; i < respuesta.length; i++) {
                         split_img = respuesta[i].img_avatar.split(':');
-                        if (respuesta[i].id_tema != null) {
-                            nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
-                            nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
-                            nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
-                            nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
-                            nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
-                        } else {
-                            nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
-                        }
                         recarga += `<div class="card resultado card-resultado">
                                         <div class="container">
                                             <div class="front-card">
@@ -104,21 +95,9 @@ function multiplyFilter() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>`
-                        if (respuesta[i].extension_contenido == ".pdf") {
-                            if (respuesta[i].id_tema != null) {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
-                            } else {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}.png)">`
-                            }
-                        } else {
-                            if (respuesta[i].id_tema != null) {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
-                            } else {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}${respuesta[i].extension_contenido})">`
-                            }
-                        }
-                        recarga += `<div class="container-reverse">
+                                            </div>
+                                            <div class="reverse-card">
+                                                <div class="container-reverse">
                                                     <div class="top">
                                                         <div class="user-info left-top">
                                                             <div class="container-info">
@@ -262,15 +241,6 @@ function busquedaAvanzada() {
                             <div class="owl-carousel owl-carousel-3">`;
                     for (let i = 0; i < respuesta.length; i++) {
                         split_img = respuesta[i].img_avatar.split(':');
-                        if (respuesta[i].id_tema != null) {
-                            nombre_centro = respuesta[i].nombre_centro.replaceAll(" ", "%20")
-                            nombre_curso = respuesta[i].nombre_curso.replaceAll(" ", "%20")
-                            nombre_asignatura = respuesta[i].nombre_asignatura.replaceAll(" ", "%20")
-                            nombre_tema = respuesta[i].nombre_tema.replaceAll(" ", "%20")
-                            nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
-                        } else {
-                            nombre_contenido = respuesta[i].nombre_contenido.replaceAll(" ", "%20")
-                        }
                         recarga += `<div class="card resultado card-resultado">
                                             <div class="container">
                                                 <div class="front-card">
@@ -306,21 +276,9 @@ function busquedaAvanzada() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>`
-                        if (respuesta[i].extension_contenido == ".pdf") {
-                            if (respuesta[i].id_tema != null) {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}.png)">`
-                            } else {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}.png)">`
-                            }
-                        } else {
-                            if (respuesta[i].id_tema != null) {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes/${nombre_centro}/${nombre_curso}/${nombre_asignatura}/${nombre_tema}/${nombre_contenido}${respuesta[i].extension_contenido})">`
-                            } else {
-                                recarga += `<div class="reverse-card" style="background-image: url(storage/uploads/apuntes_reciclados/${nombre_contenido}${respuesta[i].extension_contenido})">`
-                            }
-                        }
-                        recarga += `<div class="container-reverse">
+                                                </div>                                 
+                                                <div class="reverse-card">
+                                                    <div class="container-reverse">
                                                         <div class="top">
                                                             <div class="user-info left-top">
                                                                 <div class="container-info">
