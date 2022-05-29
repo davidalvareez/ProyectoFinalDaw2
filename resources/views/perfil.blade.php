@@ -161,28 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php
-                                  if ($apunte -> id_tema != null){
-                                      $nombre_centro = str_replace(" ","%20",$apunte->nombre_centro);
-                                      $nombre_curso = str_replace(" ","%20",$apunte->nombre_curso);
-                                      $nombre_asignatura = str_replace(" ","%20",$apunte->nombre_asignatura);
-                                      $nombre_tema = str_replace(" ","%20",$apunte->nombre_tema);
-                                  }
-                                    $nombre_contenido = str_replace(" ","%20",$apunte->nombre_contenido);
-                                ?>
-                                 @if ($apunte->extension_contenido == ".pdf")
-                                    @if ($apunte->id_tema != null)
-                                        <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.'.png'}})">
-                                    @else
-                                        <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.'.png'}})">
-                                    @endif
-                                @else
-                                    @if ($apunte->id_tema != null)
-                                        <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes/'.$nombre_centro.'/'.$nombre_curso.'/'.$nombre_asignatura.'/'.$nombre_tema.'/'.$nombre_contenido.$apunte->extension_contenido}})">
-                                    @else
-                                    <div class="reverse-card" style="background-image: url({{asset('storage').'/uploads/apuntes_reciclados/'.$nombre_contenido.$apunte->extension_contenido}})">
-                                    @endif
-                                @endif
+                                <div class="reverse-card">
                                     <div class="container-reverse">
                                         <div class="top">
                                             <div class="user-info left-top">
