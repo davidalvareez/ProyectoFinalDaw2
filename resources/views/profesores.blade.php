@@ -1,6 +1,6 @@
 @include('template.header')
     <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{!!asset('css/buscador/styles.css')!!}">
+    <link rel="stylesheet" href="{!!asset('css/profesores/styles.css')!!}">
     <script src="{!! asset('js/profesores/profesoresAjax.js') !!}"></script>
     <script src="{!! asset('js/buscador/js.js') !!}"></script>
     <title>Profesores</title>
@@ -27,9 +27,9 @@
                     <form onchange="advancedFilterProfesores();" method="POST" id="filterCurso">
                         @foreach($allCursos as $cursos)
                         <div class="super-check">
-                            <input type="checkbox" name="cursos" value="{{$cursos->nombre_curso}}"/>
-                            <label name="{{$cursos->nombre_curso}}">{{$cursos->nombre_curso}}</label>
-                          </div>
+                          <input type="checkbox" name="cursos" value="{{$cursos->nombre_curso}}"/>
+                          <label name="{{$cursos->nombre_curso}}">{{$cursos->nombre_curso}}</label>
+                        </div>
                         @endforeach
                     </form>
                 </div>
