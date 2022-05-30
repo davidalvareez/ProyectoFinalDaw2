@@ -37,33 +37,37 @@ function multiplyFilter() {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += `<div class="container-grid">
-                <div class="grid-cartas">`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<div class="user-card">
-                                    <div class="image-user">
-                                        <img src="storage/${respuesta[i].img_avatar}" alt="">
-                                    </div>
-                                    <div class="name-surname">
-                                        <span class="name">${respuesta[i].nombre_usu}</span>
-                                        <span class="surname"> ${respuesta[i].apellido_usu}</span>
-                                    </div>
-                                    <div class="actions-user">
-                                        <div class="two">
-                                            <button class="btn-glass" onclick="mostrarEstudios(${respuesta[i].id});">Estudios</button>
-                                            ${respuesta[i].nombre_curriculum != null
-                                                ? `<button class="btn-glass" type="submit" onclick="mostrarCurriculum(${respuesta[i].id});">Curriculum</button>`
-                                                : ``
-                                            }
+                if (respuesta.length == 0) {
+                    recarga += `<div class="no-results">No se han encontrado resultados</div>`;
+                } else {
+                    recarga += `<div class="container-grid">
+                    <div class="grid-cartas">`;
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<div class="user-card">
+                                        <div class="image-user">
+                                            <img src="storage/${respuesta[i].img_avatar}" alt="">
                                         </div>
-                                        <div class="one">
-                                            <button class="btn-glass" onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'">Contactar</button>
+                                        <div class="name-surname">
+                                            <span class="name">${respuesta[i].nombre_usu}</span>
+                                            <span class="surname"> ${respuesta[i].apellido_usu}</span>
                                         </div>
-                                    </div>
-                                </div>`;
+                                        <div class="actions-user">
+                                            <div class="two">
+                                                <button class="btn-glass" onclick="mostrarEstudios(${respuesta[i].id});">Estudios</button>
+                                                ${respuesta[i].nombre_curriculum != null
+                                                    ? `<button class="btn-glass" type="submit" onclick="mostrarCurriculum(${respuesta[i].id});">Curriculum</button>`
+                                                    : ``
+                                                }
+                                            </div>
+                                            <div class="one">
+                                                <button class="btn-glass" onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'">Contactar</button>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                    }
+                    recarga += `</div>
+                    </div>`;
                 }
-                recarga += `</div>
-                </div>`;
                 content.innerHTML = recarga;
             }
         }
@@ -94,33 +98,37 @@ function advancedFilterProfesores() {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
-                recarga += `<div class="container-grid">
-                <div class="grid-cartas">`;
-                for (let i = 0; i < respuesta.length; i++) {
-                    recarga += `<div class="user-card">
-                                    <div class="image-user">
-                                        <img src="storage/${respuesta[i].img_avatar}" alt="">
-                                    </div>
-                                    <div class="name-surname">
-                                        <span class="name">${respuesta[i].nombre_usu}</span>
-                                        <span class="surname"> ${respuesta[i].apellido_usu}</span>
-                                    </div>
-                                    <div class="actions-user">
-                                        <div class="two">
-                                            <button class="btn-glass" onclick="mostrarEstudios(${respuesta[i].id});">Estudios</button>
-                                            ${respuesta[i].nombre_curriculum != null
-                                                ? `<button class="btn-glass" type="submit" onclick="mostrarCurriculum(${respuesta[i].id});">Curriculum</button>`
-                                                : ``
-                                            }
+                if (respuesta.length == 0) {
+                    recarga += `<div class="no-results">No se han encontrado resultados</div>`;
+                }else{
+                    recarga += `<div class="container-grid">
+                    <div class="grid-cartas">`;
+                    for (let i = 0; i < respuesta.length; i++) {
+                        recarga += `<div class="user-card">
+                                        <div class="image-user">
+                                            <img src="storage/${respuesta[i].img_avatar}" alt="">
                                         </div>
-                                        <div class="one">
-                                            <button class="btn-glass" onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'">Contactar</button>
+                                        <div class="name-surname">
+                                            <span class="name">${respuesta[i].nombre_usu}</span>
+                                            <span class="surname"> ${respuesta[i].apellido_usu}</span>
                                         </div>
-                                    </div>
-                                </div>`;
+                                        <div class="actions-user">
+                                            <div class="two">
+                                                <button class="btn-glass" onclick="mostrarEstudios(${respuesta[i].id});">Estudios</button>
+                                                ${respuesta[i].nombre_curriculum != null
+                                                    ? `<button class="btn-glass" type="submit" onclick="mostrarCurriculum(${respuesta[i].id});">Curriculum</button>`
+                                                    : ``
+                                                }
+                                            </div>
+                                            <div class="one">
+                                                <button class="btn-glass" onclick="window.location.href = 'notehub-chat/${respuesta[i].uuid}'">Contactar</button>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                    }
+                    recarga += `</div>
+                    </div>`;
                 }
-                recarga += `</div>
-                </div>`;
                 content.innerHTML = recarga;
             }
         }
