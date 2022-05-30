@@ -116,7 +116,7 @@
                                     @endforeach
                                     @else
                                     <tr>
-                                      <td colspan="2">No has subido ningun apunte</td>
+                                      <td colspan="2">No has subido ningún apunte</td>
                                     </tr>
                                     @endif
                                 </table>
