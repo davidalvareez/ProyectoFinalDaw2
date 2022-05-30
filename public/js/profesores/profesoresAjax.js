@@ -38,8 +38,8 @@ function multiplyFilter() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 if (respuesta.length == 0) {
-                    recarga += `<div>No se han encontrado resultados</div>`;
-                }else{
+                    recarga += `<div class="no-results">No se han encontrado resultados</div>`;
+                } else {
                     recarga += `<div class="container-grid">
                     <div class="grid-cartas">`;
                     for (let i = 0; i < respuesta.length; i++) {
@@ -99,7 +99,7 @@ function advancedFilterProfesores() {
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                 var recarga = '';
                 if (respuesta.length == 0) {
-                    recarga += `<div>No se han encontrado resultados</div>`;
+                    recarga += `<div class="no-results">No se han encontrado resultados</div>`;
                 }else{
                     recarga += `<div class="container-grid">
                     <div class="grid-cartas">`;

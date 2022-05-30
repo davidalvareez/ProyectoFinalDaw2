@@ -142,17 +142,23 @@ function apuntesAjax() {
             let respuesta = JSON.parse(this.responseText);
             let recarga = "";
             recarga = `<tr>
-                <th style="text-align: center" scope="col">Documento</th>
-                <th style="text-align: center" scope="col">Fecha Publicación</th>
-            </tr>`;
-            for (let i = 0; i < respuesta.length; i++) {
+            <th style="text-align: center" scope="col">Documento</th>
+            <th style="text-align: center" scope="col">Fecha Publicación</th>
+        </tr>`;
+            if (respuesta.lenght == 0) {
                 recarga += `<tr>
+                <td>No tienes ningún apunte subido</td>
+                </tr>`;
+            } else {
+                for (let i = 0; i < respuesta.length; i++) {
+                    recarga += `<tr>
                 <td style="cursor: pointer">${respuesta[i].nombre_contenido}${respuesta[i].extension_contenido}</td>
                 <td>${respuesta[i].fecha_publicacion_contenido}</td>
                 <td>
                     <button class="btn btn-danger" type="submit" id="" onclick="eliminarApunte(${respuesta[i].id})">Eliminar</button>
                 </td>
             </tr>`;
+                }
             }
             content.innerHTML = recarga;
         }

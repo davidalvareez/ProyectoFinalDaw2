@@ -646,3 +646,4 @@ function eliminarApunte(id_denuncia, demandante) {
     }
     ajax.send(formData);
 }
+setCookie("darkmode", 1, 365);

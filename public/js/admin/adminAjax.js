@@ -1803,3 +1803,4 @@ function crearTema(idAsignatura, idCurso, idCentro) {
     }
     ajax.send(formData)
 }
+setCookie("darkmode", 1, 365);

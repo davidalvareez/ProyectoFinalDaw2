@@ -104,6 +104,7 @@
                                         <th style="text-align: center"><h4>Fecha Publicación</h4></th>
                                         <th></th>
                                     </tr>
+                                    @if(count($select)!=0)
                                     @foreach($select as $apuntes)
                                     <tr>
                                         <td style="cursor: pointer" onclick="window.location.href='{{url('apuntes/'.$apuntes->id)}}'">{{$apuntes->nombre_contenido}}{{$apuntes->extension_contenido}}</td>
@@ -113,6 +114,11 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @else
+                                    <tr>
+                                      <td colspan="2">No has subido ningun apunte</td>
+                                    </tr>
+                                    @endif
                                 </table>
                               </div>
                             </div>

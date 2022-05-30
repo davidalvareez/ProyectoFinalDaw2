@@ -624,6 +624,15 @@ body {
     }
 }
 
+.no-results {
+    text-align: center;
+    min-height: 22rem;
+    padding: calc(10px + 3.5vh) calc(10px + 2vw) calc(10px + 3.5vh) calc(10px + 2vw);
+    @media (max-width: 1200px) {
+        //margin: 10vh 0px 31vh 0px;
+    }
+}
+
 .swal2-popup {
     display: none;
     position: relative;
