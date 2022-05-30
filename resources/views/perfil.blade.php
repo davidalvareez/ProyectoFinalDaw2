@@ -217,9 +217,6 @@
                                                 @endif
                                             </div>
                                             <div class="buttons-actions">
-                                                <div class="download-button">
-                                                    <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
-                                                </div>
                                                 <div class="go-button">
                                                     <button><a href="{{url('apuntes/'.$apunte->id_content)}}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
                                                 </div>

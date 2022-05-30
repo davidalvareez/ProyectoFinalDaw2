@@ -149,9 +149,6 @@
                                             @endif
                                         </div>
                                         <div class="buttons-actions">
-                                            <div class="download-button">
-                                                <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
-                                            </div>
                                             <div class="go-button">
                                                 <button><a href="{{url('apuntes/'.$recentnotes->id_content)}}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
                                             </div>
@@ -272,9 +269,6 @@
                                             @endif
                                         </div>
                                         <div class="buttons-actions">
-                                            <div class="download-button">
-                                                <button><a href=""><i class="fa-duotone fa-file-arrow-down"></i></a></button>
-                                            </div>
                                             <div class="go-button">
                                                 <button><a href="{{url('apuntes/'.$popularnotes->id_content)}}"><i class="fa-duotone fa-chevrons-right"></i>Ir a la pagina</a></button>
                                             </div>
@@ -488,7 +482,7 @@
                         <input type="text" name="nombre_tema" placeholder="Introduce nombre del tema..." onkeyup="busquedaAvanzada()">
                     </div>
 
-                    <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop2 btn-glass">Ver resultados</a>
+                    <a href="#" id="btn-cerrar-popup" class="btn-cerrarPop2">Ver resultados</a>
                 </form>
             </div>
         </div>

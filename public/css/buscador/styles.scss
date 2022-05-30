@@ -507,6 +507,12 @@ body {
         background: $first-color;
         color: $second-color;
     }
+    .btn-cerrarPop2 {
+        color: white;
+        &:hover {
+            color: rgb(214, 214, 214);
+        }
+    }
 }
 
 ////////////////////////////////
