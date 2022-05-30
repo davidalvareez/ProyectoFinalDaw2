@@ -155,7 +155,8 @@ td {
             }
         }
         .region2 {
-            margin-bottom: 60px;
+            //margin-bottom: 100px;
+            margin-bottom: 11.8%;
             @include flex-cv($d: column);
             .content-region {
                 .glassland {

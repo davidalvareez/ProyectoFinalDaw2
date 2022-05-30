@@ -224,7 +224,7 @@ class ApuntesController extends Controller
         }
         public function misApuntes_apuntes(){
             $user = session()->get('user');
-            $select = DB::select("SELECT contenidos.* FROM tbl_contenidos contenidos
+            $select = DB::select("SELECT contenidos.id,contenidos.nombre_contenido,contenidos.extension_contenido,DATE_FORMAT(contenidos.fecha_publicacion_contenido,'%d/%m/%Y') as 'fecha_publicacion_contenido' FROM tbl_contenidos contenidos
             INNER JOIN tbl_usuario user ON contenidos.id_usu = user.id
             WHERE user.id = ?",[$user->id]);
             return response()->json($select);
