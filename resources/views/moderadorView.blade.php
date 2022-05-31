@@ -46,6 +46,7 @@
                                                 <th scope="col">Demandante</th>
                                                 <th scope="col" colspan="3">Acciones</th>
                                             </tr>
+                                            @if(count($moderador) != 0)
                                             @foreach($moderador as $registro)
                                             <tr>
                                                 <td scope="row"><b>{{$registro->id}}</b></td>
@@ -62,6 +63,9 @@
                                                 @endif
                                             </tr>
                                             @endforeach
+                                            @else
+                                            <h1>No se han encontrado registros...</h1>
+                                            @endif
                                         </table>
                                       </div>
                                     </div>
