@@ -505,6 +505,7 @@ class UsuarioController extends Controller
                     DB::delete("DELETE FROM tbl_usuario WHERE id= ?",[$user->id]);
                     DB::commit();
                     $redirect = url('/');
+                    session()->flush();
                     return response()->json(array('resultado'=>'OK','redirect'=>$redirect));
                 }catch(\Exception $e){
                     DB::rollBack();
